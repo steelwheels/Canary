@@ -8,7 +8,7 @@
 
 import Foundation
 
-println("*** UnitTest for Canary Framework ***")
+print("*** UnitTest for Canary Framework ***")
 
 var result = true
 
@@ -16,22 +16,30 @@ func test(title : String, result : Bool)
 {
 	print("\(title) ... ")
 	if result {
-		println("OK")
+		print("OK")
 	} else {
-		println("NG")
+		print("NG")
 	}
 }
 
-println("[UTDocument] ")
-let docres = UTDocument()
-println("\(docres)")
-result = result && docres
+func test(title: String, flag : Bool) -> Bool
+{
+	print("\(title)", terminator:"")
+	if flag {
+		print("OK")
+	} else {
+		print("NG")
+	}
+	return flag
+}
 
-print("TEST RESULT ... ")
+result = result && test("[Test:CNTextBuffer] ... ", flag: UTTextBuffer())
+
+print("TEST RESULT ... ", terminator: "")
 if result {
-	println("OK")
+	print("OK")
 } else {
-	println("NG")
+	print("NG")
 }
 
 

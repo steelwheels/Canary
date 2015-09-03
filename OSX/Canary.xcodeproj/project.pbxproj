@@ -7,24 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		053986931B92F7A500EE2CAF /* CNDocumentVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986921B92F7A500EE2CAF /* CNDocumentVisitor.swift */; };
-		053986951B931DC800EE2CAF /* CNDocumentDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986941B931DC800EE2CAF /* CNDocumentDumper.swift */; };
-		053986971B931ED100EE2CAF /* CNDocumentFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986961B931ED100EE2CAF /* CNDocumentFormat.swift */; };
-		053986991B93344500EE2CAF /* UTDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTDocument.swift */; };
+		05382FC81B98B33800D63255 /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F00F291B975638003C50B3 /* CNTextBuffer.swift */; settings = {ASSET_TAGS = (); }; };
+		053986991B93344500EE2CAF /* UTTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextBuffer.swift */; };
 		053E52141B90AB66003A5B3C /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 053E52131B90AB66003A5B3C /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		056CBEBA1B90AC8200FAF160 /* CNDocumentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEB91B90AC8200FAF160 /* CNDocumentObject.swift */; };
-		056CBEBD1B90B1F400FAF160 /* CNTextLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEBC1B90B1F400FAF160 /* CNTextLine.swift */; };
-		056CBEBF1B90B29100FAF160 /* CNSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEBE1B90B29100FAF160 /* CNSection.swift */; };
-		056CBEC11B90B39D00FAF160 /* CNDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEC01B90B39D00FAF160 /* CNDocument.swift */; };
-		059E3A331B9112F0001020E8 /* CNTextList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3A321B9112F0001020E8 /* CNTextList.swift */; };
-		05D24EF31B94AC79004F40C6 /* CNDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEC01B90B39D00FAF160 /* CNDocument.swift */; };
-		05D24EF41B94AC7C004F40C6 /* CNSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEBE1B90B29100FAF160 /* CNSection.swift */; };
-		05D24EF51B94AC7E004F40C6 /* CNTextLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEBC1B90B1F400FAF160 /* CNTextLine.swift */; };
-		05D24EF61B94AC81004F40C6 /* CNTextList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3A321B9112F0001020E8 /* CNTextList.swift */; };
-		05D24EF71B94AC83004F40C6 /* CNDocumentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056CBEB91B90AC8200FAF160 /* CNDocumentObject.swift */; };
-		05D24EF81B94AC86004F40C6 /* CNDocumentFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986961B931ED100EE2CAF /* CNDocumentFormat.swift */; };
-		05D24EF91B94AC88004F40C6 /* CNDocumentVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986921B92F7A500EE2CAF /* CNDocumentVisitor.swift */; };
-		05D24EFA1B94AC8B004F40C6 /* CNDocumentDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986941B931DC800EE2CAF /* CNDocumentDumper.swift */; };
+		05F00F2A1B975638003C50B3 /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F00F291B975638003C50B3 /* CNTextBuffer.swift */; settings = {ASSET_TAGS = (); }; };
 		05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F97F8E1B92F5FD004C4EC3 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,18 +44,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		053986921B92F7A500EE2CAF /* CNDocumentVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNDocumentVisitor.swift; sourceTree = "<group>"; };
-		053986941B931DC800EE2CAF /* CNDocumentDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNDocumentDumper.swift; sourceTree = "<group>"; };
-		053986961B931ED100EE2CAF /* CNDocumentFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNDocumentFormat.swift; sourceTree = "<group>"; };
-		053986981B93344500EE2CAF /* UTDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTDocument.swift; sourceTree = "<group>"; };
+		053986981B93344500EE2CAF /* UTTextBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTextBuffer.swift; sourceTree = "<group>"; };
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		053E52121B90AB66003A5B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		053E52131B90AB66003A5B3C /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
-		056CBEB91B90AC8200FAF160 /* CNDocumentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNDocumentObject.swift; sourceTree = "<group>"; };
-		056CBEBC1B90B1F400FAF160 /* CNTextLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextLine.swift; sourceTree = "<group>"; };
-		056CBEBE1B90B29100FAF160 /* CNSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSection.swift; sourceTree = "<group>"; };
-		056CBEC01B90B39D00FAF160 /* CNDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNDocument.swift; sourceTree = "<group>"; };
-		059E3A321B9112F0001020E8 /* CNTextList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextList.swift; sourceTree = "<group>"; };
+		05F00F291B975638003C50B3 /* CNTextBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextBuffer.swift; sourceTree = "<group>"; };
 		05F97F8C1B92F5FD004C4EC3 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F97F8E1B92F5FD004C4EC3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				05F97F8E1B92F5FD004C4EC3 /* main.swift */,
-				053986981B93344500EE2CAF /* UTDocument.swift */,
+				053986981B93344500EE2CAF /* UTTextBuffer.swift */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -123,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				053E52131B90AB66003A5B3C /* Canary.h */,
-				056CBEBB1B90B18600FAF160 /* Document */,
+				056CBEBB1B90B18600FAF160 /* Text */,
 				053E52111B90AB66003A5B3C /* Supporting Files */,
 			);
 			name = Source;
@@ -138,19 +117,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		056CBEBB1B90B18600FAF160 /* Document */ = {
+		056CBEBB1B90B18600FAF160 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				056CBEC01B90B39D00FAF160 /* CNDocument.swift */,
-				056CBEBE1B90B29100FAF160 /* CNSection.swift */,
-				056CBEBC1B90B1F400FAF160 /* CNTextLine.swift */,
-				059E3A321B9112F0001020E8 /* CNTextList.swift */,
-				056CBEB91B90AC8200FAF160 /* CNDocumentObject.swift */,
-				053986961B931ED100EE2CAF /* CNDocumentFormat.swift */,
-				053986921B92F7A500EE2CAF /* CNDocumentVisitor.swift */,
-				053986941B931DC800EE2CAF /* CNDocumentDumper.swift */,
+				05F00F291B975638003C50B3 /* CNTextBuffer.swift */,
 			);
-			path = Document;
+			path = Text;
 			sourceTree = "<group>";
 		};
 		05F97F8D1B92F5FD004C4EC3 /* UnitTest */ = {
@@ -236,7 +208,8 @@
 		053E52051B90AB66003A5B3C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
 					053E520D1B90AB66003A5B3C = {
@@ -284,14 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053986931B92F7A500EE2CAF /* CNDocumentVisitor.swift in Sources */,
-				056CBEBF1B90B29100FAF160 /* CNSection.swift in Sources */,
-				053986971B931ED100EE2CAF /* CNDocumentFormat.swift in Sources */,
-				059E3A331B9112F0001020E8 /* CNTextList.swift in Sources */,
-				056CBEBA1B90AC8200FAF160 /* CNDocumentObject.swift in Sources */,
-				056CBEBD1B90B1F400FAF160 /* CNTextLine.swift in Sources */,
-				053986951B931DC800EE2CAF /* CNDocumentDumper.swift in Sources */,
-				056CBEC11B90B39D00FAF160 /* CNDocument.swift in Sources */,
+				05F00F2A1B975638003C50B3 /* CNTextBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,16 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05D24EF91B94AC88004F40C6 /* CNDocumentVisitor.swift in Sources */,
-				05D24EF41B94AC7C004F40C6 /* CNSection.swift in Sources */,
+				05382FC81B98B33800D63255 /* CNTextBuffer.swift in Sources */,
 				05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */,
-				05D24EF81B94AC86004F40C6 /* CNDocumentFormat.swift in Sources */,
-				05D24EFA1B94AC8B004F40C6 /* CNDocumentDumper.swift in Sources */,
-				05D24EF51B94AC7E004F40C6 /* CNTextLine.swift in Sources */,
-				05D24EF71B94AC83004F40C6 /* CNDocumentObject.swift in Sources */,
-				053986991B93344500EE2CAF /* UTDocument.swift in Sources */,
-				05D24EF31B94AC79004F40C6 /* CNDocument.swift in Sources */,
-				05D24EF61B94AC81004F40C6 /* CNTextList.swift in Sources */,
+				053986991B93344500EE2CAF /* UTTextBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +308,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -426,6 +386,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -446,6 +407,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -480,7 +442,7 @@
 		05F97F901B92F5FD004C4EC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -499,7 +461,7 @@
 		05F97F911B92F5FD004C4EC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
