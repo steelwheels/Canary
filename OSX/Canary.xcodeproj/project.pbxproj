@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05382FC81B98B33800D63255 /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F00F291B975638003C50B3 /* CNTextBuffer.swift */; settings = {ASSET_TAGS = (); }; };
 		053986991B93344500EE2CAF /* UTTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextBuffer.swift */; };
 		053E52141B90AB66003A5B3C /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 053E52131B90AB66003A5B3C /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05F00F2A1B975638003C50B3 /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F00F291B975638003C50B3 /* CNTextBuffer.swift */; settings = {ASSET_TAGS = (); }; };
@@ -265,7 +264,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05382FC81B98B33800D63255 /* CNTextBuffer.swift in Sources */,
 				05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */,
 				053986991B93344500EE2CAF /* UTTextBuffer.swift in Sources */,
 			);
