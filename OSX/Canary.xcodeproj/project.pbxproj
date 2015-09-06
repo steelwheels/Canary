@@ -48,7 +48,7 @@
 		053E52121B90AB66003A5B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		053E52131B90AB66003A5B3C /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		05F00F291B975638003C50B3 /* CNTextBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextBuffer.swift; sourceTree = "<group>"; };
-		05F97F8C1B92F5FD004C4EC3 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F97F8E1B92F5FD004C4EC3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,14 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		053986911B92F68900EE2CAF /* OSX */ = {
+		053986911B92F68900EE2CAF /* Exec-OSX */ = {
 			isa = PBXGroup;
 			children = (
 				05F97F8E1B92F5FD004C4EC3 /* main.swift */,
 				053986981B93344500EE2CAF /* UTTextBuffer.swift */,
 			);
-			path = OSX;
-			sourceTree = "<group>";
+			name = "Exec-OSX";
+			path = "../UnitTest/Exec-OSX";
+			sourceTree = SOURCE_ROOT;
 		};
 		053E52041B90AB66003A5B3C = {
 			isa = PBXGroup;
@@ -92,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				053E520E1B90AB66003A5B3C /* Canary.framework */,
-				05F97F8C1B92F5FD004C4EC3 /* UnitTest */,
+				05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,7 +128,7 @@
 		05F97F8D1B92F5FD004C4EC3 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				053986911B92F68900EE2CAF /* OSX */,
+				053986911B92F68900EE2CAF /* Exec-OSX */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -183,9 +184,9 @@
 			productReference = 053E520E1B90AB66003A5B3C /* Canary.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		05F97F8B1B92F5FD004C4EC3 /* UnitTest */ = {
+		05F97F8B1B92F5FD004C4EC3 /* UnitTestExec */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05F97F921B92F5FD004C4EC3 /* Build configuration list for PBXNativeTarget "UnitTest" */;
+			buildConfigurationList = 05F97F921B92F5FD004C4EC3 /* Build configuration list for PBXNativeTarget "UnitTestExec" */;
 			buildPhases = (
 				05F97F881B92F5FD004C4EC3 /* Sources */,
 				05F97F891B92F5FD004C4EC3 /* Frameworks */,
@@ -196,9 +197,9 @@
 			dependencies = (
 				05F97F941B92F607004C4EC3 /* PBXTargetDependency */,
 			);
-			name = UnitTest;
+			name = UnitTestExec;
 			productName = UnitTest;
-			productReference = 05F97F8C1B92F5FD004C4EC3 /* UnitTest */;
+			productReference = 05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +237,7 @@
 			targets = (
 				053E520D1B90AB66003A5B3C /* Canary */,
 				059E3A341B911362001020E8 /* Install */,
-				05F97F8B1B92F5FD004C4EC3 /* UnitTest */,
+				05F97F8B1B92F5FD004C4EC3 /* UnitTestExec */,
 			);
 		};
 /* End PBXProject section */
@@ -450,7 +451,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -465,7 +466,7 @@
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 2;
-				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/Library/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -501,7 +502,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05F97F921B92F5FD004C4EC3 /* Build configuration list for PBXNativeTarget "UnitTest" */ = {
+		05F97F921B92F5FD004C4EC3 /* Build configuration list for PBXNativeTarget "UnitTestExec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05F97F901B92F5FD004C4EC3 /* Debug */,
