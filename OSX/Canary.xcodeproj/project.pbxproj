@@ -12,6 +12,8 @@
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; settings = {ASSET_TAGS = (); }; };
 		053986991B93344500EE2CAF /* UTTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextBuffer.swift */; };
 		053E52141B90AB66003A5B3C /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 053E52131B90AB66003A5B3C /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */; settings = {ASSET_TAGS = (); }; };
+		05DA9F841BA3E20C0027EA25 /* CNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA9F831BA3E20C0027EA25 /* CNError.swift */; settings = {ASSET_TAGS = (); }; };
 		05F00F2A1B975638003C50B3 /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F00F291B975638003C50B3 /* CNTextBuffer.swift */; settings = {ASSET_TAGS = (); }; };
 		05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F97F8E1B92F5FD004C4EC3 /* main.swift */; };
 /* End PBXBuildFile section */
@@ -78,8 +80,10 @@
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		053E52121B90AB66003A5B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		053E52131B90AB66003A5B3C /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
+		058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNObjectVisitor.swift; path = Object/CNObjectVisitor.swift; sourceTree = "<group>"; };
 		05CAABD41B9C3C5F00B30F95 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAABD61B9C3C5F00B30F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05DA9F831BA3E20C0027EA25 /* CNError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNError.swift; sourceTree = "<group>"; };
 		05F00F291B975638003C50B3 /* CNTextBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextBuffer.swift; sourceTree = "<group>"; };
 		05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F97F8E1B92F5FD004C4EC3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			children = (
 				053E52131B90AB66003A5B3C /* Canary.h */,
 				056CBEBB1B90B18600FAF160 /* Text */,
+				058127F01B9C63DB00D6AF09 /* Object */,
+				05DA9F821BA3E1F10027EA25 /* Error */,
 				053E52111B90AB66003A5B3C /* Supporting Files */,
 			);
 			name = Source;
@@ -167,6 +173,14 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		058127F01B9C63DB00D6AF09 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
 		05CAABD51B9C3C5F00B30F95 /* Bundle-OSX */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +189,15 @@
 			);
 			path = "Bundle-OSX";
 			sourceTree = "<group>";
+		};
+		05DA9F821BA3E1F10027EA25 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				05DA9F831BA3E20C0027EA25 /* CNError.swift */,
+			);
+			name = Error;
+			path = ../Source/Error;
+			sourceTree = SOURCE_ROOT;
 		};
 		05F97F8D1B92F5FD004C4EC3 /* UnitTest */ = {
 			isa = PBXGroup;
@@ -340,7 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */,
 				05F00F2A1B975638003C50B3 /* CNTextBuffer.swift in Sources */,
+				05DA9F841BA3E20C0027EA25 /* CNError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
