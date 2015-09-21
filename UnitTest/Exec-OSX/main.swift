@@ -8,20 +8,6 @@
 
 import Foundation
 
-print("*** UnitTest for Canary Framework ***")
-
-var result = true
-
-func test(title : String, result : Bool)
-{
-	print("\(title) ... ")
-	if result {
-		print("OK")
-	} else {
-		print("NG")
-	}
-}
-
 func test(title: String, flag : Bool) -> Bool
 {
 	print("\(title)", terminator:"")
@@ -33,6 +19,9 @@ func test(title: String, flag : Bool) -> Bool
 	return flag
 }
 
+print("*** UnitTest for Canary Framework ***")
+
+var result = true
 result = result && test("[Test:CNTextBuffer] ... ", flag: UTTextBuffer())
 
 print("TEST RESULT ... ", terminator: "")

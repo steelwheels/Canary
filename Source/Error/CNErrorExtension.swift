@@ -1,9 +1,9 @@
 /**
-* @file		CNErrorExtension.swift
-* @brief	Extend NSError class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	CNErrorExtension.swift
+ * @brief	Extend NSError class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 

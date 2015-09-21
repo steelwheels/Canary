@@ -1,9 +1,9 @@
 /**
-* @file		UTTextBuffer.h
-* @brief	Unit test for CNTextBuffer class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file		UTTextBuffer.h
+ * @brief	Unit test for CNTextBuffer class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import Canary
