@@ -21,7 +21,7 @@ public func UTURL() -> Bool {
 
 private func testURL(filename : String) -> Bool
 {
-	let (url, error) = NSURL.allocateURLForFile(filename)
+	let (url, error) = NSURL.URLForFile(filename)
 	if let fileurl = url {
 		let pathstr = fileurl.absoluteString
 		print("filename:\"\(filename)\" -> URL:\(pathstr)")
@@ -40,7 +40,7 @@ private func testURL(filename : String) -> Bool
 private func testBundle(filename : String, filetype : String) -> Bool
 {
 	var result = true
-	let (urlobj, errorobj) = NSURL.allocateURLForBundleFile("UnitTest", filename: filename, ofType: filetype)
+	let (urlobj, errorobj) = NSURL.URLForBundleFile("UnitTest", filename: filename, ofType: filetype)
 	if let url = urlobj {
 		let urlstr = url.absoluteString
 		print("URL: \(urlstr)")

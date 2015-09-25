@@ -2,7 +2,7 @@
  * @file	CNURL.swift
  * @brief	Extend NSURL class
  * @par Copyright
- *   Copyright (C) 2014 Steel Wheels Project
+ *   Copyright (C) 2015 Steel Wheels Project
  */
 
 import Foundation
@@ -26,7 +26,7 @@ public enum CNURIScheme {
 }
 
 extension NSURL {
-	public class func allocateURLForFile(filename : String) -> (NSURL?, NSError?) {
+	public class func URLForFile(filename : String) -> (NSURL?, NSError?) {
 		if filename.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
 			let error = NSError.parseError("No input file name")
 			return (nil, error)
@@ -48,10 +48,10 @@ extension NSURL {
 					let filemgr  = NSFileManager.defaultManager()
 					let curdir   = filemgr.currentDirectoryPath
 					let fullpath = curdir + "/" + filename
-					let url = NSURL(string: "file:/" + fullpath)
+					let url = NSURL(string: "file://" + fullpath)
 					return (url, nil)
 				} else {
-					let url = NSURL(string: "file:/" + pathstr)
+					let url = NSURL(string: "file://" + pathstr)
 					return (url, nil)
 				}
 			}
@@ -61,12 +61,12 @@ extension NSURL {
 		return (nil, error)
 	}
 	
-	public class func allocateURLForBundleFile(bundlename : String?, filename : String?, ofType: String?) -> (NSURL?, NSError?) {
+	public class func URLForBundleFile(bundlename : String?, filename : String?, ofType: String?) -> (NSURL?, NSError?) {
 		let mainbundle = NSBundle.mainBundle()
 		if let bundlepath = mainbundle.pathForResource(bundlename, ofType: "bundle") {
 			if let resourcebundle = NSBundle(path: bundlepath) {
 				if let resourcepath = resourcebundle.pathForResource(filename, ofType: ofType){
-					let url = NSURL(string: resourcepath)
+					let url = NSURL(string: "file://" + resourcepath)
 					return (url, nil)
 				} else {
 					let error = NSError.fileError("File \"\(filename)\" of type \"\(ofType)\" is not found")
