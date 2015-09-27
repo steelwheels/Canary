@@ -11,7 +11,7 @@ internal class CNTextLine : NSObject
 {
 	var indent	: UInt		= 0
 	var content	: String	= ""
-	
+
 	internal func dump(){
 		for var i=UInt(0) ; i<indent ; i++ {
 			print("\t", terminator: "")
@@ -25,23 +25,23 @@ public class CNTextBuffer : NSObject
 	private var contents	  : Array<CNTextLine>	= []
 	private var currentString : String		= ""
 	private var currentIndent : UInt		= 0
-	
+
 	public func incrementIndent(){
 		flushCurrentString()
 		currentIndent += 1
 	}
-	
+
 	public func decrementIndent(){
 		flushCurrentString()
 		if currentIndent > 0 {
 			currentIndent -= 1
 		}
 	}
-	
+
 	public func append(str : String){
 		currentString += str
 	}
-	
+
 	public func newline(){
 		let textline = CNTextLine()
 		textline.indent  = currentIndent
@@ -49,14 +49,20 @@ public class CNTextBuffer : NSObject
 		contents.append(textline)
 		currentString = ""
 	}
-	
+
 	public func dump(){
 		flushCurrentString()
 		for textline in contents {
 			textline.dump()
 		}
 	}
-	
+
+	public func clear() -> Void {
+		contents = []
+		currentString = ""
+		currentIndent = 0
+	}
+
 	private func flushCurrentString(){
 		let len = currentString.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
 		if len > 0 {
