@@ -23,8 +23,8 @@ print("*** UnitTest for Canary Framework ***")
 
 var result = true
 result = test("[Test:CNTextBuffer]    ... ", flag: UTTextBuffer()) && result
+result = test("[Test:CNTextConsole] ... ", flag: UTTextConsole()) && result
 result = test("[Test:NSURL extension] ... ", flag: UTURL()) && result
-
 print("TEST RESULT ... ", terminator: "")
 if result {
 	print("OK")

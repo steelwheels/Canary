@@ -1,0 +1,22 @@
+*** UnitTest for Canary Framework ***
+*** Initial state: 
+*** appendString:
+1st statement
+*** Indent
+1st statement
+	indented text
+2nd statement
+[Test:CNTextBuffer]    ... OK
+Hello, world
+ ab
+c
+[Test:CNTextConsole] ... OK
+* test URL
+filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/a
+filename:"/tmp/a" -> URL:file:///tmp/a
+filename:"http://www.yahoo.co.jp" -> URL:http://www.yahoo.co.jp
+* test Bundle
+[Error] Failed to get URL
+[Error] Optional("UnitTest").bundle is not found
+[Test:NSURL extension] ... NG
+TEST RESULT ... NG

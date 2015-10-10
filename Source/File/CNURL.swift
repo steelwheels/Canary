@@ -77,7 +77,18 @@ extension NSURL {
 				return (nil, error)
 			}
 		} else {
-			let error = NSError.fileError(".bundle is not found")
+			let error = NSError.fileError("\(bundlename).bundle is not found")
+			return (nil, error)
+		}
+	}
+	
+	public class func URLForMainBundleFile(filename : String?, ofType: String?) -> (NSURL?, NSError?) {
+		let mainbundle = NSBundle.mainBundle()
+		if let mainpath = mainbundle.pathForResource(filename, ofType: ofType){
+			let url = NSURL(string: "file://" + mainpath)
+			return (url, nil)
+		} else {
+			let error = NSError.fileError("File \"\(filename)\" of type \"\(ofType)\" is not found")
 			return (nil, error)
 		}
 	}

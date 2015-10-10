@@ -1,9 +1,9 @@
 /**
-* @file		UTURL.h
-* @brief	Unit test for extension of NSURL
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file		UTURL.h
+ * @brief	Unit test for extension of NSURL
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import Canary
