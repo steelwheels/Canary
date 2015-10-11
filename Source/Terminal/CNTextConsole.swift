@@ -25,11 +25,7 @@ public class CNTextConsole : CNConsole
 	}
 	
 	private func putIndent(){
-		let indent = currentIndent()
-		var indentstr = ""
-		for(var i:UInt=0 ; i<indent ; i++){
-			indentstr += " "
-		}
+		let indentstr = indentString()
 		print(indentstr, separator:"", terminator:"")
 	}
 }

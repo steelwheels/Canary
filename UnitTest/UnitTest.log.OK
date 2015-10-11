@@ -1,16 +1,19 @@
 *** UnitTest for Canary Framework ***
-*** Initial state: 
-*** appendString:
-1st statement
-*** Indent
-1st statement
-	indented text
-2nd statement
-[Test:CNTextBuffer]    ... OK
 Hello, world
  ab
 c
 [Test:CNTextConsole] ... OK
+** output0
+Hello, ** end of output
+** output1
+Hello, World
+** end of output
+** output2
+title
+ Hello, World
+ Hello, World
+** end of output
+[Test:CNTextDumper]    ... OK
 * test URL
 filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/a
 filename:"/tmp/a" -> URL:file:///tmp/a
