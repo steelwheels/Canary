@@ -11,15 +11,16 @@ import Canary
 public func UTTextConsole() -> Bool
 {
 	let console = CNTextConsole()
-	console.putString("Hello, world")
-	console.putNewline()
+	console.addWord("Hello, world")
+	console.addNewline()
 	console.incIndent()
-		console.putString("a")
-		console.putString("b")
-		console.putNewline()
+		console.addWord("a")
+		console.addWord("b")
+		console.addNewline()
 	console.decIndent()
-	console.putString("c")
-	console.putNewline()
+	console.addWord("c")
+	console.addNewline()
+	console.flush()
 	
 	return true
 }

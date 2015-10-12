@@ -1,25 +1,18 @@
 *** UnitTest for Canary Framework ***
+[Test:CNTextConsole]
 Hello, world
  ab
 c
-[Test:CNTextConsole] ... OK
-** output0
-Hello, ** end of output
-** output1
-Hello, World
-** end of output
-** output2
-title
- Hello, World
- Hello, World
-** end of output
-[Test:CNTextDumper]    ... OK
+Result: OK
+[Test:CNTextDumper]
+Hello, 
+Result: OK
+[Test:NSURL extension]
 * test URL
 filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/a
 filename:"/tmp/a" -> URL:file:///tmp/a
 filename:"http://www.yahoo.co.jp" -> URL:http://www.yahoo.co.jp
 * test Bundle
-[Error] Failed to get URL
-[Error] Optional("UnitTest").bundle is not found
-[Test:NSURL extension] ... NG
-TEST RESULT ... NG
+URL: file:///Users/tomoo/build/DerivedData/Canary-btnobogqbomcotbiqzxllcmkuijv/Build/Products/Debug/UnitTest.bundle/Contents/Resources/unittest.txt
+Result: OK
+TEST RESULT ... OK

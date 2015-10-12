@@ -22,6 +22,7 @@
 		059E3CD31BCA68F300B7B4CB /* CNTextDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3CD21BCA68F300B7B4CB /* CNTextDumper.swift */; settings = {ASSET_TAGS = (); }; };
 		059E3CD51BCA6A2900B7B4CB /* CNTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */; settings = {ASSET_TAGS = (); }; };
 		05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A460A91BC8279B00CE2766 /* CNConsole.swift */; settings = {ASSET_TAGS = (); }; };
+		05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */; settings = {ASSET_TAGS = (); }; };
 		05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */; settings = {ASSET_TAGS = (); }; };
 		05DA86151BC9D93600DC4C26 /* CNTextVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86141BC9D93600DC4C26 /* CNTextVisitor.swift */; settings = {ASSET_TAGS = (); }; };
 		05DA86171BC9DBB800DC4C26 /* CNTextString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86161BC9DBB800DC4C26 /* CNTextString.swift */; settings = {ASSET_TAGS = (); }; };
@@ -112,6 +113,7 @@
 		05A460A91BC8279B00CE2766 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05CAABD41B9C3C5F00B30F95 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAABD61B9C3C5F00B30F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextDictionary.swift; sourceTree = "<group>"; };
 		05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextElement.swift; sourceTree = "<group>"; };
 		05DA86141BC9D93600DC4C26 /* CNTextVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextVisitor.swift; sourceTree = "<group>"; };
 		05DA86161BC9DBB800DC4C26 /* CNTextString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextString.swift; sourceTree = "<group>"; };
@@ -151,8 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				05F97F8E1B92F5FD004C4EC3 /* main.swift */,
-				053986981B93344500EE2CAF /* UTTextDumper.swift */,
 				057EF7E31BC955F3009233FE /* UTTextConsole.swift */,
+				053986981B93344500EE2CAF /* UTTextDumper.swift */,
 				0500FED21BB11CEB00E6B6D1 /* UTURL.swift */,
 			);
 			name = "Exec-OSX";
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */,
+				05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */,
 				05DA86181BC9DCF300DC4C26 /* CNTextLine.swift */,
 				05DA86161BC9DBB800DC4C26 /* CNTextString.swift */,
 				05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */,
@@ -456,6 +459,7 @@
 				05DA86171BC9DBB800DC4C26 /* CNTextString.swift in Sources */,
 				058507881BB0CD9200DA2FCD /* CNURL.swift in Sources */,
 				057D194D1BA9C2DB008BB43C /* CNMathFunctions.swift in Sources */,
+				05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */,
 				05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */,
 				05DA86151BC9D93600DC4C26 /* CNTextVisitor.swift in Sources */,
 				057EF7E21BC94B7F009233FE /* CNTextConsole.swift in Sources */,
@@ -607,6 +611,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/$(PRODUCT).bundle/Contents/MacOSX";
@@ -628,6 +633,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @executable_path/$(PRODUCT).bundle/Contents/MacOSX";

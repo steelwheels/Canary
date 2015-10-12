@@ -21,7 +21,7 @@ public class CNTextString : CNTextElement
 		super.init()
 	}
 	
-	public override func accept(visitor : CNTextVisitor){
-		visitor.visitString(self)
+	public override func accept(visitor : CNTextVisitor, param: CNTextVisitorParam){
+		visitor.visitString(self, param: param)
 	}
 }

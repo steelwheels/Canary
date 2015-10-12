@@ -9,8 +9,8 @@ import Foundation
 
 public class CNTextSection : CNTextElement
 {
-	var title    : String
-	var elements : Array<CNTextElement>
+	public var title    : String
+	public var elements : Array<CNTextElement>
 
 	public override init(){
 		title = ""
@@ -30,7 +30,7 @@ public class CNTextSection : CNTextElement
 		super.init()
 	}
 	
-	public override func accept(visitor : CNTextVisitor){
-		visitor.visitSection(self)
+	public override func accept(visitor : CNTextVisitor, param: CNTextVisitorParam){
+		visitor.visitSection(self, param: param)
 	}
 }

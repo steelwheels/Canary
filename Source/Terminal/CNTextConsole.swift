@@ -9,24 +9,20 @@ import Foundation
 
 public class CNTextConsole : CNConsole
 {
-	private var is1ststring = true
+	private let lock : NSLock ;
 	
-	public override func putString(str : String){
-		if is1ststring {
-			putIndent()
-			is1ststring = false
+	public override init(){
+		lock = NSLock()
+		super.init()
+	}
+	
+	public override func printLines(lines : Array<CNConsoleLine>){
+		lock.lock() ;
+		for line in lines {
+			let str = CNConsole.lineToString(line)
+			print(str)
 		}
-		print(str, separator: "", terminator: "")
-	}
-	
-	public override func putNewline(){
-		print("", separator: "", terminator: "\n")
-		is1ststring = true
-	}
-	
-	private func putIndent(){
-		let indentstr = indentString()
-		print(indentstr, separator:"", terminator:"")
+		lock.unlock()
 	}
 }
 

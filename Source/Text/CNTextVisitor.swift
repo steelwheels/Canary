@@ -7,14 +7,21 @@
 
 import Foundation
 
-public class CNTextVisitor
+public class CNTextVisitorParam : NSObject {
+	
+}
+
+public class CNTextVisitor : NSObject
 {
-	public func visitSection(section : CNTextSection){
+	public func visitSection(section : CNTextSection, param: CNTextVisitorParam){
 	}
 	
-	public func visitLine(line : CNTextLine){
+	public func visitDictionary(dictionary : CNTextDictionary, param: CNTextVisitorParam){
 	}
 	
-	public func visitString(string : CNTextString){
+	public func visitLine(line : CNTextLine, param: CNTextVisitorParam){
+	}
+	
+	public func visitString(string : CNTextString, param: CNTextVisitorParam){
 	}
 }

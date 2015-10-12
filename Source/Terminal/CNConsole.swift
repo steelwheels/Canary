@@ -7,40 +7,75 @@
 
 import Foundation
 
+public class CNConsoleLine : NSObject {
+	public var indent      : UInt
+	public var lineString  : String
+	
+	public init(indent idt : UInt, line: String){
+		indent     = idt
+		lineString = line
+		super.init()
+	}
+}
+
 public class CNConsole : NSObject
 {
-	private var mIndent : UInt = 0
-	public var  indentUnit = " "
+	private var currentIndent : UInt = 0
+	private var currentLine   : String = ""
+	private var lines	  : Array<CNConsoleLine> = []
 	
-	public func putString(str : String){
-		fatalError("This method must be overridden")
+	public override init(){
+		currentIndent = 0
+		currentLine = ""
+		lines = []
+		super.init()
 	}
 	
-	public func putNewline(){
-		fatalError("This method must be overridden")
+	public func addWord(word : String){
+		currentLine += word
 	}
 	
-	public func currentIndent() -> UInt {
-		return mIndent
+	public func addNewline(){
+		flushCurrentLine()
 	}
 	
-	public func incIndent(level : UInt = 1){
-		mIndent += level ;
+	public func flush(){
+		flushCurrentLine()
+		printLines(lines)
+		lines = []
 	}
 	
-	public func decIndent(level : UInt = 1){
-		if(mIndent > level){
-			mIndent -= level
-		} else {
-			mIndent = 0
+	public func printLines(lines : Array<CNConsoleLine>){
+		fatalError("Must be overridden")
+	}
+	
+	public func incIndent(){
+		flushCurrentLine()
+		currentIndent += 1
+	}
+	
+	public func decIndent(){
+		flushCurrentLine()
+		if currentIndent > 0 {
+			currentIndent -= 1
+		}
+		
+	}
+	
+	private func flushCurrentLine() {
+		if currentLine.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+			let line = CNConsoleLine(indent: currentIndent, line: currentLine)
+			lines.append(line)
+			currentLine = ""
 		}
 	}
 	
-	public func indentString() -> String {
-		var result = ""
-		for(var i=UInt(0) ; i<mIndent ; i++){
-			result += indentUnit
+	public class func lineToString(line : CNConsoleLine) -> String {
+		var result : String = ""
+		for var i : UInt = 0 ; i<line.indent ; i++ {
+			result += " "
 		}
+		result += line.lineString
 		return result
 	}
 }

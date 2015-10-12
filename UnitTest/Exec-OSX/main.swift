@@ -8,13 +8,12 @@
 
 import Foundation
 
-func test(title: String, flag : Bool) -> Bool
+func test(flag : Bool) -> Bool
 {
-	print("\(title)", terminator:"")
 	if flag {
-		print("OK")
+		print("Result: OK")
 	} else {
-		print("NG")
+		print("Result: NG")
 	}
 	return flag
 }
@@ -22,9 +21,16 @@ func test(title: String, flag : Bool) -> Bool
 print("*** UnitTest for Canary Framework ***")
 
 var result = true
-result = test("[Test:CNTextConsole] ... ", flag: UTTextConsole()) && result
-result = test("[Test:CNTextDumper]    ... ", flag: UTTextDumper()) && result
-result = test("[Test:NSURL extension] ... ", flag: UTURL()) && result
+
+print("[Test:CNTextConsole]")
+result = test(UTTextConsole()) && result
+
+print("[Test:CNTextDumper]")
+result = test(UTTextDumper()) && result
+
+print("[Test:NSURL extension]")
+result = test(UTURL()) && result
+
 print("TEST RESULT ... ", terminator: "")
 if result {
 	print("OK")

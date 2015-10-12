@@ -9,7 +9,7 @@ import Foundation
 
 public class CNTextElement : NSObject
 {
-	public func accept(visitor : CNTextVisitor){
+	public func accept(visitor : CNTextVisitor, param: CNTextVisitorParam){
 		fatalError("This method must be overridden")
 	}
 }
