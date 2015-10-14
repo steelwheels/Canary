@@ -19,7 +19,10 @@ public class CNTextConsole : CNConsole
 	public override func printLines(lines : Array<CNConsoleLine>){
 		lock.lock() ;
 		for line in lines {
-			let str = CNConsole.lineToString(line)
+			var str = indentString(line)
+			for word in line.words {
+				str += word
+			}
 			print(str)
 		}
 		lock.unlock()

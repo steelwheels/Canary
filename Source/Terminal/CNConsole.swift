@@ -8,12 +8,12 @@
 import Foundation
 
 public class CNConsoleLine : NSObject {
-	public var indent      : UInt
-	public var lineString  : String
+	public var indent	: UInt
+	public var words	: Array<String>
 	
-	public init(indent idt : UInt, line: String){
-		indent     = idt
-		lineString = line
+	public init(indent idt : UInt, words wds: Array<String>){
+		indent	= idt
+		words	= wds
 		super.init()
 	}
 }
@@ -21,18 +21,20 @@ public class CNConsoleLine : NSObject {
 public class CNConsole : NSObject
 {
 	private var currentIndent : UInt = 0
-	private var currentLine   : String = ""
-	private var lines	  : Array<CNConsoleLine> = []
+	private var currentWords  : Array<String>
+	private var lines	  : Array<CNConsoleLine>
+	private var indentSpace	  : String
 	
 	public override init(){
-		currentIndent = 0
-		currentLine = ""
-		lines = []
+		currentIndent	= 0
+		currentWords	= []
+		lines		= []
+		indentSpace	= "  "
 		super.init()
 	}
 	
 	public func addWord(word : String){
-		currentLine += word
+		currentWords.append(word)
 	}
 	
 	public func addNewline(){
@@ -62,20 +64,19 @@ public class CNConsole : NSObject
 		
 	}
 	
-	private func flushCurrentLine() {
-		if currentLine.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
-			let line = CNConsoleLine(indent: currentIndent, line: currentLine)
-			lines.append(line)
-			currentLine = ""
-		}
-	}
-	
-	public class func lineToString(line : CNConsoleLine) -> String {
+	public func indentString(line : CNConsoleLine) -> String {
 		var result : String = ""
 		for var i : UInt = 0 ; i<line.indent ; i++ {
-			result += " "
+			result += indentSpace
 		}
-		result += line.lineString
 		return result
+	}
+	
+	private func flushCurrentLine() {
+		if currentWords.count > 0 {
+			let newline = CNConsoleLine(indent: currentIndent, words: currentWords)
+			lines.append(newline)
+			currentWords = []
+		}
 	}
 }

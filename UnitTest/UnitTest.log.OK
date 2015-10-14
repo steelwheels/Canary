@@ -1,11 +1,20 @@
 *** UnitTest for Canary Framework ***
+[Test:CNTypeName]
+name: "__NSCFNumber"
+name: "__NSCFString"
+name: "CNTextSection"
+Result: OK
 [Test:CNTextConsole]
 Hello, world
- ab
+  ab
 c
 Result: OK
 [Test:CNTextDumper]
-Hello, 
+title
+  Hello, World
+  Hello, World
+  [item1:World, item0:Hello, ]
+  [elm0, elm1]
 Result: OK
 [Test:NSURL extension]
 * test URL

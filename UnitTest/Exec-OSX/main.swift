@@ -22,6 +22,9 @@ print("*** UnitTest for Canary Framework ***")
 
 var result = true
 
+print("[Test:CNTypeName]")
+result = test(UTClassUtil()) && result
+
 print("[Test:CNTextConsole]")
 result = test(UTTextConsole()) && result
 

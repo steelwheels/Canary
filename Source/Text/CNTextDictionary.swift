@@ -9,8 +9,8 @@ import Foundation
 
 public class CNTextDictionary : CNTextElement
 {
-	public var header = ""
-	public var footer = ""
+	public var header = "["
+	public var footer = "]"
 
 	public var elements   : Dictionary<String, CNTextElement>
 	

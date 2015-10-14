@@ -19,6 +19,9 @@ public class CNTextVisitor : NSObject
 	public func visitDictionary(dictionary : CNTextDictionary, param: CNTextVisitorParam){
 	}
 	
+	public func visitArray(array : CNTextArray, param: CNTextVisitorParam){
+	}
+	
 	public func visitLine(line : CNTextLine, param: CNTextVisitorParam){
 	}
 	

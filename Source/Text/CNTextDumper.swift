@@ -57,36 +57,60 @@ public class CNTextDumper : CNTextVisitor
 			}
 		}
 
-		if issingle {
-			var is1st = true
-			console.addWord(dictionary.header)
-			for (key, value) in dictionary.elements {
-				if is1st {
-					is1st = false
-				} else {
-					console.addWord(", ")
-				}
-				putDictionaryElement(key, element: value, param: dparam)
-			}
-			console.addWord(dictionary.footer)
-			console.addNewline()
-		} else {
-			var is1st = true
-			console.addWord(dictionary.header)
-			console.addNewline()
-			for (key, value) in dictionary.elements {
-				if is1st {
-					is1st = false
-				} else {
-					console.addWord(", ")
-				}
-				putDictionaryElement(key, element: value, param: dparam)
-				console.addNewline()
-			}
-			console.addWord(dictionary.footer)
+		console.addWord(dictionary.header)
+		if !issingle {
 			console.addNewline()
 		}
+		var is1st = true
+		for (key, value) in dictionary.elements {
+			if is1st {
+				is1st = false
+			} else {
+				console.addWord(", ")
+			}
+			console.addWord(key)
+			console.addWord(":")
+			value.accept(self, param: param)
+			if !issingle {
+				console.addNewline()
+			}
+		}
+		console.addWord(dictionary.footer)
+		console.addNewline()
 	}
+	
+	public override func visitArray(array : CNTextArray, param: CNTextVisitorParam){
+		let dparam  = param as! CNTextDumperParam
+		let console = dparam.console
+		
+		var issingle = true
+		for value in array.elements {
+			if !isSingle(value) {
+				issingle = false
+				break
+			}
+		}
+		
+		console.addWord(array.header)
+		if !issingle {
+			console.addNewline()
+		}
+		var is1st = true
+		for element in array.elements {
+			if is1st {
+				is1st = false
+			} else {
+				console.addWord(", ")
+			}
+			element.accept(self, param: dparam)
+			if !issingle {
+				console.addNewline()
+			}
+		}
+		console.addWord(array.footer)
+		console.addNewline()
+	}
+	
 	
 	private func isSingle(element : CNTextElement) -> Bool {
 		var result : Bool
@@ -97,13 +121,7 @@ public class CNTextDumper : CNTextVisitor
 		}
 		return result
 	}
-	
-	private func putDictionaryElement(key : String, element: CNTextElement, param : CNTextDumperParam) {
-		param.console.addWord(key)
-		param.console.addWord(": ")
-		element.accept(self, param: param)
-	}
-	
+
 	public override func visitLine(line : CNTextLine, param: CNTextVisitorParam){
 		let dparam  = param as! CNTextDumperParam
 		let console = dparam.console
