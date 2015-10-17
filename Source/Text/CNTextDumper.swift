@@ -60,21 +60,27 @@ public class CNTextDumper : CNTextVisitor
 		console.addWord(dictionary.header)
 		if !issingle {
 			console.addNewline()
+			console.incIndent()
 		}
+		
 		var is1st = true
 		for (key, value) in dictionary.elements {
 			if is1st {
 				is1st = false
 			} else {
 				console.addWord(", ")
+				if !issingle {
+					console.addNewline()
+				}
 			}
 			console.addWord(key)
 			console.addWord(":")
 			value.accept(self, param: param)
-			if !issingle {
-				console.addNewline()
-			}
 		}
+		if !issingle {
+			console.decIndent()
+		}
+		
 		console.addWord(dictionary.footer)
 		console.addNewline()
 	}

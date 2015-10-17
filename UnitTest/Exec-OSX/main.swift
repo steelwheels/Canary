@@ -25,11 +25,17 @@ var result = true
 print("[Test:CNTypeName]")
 result = test(UTClassUtil()) && result
 
+print("[Test:CNNumberExtension]")
+result = test(UTNumber()) && result
+
 print("[Test:CNTextConsole]")
 result = test(UTTextConsole()) && result
 
 print("[Test:CNTextDumper]")
 result = test(UTTextDumper()) && result
+
+print("[Test:CNJSONEncoder]")
+result = test(UTJSONEncoder()) && result
 
 print("[Test:NSURL extension]")
 result = test(UTURL()) && result

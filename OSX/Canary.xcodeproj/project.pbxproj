@@ -13,6 +13,7 @@
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; };
 		053986991B93344500EE2CAF /* UTTextDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextDumper.swift */; };
 		053E52141B90AB66003A5B3C /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 053E52131B90AB66003A5B3C /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		056028A61BD15B110024713E /* CNJSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056028A51BD15B110024713E /* CNJSONEncoder.swift */; };
 		056736B01BCEAEF1007BFF95 /* CNClassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056736AF1BCEAEF1007BFF95 /* CNClassUtil.swift */; };
 		056736B21BCEB0B2007BFF95 /* UTClassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056736B11BCEB0B2007BFF95 /* UTClassUtil.swift */; };
 		057D194D1BA9C2DB008BB43C /* CNMathFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D194C1BA9C2DB008BB43C /* CNMathFunctions.swift */; };
@@ -21,9 +22,12 @@
 		058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */; };
 		058507881BB0CD9200DA2FCD /* CNURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058507871BB0CD9200DA2FCD /* CNURL.swift */; };
 		0592B3721BB19BE3008A3899 /* unittest.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0592B3711BB19BE3008A3899 /* unittest.txt */; };
+		059C28641BD206F400CB0CB8 /* CNNumberExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C28631BD206F400CB0CB8 /* CNNumberExtension.swift */; };
+		059C28661BD2442D00CB0CB8 /* UTNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059C28651BD2442D00CB0CB8 /* UTNumber.swift */; };
 		059E3CD31BCA68F300B7B4CB /* CNTextDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3CD21BCA68F300B7B4CB /* CNTextDumper.swift */; };
 		059E3CD51BCA6A2900B7B4CB /* CNTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */; };
 		05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A460A91BC8279B00CE2766 /* CNConsole.swift */; };
+		05A55C971BD1F6560053FA1F /* UTJSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A55C961BD1F6560053FA1F /* UTJSONEncoder.swift */; };
 		05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */; };
 		05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */; };
 		05DA86151BC9D93600DC4C26 /* CNTextVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86141BC9D93600DC4C26 /* CNTextVisitor.swift */; };
@@ -104,6 +108,7 @@
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		053E52121B90AB66003A5B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		053E52131B90AB66003A5B3C /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
+		056028A51BD15B110024713E /* CNJSONEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONEncoder.swift; sourceTree = "<group>"; };
 		056736AF1BCEAEF1007BFF95 /* CNClassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNClassUtil.swift; path = Object/CNClassUtil.swift; sourceTree = "<group>"; };
 		056736B11BCEB0B2007BFF95 /* UTClassUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTClassUtil.swift; sourceTree = "<group>"; };
 		057D194C1BA9C2DB008BB43C /* CNMathFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNMathFunctions.swift; path = Math/CNMathFunctions.swift; sourceTree = "<group>"; };
@@ -113,9 +118,12 @@
 		058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNObjectVisitor.swift; path = Object/CNObjectVisitor.swift; sourceTree = "<group>"; };
 		058507871BB0CD9200DA2FCD /* CNURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNURL.swift; path = File/CNURL.swift; sourceTree = "<group>"; };
 		0592B3711BB19BE3008A3899 /* unittest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unittest.txt; sourceTree = "<group>"; };
+		059C28631BD206F400CB0CB8 /* CNNumberExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNNumberExtension.swift; path = Math/CNNumberExtension.swift; sourceTree = "<group>"; };
+		059C28651BD2442D00CB0CB8 /* UTNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTNumber.swift; sourceTree = "<group>"; };
 		059E3CD21BCA68F300B7B4CB /* CNTextDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextDumper.swift; sourceTree = "<group>"; };
 		059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextSection.swift; sourceTree = "<group>"; };
 		05A460A91BC8279B00CE2766 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
+		05A55C961BD1F6560053FA1F /* UTJSONEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTJSONEncoder.swift; sourceTree = "<group>"; };
 		05CAABD41B9C3C5F00B30F95 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAABD61B9C3C5F00B30F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextDictionary.swift; sourceTree = "<group>"; };
@@ -162,6 +170,8 @@
 				056736B11BCEB0B2007BFF95 /* UTClassUtil.swift */,
 				057EF7E31BC955F3009233FE /* UTTextConsole.swift */,
 				053986981B93344500EE2CAF /* UTTextDumper.swift */,
+				059C28651BD2442D00CB0CB8 /* UTNumber.swift */,
+				05A55C961BD1F6560053FA1F /* UTJSONEncoder.swift */,
 				0500FED21BB11CEB00E6B6D1 /* UTURL.swift */,
 			);
 			name = "Exec-OSX";
@@ -222,6 +232,7 @@
 				05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */,
 				05DA86141BC9D93600DC4C26 /* CNTextVisitor.swift */,
 				059E3CD21BCA68F300B7B4CB /* CNTextDumper.swift */,
+				056028A51BD15B110024713E /* CNJSONEncoder.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -230,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				057D194C1BA9C2DB008BB43C /* CNMathFunctions.swift */,
+				059C28631BD206F400CB0CB8 /* CNNumberExtension.swift */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -473,6 +485,8 @@
 				05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */,
 				05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */,
 				05DA86151BC9D93600DC4C26 /* CNTextVisitor.swift in Sources */,
+				059C28641BD206F400CB0CB8 /* CNNumberExtension.swift in Sources */,
+				056028A61BD15B110024713E /* CNJSONEncoder.swift in Sources */,
 				057EF7E21BC94B7F009233FE /* CNTextConsole.swift in Sources */,
 				058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */,
 				05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */,
@@ -497,7 +511,9 @@
 				05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */,
 				053986991B93344500EE2CAF /* UTTextDumper.swift in Sources */,
 				057EF7E41BC955F3009233FE /* UTTextConsole.swift in Sources */,
+				059C28661BD2442D00CB0CB8 /* UTNumber.swift in Sources */,
 				056736B21BCEB0B2007BFF95 /* UTClassUtil.swift in Sources */,
+				05A55C971BD1F6560053FA1F /* UTJSONEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

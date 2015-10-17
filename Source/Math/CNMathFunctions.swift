@@ -1,9 +1,9 @@
 /**
-* @file		CNMathFunctions.h
-* @brief	Define basic mathematical functions
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file	CNMathFunctions.h
+ * @brief	Define basic mathematical functions
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 

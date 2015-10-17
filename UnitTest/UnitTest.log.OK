@@ -4,6 +4,32 @@ name: "__NSCFNumber"
 name: "__NSCFString"
 name: "CNTextSection"
 Result: OK
+[Test:CNNumberExtension]
+* ObjCTypes
+int8   (char:)              ... c
+int16  (short:)             ... s
+int32  (int:)               ... i
+int64  (intger:)            ... q
+uint16 (unsigned short:)    ... i
+uint32 (unsigned int:)      ... q
+uint64 (unsigned intger:)   ... q
+float  (Float:)             ... f
+double (Double:)            ... f
+* kind() method test
+[bool] 	 1 	 Int8 	 1
+[char] 	 15 	 Int8 	 15
+[short] 	 255 	 int16 	 255
+[int] 	 1 	 int32 	 1
+[long] 	 2 	 Int64 	 2
+[long long] 	 3 	 Int64 	 3
+[unsigned char] 	 15 	 int16 	 15
+[unsigned short] 	 255 	 int32 	 255
+[unsigned int] 	 1 	 Int64 	 1
+[unsigned long] 	 2 	 Int64 	 2
+[unsigned long long] 	 3 	 Int64 	 3
+[float] 	 12.3 	 Float 	 12.3
+[double] 	 12.34 	 Double 	 12.34
+Result: OK
 [Test:CNTextConsole]
 Hello, world
   ab
@@ -15,6 +41,20 @@ title
   Hello, World
   [item1:World, item0:Hello, ]
   [elm0, elm1]
+Result: OK
+[Test:CNJSONEncoder]
+* number
+1
+* string
+Hello
+* array
+[1, 1234]
+* dictionary
+[
+  b:1234, 
+  a:1, 
+  c:[1, 1234]
+]
 Result: OK
 [Test:NSURL extension]
 * test URL
