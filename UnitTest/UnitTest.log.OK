@@ -42,20 +42,6 @@ title
   [item1:World, item0:Hello, ]
   [elm0, elm1]
 Result: OK
-[Test:CNJSONEncoder]
-* number
-1
-* string
-Hello
-* array
-[1, 1234]
-* dictionary
-[
-  b:1234, 
-  a:1, 
-  c:[1, 1234]
-]
-Result: OK
 [Test:NSURL extension]
 * test URL
 filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/a
@@ -63,5 +49,22 @@ filename:"/tmp/a" -> URL:file:///tmp/a
 filename:"http://www.yahoo.co.jp" -> URL:http://www.yahoo.co.jp
 * test Bundle
 URL: file:///Users/tomoo/build/DerivedData/Canary-btnobogqbomcotbiqzxllcmkuijv/Build/Products/Debug/UnitTest.bundle/Contents/Resources/unittest.txt
+Result: OK
+[Test:CNJSONFile]
+* Read file: ["b": (
+    1,
+    2,
+    3
+), "a": 1]
+Result: OK
+[Test:CNObjectSerializer]
+number : 1.23
+string : Hello, wordl
+array : [a, b]
+dictionary : {
+  "k0" : 0,
+  "k2" : 2,
+  "k1" : 1
+}
 Result: OK
 TEST RESULT ... OK

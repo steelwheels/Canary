@@ -34,11 +34,14 @@ result = test(UTTextConsole()) && result
 print("[Test:CNTextDumper]")
 result = test(UTTextDumper()) && result
 
-print("[Test:CNJSONEncoder]")
-result = test(UTJSONEncoder()) && result
-
 print("[Test:NSURL extension]")
 result = test(UTURL()) && result
+
+print("[Test:CNJSONFile]")
+result = test(UTJSONFile()) && result
+
+print("[Test:CNObjectSerializer]")
+result = test(UTObjectSerializer()) && result
 
 print("TEST RESULT ... ", terminator: "")
 if result {
