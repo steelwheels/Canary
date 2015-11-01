@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0500FED31BB11CEB00E6B6D1 /* UTURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500FED21BB11CEB00E6B6D1 /* UTURL.swift */; };
 		0507489C1BE1259E00C3985B /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507489B1BE1259E00C3985B /* CNJSONFile.swift */; };
+		05083FFB1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFA1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift */; };
+		05083FFD1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */; };
+		05083FFF1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */; };
 		0511968E1B9C3D0C00844F7E /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		051196921B9C3E2E00844F7E /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051196911B9C3E2E00844F7E /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; };
@@ -106,6 +109,9 @@
 /* Begin PBXFileReference section */
 		0500FED21BB11CEB00E6B6D1 /* UTURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTURL.swift; sourceTree = "<group>"; };
 		0507489B1BE1259E00C3985B /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNJSONFile.swift; path = File/CNJSONFile.swift; sourceTree = "<group>"; };
+		05083FFA1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNGraphicsSerializer.swift; path = Graphics/CNGraphicsSerializer.swift; sourceTree = "<group>"; };
+		05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNPrimitiveSerializer.swift; path = Object/CNPrimitiveSerializer.swift; sourceTree = "<group>"; };
+		05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTGraphicsSerializer.swift; sourceTree = "<group>"; };
 		051196911B9C3E2E00844F7E /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		053986981B93344500EE2CAF /* UTTextDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTextDumper.swift; sourceTree = "<group>"; };
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +173,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05083FF91BE5BCBA00F9A60B /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				05083FFA1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
 		053986911B92F68900EE2CAF /* Exec-OSX */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +192,7 @@
 				0500FED21BB11CEB00E6B6D1 /* UTURL.swift */,
 				056BACB21BE3DA57009D604A /* UTJSONFile.swift */,
 				05AF8B631BE4BAE00017CF46 /* UTObjectSerializer.swift */,
+				05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */,
 			);
 			name = "Exec-OSX";
 			path = "../UnitTest/Exec-OSX";
@@ -210,6 +225,7 @@
 				056CBEBB1B90B18600FAF160 /* Text */,
 				05A460A81BC8273500CE2766 /* Terminal */,
 				057D194B1BA9C2A9008BB43C /* Math */,
+				05083FF91BE5BCBA00F9A60B /* Graphics */,
 				058127F01B9C63DB00D6AF09 /* Object */,
 				05DA9F821BA3E1F10027EA25 /* Error */,
 				053E52111B90AB66003A5B3C /* Supporting Files */,
@@ -255,6 +271,7 @@
 			children = (
 				058127F11B9C640200D6AF09 /* CNObjectVisitor.swift */,
 				05FA88801BE496730031CD93 /* CNObjectSerializer.swift */,
+				05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */,
 				056736AF1BCEAEF1007BFF95 /* CNClassUtil.swift */,
 			);
 			name = Object;
@@ -484,6 +501,7 @@
 			files = (
 				05DA86191BC9DCF300DC4C26 /* CNTextLine.swift in Sources */,
 				05E44A571BCD6B3B00382869 /* CNTextArray.swift in Sources */,
+				05083FFD1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift in Sources */,
 				05DA86171BC9DBB800DC4C26 /* CNTextString.swift in Sources */,
 				056736B01BCEAEF1007BFF95 /* CNClassUtil.swift in Sources */,
 				058507881BB0CD9200DA2FCD /* CNURL.swift in Sources */,
@@ -498,6 +516,7 @@
 				058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */,
 				05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */,
 				059E3CD51BCA6A2900B7B4CB /* CNTextSection.swift in Sources */,
+				05083FFB1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift in Sources */,
 				05DA9F841BA3E20C0027EA25 /* CNErrorExtension.swift in Sources */,
 				059E3CD31BCA68F300B7B4CB /* CNTextDumper.swift in Sources */,
 			);
@@ -516,6 +535,7 @@
 			files = (
 				0500FED31BB11CEB00E6B6D1 /* UTURL.swift in Sources */,
 				05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */,
+				05083FFF1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift in Sources */,
 				053986991B93344500EE2CAF /* UTTextDumper.swift in Sources */,
 				057EF7E41BC955F3009233FE /* UTTextConsole.swift in Sources */,
 				059C28661BD2442D00CB0CB8 /* UTNumber.swift in Sources */,

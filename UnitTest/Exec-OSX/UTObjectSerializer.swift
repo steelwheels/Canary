@@ -1,9 +1,9 @@
 /**
-* @file		UTObjectSerializer.h
-* @brief	Unit test for CNObjectSerializer class
-* @par Copyright
-*   Copyright (C) 2015 Steel Wheels Project
-*/
+ * @file		UTObjectSerializer.h
+ * @brief	Unit test for CNObjectSerializer class
+ * @par Copyright
+ *   Copyright (C) 2015 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

@@ -51,6 +51,16 @@ public class CNConsole : NSObject
 		fatalError("Must be overridden")
 	}
 	
+	public func printMultiLineString(str : String){
+		let srclines = str.componentsSeparatedByString("\n")
+		var dstlines : Array<CNConsoleLine> = []
+		for srcline in srclines {
+			let dstline = CNConsoleLine(indent: currentIndent, words: [srcline])
+			dstlines.append(dstline)
+		}
+		printLines(dstlines)
+	}
+	
 	public func incIndent(){
 		flushCurrentLine()
 		currentIndent += 1

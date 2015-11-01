@@ -12,6 +12,7 @@ public class CNObjectSerializer : CNObjectVisitor
 	var currentString : String = ""
 	
 	public func serializeObject(object : NSObject) -> String {
+		currentString = ""
 		acceptObject(object)
 		return currentString
 	}
@@ -69,6 +70,7 @@ public class CNObjectSerializer : CNObjectVisitor
 	}
 	
 	public override func visitUnknownObject(obj : NSObject)	{
-		currentString = "<unknown>"
+		let typename = CNTypeName(obj)
+		currentString = "<unknown-type \(typename)>"
 	}
 }

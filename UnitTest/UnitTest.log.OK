@@ -67,4 +67,8 @@ dictionary : {
   "k1" : 1
 }
 Result: OK
+[Test:CNGraphicsSerializer]
+pointdict = ["y": 3.4, "x": 1.2] -> OK
+sizedict = ["width": 5.6, "height": 7.8] -> OK
+Result: OK
 TEST RESULT ... OK

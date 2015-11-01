@@ -43,6 +43,9 @@ result = test(UTJSONFile()) && result
 print("[Test:CNObjectSerializer]")
 result = test(UTObjectSerializer()) && result
 
+print("[Test:CNGraphicsSerializer]")
+result = test(UTGraphicsSerializer()) && result
+
 print("TEST RESULT ... ", terminator: "")
 if result {
 	print("OK")

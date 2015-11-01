@@ -10,6 +10,7 @@ import Foundation
 public enum CNErrorCode {
 	case ParseError
 	case FileError
+	case SerializeError
 }
 
 public extension NSError
@@ -22,9 +23,11 @@ public extension NSError
 		var value : Int = 0
 		switch(code){
 		case .ParseError:
-			value = 1 ;
+			value = 1
 		case .FileError:
-			value = 2 ;
+			value = 2
+		case .SerializeError:
+			value = 3
 		}
 		return value
 	}
@@ -54,6 +57,18 @@ public extension NSError
 	public class func fileError(message : NSString, location : NSString) -> NSError {
 		let userinfo = [NSLocalizedDescriptionKey: message, self.errorLocationKey(): location]
 		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.FileError), userInfo: userinfo)
+		return error
+	}
+	
+	public class func serializeError(message : NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: message]
+		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.SerializeError), userInfo: userinfo)
+		return error
+	}
+	
+	public class func serializeError(message : NSString, location : NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: message, self.errorLocationKey(): location]
+		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.SerializeError), userInfo: userinfo)
 		return error
 	}
 	
