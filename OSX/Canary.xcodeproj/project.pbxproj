@@ -39,6 +39,7 @@
 		05DA86191BC9DCF300DC4C26 /* CNTextLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86181BC9DCF300DC4C26 /* CNTextLine.swift */; };
 		05DA9F841BA3E20C0027EA25 /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA9F831BA3E20C0027EA25 /* CNErrorExtension.swift */; };
 		05E44A571BCD6B3B00382869 /* CNTextArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E44A561BCD6B3B00382869 /* CNTextArray.swift */; };
+		05F336441BEBAA2500A5E28A /* CNTextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F336431BEBAA2500A5E28A /* CNTextBuffer.swift */; };
 		05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F97F8E1B92F5FD004C4EC3 /* main.swift */; };
 		05FA88811BE496730031CD93 /* CNObjectSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA88801BE496730031CD93 /* CNObjectSerializer.swift */; };
 /* End PBXBuildFile section */
@@ -142,6 +143,7 @@
 		05DA86181BC9DCF300DC4C26 /* CNTextLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextLine.swift; sourceTree = "<group>"; };
 		05DA9F831BA3E20C0027EA25 /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 		05E44A561BCD6B3B00382869 /* CNTextArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextArray.swift; sourceTree = "<group>"; };
+		05F336431BEBAA2500A5E28A /* CNTextBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextBuffer.swift; sourceTree = "<group>"; };
 		05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTestExec; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F97F8E1B92F5FD004C4EC3 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05FA88801BE496730031CD93 /* CNObjectSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNObjectSerializer.swift; path = Object/CNObjectSerializer.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				05DA86161BC9DBB800DC4C26 /* CNTextString.swift */,
 				05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */,
 				05DA86141BC9D93600DC4C26 /* CNTextVisitor.swift */,
+				05F336431BEBAA2500A5E28A /* CNTextBuffer.swift */,
 				059E3CD21BCA68F300B7B4CB /* CNTextDumper.swift */,
 			);
 			path = Text;
@@ -499,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F336441BEBAA2500A5E28A /* CNTextBuffer.swift in Sources */,
 				05DA86191BC9DCF300DC4C26 /* CNTextLine.swift in Sources */,
 				05E44A571BCD6B3B00382869 /* CNTextArray.swift in Sources */,
 				05083FFD1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift in Sources */,

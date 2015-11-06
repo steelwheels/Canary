@@ -11,16 +11,7 @@ import Canary
 public func UTTextConsole() -> Bool
 {
 	let console = CNTextConsole()
-	console.addWord("Hello, world")
-	console.addNewline()
-	console.incIndent()
-		console.addWord("a")
-		console.addWord("b")
-		console.addNewline()
-	console.decIndent()
-	console.addWord("c")
-	console.addNewline()
-	console.flush()
-	
+	console.printLine("1line string")
+	console.printLines(["1st line of 2", "2nd line of 2"])
 	return true
 }

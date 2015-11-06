@@ -10,7 +10,7 @@ import Canary
 
 public func UTTextDumper() -> Bool
 {
-	let console = CNTextConsole()
+	
 	let dumper  = CNTextDumper()
 	let str0  = CNTextString(string: "Hello, ")
 	let str1  = CNTextString(string: "World")
@@ -18,8 +18,10 @@ public func UTTextDumper() -> Bool
 	let dict0 = CNTextDictionary(dictionary: ["item0":str0, "item1":str1])
 	let arr0  = CNTextArray(array: [CNTextString(string: "elm0"), CNTextString(string: "elm1")])
 	let sec0  = CNTextSection(title: "title", elements: [line0, line0, dict0, arr0])
-	dumper.dumpToConsole(console, text: sec0)
-	//dump(console, text: str0)
-	//dumper.dumpToConsole(console, text: str0)
+	let buffer = dumper.dumpToBuffer(sec0)
+	
+	let console = CNTextConsole()
+	console.printBuffer(buffer)
+
 	return true ;
 }

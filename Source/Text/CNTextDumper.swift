@@ -7,32 +7,38 @@
 
 import Foundation
 
-public class CNTextDumperParam : CNTextVisitorParam {
-	var console : CNConsole
-	public init(console cons: CNConsole){
-		console = cons
+internal class CNTextDumperParam : CNTextVisitorParam {
+	internal var textBuffer : CNTextBuffer
+	
+	internal init(buffer : CNTextBuffer){
+		textBuffer = buffer
 		super.init()
 	}
 }
 
 public class CNTextDumper : CNTextVisitor
-{	
-	public func dumpToConsole(console : CNConsole, text: CNTextElement){
-		let param = CNTextDumperParam(console: console)
-		text.accept(self, param: param)
-		console.flush()
-	}
+{
+	private var textBuffer    : CNTextBuffer = CNTextBuffer()
+	private var indentSpace	  : String	 = ""
 	
+	public func dumpToBuffer(text : CNTextElement) -> CNTextBuffer {
+		let buffer = CNTextBuffer()
+		let param  = CNTextDumperParam(buffer: buffer)
+		text.accept(self, param: param)
+		return buffer
+	}
+
 	public override func visitSection(section : CNTextSection, param: CNTextVisitorParam){
 		let dparam  = param as! CNTextDumperParam
-		let console = dparam.console
+		let buffer  = dparam.textBuffer
 		
-		/* Put string */
+		/* Put title */
 		let title = section.title
-		if(title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0){
-			console.addWord(title)
-			console.addNewline()
-			console.incIndent()
+		let titlelen = title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+		if titlelen > 0 {
+			buffer.addString(title)
+			buffer.addNewline()
+			buffer.incrementIndent()
 		}
 		
 		/* Put contentents */
@@ -40,106 +46,61 @@ public class CNTextDumper : CNTextVisitor
 			element.accept(self, param: param)
 		}
 		
-		if(title.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0){
-			console.decIndent()
+		/* End of section */
+		if titlelen > 0 {
+			buffer.decrementIndent()
 		}
 	}
 	
 	public override func visitDictionary(dictionary : CNTextDictionary, param: CNTextVisitorParam){
 		let dparam  = param as! CNTextDumperParam
-		let console = dparam.console
-		
-		var issingle = true
-		for (_, value) in dictionary.elements {
-			if !isSingle(value) {
-				issingle = false
-				break
-			}
-		}
-
-		console.addWord(dictionary.header)
-		if !issingle {
-			console.addNewline()
-			console.incIndent()
-		}
+		let buffer  = dparam.textBuffer
 		
 		var is1st = true
+		buffer.addString("[")
 		for (key, value) in dictionary.elements {
 			if is1st {
 				is1st = false
 			} else {
-				console.addWord(", ")
-				if !issingle {
-					console.addNewline()
-				}
+				buffer.addString(", ")
 			}
-			console.addWord(key)
-			console.addWord(":")
+			buffer.addString("\(key):")
 			value.accept(self, param: param)
 		}
-		if !issingle {
-			console.decIndent()
-		}
-		
-		console.addWord(dictionary.footer)
-		console.addNewline()
+		buffer.addString("]")
+		buffer.addNewline()
 	}
 	
 	public override func visitArray(array : CNTextArray, param: CNTextVisitorParam){
 		let dparam  = param as! CNTextDumperParam
-		let console = dparam.console
+		let buffer  = dparam.textBuffer
 		
-		var issingle = true
-		for value in array.elements {
-			if !isSingle(value) {
-				issingle = false
-				break
-			}
-		}
-		
-		console.addWord(array.header)
-		if !issingle {
-			console.addNewline()
-		}
+		buffer.addString("[")
 		var is1st = true
-		for element in array.elements {
+		for value in array.elements {
 			if is1st {
 				is1st = false
 			} else {
-				console.addWord(", ")
+				buffer.addString(", ")
 			}
-			element.accept(self, param: dparam)
-			if !issingle {
-				console.addNewline()
-			}
+			value.accept(self, param: param)
 		}
-		console.addWord(array.footer)
-		console.addNewline()
-	}
-	
-	
-	private func isSingle(element : CNTextElement) -> Bool {
-		var result : Bool
-		if let _ = element as? CNTextString {
-			result = true
-		} else {
-			result = false
-		}
-		return result
+		buffer.addString("]")
+		buffer.addNewline()
 	}
 
 	public override func visitLine(line : CNTextLine, param: CNTextVisitorParam){
-		let dparam  = param as! CNTextDumperParam
-		let console = dparam.console
-		for str in line.strings {
-			str.accept(self, param: param)
+		for value in line.strings {
+			value.accept(self, param: param)
 		}
-		console.addNewline()
+		let dparam  = param as! CNTextDumperParam
+		let buffer  = dparam.textBuffer
+		buffer.addNewline()
 	}
 	
 	public override func visitString(str : CNTextString, param: CNTextVisitorParam){
 		let dparam  = param as! CNTextDumperParam
-		let console = dparam.console
-		console.addWord(str.string)
+		let buffer  = dparam.textBuffer
+		buffer.addString(str.string)
 	}
 }

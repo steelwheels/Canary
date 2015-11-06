@@ -9,23 +9,13 @@ import Foundation
 
 public class CNTextConsole : CNConsole
 {
-	private let lock : NSLock ;
-	
 	public override init(){
-		lock = NSLock()
 		super.init()
 	}
 	
-	public override func printLines(lines : Array<CNConsoleLine>){
-		lock.lock() ;
-		for line in lines {
-			var str = indentString(line)
-			for word in line.words {
-				str += word
-			}
-			print(str)
-		}
-		lock.unlock()
+	/* Do not call this method from the outside */
+	public override func flushLine(line : String){
+		print(line)
 	}
 }
 
