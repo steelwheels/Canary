@@ -30,7 +30,7 @@ public class CNJSONFile {
 			return (nil, error)
 		}
 	}
-	
+
 	public class func writeFile(url: NSURL, src: Dictionary<String, AnyObject>) -> NSError? {
 		do {
 			let data = try NSJSONSerialization.dataWithJSONObject(src, options: NSJSONWritingOptions.PrettyPrinted)
@@ -40,6 +40,23 @@ public class CNJSONFile {
 		catch {
 			let error = NSError.parseError("Can not write data into \(url.absoluteString)")
 			return error
+		}
+	}
+
+	public class func serializeToString(src: Dictionary<String, AnyObject>) -> (String?, NSError?) {
+		do {
+			let data = try NSJSONSerialization.dataWithJSONObject(src, options: NSJSONWritingOptions.PrettyPrinted)
+			let strp  = String(data: data, encoding: NSUTF8StringEncoding)
+			if let str = strp {
+				return (str, nil)
+			} else {
+				let error = NSError.parseError("Can not translate into string")
+				return (nil, error)
+			}
+		}
+		catch {
+			let error = NSError.parseError("Can not serialize")
+			return (nil, error)
 		}
 	}
 }

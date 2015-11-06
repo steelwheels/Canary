@@ -31,9 +31,9 @@ double (Double:)            ... f
 [double] 	 12.34 	 Double 	 12.34
 Result: OK
 [Test:CNTextConsole]
-Hello, world
-  ab
-c
+1line string
+1st line of 2
+2nd line of 2
 Result: OK
 [Test:CNTextDumper]
 title
