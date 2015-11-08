@@ -15,6 +15,7 @@
 		0511968E1B9C3D0C00844F7E /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		051196921B9C3E2E00844F7E /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051196911B9C3E2E00844F7E /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; };
+		053694921BEDDC01007E25C2 /* UTPrimitiveSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */; };
 		053986991B93344500EE2CAF /* UTTextDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextDumper.swift */; };
 		053E52141B90AB66003A5B3C /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 053E52131B90AB66003A5B3C /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		056736B01BCEAEF1007BFF95 /* CNClassUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056736AF1BCEAEF1007BFF95 /* CNClassUtil.swift */; };
@@ -114,6 +115,7 @@
 		05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNPrimitiveSerializer.swift; path = Object/CNPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTGraphicsSerializer.swift; sourceTree = "<group>"; };
 		051196911B9C3E2E00844F7E /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		053986981B93344500EE2CAF /* UTTextDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTextDumper.swift; sourceTree = "<group>"; };
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		053E52121B90AB66003A5B3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
@@ -194,6 +196,7 @@
 				0500FED21BB11CEB00E6B6D1 /* UTURL.swift */,
 				056BACB21BE3DA57009D604A /* UTJSONFile.swift */,
 				05AF8B631BE4BAE00017CF46 /* UTObjectSerializer.swift */,
+				053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */,
 				05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */,
 			);
 			name = "Exec-OSX";
@@ -537,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053694921BEDDC01007E25C2 /* UTPrimitiveSerializer.swift in Sources */,
 				0500FED31BB11CEB00E6B6D1 /* UTURL.swift in Sources */,
 				05F97F8F1B92F5FD004C4EC3 /* main.swift in Sources */,
 				05083FFF1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift in Sources */,

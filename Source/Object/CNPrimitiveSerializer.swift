@@ -46,5 +46,23 @@ public class CNPrimitiveSerializer
 		}
 		return (resval, error)
 	}
+	
+	public class func serializeURL(inout dict : Dictionary<String, AnyObject>, member : String, value : NSURL){
+		dict[member] = value.description
+	}
+	
+	public class func unserializeURL(dict : Dictionary<String, AnyObject>, member : String) -> (NSURL?, NSError?) {
+		var error  : NSError? = nil
+		if let urlstr = dict[member] as? String {
+			if let url = NSURL(string: urlstr) {
+				return (url, nil)
+			} else {
+				error = NSError.serializeError("Can not decode URL from \(urlstr)")
+			}
+		} else {
+			error = NSError.serializeError("No member \(member) in \(dict)")
+		}
+		return (nil, error)
+	}
 }
 

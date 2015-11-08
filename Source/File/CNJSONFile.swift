@@ -59,4 +59,25 @@ public class CNJSONFile {
 			return (nil, error)
 		}
 	}
+
+	public class func unserializeFromString(src : String) -> (Dictionary<String, AnyObject>?, NSError?) {
+		do {
+			var result : Dictionary<String, AnyObject>? = nil
+			var error : NSError? = nil
+			let datap = src.dataUsingEncoding(NSUTF8StringEncoding)
+			if let data = datap {
+				let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+				if let dict = json as? Dictionary<String, AnyObject> {
+					result = dict
+				} else {
+					error = NSError.parseError("The data type is NOT dictionary in URL:\(src)")
+				}
+			}
+			return (result, error)
+		}
+		catch {
+			let error = NSError.parseError("Can not serialize the objet in URL:\(src)")
+			return (nil, error)
+		}
+	}
 }
