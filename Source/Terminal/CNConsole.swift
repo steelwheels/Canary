@@ -16,16 +16,16 @@ public class CNConsole : NSObject
 		super.init()
 	}
 	
-	public func printLine(line: String){
+	public func printLine(line: String, attribute: Dictionary<String, AnyObject>? = nil){
 		accessLock.lock()
-			flushLine(line)
+			flushLine(line, attribute: attribute)
 		accessLock.unlock()
 	}
 	
-	public func printLines(lines: Array<String>){
+	public func printLines(lines: Array<String>, attribute: Dictionary<String, AnyObject>? = nil){
 		accessLock.lock()
 		for line in lines {
-			flushLine(line)
+			flushLine(line, attribute: attribute)
 		}
 		accessLock.unlock()
 	}
@@ -33,13 +33,13 @@ public class CNConsole : NSObject
 	public func printBuffer(buffer : CNTextBuffer){
 		accessLock.lock()
 		  buffer.dump({ (str : String) -> () in
-			self.flushLine(str)
+			self.flushLine(str, attribute: nil)
 		  })
 		accessLock.unlock()
 	}
 
 	/* Do not call this method from the outside */
-	public func flushLine(line : String){
+	public func flushLine(line : String, attribute: Dictionary<String, AnyObject>?){
 		fatalError("must be overriden")
 	}
 }

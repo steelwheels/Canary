@@ -67,6 +67,16 @@ dictionary : {
   "k1" : 1
 }
 Result: OK
+[Test:CNPrimitiveSerializer]
+URL: "{
+  "URL" : "https:\/\/github.com\/steelwheels"
+}"
+NEW URL: https://github.com/steelwheels
+URL: "{
+  "URL" : "file:\/\/..\/file.txt"
+}"
+NEW URL: file://../file.txt
+Result: OK
 [Test:CNGraphicsSerializer]
 pointdict = ["y": 3.4, "x": 1.2] -> OK
 sizedict = ["width": 5.6, "height": 7.8] -> OK
