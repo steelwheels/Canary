@@ -10,9 +10,25 @@ import Canary
 
 public func UTPrimitiveSerializer() -> Bool {
 	var result = true
+	result = UIntSerializer(1234) && result
 	result = URLSerializer("https://github.com/steelwheels") && result
 	result = URLSerializer("file://../file.txt") && result
 	return result
+}
+
+private func UIntSerializer(value : UInt) -> Bool {
+	var dict : Dictionary<String, AnyObject> = [:]
+	CNPrimitiveSerializer.serializeUInt(&dict, member: "UInt", value: value)
+	if !dumpDict(dict){
+		return false
+	}
+	let (newval, newerrorp) = CNPrimitiveSerializer.unserializeUInt(dict, member: "UInt")
+	if let error = newerrorp {
+		print("[Error] \(error.toString())")
+		return false
+	}
+	print("NEW UInt: \(newval)")
+	return newval == value	
 }
 
 private func URLSerializer(urlstr : String) -> Bool {

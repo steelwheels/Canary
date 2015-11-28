@@ -69,6 +69,10 @@ dictionary : {
 Result: OK
 [Test:CNPrimitiveSerializer]
 URL: "{
+  "UInt" : 1234
+}"
+NEW UInt: 1234
+URL: "{
   "URL" : "https:\/\/github.com\/steelwheels"
 }"
 NEW URL: https://github.com/steelwheels

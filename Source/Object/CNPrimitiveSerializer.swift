@@ -28,6 +28,25 @@ public class CNPrimitiveSerializer
 		return (resval, error)
 	}
 	
+	public class func serializeUInt(inout dict : Dictionary<String, AnyObject>, member : String, value : UInt) {
+		dict[member] = NSNumber(unsignedInteger: value)
+	}
+	
+	public class func unserializeUInt(dict : Dictionary<String, AnyObject>, member : String) -> (UInt, NSError?) {
+		var resval : UInt = 0
+		var error  : NSError? = nil
+		if let valobj = dict[member] {
+			if let value = valobj as? UInt {
+				resval = value
+			} else {
+				error = NSError.serializeError("Invalid value type \(member) in \(dict)")
+			}
+		} else {
+			error = NSError.serializeError("No member \(member) in \(dict)")
+		}
+		return (resval, error)
+	}
+	
 	public class func serializeCGFloat(inout dict : Dictionary<String, AnyObject>, member : String, value : CGFloat) {
 		dict[member] = NSNumber(double: Double(value))
 	}
