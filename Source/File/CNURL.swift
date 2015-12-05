@@ -26,6 +26,16 @@ public enum CNURIScheme {
 }
 
 extension NSURL {
+	public class func URLForResourceOfMainBundle() -> NSURL {
+		let bundlepath = NSBundle.mainBundle().bundlePath
+		let fullpath   = "file://" + bundlepath + "/Contents/Resources"
+		if let url = NSURL(string: fullpath) {
+			return url
+		} else {
+			fatalError("Invalid URL: $(fullpath)")
+		}
+	}
+	
 	public class func URLForFile(filename : String) -> (NSURL?, NSError?) {
 		if filename.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
 			let error = NSError.parseError("No input file name")
