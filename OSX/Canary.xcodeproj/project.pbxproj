@@ -12,6 +12,7 @@
 		05083FFB1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFA1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift */; };
 		05083FFD1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */; };
 		05083FFF1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */; };
+		050E2C1D1C1B9F4700541CC1 /* CNPipeConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E2C1C1C1B9F4700541CC1 /* CNPipeConsole.swift */; };
 		0511968E1B9C3D0C00844F7E /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		051196921B9C3E2E00844F7E /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051196911B9C3E2E00844F7E /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; };
@@ -115,6 +116,7 @@
 		05083FFA1BE5BCFF00F9A60B /* CNGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNGraphicsSerializer.swift; path = Graphics/CNGraphicsSerializer.swift; sourceTree = "<group>"; };
 		05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNPrimitiveSerializer.swift; path = Object/CNPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTGraphicsSerializer.swift; sourceTree = "<group>"; };
+		050E2C1C1C1B9F4700541CC1 /* CNPipeConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPipeConsole.swift; sourceTree = "<group>"; };
 		051196911B9C3E2E00844F7E /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		053986981B93344500EE2CAF /* UTTextDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTextDumper.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				05A460A91BC8279B00CE2766 /* CNConsole.swift */,
 				057EF7E11BC94B7F009233FE /* CNTextConsole.swift */,
+				050E2C1C1C1B9F4700541CC1 /* CNPipeConsole.swift */,
 			);
 			path = Terminal;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				056736B01BCEAEF1007BFF95 /* CNClassUtil.swift in Sources */,
 				058507881BB0CD9200DA2FCD /* CNURL.swift in Sources */,
 				057D194D1BA9C2DB008BB43C /* CNMathFunctions.swift in Sources */,
+				050E2C1D1C1B9F4700541CC1 /* CNPipeConsole.swift in Sources */,
 				05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */,
 				05FA88811BE496730031CD93 /* CNObjectSerializer.swift in Sources */,
 				05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */,

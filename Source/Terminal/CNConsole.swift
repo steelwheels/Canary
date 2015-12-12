@@ -10,18 +10,18 @@ import Foundation
 public class CNConsole : NSObject
 {
 	private let accessLock	  : NSLock ;
-	
+
 	public override init(){
 		accessLock	= NSLock()
 		super.init()
 	}
-	
+
 	public func printLine(line: String, attribute: Dictionary<String, AnyObject>? = nil){
 		accessLock.lock()
 			flushLine(line, attribute: attribute)
 		accessLock.unlock()
 	}
-	
+
 	public func printLines(lines: Array<String>, attribute: Dictionary<String, AnyObject>? = nil){
 		accessLock.lock()
 		for line in lines {
@@ -29,7 +29,7 @@ public class CNConsole : NSObject
 		}
 		accessLock.unlock()
 	}
-	
+
 	public func printBuffer(buffer : CNTextBuffer){
 		accessLock.lock()
 		  buffer.dump({ (str : String) -> () in
