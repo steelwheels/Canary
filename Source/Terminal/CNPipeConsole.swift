@@ -11,6 +11,10 @@ public class CNPipeConsole : CNConsole
 {
 	var mTargetConsole : CNConsole? = nil
 
+	public override init(){
+		mTargetConsole = nil
+	}
+	
 	public init(target : CNConsole){
 		mTargetConsole = target
 	}
