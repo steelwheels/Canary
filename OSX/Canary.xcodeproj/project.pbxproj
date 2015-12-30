@@ -14,7 +14,7 @@
 		05083FFF1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */; };
 		050E2C1D1C1B9F4700541CC1 /* CNPipeConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E2C1C1C1B9F4700541CC1 /* CNPipeConsole.swift */; };
 		0511968E1B9C3D0C00844F7E /* UnitTestExec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F97F8C1B92F5FD004C4EC3 /* UnitTestExec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		051196921B9C3E2E00844F7E /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051196911B9C3E2E00844F7E /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051196921B9C3E2E00844F7E /* Bundle-OSX in CopyFiles */ = {isa = PBXBuildFile; fileRef = 051196911B9C3E2E00844F7E /* Bundle-OSX */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051196931B9C3EBA00844F7E /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053E520E1B90AB66003A5B3C /* Canary.framework */; };
 		053694921BEDDC01007E25C2 /* UTPrimitiveSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */; };
 		053986991B93344500EE2CAF /* UTTextDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053986981B93344500EE2CAF /* UTTextDumper.swift */; };
@@ -34,6 +34,7 @@
 		059E3CD51BCA6A2900B7B4CB /* CNTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */; };
 		05A460AA1BC8279B00CE2766 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A460A91BC8279B00CE2766 /* CNConsole.swift */; };
 		05AF8B641BE4BAE00017CF46 /* UTObjectSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF8B631BE4BAE00017CF46 /* UTObjectSerializer.swift */; };
+		05BC4FF41C335187002B5F11 /* CNFileAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BC4FF31C335187002B5F11 /* CNFileAccess.swift */; };
 		05BCA2911C0B4672009723F5 /* CNPrimitiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BCA2901C0B4671009723F5 /* CNPrimitiveType.swift */; };
 		05CE628C1BCA91AD00429FD2 /* CNTextDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE628B1BCA91AD00429FD2 /* CNTextDictionary.swift */; };
 		05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86121BC9D88C00DC4C26 /* CNTextElement.swift */; };
@@ -95,7 +96,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				051196921B9C3E2E00844F7E /* Canary.framework in CopyFiles */,
+				051196921B9C3E2E00844F7E /* Bundle-OSX in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +118,7 @@
 		05083FFC1BE5BF9600F9A60B /* CNPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNPrimitiveSerializer.swift; path = Object/CNPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTGraphicsSerializer.swift; sourceTree = "<group>"; };
 		050E2C1C1C1B9F4700541CC1 /* CNPipeConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPipeConsole.swift; sourceTree = "<group>"; };
-		051196911B9C3E2E00844F7E /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		051196911B9C3E2E00844F7E /* Bundle-OSX */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Bundle-OSX"; path = "/Users/tomoo/Project/Canary/UnitTest/ConsoleTest/Bundle-OSX"; sourceTree = "<absolute>"; };
 		053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTPrimitiveSerializer.swift; sourceTree = "<group>"; };
 		053986981B93344500EE2CAF /* UTTextDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTextDumper.swift; sourceTree = "<group>"; };
 		053E520E1B90AB66003A5B3C /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +140,7 @@
 		059E3CD41BCA6A2900B7B4CB /* CNTextSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextSection.swift; sourceTree = "<group>"; };
 		05A460A91BC8279B00CE2766 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05AF8B631BE4BAE00017CF46 /* UTObjectSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObjectSerializer.swift; sourceTree = "<group>"; };
+		05BC4FF31C335187002B5F11 /* CNFileAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CNFileAccess.swift; path = File/CNFileAccess.swift; sourceTree = "<group>"; };
 		05BCA2901C0B4671009723F5 /* CNPrimitiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPrimitiveType.swift; sourceTree = "<group>"; };
 		05CAABD41B9C3C5F00B30F95 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAABD61B9C3C5F00B30F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -203,9 +205,8 @@
 				053694911BEDDC01007E25C2 /* UTPrimitiveSerializer.swift */,
 				05083FFE1BE5CC3B00F9A60B /* UTGraphicsSerializer.swift */,
 			);
-			name = "Exec-OSX";
-			path = "../UnitTest/Exec-OSX";
-			sourceTree = SOURCE_ROOT;
+			path = "Exec-OSX";
+			sourceTree = "<group>";
 		};
 		053E52041B90AB66003A5B3C = {
 			isa = PBXGroup;
@@ -293,6 +294,7 @@
 			children = (
 				058507871BB0CD9200DA2FCD /* CNURL.swift */,
 				0507489B1BE1259E00C3985B /* CNJSONFile.swift */,
+				05BC4FF31C335187002B5F11 /* CNFileAccess.swift */,
 			);
 			name = File;
 			sourceTree = "<group>";
@@ -307,6 +309,17 @@
 			path = Terminal;
 			sourceTree = "<group>";
 		};
+		05BC4FF51C335DD3002B5F11 /* ConsoleTest */ = {
+			isa = PBXGroup;
+			children = (
+				057EF7EB1BC95A4E009233FE /* check.mk */,
+				05CAABD51B9C3C5F00B30F95 /* Bundle-OSX */,
+				053986911B92F68900EE2CAF /* Exec-OSX */,
+			);
+			name = ConsoleTest;
+			path = ../UnitTest/ConsoleTest;
+			sourceTree = SOURCE_ROOT;
+		};
 		05BCA28F1C0B4647009723F5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,7 +332,7 @@
 		05CAABD51B9C3C5F00B30F95 /* Bundle-OSX */ = {
 			isa = PBXGroup;
 			children = (
-				051196911B9C3E2E00844F7E /* Canary.framework */,
+				051196911B9C3E2E00844F7E /* Bundle-OSX */,
 				05CAABD61B9C3C5F00B30F95 /* Info.plist */,
 				0592B3711BB19BE3008A3899 /* unittest.txt */,
 			);
@@ -338,9 +351,7 @@
 		05F97F8D1B92F5FD004C4EC3 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				057EF7EB1BC95A4E009233FE /* check.mk */,
-				05CAABD51B9C3C5F00B30F95 /* Bundle-OSX */,
-				053986911B92F68900EE2CAF /* Exec-OSX */,
+				05BC4FF51C335DD3002B5F11 /* ConsoleTest */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -536,6 +547,7 @@
 				05BCA2911C0B4672009723F5 /* CNPrimitiveType.swift in Sources */,
 				059C28641BD206F400CB0CB8 /* CNNumberExtension.swift in Sources */,
 				0507489C1BE1259E00C3985B /* CNJSONFile.swift in Sources */,
+				05BC4FF41C335187002B5F11 /* CNFileAccess.swift in Sources */,
 				057EF7E21BC94B7F009233FE /* CNTextConsole.swift in Sources */,
 				058127F21B9C640200D6AF09 /* CNObjectVisitor.swift in Sources */,
 				05DA86131BC9D88C00DC4C26 /* CNTextElement.swift in Sources */,
@@ -778,7 +790,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "../UnitTest//Bundle-OSX/Info.plist";
+				INFOPLIST_FILE = "../UnitTest/ConsoleTest/Bundle-OSX/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -792,7 +804,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "../UnitTest//Bundle-OSX/Info.plist";
+				INFOPLIST_FILE = "../UnitTest/ConsoleTest/Bundle-OSX/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UnitTest";
 				PRODUCT_NAME = "$(TARGET_NAME)";

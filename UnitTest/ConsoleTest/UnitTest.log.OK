@@ -44,7 +44,7 @@ title
 Result: OK
 [Test:NSURL extension]
 * test URL
-filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/a
+filename:"a" -> URL:file:///Users/tomoo/Project/Canary/UnitTest/ConsoleTest/a
 filename:"/tmp/a" -> URL:file:///tmp/a
 filename:"http://www.yahoo.co.jp" -> URL:http://www.yahoo.co.jp
 * test Bundle

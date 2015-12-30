@@ -9,7 +9,7 @@ PRODUCT		= Canary
 top_dir     	= $(SRCROOT)
 #unit_test	= $(BUILD_DIR)/$(CONFIGURATION)/UnitTest.bundle/Contents/MacOS/UnitTestExec
 unit_test	= $(BUILD_DIR)/$(CONFIGURATION)/UnitTestExec
-test_dir	= $(top_dir)/../UnitTest
+test_dir	= $(top_dir)/../UnitTest/ConsoleTest
 test_log	= $(BUILD_DIR)/$(CONFIGURATION)/UnitTest.log
 
 unit_test: dummy
