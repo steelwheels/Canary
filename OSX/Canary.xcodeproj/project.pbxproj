@@ -11,7 +11,10 @@
 		0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA551C3D74AA008D34CA /* ViewController.swift */; };
 		0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA571C3D74AA008D34CA /* Assets.xcassets */; };
 		0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA591C3D74AA008D34CA /* Main.storyboard */; };
+		053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
+		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +41,13 @@
 		0534CA571C3D74AA008D34CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0534CA5A1C3D74AA008D34CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0534CA5C1C3D74AA008D34CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPersistentURL.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		057A42AF1C3D6BB7006A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
+		05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmarkPreference.swift; sourceTree = "<group>"; };
+		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05042A3E1C3D764800E7DA7A /* File */ = {
+			isa = PBXGroup;
+			children = (
+				053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */,
+				05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */,
+			);
+			name = File;
+			sourceTree = "<group>";
+		};
 		0534CA521C3D74AA008D34CA /* UTFileManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +101,7 @@
 		057A42A01C3D6BB7006A48E6 = {
 			isa = PBXGroup;
 			children = (
+				05ED76201C4134A2003B4310 /* UTFileManager.entitlements */,
 				057A42AC1C3D6BB7006A48E6 /* Source */,
 				0534CA621C3D74FF008D34CA /* UnitTest */,
 				057A42AB1C3D6BB7006A48E6 /* Products */,
@@ -105,10 +122,20 @@
 			children = (
 				057A42AD1C3D6BB7006A48E6 /* Canary.h */,
 				057A42AF1C3D6BB7006A48E6 /* Info.plist */,
+				05EF66001C40AB370019B4BB /* Error */,
+				05042A3E1C3D764800E7DA7A /* File */,
 			);
 			name = Source;
 			path = ../Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		05EF66001C40AB370019B4BB /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				05EF66011C40AB470019B4BB /* CNErrorExtension.swift */,
+			);
+			name = Error;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -190,6 +217,11 @@
 				TargetAttributes = {
 					0534CA501C3D74AA008D34CA = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					057A42A91C3D6BB7006A48E6 = {
 						CreatedOnToolsVersion = 7.2;
@@ -253,6 +285,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
+				053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */,
+				05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +322,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = UTFileManager.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -300,7 +336,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = UTFileManager.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -326,7 +363,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -335,7 +372,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -373,7 +410,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -381,6 +418,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -398,7 +436,8 @@
 		057A42B31C3D6BB7006A48E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -419,7 +458,8 @@
 		057A42B41C3D6BB7006A48E6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
