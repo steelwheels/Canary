@@ -48,6 +48,24 @@ public class CNPercistentURL
 		}
 	}
 	
+	public func stringWithContentsOfURL() -> String? {
+		if let url = mainURL {
+			var result : String?
+			url.startAccessingSecurityScopedResource()
+			do {
+				let string = try NSString(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+				result = String(string)
+			}
+			catch {
+				result = nil
+			}
+			url.stopAccessingSecurityScopedResource()
+			return result
+		} else {
+			return  nil ;
+		}
+	}
+	
 	public class func openPanel(title : String, relativeURL relurl: NSURL?, doPersistent: Bool, callback: (result: CNPercistentURL?) -> Void)
 	{
 		let panel = NSOpenPanel()
@@ -97,6 +115,16 @@ public class CNPercistentURL
 		})
 	}
 	
+	public class func loadFromPreference() -> Array<CNPercistentURL> {
+		var result : Array<CNPercistentURL> = []
+		let urls = CNBookmarkPreference.URLs
+		for url in urls {
+			let newurl = CNPercistentURL(mainURL: url)
+			result.append(newurl)
+		}
+		return result
+	}
+	
 	private class func saveToUserDefaults(mainURL main: NSURL, relativeURL relurl: NSURL?) -> NSError?
 	{
 		do {
@@ -108,14 +136,22 @@ public class CNPercistentURL
 		}
 	}
 	
-	public class func loadFromPreference() -> Array<CNPercistentURL> {
-		var result : Array<CNPercistentURL> = []
-		let urls = CNBookmarkPreference.URLs
-		for url in urls {
-			let newurl = CNPercistentURL(mainURL: url)
-			result.append(newurl)
+	private class func loadFromUserDefaults(mainURL main: NSURL, relativeURL relurl: NSURL?) -> CNPercistentURL? {
+		if let bookmark = CNBookmarkPreference.bookmark(main) {
+			var isstale:ObjCBool = false;
+			do {
+				let newurl = try NSURL(byResolvingBookmarkData: bookmark, options: .WithSecurityScope, relativeToURL: relurl, bookmarkDataIsStale: &isstale)
+				if isstale {
+					saveToUserDefaults(mainURL: newurl, relativeURL: relurl)
+				}
+				let result = CNPercistentURL(mainURL: newurl)
+				result.relativeURL = relurl
+				return result
+			}
+			catch {
+				/* Some error occured */
+			}
 		}
-		return result
+		return nil
 	}
 }
-

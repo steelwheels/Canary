@@ -30,6 +30,7 @@ class ViewController: NSViewController
 		  callback: {(result: CNPercistentURL?) -> Void in
 			if let url = result {
 				print("loadButtonPressed: \(url.description)")
+				self.dumpURL(url)
 			} else {
 				print("loadButtonPressed: nil")
 			}
@@ -56,5 +57,13 @@ class ViewController: NSViewController
 		print("}")
 	}
 	
+	private func dumpURL(url: CNPercistentURL){
+		let textp = url.stringWithContentsOfURL()
+		if let text = textp {
+			print("context: \"\(text)\"")
+		} else {
+			print("context: nil")
+		}
+	}
 }
 

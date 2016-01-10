@@ -11,6 +11,7 @@
 		0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA551C3D74AA008D34CA /* ViewController.swift */; };
 		0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA571C3D74AA008D34CA /* Assets.xcassets */; };
 		0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA591C3D74AA008D34CA /* Main.storyboard */; };
+		0535F6D51C413B64000A716A /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
@@ -41,6 +42,7 @@
 		0534CA571C3D74AA008D34CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0534CA5A1C3D74AA008D34CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0534CA5C1C3D74AA008D34CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0535F6D31C413B59000A716A /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPersistentURL.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0535F6D51C413B64000A716A /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
+				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
@@ -325,6 +329,10 @@
 				CODE_SIGN_ENTITLEMENTS = UTFileManager.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTFileManager";
@@ -339,6 +347,10 @@
 				CODE_SIGN_ENTITLEMENTS = UTFileManager.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTFileManager";
@@ -443,6 +455,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
@@ -465,6 +481,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = Info.plist;
