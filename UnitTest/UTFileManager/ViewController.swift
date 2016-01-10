@@ -14,6 +14,7 @@ class ViewController: NSViewController
 	@IBOutlet weak var loadButton: NSButton!
 	@IBOutlet weak var saveButton: NSButton!
 	@IBOutlet weak var statusButton: NSButton!
+	@IBOutlet weak var clearButton: NSButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -49,14 +50,19 @@ class ViewController: NSViewController
 	}
 
 	@IBAction func statusButtonPressed(sender: AnyObject) {
-		let urls = CNBookmarkPreference.URLs
+		let urls = CNPercistentURL.loadFromPreference()
 		print("status {")
 		for url in urls {
-			print(" \(url.path)")
+			print(" \(url.description)")
+			dumpURL(url)
 		}
 		print("}")
 	}
 	
+	@IBAction func clearButtonPressed(sender: AnyObject) {
+		CNBookmarkPreference.clearBookmarks()
+	}
+
 	private func dumpURL(url: CNPercistentURL){
 		let textp = url.stringWithContentsOfURL()
 		if let text = textp {
@@ -65,5 +71,6 @@ class ViewController: NSViewController
 			print("context: nil")
 		}
 	}
+
 }
 

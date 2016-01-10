@@ -12,14 +12,9 @@ public class CNPercistentURL
 	public var mainURL		: NSURL?
 	public var relativeURL		: NSURL?
 	
-	public init(){
-		mainURL		= nil
-		relativeURL	= nil
-	}
-	
-	public init(mainURL url: NSURL){
-		mainURL		= url
-		relativeURL	= nil
+	public init(mainURL murl: NSURL, relativeURL rurl : NSURL?){
+		mainURL		= murl
+		relativeURL	= rurl
 	}
 	
 	public func key() -> String? {
@@ -74,10 +69,8 @@ public class CNPercistentURL
 		panel.allowsMultipleSelection = false
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
-				let newurl = CNPercistentURL()
 				let mainurl = panel.URLs[0]
-				newurl.mainURL = mainurl
-				newurl.relativeURL = relurl
+				let newurl = CNPercistentURL(mainURL: mainurl, relativeURL: relurl)
 				if doPersistent {
 					saveToUserDefaults(mainURL: mainurl, relativeURL: relurl)
 				}
@@ -99,9 +92,7 @@ public class CNPercistentURL
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
 				if let mainurl = panel.URL {
-					let newurl = CNPercistentURL()
-					newurl.mainURL     = mainurl
-					newurl.relativeURL = relurl
+					let newurl = CNPercistentURL(mainURL: mainurl, relativeURL: relurl)
 					if doPersistent {
 						saveToUserDefaults(mainURL: mainurl, relativeURL: relurl)
 					}
@@ -117,10 +108,11 @@ public class CNPercistentURL
 	
 	public class func loadFromPreference() -> Array<CNPercistentURL> {
 		var result : Array<CNPercistentURL> = []
-		let urls = CNBookmarkPreference.URLs
-		for url in urls {
-			let newurl = CNPercistentURL(mainURL: url)
-			result.append(newurl)
+		let mainurls = CNBookmarkPreference.mainURLs
+		for mainurl in mainurls {
+			if let newurl = loadFromUserDefaults(mainURL: mainurl) {
+				result.append(newurl)
+			}
 		}
 		return result
 	}
@@ -128,23 +120,26 @@ public class CNPercistentURL
 	private class func saveToUserDefaults(mainURL main: NSURL, relativeURL relurl: NSURL?) -> NSError?
 	{
 		do {
-			let bookmark = try main.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: relurl)
-			return CNBookmarkPreference.addBookmark(main, bookmark: bookmark)
+			let data = try main.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: relurl)
+			let bookmark = CNBookmark(relativeURL: relurl, bookmark: data)
+			return CNBookmarkPreference.addBookmark(mainURL: main, bookmark: bookmark)
 		}
 		catch {
 			return NSError.fileError("Can not generate bookmark: \(main.description)")
 		}
 	}
-	
-	private class func loadFromUserDefaults(mainURL main: NSURL, relativeURL relurl: NSURL?) -> CNPercistentURL? {
-		if let bookmark = CNBookmarkPreference.bookmark(main) {
+
+	private class func loadFromUserDefaults(mainURL main: NSURL) -> CNPercistentURL? {
+		if let bookmark = CNBookmarkPreference.bookmark(mainURL: main)  {
+			let relurl = bookmark.relativeURL
 			var isstale:ObjCBool = false;
 			do {
-				let newurl = try NSURL(byResolvingBookmarkData: bookmark, options: .WithSecurityScope, relativeToURL: relurl, bookmarkDataIsStale: &isstale)
+				let data   = bookmark.bookmark
+				let newurl = try NSURL(byResolvingBookmarkData: data, options: .WithSecurityScope, relativeToURL: relurl, bookmarkDataIsStale: &isstale)
 				if isstale {
 					saveToUserDefaults(mainURL: newurl, relativeURL: relurl)
 				}
-				let result = CNPercistentURL(mainURL: newurl)
+				let result = CNPercistentURL(mainURL: newurl, relativeURL: relurl)
 				result.relativeURL = relurl
 				return result
 			}

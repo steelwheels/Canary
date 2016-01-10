@@ -703,9 +703,20 @@
                                     <action selector="statusButtonPressed:" target="XfG-lQ-9wD" id="RdR-oN-Hex"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYZ-cl-BYw">
+                                <rect key="frame" x="251" y="13" width="72" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ceG-aA-psU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearButtonPressed:" target="XfG-lQ-9wD" id="ere-Az-7cj"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="YYZ-cl-BYw" id="Tuq-iR-XJb"/>
                         <outlet property="loadButton" destination="Gav-Nv-Sjd" id="uba-2O-l2Z"/>
                         <outlet property="saveButton" destination="gp9-BU-HfM" id="x5U-ib-IqD"/>
                         <outlet property="statusButton" destination="Xac-Yg-x4i" id="HJ9-3H-PSu"/>
