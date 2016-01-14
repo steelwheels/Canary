@@ -50,17 +50,13 @@ class ViewController: NSViewController
 	}
 
 	@IBAction func statusButtonPressed(sender: AnyObject) {
-		let urls = CNPercistentURL.loadFromPreference()
-		print("status {")
-		for url in urls {
-			print(" \(url.description)")
-			dumpURL(url)
-		}
-		print("}")
+		let preference = CNBookmarkPreference.sharedPreference
+		preference.dump()
 	}
 	
 	@IBAction func clearButtonPressed(sender: AnyObject) {
-		CNBookmarkPreference.clearBookmarks()
+		let preference = CNBookmarkPreference.sharedPreference
+		preference.clear()
 	}
 
 	private func dumpURL(url: CNPercistentURL){
@@ -71,6 +67,5 @@ class ViewController: NSViewController
 			print("context: nil")
 		}
 	}
-
 }
 
