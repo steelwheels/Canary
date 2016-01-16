@@ -15,6 +15,8 @@
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
 		053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
+		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
 		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
 		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +51,9 @@
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		057A42AF1C3D6BB7006A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
+		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
+		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
+		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = UTFileManager.entitlements; path = ../OSX/UTFileManager.entitlements; sourceTree = "<group>"; };
 		05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmarkPreference.swift; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +80,7 @@
 		05042A3E1C3D764800E7DA7A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */,
 				053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */,
 				05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */,
 				053807B31C441E6B0021BC51 /* CNBookmark.swift */,
@@ -98,6 +103,7 @@
 		0534CA621C3D74FF008D34CA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				05ED76201C4134A2003B4310 /* UTFileManager.entitlements */,
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
@@ -108,7 +114,6 @@
 		057A42A01C3D6BB7006A48E6 = {
 			isa = PBXGroup;
 			children = (
-				05ED76201C4134A2003B4310 /* UTFileManager.entitlements */,
 				057A42AC1C3D6BB7006A48E6 /* Source */,
 				0534CA621C3D74FF008D34CA /* UnitTest */,
 				057A42AB1C3D6BB7006A48E6 /* Products */,
@@ -131,10 +136,19 @@
 				057A42AF1C3D6BB7006A48E6 /* Info.plist */,
 				05EF66001C40AB370019B4BB /* Error */,
 				05042A3E1C3D764800E7DA7A /* File */,
+				05D553841C49D96D0045B472 /* Terminal */,
 			);
 			name = Source;
 			path = ../Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		05D553841C49D96D0045B472 /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				05D553851C49D9890045B472 /* CNConsole.swift */,
+			);
+			name = Terminal;
+			sourceTree = "<group>";
 		};
 		05EF66001C40AB370019B4BB /* Error */ = {
 			isa = PBXGroup;
@@ -294,8 +308,10 @@
 			files = (
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */,
+				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
 				05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */,
+				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
