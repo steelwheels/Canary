@@ -35,7 +35,6 @@ public class CNBookmarkPreference
 		let preference = NSUserDefaults.standardUserDefaults()
 		preference.setObject(dict, forKey: CNBookmarkPreference.bookmarkPreferekceKey())
 		preference.synchronize()
-		print("SYNC: \(dict)")
 	}
 	
 	public func dump() {
