@@ -17,42 +17,30 @@ internal func keyForURL(URL url: NSURL) -> String {
 
 internal class CNBookmarkElement
 {
-	internal var URL	: NSURL
-	internal var bookmark	: NSData
+	internal var URL		: NSURL
+	internal var bookmarkData	: NSData
 	
 	internal init(URL url: NSURL, bookmark bm: NSData){
 		URL		= url
-		bookmark	= bm
+		bookmarkData	= bm
 	}
 	
-	internal func encode() -> NSDictionary {
-		let result = NSDictionary(dictionary: [
-			CNBookmarkElement.urlKey():URL,
-			CNBookmarkElement.bookmarkKey():bookmark
-		])
-		return result
+	internal func encode() -> NSData {
+		return bookmarkData
 	}
 	
-	internal class func decode(dict : NSDictionary) -> CNBookmarkElement? {
-		var url : NSURL
-		if let uval = dict.valueForKey(urlKey()) as? NSURL {
-			url = uval
-		} else {
-			NSLog("\"URL\" value is not exist")
+	internal class func decode(bookmarkData bmdata: NSData, relatedURL relurl: NSURL?) -> CNBookmarkElement? {
+		do {
+			var isstale: ObjCBool = false;
+			let newurl = try NSURL(byResolvingBookmarkData: bmdata, options: .WithSecurityScope, relativeToURL: relurl, bookmarkDataIsStale: &isstale)
+			return CNBookmarkElement(URL: newurl, bookmark: bmdata)
+			
+		}
+		catch {
+			NSLog("Failed to resolve bookmark")
 			return nil
 		}
-		var bookmark : NSData
-		if let bval = dict.valueForKey(bookmarkKey()) as? NSData {
-			bookmark = bval
-		} else {
-			NSLog("\"Bookmark\" value is not exist")
-			return nil
-		}
-		return CNBookmarkElement(URL: url, bookmark: bookmark)
 	}
-	
-	private class func urlKey()      -> String { return "url" }
-	private class func bookmarkKey() -> String { return "bookmark" }
 }
 
 public class CNBookmark
@@ -89,7 +77,7 @@ public class CNBookmark
 	}
 	
 	public func encode() -> NSDictionary {
-		let elmdict = mElement.encode()
+		let elmdata = mElement.encode()
 		let childdict = NSMutableDictionary(capacity: 4)
 		for key in mChildren.keys {
 			if let child = mChildren[key] {
@@ -99,16 +87,16 @@ public class CNBookmark
 			}
 		}
 		let result = NSDictionary(dictionary: [
-			CNBookmark.elementKey()  : elmdict,
-			CNBookmark.childrenKey() : childdict
+			CNBookmark.elementKey()  : elmdata,	/* NSData	*/
+			CNBookmark.childrenKey() : childdict	/* NSDictionary */
 		])
 		return result
 	}
 	
-	public class func decode(dict : NSDictionary) -> CNBookmark? {
+	public class func decode(dict : NSDictionary, relatedURL relurl: NSURL?) -> CNBookmark? {
 		var element : CNBookmarkElement
-		if let elmdict = dict.valueForKey(elementKey()) as? NSDictionary {
-			if let elmobj = CNBookmarkElement.decode(elmdict) {
+		if let elmdata = dict.valueForKey(elementKey()) as? NSData {
+			if let elmobj = CNBookmarkElement.decode(bookmarkData: elmdata, relatedURL: relurl) {
 				element = elmobj
 			} else {
 				return nil
@@ -120,9 +108,9 @@ public class CNBookmark
 		var children : Dictionary<String, CNBookmark> = [:]
 		if let childdict = dict.valueForKey(childrenKey()) as? NSDictionary {
 			for keyobj in childdict.allKeys {
-				if let value = childdict.objectForKey(keyobj) as? NSDictionary,
+				if let childdict = childdict.objectForKey(keyobj) as? NSDictionary,
 				   let keystr = keyobj as? String {
-					if let childobj = CNBookmark.decode(value) {
+					if let childobj = CNBookmark.decode(childdict, relatedURL: element.URL) {
 						children[keystr] = childobj
 					}
 				} else {
@@ -229,16 +217,16 @@ public class CNBookmarks
 	}
 	
 	public class func decode(dict : NSDictionary) -> CNBookmarks {
-		var result : Dictionary<String, CNBookmark> = [:]
+		var bookdict : Dictionary<String, CNBookmark> = [:]
 		for keyobj in dict.allKeys {
 			if let value = dict.objectForKey(keyobj) as? NSDictionary,
 			   let keystr = keyobj as? String {
-				if let element = CNBookmark.decode(value) {
-					result[keystr] = element
+				if let element = CNBookmark.decode(value, relatedURL: nil) {
+					bookdict[keystr] = element
 				}
 			}
 		}
-		return CNBookmarks(bookmarks: result)
+		return CNBookmarks(bookmarks: bookdict)
 	}
 	
 	public func dump() {

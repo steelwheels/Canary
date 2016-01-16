@@ -52,11 +52,13 @@ class ViewController: NSViewController
 	@IBAction func statusButtonPressed(sender: AnyObject) {
 		let preference = CNBookmarkPreference.sharedPreference
 		preference.dump()
+		preference.synchronize()
 	}
 	
 	@IBAction func clearButtonPressed(sender: AnyObject) {
 		let preference = CNBookmarkPreference.sharedPreference
 		preference.clear()
+		preference.synchronize()
 	}
 
 	private func dumpURL(url: CNPercistentURL){
