@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A15AA1C4B94200023094E /* CNSerializer.swift */; };
 		052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */; };
 		0534CA541C3D74AA008D34CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA531C3D74AA008D34CA /* AppDelegate.swift */; };
 		0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA551C3D74AA008D34CA /* ViewController.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		052A15AA1C4B94200023094E /* CNSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSerializer.swift; sourceTree = "<group>"; };
 		052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
 		0534CA511C3D74AA008D34CA /* UTFileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTFileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0534CA531C3D74AA008D34CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		052B3A731C49E95500805BD7 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				052A15AA1C4B94200023094E /* CNSerializer.swift */,
 				052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */,
 			);
 			name = Object;
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
+				052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */,
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
