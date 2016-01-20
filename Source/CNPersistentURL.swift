@@ -53,12 +53,13 @@ public class CNPercistentURL
 		}
 	}
 	
-	public class func openPanel(title : String, relativeURL relurl: NSURL?, doPersistent: Bool, callback: (result: CNPercistentURL?) -> Void)
+	public class func openPanel(title : String, fileTypes types: Array<String>?, relativeURL relurl: NSURL?, doPersistent: Bool, callback: (result: CNPercistentURL?) -> Void)
 	{
 		let panel = NSOpenPanel()
 		panel.title = title
 		panel.canChooseDirectories = false
 		panel.allowsMultipleSelection = false
+		panel.allowedFileTypes = types
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
 				let mainurl = panel.URLs[0]

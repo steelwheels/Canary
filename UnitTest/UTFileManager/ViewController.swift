@@ -27,7 +27,7 @@ class ViewController: NSViewController
 	}
 
 	@IBAction func loadButtonPressed(sender: AnyObject) {
-		CNPercistentURL.openPanel("OpenPanel", relativeURL: nil, doPersistent: true,
+		CNPercistentURL.openPanel("OpenPanel", fileTypes: [], relativeURL: nil, doPersistent: true,
 		  callback: {(result: CNPercistentURL?) -> Void in
 			if let url = result {
 				print("loadButtonPressed: \(url.description)")
