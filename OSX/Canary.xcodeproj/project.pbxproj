@@ -15,7 +15,7 @@
 		0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA591C3D74AA008D34CA /* Main.storyboard */; };
 		0535F6D51C413B64000A716A /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
-		053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */; };
+		053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNFileURL.swift */; };
 		0546B98B1C4B1693008BCCBA /* UnitTest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05EE09631C4B07B600793B68 /* UnitTest */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNTextConsole.swift */; };
@@ -100,7 +100,7 @@
 		0534CA5C1C3D74AA008D34CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0535F6D31C413B59000A716A /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
-		053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPersistentURL.swift; sourceTree = "<group>"; };
+		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
 		0546B97F1C4B15F6008BCCBA /* UnitTestBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTestBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		0546B9811C4B15F6008BCCBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 			children = (
 				054BD3A21C4B9BBC009713BB /* CNFilePath.swift */,
 				05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */,
-				053AFE811C3EB4DD00F64198 /* CNPersistentURL.swift */,
+				053AFE811C3EB4DD00F64198 /* CNFileURL.swift */,
 				05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */,
 				053807B31C441E6B0021BC51 /* CNBookmark.swift */,
 			);
@@ -475,7 +475,7 @@
 			files = (
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
 				052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */,
-				053AFE821C3EB4DD00F64198 /* CNPersistentURL.swift in Sources */,
+				053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */,
 				054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */,
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,

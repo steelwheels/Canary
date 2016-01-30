@@ -7,14 +7,6 @@
 
 import Foundation
 
-internal func keyForURL(URL url: NSURL) -> String {
-	if let path = url.path {
-		return path
-	} else {
-		return "<nil>"
-	}
-}
-
 internal class CNBookmarkElement
 {
 	internal var URL		: NSURL
@@ -34,7 +26,6 @@ internal class CNBookmarkElement
 			var isstale: ObjCBool = false;
 			let newurl = try NSURL(byResolvingBookmarkData: bmdata, options: .WithSecurityScope, relativeToURL: relurl, bookmarkDataIsStale: &isstale)
 			return CNBookmarkElement(URL: newurl, bookmark: bmdata)
-			
 		}
 		catch {
 			NSLog("Failed to resolve bookmark")
@@ -56,6 +47,10 @@ public class CNBookmark
 	internal init(element : CNBookmarkElement, children: Dictionary<String, CNBookmark>) {
 		mElement	= element
 		mChildren	= children
+	}
+	
+	public var URL : NSURL {
+		return mElement.URL
 	}
 	
 	public func addChild(path: String, bookmark : CNBookmark) {
@@ -162,23 +157,44 @@ public class CNBookmarks
 	
 	public func addBookmark(mainURL mainurl: NSURL, relativeURL: NSURL?) -> CNBookmark {
 		var result : CNBookmark ;
-		if let relurl = relativeURL {
-			var relbookmark : CNBookmark? = searchByURL(URL: relurl, doRecursive: true)
-			if relbookmark == nil {
-				relbookmark  = addBookmark(mainURL: relurl, relativeURL: nil)
+		if let relurl = relativeURL, relpath = relurl.path {
+			var relbookmark : CNBookmark?
+			if let bm = searchByPath(relpath, doRecursive: true) {
+				relbookmark = bm
+			} else {
+				relbookmark = addBookmark(mainURL: relurl, relativeURL: nil)
 			}
 			let maindata     = allocateBookmarkData(mainURL: mainurl, relativeURL: relurl)
 			let mainbookmark = CNBookmark(URL: mainurl, bookmark: maindata)
-			relbookmark!.addChild(keyForURL(URL: mainurl), bookmark: mainbookmark)
+			relbookmark?.addChild(relpath, bookmark: mainbookmark)
 			result = mainbookmark
 		} else {
-			if let bookmark = searchByURL(URL: mainurl, doRecursive: false) {
-				/* Already exist */
-				result = bookmark
+			if let mainpath = mainurl.path {
+				if let bookmark = searchByPath(mainpath, doRecursive: false) {
+					result = bookmark
+				} else {
+					let maindata = allocateBookmarkData(mainURL: mainurl, relativeURL: nil)
+					result = CNBookmark(URL: mainurl, bookmark: maindata)
+					mBookmarks[mainpath] = result
+				}
 			} else {
-				let maindata = allocateBookmarkData(mainURL: mainurl, relativeURL: nil)
-				result = CNBookmark(URL: mainurl, bookmark: maindata)
-				mBookmarks[keyForURL(URL: mainurl)] = result
+				fatalError("Invalid main URL")
+			}
+		}
+		return result
+	}
+
+	public func loadFromUserDefaults(mainpath:String, relativeURL: NSURL?) -> CNFileURL? {
+		var result : CNFileURL? = nil
+		if let relurl = relativeURL, relpath = relurl.path {
+			if let relbookmark = searchByPath(relpath, doRecursive: true){
+				if let mainbookmark = relbookmark.searchByPath(mainpath, doRecursive: false) {
+					result = CNFileURL(mainURL: mainbookmark.URL)
+				}
+			}
+		} else {
+			if let bookmark = mBookmarks[mainpath] {
+				result = CNFileURL(mainURL: bookmark.URL)
 			}
 		}
 		return result
@@ -188,15 +204,14 @@ public class CNBookmarks
 		mBookmarks = [:]
 	}
 	
-	public func searchByURL(URL url : NSURL, doRecursive: Bool) -> CNBookmark? {
-		let key = keyForURL(URL: url)
-		if let bookmark = mBookmarks[key] {
+	private func searchByPath(path: String, doRecursive: Bool) -> CNBookmark? {
+		if let bookmark = mBookmarks[path] {
 			return bookmark
 		}
 		if doRecursive {
 			for bookmark in mBookmarks.values {
-				if let bm = bookmark.searchByPath(key, doRecursive: true) {
-					return bm
+				if let result = bookmark.searchByPath(path, doRecursive: true) {
+					return result
 				}
 			}
 		}
@@ -247,7 +262,14 @@ public class CNBookmarks
 			return data
 		}
 		catch {
-			fatalError("Can not allocate bookmark")
+			let mainstr = mainurl.absoluteString
+			var relstr : String
+			if let r = relurl {
+				relstr = r.absoluteString
+			} else {
+				relstr = "<nil>"
+			}
+			fatalError("Can not allocate bookmark: main=\(mainstr), rel=\(relstr)")
 		}
 	}
 }

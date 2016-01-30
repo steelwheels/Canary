@@ -9,6 +9,11 @@ import Foundation
 
 public class CNFilePath
 {
+	public class func URLForHomeDirectory() -> NSURL {
+		let homedir = NSHomeDirectory()
+		return NSURL(fileURLWithPath: homedir, isDirectory: true)
+	}
+	
 	public class func URLForBundleFile(bundlename : String?, filename : String?, ofType: String?) -> (NSURL?, NSError?) {
 		let mainbundle = NSBundle.mainBundle()
 		if let bundlepath = mainbundle.pathForResource(bundlename, ofType: "bundle") {

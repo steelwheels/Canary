@@ -18,6 +18,9 @@ class ViewController: NSViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		let home = CNFilePath.URLForHomeDirectory()
+		print("home = \(home.absoluteString)")
 	}
 
 	override var representedObject: AnyObject? {
@@ -27,25 +30,26 @@ class ViewController: NSViewController
 	}
 
 	@IBAction func loadButtonPressed(sender: AnyObject) {
-		CNPercistentURL.openPanel("OpenPanel", fileTypes: [], relativeURL: nil, doPersistent: true,
-		  callback: {(result: CNPercistentURL?) -> Void in
-			if let url = result {
-				print("loadButtonPressed: \(url.description)")
-				self.dumpURL(url)
-			} else {
-				print("loadButtonPressed: nil")
-			}
+		CNFileURL.openPanel("OpenPanel", fileTypes: [],
+		  openFileCallback: {(result: CNFileURL) -> Void in
+			print("loadButtonPressed: \(result.description)")
+			self.dumpURL(result)
+			result.saveToUserDefaults(nil)
 		})
 	}
 
 	@IBAction func saveButtonPressed(sender: AnyObject) {
-		CNPercistentURL.savePanel("SavePanel", outputDirectory: nil, relativeURL: nil, doPersistent: true,
-		  callback: { (result : CNPercistentURL?) -> Void in
-			if let url = result {
-				print("saveButtonPressed: \(url.description)")
-			} else {
-				print("saveButtonPressed: nil")
+		CNFileURL.savePanel("SavePanel", outputDirectory: nil,
+		  saveFileCallback: { (result : CNFileURL) -> Void in
+			let content = NSString(string: "a")
+			do {
+				try content.writeToURL(result.mainURL, atomically: false, encoding: NSUTF8StringEncoding)
+				result.saveToUserDefaults(nil)
 			}
+			catch {
+				NSLog("saveButtonPressed: can not write")
+			}
+			
 		})
 	}
 
@@ -61,7 +65,7 @@ class ViewController: NSViewController
 		preference.synchronize()
 	}
 
-	private func dumpURL(url: CNPercistentURL){
+	private func dumpURL(url: CNFileURL){
 		let textp = url.stringWithContentsOfURL()
 		if let text = textp {
 			print("context: \"\(text)\"")

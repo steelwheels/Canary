@@ -25,6 +25,10 @@ public class CNBookmarkPreference
 	{
 		mBookmarks.addBookmark(mainURL: mainurl, relativeURL: relurl)
 	}
+
+	public func loadFromUserDefaults(mainpath:String, relativeURL: NSURL?) -> CNFileURL? {
+		return mBookmarks.loadFromUserDefaults(mainpath, relativeURL: relativeURL)
+	}
 	
 	public func clear() {
 		mBookmarks.clear()
