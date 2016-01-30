@@ -10,7 +10,7 @@ import Foundation
 public class CNFileURL
 {
 	public var mainURL : NSURL
-	
+
 	public init(mainURL murl: NSURL){
 		mainURL		= murl
 	}
@@ -24,7 +24,11 @@ public class CNFileURL
 			return "{URL:" + mainstr + "}"
 		}
 	}
-	
+
+	public var URL : NSURL {
+		get	{ return mainURL }
+	}
+
 	public func stringWithContentsOfURL() -> String? {
 		var result : String?
 		mainURL.startAccessingSecurityScopedResource()
@@ -38,12 +42,12 @@ public class CNFileURL
 		mainURL.stopAccessingSecurityScopedResource()
 		return result
 	}
-	
+
 	public func saveToUserDefaults(relativeURL: NSURL?) {
 		let preference = CNBookmarkPreference.sharedPreference
 		preference.saveToUserDefaults(mainURL: mainURL, relativeURL: relativeURL)
 	}
-	
+
 	public class func openPanel(title : String, fileTypes types: Array<String>?, openFileCallback: (result: CNFileURL) -> Void)
 	{
 		let panel = NSOpenPanel()
@@ -59,7 +63,7 @@ public class CNFileURL
 			}
 		})
 	}
-	
+
 	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: CNFileURL) -> Void)
 	{
 		let panel = NSSavePanel()
