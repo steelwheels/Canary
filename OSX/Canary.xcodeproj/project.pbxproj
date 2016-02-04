@@ -19,6 +19,7 @@
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNTextConsole.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
 		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
@@ -43,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05184A941C612223008D6FC9 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
 		052A15AA1C4B94200023094E /* CNSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSerializer.swift; sourceTree = "<group>"; };
 		052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
 		0534CA511C3D74AA008D34CA /* UTFileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTFileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,16 +55,14 @@
 		0535F6D31C413B59000A716A /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
-		0546B9811C4B15F6008BCCBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		056AA28E1C4A610B00E53092 /* CNTextConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextConsole.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
-		057A42AF1C3D6BB7006A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
-		05EE09651C4B07B600793B68 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmarkPreference.swift; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,23 +123,12 @@
 		0534CA621C3D74FF008D34CA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				05EE09641C4B07B600793B68 /* UnitTest */,
-				0546B9801C4B15F6008BCCBA /* UnitTestBundle */,
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
 			name = UnitTest;
 			path = ../UnitTest;
 			sourceTree = SOURCE_ROOT;
-		};
-		0546B9801C4B15F6008BCCBA /* UnitTestBundle */ = {
-			isa = PBXGroup;
-			children = (
-				0546B9811C4B15F6008BCCBA /* Info.plist */,
-			);
-			name = UnitTestBundle;
-			path = ../OSX/UnitTestBundle;
-			sourceTree = "<group>";
 		};
 		057A42A01C3D6BB7006A48E6 = {
 			isa = PBXGroup;
@@ -164,8 +151,8 @@
 		057A42AC1C3D6BB7006A48E6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				059881F91C63A4700027911D /* Info.plist */,
 				057A42AD1C3D6BB7006A48E6 /* Canary.h */,
-				057A42AF1C3D6BB7006A48E6 /* Info.plist */,
 				052B3A731C49E95500805BD7 /* Object */,
 				05EF66001C40AB370019B4BB /* Error */,
 				05042A3E1C3D764800E7DA7A /* File */,
@@ -183,16 +170,6 @@
 			);
 			name = Terminal;
 			sourceTree = "<group>";
-		};
-		05EE09641C4B07B600793B68 /* UnitTest */ = {
-			isa = PBXGroup;
-			children = (
-				05EE09651C4B07B600793B68 /* main.swift */,
-				05184A941C612223008D6FC9 /* UTFileURL.swift */,
-			);
-			name = UnitTest;
-			path = ../UnitTest/UnitTest;
-			sourceTree = SOURCE_ROOT;
 		};
 		05EF66001C40AB370019B4BB /* Error */ = {
 			isa = PBXGroup;
@@ -331,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059881FA1C63A4700027911D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
