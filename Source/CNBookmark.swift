@@ -258,7 +258,13 @@ public class CNBookmarks
 	
 	private func allocateBookmarkData(mainURL mainurl: NSURL, relativeURL relurl: NSURL?) -> NSData {
 		do {
+			if let url = relurl {
+				url.startAccessingSecurityScopedResource()
+			}
 			let data = try mainurl.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: relurl)
+			if let url = relurl {
+				url.stopAccessingSecurityScopedResource()
+			}
 			return data
 		}
 		catch {

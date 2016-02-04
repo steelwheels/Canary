@@ -82,4 +82,34 @@ public class CNFileURL
 			}
 		})
 	}
+	
+	public class func relativePath(sourceURL src: NSURL, baseDirectory base: NSURL) -> NSURL {
+		if let srccomp = src.pathComponents, basecomp = base.pathComponents {
+			let common = findLastCommonComponent(srccomp, s1array: basecomp)
+			if common > 0 {
+				var resultpath = ""
+				let updirs = basecomp.count - common
+				for var i=0 ; i<updirs ; i++ {
+					resultpath = "../" + resultpath
+				}
+				for comp in common ... srccomp.count-1 {
+					resultpath = resultpath + "/" + srccomp[comp]
+				}
+				return NSURL(fileURLWithPath: resultpath)
+			}
+		}
+		return src
+	}
+	
+	private class func findLastCommonComponent(s0array: Array<String>, s1array: Array<String>) -> Int {
+		let s0count = s0array.count
+		let s1count = s1array.count
+		let count   = s0count < s1count ? s0count : s1count
+		for var i:Int=0 ; i<count ; i++ {
+			if s0array[i] != s1array[i] {
+				return i
+			}
+		}
+		return count - 1
+	}
 }
