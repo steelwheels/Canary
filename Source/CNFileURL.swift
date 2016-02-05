@@ -92,8 +92,14 @@ public class CNFileURL
 				for var i=0 ; i<updirs ; i++ {
 					resultpath = "../" + resultpath
 				}
+				var is1st : Bool = true
 				for comp in common ... srccomp.count-1 {
-					resultpath = resultpath + "/" + srccomp[comp]
+					if is1st {
+						is1st = false
+					} else {
+						resultpath = resultpath + "/"
+					}
+					resultpath = resultpath + srccomp[comp]
 				}
 				return NSURL(fileURLWithPath: resultpath)
 			}

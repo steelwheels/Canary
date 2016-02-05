@@ -20,8 +20,13 @@
 		056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNTextConsole.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
+		05CED4111C63BC5200623F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4101C63BC5200623F80 /* AppDelegate.swift */; };
+		05CED4131C63BC5200623F80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4121C63BC5200623F80 /* ViewController.swift */; };
+		05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4141C63BC5200623F80 /* Assets.xcassets */; };
+		05CED4181C63BC5200623F80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4161C63BC5200623F80 /* Main.storyboard */; };
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
+		05DB4F491C63BE2500997C67 /* UTFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB4F481C63BE2500997C67 /* UTFileURL.swift */; };
 		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
 		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +45,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 057A42A91C3D6BB7006A48E6;
 			remoteInfo = Canary;
+		};
+		05CED41D1C63BC6700623F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05CC078F1C3D738800EF188D;
+			remoteInfo = Install;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -60,8 +72,15 @@
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05CED40E1C63BC5200623F80 /* UTURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05CED4101C63BC5200623F80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05CED4121C63BC5200623F80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05CED4141C63BC5200623F80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05CED4171C63BC5200623F80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05CED4191C63BC5200623F80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
+		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
 		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
 		05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmarkPreference.swift; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
@@ -77,6 +96,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		057A42A61C3D6BB7006A48E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05CED40B1C63BC5200623F80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -123,6 +149,7 @@
 		0534CA621C3D74FF008D34CA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				05CED40F1C63BC5200623F80 /* UTURL */,
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
@@ -144,6 +171,7 @@
 			children = (
 				057A42AA1C3D6BB7006A48E6 /* Canary.framework */,
 				0534CA511C3D74AA008D34CA /* UTFileManager.app */,
+				05CED40E1C63BC5200623F80 /* UTURL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,6 +188,20 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		05CED40F1C63BC5200623F80 /* UTURL */ = {
+			isa = PBXGroup;
+			children = (
+				05CED4101C63BC5200623F80 /* AppDelegate.swift */,
+				05CED4121C63BC5200623F80 /* ViewController.swift */,
+				05CED4141C63BC5200623F80 /* Assets.xcassets */,
+				05CED4161C63BC5200623F80 /* Main.storyboard */,
+				05CED4191C63BC5200623F80 /* Info.plist */,
+				05DB4F481C63BE2500997C67 /* UTFileURL.swift */,
+			);
+			name = UTURL;
+			path = ../UnitTest/UTURL;
 			sourceTree = SOURCE_ROOT;
 		};
 		05D553841C49D96D0045B472 /* Terminal */ = {
@@ -247,6 +289,24 @@
 			productReference = 057A42AA1C3D6BB7006A48E6 /* Canary.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		05CED40D1C63BC5200623F80 /* UTURL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05CED41A1C63BC5200623F80 /* Build configuration list for PBXNativeTarget "UTURL" */;
+			buildPhases = (
+				05CED40A1C63BC5200623F80 /* Sources */,
+				05CED40B1C63BC5200623F80 /* Frameworks */,
+				05CED40C1C63BC5200623F80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05CED41E1C63BC6700623F80 /* PBXTargetDependency */,
+			);
+			name = UTURL;
+			productName = UTURL;
+			productReference = 05CED40E1C63BC5200623F80 /* UTURL.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -272,6 +332,9 @@
 					05CC078F1C3D738800EF188D = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					05CED40D1C63BC5200623F80 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 057A42A41C3D6BB7006A48E6 /* Build configuration list for PBXProject "Canary" */;
@@ -290,6 +353,7 @@
 				057A42A91C3D6BB7006A48E6 /* Canary */,
 				05CC078F1C3D738800EF188D /* Install */,
 				0534CA501C3D74AA008D34CA /* UTFileManager */,
+				05CED40D1C63BC5200623F80 /* UTURL */,
 			);
 		};
 /* End PBXProject section */
@@ -309,6 +373,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				059881FA1C63A4700027911D /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05CED40C1C63BC5200623F80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */,
+				05CED4181C63BC5200623F80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +414,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05CED40A1C63BC5200623F80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05CED4131C63BC5200623F80 /* ViewController.swift in Sources */,
+				05DB4F491C63BE2500997C67 /* UTFileURL.swift in Sources */,
+				05CED4111C63BC5200623F80 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -354,6 +437,11 @@
 			target = 057A42A91C3D6BB7006A48E6 /* Canary */;
 			targetProxy = 05CC07931C3D739100EF188D /* PBXContainerItemProxy */;
 		};
+		05CED41E1C63BC6700623F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05CC078F1C3D738800EF188D /* Install */;
+			targetProxy = 05CED41D1C63BC6700623F80 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -361,6 +449,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				0534CA5A1C3D74AA008D34CA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05CED4161C63BC5200623F80 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05CED4171C63BC5200623F80 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -501,6 +597,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -527,6 +624,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
@@ -561,6 +659,33 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05CED41B1C63BC5200623F80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = ../UnitTest/UTURL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTURL";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05CED41C1C63BC5200623F80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ../UnitTest/UTURL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTURL";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -600,6 +725,15 @@
 			buildConfigurations = (
 				05CC07911C3D738800EF188D /* Debug */,
 				05CC07921C3D738800EF188D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05CED41A1C63BC5200623F80 /* Build configuration list for PBXNativeTarget "UTURL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05CED41B1C63BC5200623F80 /* Debug */,
+				05CED41C1C63BC5200623F80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
