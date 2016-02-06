@@ -7,6 +7,190 @@
 
 import Foundation
 
+internal class CNBookmarks
+{
+	private var bookmarkDictionary : NSMutableDictionary
+	
+	internal init(){
+		bookmarkDictionary = NSMutableDictionary(capacity: 8)
+	}
+	
+	internal func addBookmark(URL url: NSURL) -> NSError? {
+		if let path = url.path {
+			if let _ = bookmarkDictionary.objectForKey(path) as? NSData {
+				/* Already store */
+			} else {
+				let data = allocateBookmarkData(URL: url)
+				bookmarkDictionary.setObject(data, forKey: path)
+			}
+			return nil
+		} else {
+			return NSError.fileError("Invalid URL: \(url)")
+		}
+	}
+
+	internal func searchBookmark(pathString path: String) -> NSURL? {
+		if let data = bookmarkDictionary.objectForKey(path) as? NSData {
+			if let url = CNBookmarks.resolveURL(bookmarkData: data) {
+				return url
+			} else {
+				NSLog("Broken bookmark data for key \"\(path)\"")
+			}
+		}
+		return nil
+	}
+	
+	internal class func decode(dict : NSDictionary) -> CNBookmarks {
+		let newbookmarks = CNBookmarks()
+		newbookmarks.bookmarkDictionary.setDictionary(dict as [NSObject : AnyObject])
+		return newbookmarks
+	}
+
+	internal func encode() -> NSDictionary {
+		return bookmarkDictionary
+	}
+	
+	internal func clear() {
+		bookmarkDictionary.removeAllObjects()
+	}
+	
+	private func allocateBookmarkData(URL url: NSURL) -> NSData {
+		do {
+			let data = try url.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: nil)
+			return data
+		}
+		catch {
+			let urlstr = url.absoluteString
+			fatalError("Can not allocate bookmark: \"\(urlstr)")
+		}
+	}
+	
+	private class func resolveURL(bookmarkData bmdata: NSData) -> NSURL? {
+		do {
+			var isstale: ObjCBool = false;
+			let newurl = try NSURL(byResolvingBookmarkData: bmdata, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: &isstale)
+			return newurl
+		}
+		catch {
+			NSLog("Failed to resolve bookmark")
+			return nil
+		}
+	}
+}
+
+public class CNBookmarkPreference
+{
+	public static let sharedPreference = CNBookmarkPreference()
+	private var mBookmarks : CNBookmarks
+	
+	private init(){
+		if let pref = CNBookmarkPreference.rootPreferences() {
+			mBookmarks = CNBookmarks.decode(pref)
+		} else {
+			mBookmarks = CNBookmarks()
+		}
+	}
+	
+	public func saveToUserDefaults(URL url: NSURL)
+	{
+		mBookmarks.addBookmark(URL: url)
+	}
+	
+	public func saveToUserDefaults(URLs urls: Array<NSURL>)
+	{
+		for url in urls {
+			mBookmarks.addBookmark(URL: url)
+		}
+	}
+	
+	public func loadFromUserDefaults(path:String) -> NSURL? {
+		return mBookmarks.searchBookmark(pathString: path)
+	}
+	
+	public func clear(){
+		mBookmarks.clear()
+	}
+	
+	public func synchronize() {
+		let dict = mBookmarks.encode()
+		let preference = NSUserDefaults.standardUserDefaults()
+		preference.setObject(dict, forKey: CNBookmarkPreference.bookmarkPreferekceKey())
+		preference.synchronize()
+	}
+	
+	private class func rootPreferences() -> NSDictionary? {
+		let preference = NSUserDefaults.standardUserDefaults()
+		if let dict = preference.dictionaryForKey(CNBookmarkPreference.bookmarkPreferekceKey()) {
+			return dict
+		} else {
+			return nil
+		}
+	}
+	
+	private class func bookmarkPreferekceKey() -> String {
+		return "bookmarks"
+	}
+}
+
+/*
+
+public class CNBookmarkPreference
+{
+	public static let sharedPreference = CNBookmarkPreference()
+	
+	private var mBookmarks : CNBookmarks
+	
+	private init(){
+		if let pref = CNBookmarkPreference.rootPreferences() {
+			mBookmarks = CNBookmarks.decode(pref)
+		} else {
+			mBookmarks = CNBookmarks()
+		}
+	}
+	
+	public func saveToUserDefaults(mainURL mainurl: NSURL, relativeFileURL relfile: NSURL?)
+	{
+		mBookmarks.addBookmark(mainURL: mainurl, relativeFileURL: relfile)
+	}
+	
+	public func loadFromUserDefaults(mainpath:String, relativeFileURL relurl : NSURL?) -> CNFileURL? {
+		return mBookmarks.loadFromUserDefaults(mainpath, relativeFileURL: relurl)
+	}
+	
+	public func clear() {
+		mBookmarks.clear()
+	}
+	
+	public func synchronize() {
+		let dict = mBookmarks.encode()
+		let preference = NSUserDefaults.standardUserDefaults()
+		preference.setObject(dict, forKey: CNBookmarkPreference.bookmarkPreferekceKey())
+		preference.synchronize()
+	}
+	
+	public func dump() {
+		mBookmarks.dump()
+	}
+	
+	private class func rootPreferences() -> NSDictionary? {
+		let preference = NSUserDefaults.standardUserDefaults()
+		if let dict = preference.dictionaryForKey(CNBookmarkPreference.bookmarkPreferekceKey()) {
+			return dict
+		} else {
+			return nil
+		}
+	}
+	
+	private class func bookmarkPreferekceKey() -> String {
+		return "bookmarks"
+	}
+}
+
+*/
+
+/*
+
+
 internal class CNBookmarkElement
 {
 	internal var URL		: NSURL
@@ -155,16 +339,16 @@ public class CNBookmarks
 		mBookmarks = [:]
 	}
 	
-	public func addBookmark(mainURL mainurl: NSURL, relativeURL: NSURL?) -> CNBookmark {
+	public func addBookmark(mainURL mainurl: NSURL, relativeFileURL: NSURL?) -> CNBookmark {
 		var result : CNBookmark ;
-		if let relurl = relativeURL, relpath = relurl.path {
+		if let relfile = relativeFileURL, relpath = relfile.path {
 			var relbookmark : CNBookmark?
 			if let bm = searchByPath(relpath, doRecursive: true) {
 				relbookmark = bm
 			} else {
-				relbookmark = addBookmark(mainURL: relurl, relativeURL: nil)
+				relbookmark = addBookmark(mainURL: relfile, relativeFileURL: nil)
 			}
-			let maindata     = allocateBookmarkData(mainURL: mainurl, relativeURL: relurl)
+			let maindata     = allocateBookmarkData(mainURL: mainurl, relativeFileURL: relfile)
 			let mainbookmark = CNBookmark(URL: mainurl, bookmark: maindata)
 			relbookmark?.addChild(relpath, bookmark: mainbookmark)
 			result = mainbookmark
@@ -173,7 +357,7 @@ public class CNBookmarks
 				if let bookmark = searchByPath(mainpath, doRecursive: false) {
 					result = bookmark
 				} else {
-					let maindata = allocateBookmarkData(mainURL: mainurl, relativeURL: nil)
+					let maindata = allocateBookmarkData(mainURL: mainurl, relativeFileURL: nil)
 					result = CNBookmark(URL: mainurl, bookmark: maindata)
 					mBookmarks[mainpath] = result
 				}
@@ -184,16 +368,16 @@ public class CNBookmarks
 		return result
 	}
 
-	public func loadFromUserDefaults(mainpath:String, relativeURL: NSURL?) -> CNFileURL? {
+	public func loadFromUserDefaults(mainPath:String, relativeFileURL: NSURL?) -> CNFileURL? {
 		var result : CNFileURL? = nil
-		if let relurl = relativeURL, relpath = relurl.path {
+		if let relurl = relativeFileURL, relpath = relurl.path {
 			if let relbookmark = searchByPath(relpath, doRecursive: true){
-				if let mainbookmark = relbookmark.searchByPath(mainpath, doRecursive: false) {
+				if let mainbookmark = relbookmark.searchByPath(mainPath, doRecursive: false) {
 					result = CNFileURL(mainURL: mainbookmark.URL)
 				}
 			}
 		} else {
-			if let bookmark = mBookmarks[mainpath] {
+			if let bookmark = mBookmarks[mainPath] {
 				result = CNFileURL(mainURL: bookmark.URL)
 			}
 		}
@@ -256,27 +440,23 @@ public class CNBookmarks
 		print("}")
 	}
 	
-	private func allocateBookmarkData(mainURL mainurl: NSURL, relativeURL relurl: NSURL?) -> NSData {
+	private func allocateBookmarkData(mainURL mainurl: NSURL, relativeFileURL relurl: NSURL?) -> NSData {
 		do {
-			if let url = relurl {
-				url.startAccessingSecurityScopedResource()
-			}
 			let data = try mainurl.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: relurl)
-			if let url = relurl {
-				url.stopAccessingSecurityScopedResource()
-			}
 			return data
 		}
 		catch {
-			let mainstr = mainurl.absoluteString
-			var relstr : String
-			if let r = relurl {
-				relstr = r.absoluteString
+			var relstr  : String
+			if let url = relurl {
+				relstr  = url.absoluteString
 			} else {
-				relstr = "<nil>"
+				relstr  = "<nil>"
 			}
-			fatalError("Can not allocate bookmark: main=\(mainstr), rel=\(relstr)")
+			fatalError("Can not allocate bookmark: target=\"\(mainurl.absoluteString)\", reldir=\"\(relstr)\"")
 		}
 	}
 }
+
+*/
+
 

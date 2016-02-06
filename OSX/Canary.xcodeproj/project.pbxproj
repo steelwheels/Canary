@@ -27,7 +27,6 @@
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
 		05DB4F491C63BE2500997C67 /* UTFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB4F481C63BE2500997C67 /* UTFileURL.swift */; };
-		05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */; };
 		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
 		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
-		05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmarkPreference.swift; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +116,6 @@
 				054BD3A21C4B9BBC009713BB /* CNFilePath.swift */,
 				05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */,
 				053AFE811C3EB4DD00F64198 /* CNFileURL.swift */,
-				05EF65FE1C409E8C0019B4BB /* CNBookmarkPreference.swift */,
 				053807B31C441E6B0021BC51 /* CNBookmark.swift */,
 			);
 			name = File;
@@ -408,7 +405,6 @@
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
 				052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */,
-				05EF65FF1C409E8C0019B4BB /* CNBookmarkPreference.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */,
 			);

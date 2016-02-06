@@ -7,48 +7,9 @@
 
 import Foundation
 
-public class CNFileURL
+public extension NSURL
 {
-	public var mainURL : NSURL
-
-	public init(mainURL murl: NSURL){
-		mainURL		= murl
-	}
-
-	public var description : String {
-		get {
-			var mainstr = "nil"
-			if let str = mainURL.path {
-				mainstr = str
-			}
-			return "{URL:" + mainstr + "}"
-		}
-	}
-
-	public var URL : NSURL {
-		get	{ return mainURL }
-	}
-
-	public func stringWithContentsOfURL() -> String? {
-		var result : String?
-		mainURL.startAccessingSecurityScopedResource()
-		do {
-			let string = try NSString(contentsOfURL: mainURL, encoding: NSUTF8StringEncoding)
-			result = String(string)
-		}
-		catch {
-			result = nil
-		}
-		mainURL.stopAccessingSecurityScopedResource()
-		return result
-	}
-
-	public func saveToUserDefaults(relativeURL: NSURL?) {
-		let preference = CNBookmarkPreference.sharedPreference
-		preference.saveToUserDefaults(mainURL: mainURL, relativeURL: relativeURL)
-	}
-
-	public class func openPanel(title : String, fileTypes types: Array<String>?, openFileCallback: (result: CNFileURL) -> Void)
+	public class func openPanel(title : String, fileTypes types: Array<String>?, openFileCallback: (result: Array<NSURL>) -> Void)
 	{
 		let panel = NSOpenPanel()
 		panel.title = title
@@ -57,14 +18,17 @@ public class CNFileURL
 		panel.allowedFileTypes = types
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
-				let mainurl = panel.URLs[0]
-				let newurl = CNFileURL(mainURL: mainurl)
-				openFileCallback(result: newurl)
+				
+				let preference = CNBookmarkPreference.sharedPreference
+				preference.saveToUserDefaults(URLs: panel.URLs)
+				preference.synchronize()
+				
+				openFileCallback(result: panel.URLs)
 			}
 		})
 	}
-
-	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: CNFileURL) -> Void)
+	
+	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: NSURL) -> Void)
 	{
 		let panel = NSSavePanel()
 		panel.title = title
@@ -75,8 +39,11 @@ public class CNFileURL
 		}
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
-				if let mainurl = panel.URL {
-					let newurl = CNFileURL(mainURL: mainurl)
+				if let newurl = panel.URL {
+					let preference = CNBookmarkPreference.sharedPreference
+					preference.saveToUserDefaults(URL: newurl)
+					preference.synchronize()
+					
 					saveFileCallback(result: newurl)
 				}
 			}
@@ -119,3 +86,4 @@ public class CNFileURL
 		return count - 1
 	}
 }
+
