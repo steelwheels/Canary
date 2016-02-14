@@ -18,17 +18,17 @@ public extension NSURL
 		panel.allowedFileTypes = types
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
-				
+
 				let preference = CNBookmarkPreference.sharedPreference
 				preference.saveToUserDefaults(URLs: panel.URLs)
 				preference.synchronize()
-				
+
 				openFileCallback(result: panel.URLs)
 			}
 		})
 	}
-	
-	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: NSURL) -> Void)
+
+	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: NSURL) -> Bool)
 	{
 		let panel = NSSavePanel()
 		panel.title = title
@@ -40,16 +40,16 @@ public extension NSURL
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
 				if let newurl = panel.URL {
-					let preference = CNBookmarkPreference.sharedPreference
-					preference.saveToUserDefaults(URL: newurl)
-					preference.synchronize()
-					
-					saveFileCallback(result: newurl)
+					if saveFileCallback(result: newurl) {
+						let preference = CNBookmarkPreference.sharedPreference
+						preference.saveToUserDefaults(URL: newurl)
+						preference.synchronize()
+					}
 				}
 			}
 		})
 	}
-	
+
 	public class func relativePath(sourceURL src: NSURL, baseDirectory base: NSURL) -> NSURL {
 		if let srccomp = src.pathComponents, basecomp = base.pathComponents {
 			let common = findLastCommonComponent(srccomp, s1array: basecomp)
@@ -73,7 +73,25 @@ public extension NSURL
 		}
 		return src
 	}
-	
+
+	public func loadContents() -> (NSString?, NSError?) {
+		if startAccessingSecurityScopedResource() {
+			do {
+				let contents = try NSString(contentsOfURL: self, encoding: NSUTF8StringEncoding)
+				stopAccessingSecurityScopedResource()
+				return (contents, nil)
+			}
+			catch {
+				stopAccessingSecurityScopedResource()
+				let error = NSError.fileError("Can not access: \(path)")
+				return (nil, error)
+			}
+		} else {
+			let error = NSError.fileError("Can not access: \(path)")
+			return (nil, error)
+		}
+	}
+
 	private class func findLastCommonComponent(s0array: Array<String>, s1array: Array<String>) -> Int {
 		let s0count = s0array.count
 		let s1count = s1array.count

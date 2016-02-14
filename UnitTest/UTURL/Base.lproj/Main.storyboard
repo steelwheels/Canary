@@ -683,10 +683,21 @@
                                     <action selector="getRelativeURLButtonPressed:" target="XfG-lQ-9wD" id="gu8-Ng-YWs"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vt-qi-qss">
+                                <rect key="frame" x="169" y="46" width="142" height="32"/>
+                                <buttonCell key="cell" type="push" title="Load Contents" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yqZ-bG-WNU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadContentsButtonPressed:" target="XfG-lQ-9wD" id="UPt-LW-IRd"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="getRelativeURLButton" destination="Mek-Hg-dts" id="tbz-ap-Mno"/>
+                        <outlet property="loadContentsButton" destination="1vt-qi-qss" id="tqM-pf-2Jl"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
