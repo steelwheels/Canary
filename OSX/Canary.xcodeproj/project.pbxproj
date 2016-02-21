@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A15AA1C4B94200023094E /* CNSerializer.swift */; };
 		052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */; };
+		05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6A1C74D25B00BAA730 /* CNState.swift */; };
+		05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */; };
 		0534CA541C3D74AA008D34CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA531C3D74AA008D34CA /* AppDelegate.swift */; };
 		0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA551C3D74AA008D34CA /* ViewController.swift */; };
 		0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA571C3D74AA008D34CA /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		052A15AA1C4B94200023094E /* CNSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSerializer.swift; sourceTree = "<group>"; };
 		052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
+		05318A6A1C74D25B00BAA730 /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
+		05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCombinedState.swift; sourceTree = "<group>"; };
 		0534CA511C3D74AA008D34CA /* UTFileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTFileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0534CA531C3D74AA008D34CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0534CA551C3D74AA008D34CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +136,15 @@
 			name = Object;
 			sourceTree = "<group>";
 		};
+		05318A691C74D24300BAA730 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				05318A6A1C74D25B00BAA730 /* CNState.swift */,
+				05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
 		0534CA521C3D74AA008D34CA /* UTFileManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,7 @@
 				05EF66001C40AB370019B4BB /* Error */,
 				05042A3E1C3D764800E7DA7A /* File */,
 				05D553841C49D96D0045B472 /* Terminal */,
+				05318A691C74D24300BAA730 /* State */,
 			);
 			name = Source;
 			path = ../Source;
@@ -400,6 +414,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */,
+				05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */,
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
 				052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */,
