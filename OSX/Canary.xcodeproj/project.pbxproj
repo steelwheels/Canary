@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F82611C7CB680006C2D05 /* UTStateTest.swift */; };
 		052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052330F51C7CB00000585F94 /* CNStateObserver.swift */; };
 		052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A15AA1C4B94200023094E /* CNSerializer.swift */; };
 		052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */; };
@@ -28,6 +29,11 @@
 		05CED4131C63BC5200623F80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4121C63BC5200623F80 /* ViewController.swift */; };
 		05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4141C63BC5200623F80 /* Assets.xcassets */; };
 		05CED4181C63BC5200623F80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4161C63BC5200623F80 /* Main.storyboard */; };
+		05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D186721C7CB58F00B185B4 /* AppDelegate.swift */; };
+		05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D186741C7CB58F00B185B4 /* ViewController.swift */; };
+		05D186771C7CB58F00B185B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05D186761C7CB58F00B185B4 /* Assets.xcassets */; };
+		05D1867A1C7CB58F00B185B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D186781C7CB58F00B185B4 /* Main.storyboard */; };
+		05D186811C7CB5C900B185B4 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
 		05DB4F491C63BE2500997C67 /* UTFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB4F481C63BE2500997C67 /* UTFileURL.swift */; };
@@ -56,9 +62,17 @@
 			remoteGlobalIDString = 05CC078F1C3D738800EF188D;
 			remoteInfo = Install;
 		};
+		05D1867F1C7CB59B00B185B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05CC078F1C3D738800EF188D;
+			remoteInfo = Install;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050F82611C7CB680006C2D05 /* UTStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStateTest.swift; sourceTree = "<group>"; };
 		052330F51C7CB00000585F94 /* CNStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStateObserver.swift; sourceTree = "<group>"; };
 		052A15AA1C4B94200023094E /* CNSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSerializer.swift; sourceTree = "<group>"; };
 		052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
@@ -84,6 +98,12 @@
 		05CED4141C63BC5200623F80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05CED4171C63BC5200623F80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05CED4191C63BC5200623F80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05D186701C7CB58F00B185B4 /* UTState.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTState.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05D186721C7CB58F00B185B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		05D186741C7CB58F00B185B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		05D186761C7CB58F00B185B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		05D186791C7CB58F00B185B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		05D1867B1C7CB58F00B185B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
@@ -112,6 +132,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				05ADB0AC1C70BA9400AA6EFC /* Canary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D1866D1C7CB58F00B185B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05D186811C7CB5C900B185B4 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +194,7 @@
 			children = (
 				05CED40F1C63BC5200623F80 /* UTURL */,
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
+				05D186711C7CB58F00B185B4 /* UTState */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
 			name = UnitTest;
@@ -187,6 +216,7 @@
 				057A42AA1C3D6BB7006A48E6 /* Canary.framework */,
 				0534CA511C3D74AA008D34CA /* UTFileManager.app */,
 				05CED40E1C63BC5200623F80 /* UTURL.app */,
+				05D186701C7CB58F00B185B4 /* UTState.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,6 +248,20 @@
 			);
 			name = UTURL;
 			path = ../UnitTest/UTURL;
+			sourceTree = SOURCE_ROOT;
+		};
+		05D186711C7CB58F00B185B4 /* UTState */ = {
+			isa = PBXGroup;
+			children = (
+				05D186721C7CB58F00B185B4 /* AppDelegate.swift */,
+				05D186741C7CB58F00B185B4 /* ViewController.swift */,
+				050F82611C7CB680006C2D05 /* UTStateTest.swift */,
+				05D186761C7CB58F00B185B4 /* Assets.xcassets */,
+				05D186781C7CB58F00B185B4 /* Main.storyboard */,
+				05D1867B1C7CB58F00B185B4 /* Info.plist */,
+			);
+			name = UTState;
+			path = ../UnitTest/UTState;
 			sourceTree = SOURCE_ROOT;
 		};
 		05D553841C49D96D0045B472 /* Terminal */ = {
@@ -323,6 +367,24 @@
 			productReference = 05CED40E1C63BC5200623F80 /* UTURL.app */;
 			productType = "com.apple.product-type.application";
 		};
+		05D1866F1C7CB58F00B185B4 /* UTState */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05D1867E1C7CB58F00B185B4 /* Build configuration list for PBXNativeTarget "UTState" */;
+			buildPhases = (
+				05D1866C1C7CB58F00B185B4 /* Sources */,
+				05D1866D1C7CB58F00B185B4 /* Frameworks */,
+				05D1866E1C7CB58F00B185B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05D186801C7CB59B00B185B4 /* PBXTargetDependency */,
+			);
+			name = UTState;
+			productName = UTState;
+			productReference = 05D186701C7CB58F00B185B4 /* UTState.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -351,6 +413,9 @@
 					05CED40D1C63BC5200623F80 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
+					05D1866F1C7CB58F00B185B4 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 057A42A41C3D6BB7006A48E6 /* Build configuration list for PBXProject "Canary" */;
@@ -370,6 +435,7 @@
 				05CC078F1C3D738800EF188D /* Install */,
 				0534CA501C3D74AA008D34CA /* UTFileManager */,
 				05CED40D1C63BC5200623F80 /* UTURL */,
+				05D1866F1C7CB58F00B185B4 /* UTState */,
 			);
 		};
 /* End PBXProject section */
@@ -398,6 +464,15 @@
 			files = (
 				05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */,
 				05CED4181C63BC5200623F80 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D1866E1C7CB58F00B185B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05D186771C7CB58F00B185B4 /* Assets.xcassets in Resources */,
+				05D1867A1C7CB58F00B185B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +517,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05D1866C1C7CB58F00B185B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */,
+				05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */,
+				050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -460,6 +545,11 @@
 			target = 05CC078F1C3D738800EF188D /* Install */;
 			targetProxy = 05CED41D1C63BC6700623F80 /* PBXContainerItemProxy */;
 		};
+		05D186801C7CB59B00B185B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05CC078F1C3D738800EF188D /* Install */;
+			targetProxy = 05D1867F1C7CB59B00B185B4 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -475,6 +565,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				05CED4171C63BC5200623F80 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		05D186781C7CB58F00B185B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05D186791C7CB58F00B185B4 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -716,6 +814,41 @@
 			};
 			name = Release;
 		};
+		05D1867C1C7CB58F00B185B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = ../UnitTest/UTState/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTState";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05D1867D1C7CB58F00B185B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = ../UnitTest/UTState/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTState";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -760,6 +893,15 @@
 			buildConfigurations = (
 				05CED41B1C63BC5200623F80 /* Debug */,
 				05CED41C1C63BC5200623F80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05D1867E1C7CB58F00B185B4 /* Build configuration list for PBXNativeTarget "UTState" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05D1867C1C7CB58F00B185B4 /* Debug */,
+				05D1867D1C7CB58F00B185B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
