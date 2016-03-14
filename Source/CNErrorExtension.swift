@@ -73,12 +73,12 @@ public extension NSError
 	}
 	
 	public func toString() -> String {
-		var message = "[Error] "
 		if let dict : Dictionary = userInfo {
+			var message : String
 			if let desc = dict[NSLocalizedDescriptionKey] as? String {
-				message = message + desc
+				message = desc
 			} else {
-				message = message + "Unknown error "
+				message = "Unknown error "
 			}
 			let lockey : String = NSError.errorLocationKey()
 			if let location = dict[lockey] as? String {
@@ -86,7 +86,7 @@ public extension NSError
 			}
 			return message
 		} else {
-			return message + "Unknown error"
+			return "Unknown error"
 		}
 	}
 }

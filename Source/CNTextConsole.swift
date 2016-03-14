@@ -14,8 +14,10 @@ public class CNTextConsole : CNConsole
 	}
 
 	/* Do not call this method from the outside */
-	public override func flushLine(line : String, attribute: Dictionary<String, AnyObject>? = nil){
-		print(line)
+	public override func flush(text: CNConsoleText){
+		for word in text.words {
+			Swift.print(word.string)
+		}
 	}
 }
 

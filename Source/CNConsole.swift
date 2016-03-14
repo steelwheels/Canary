@@ -11,27 +11,30 @@ public class CNConsole : NSObject
 {
 	private let accessLock	  : NSLock ;
 
+	public class ConsoleText {
+		private var	mText : String = ""
+	}
+	
 	public override init(){
 		accessLock	= NSLock()
 		super.init()
 	}
 
-	public func printLine(line: String, attribute: Dictionary<String, AnyObject>? = nil){
+	public func print(text src: CNConsoleText){
 		accessLock.lock()
-			flushLine(line, attribute: attribute)
+		flush(src)
 		accessLock.unlock()
 	}
-
-	public func printLines(lines: Array<String>, attribute: Dictionary<String, AnyObject>? = nil){
+	
+	public func print(string src: String){
+		let text = CNConsoleText(string: src)
 		accessLock.lock()
-		for line in lines {
-			flushLine(line, attribute: attribute)
-		}
+		flush(text)
 		accessLock.unlock()
 	}
 
 	/* Do not call this method from the outside */
-	public func flushLine(line : String, attribute: Dictionary<String, AnyObject>?){
+	public func flush(text: CNConsoleText){
 		fatalError("must be overriden")
 	}
 }

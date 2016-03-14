@@ -23,8 +23,10 @@
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNTextConsole.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		058A62D61C93975500C76458 /* UTConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A62D51C93975500C76458 /* UTConsole.swift */; };
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
 		05ADB0AC1C70BA9400AA6EFC /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
+		05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */; };
 		05CED4111C63BC5200623F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4101C63BC5200623F80 /* AppDelegate.swift */; };
 		05CED4131C63BC5200623F80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4121C63BC5200623F80 /* ViewController.swift */; };
 		05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4141C63BC5200623F80 /* Assets.xcassets */; };
@@ -91,7 +93,9 @@
 		056AA28E1C4A610B00E53092 /* CNTextConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextConsole.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
+		058A62D51C93975500C76458 /* UTConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConsole.swift; sourceTree = "<group>"; };
 		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsoleText.swift; sourceTree = "<group>"; };
 		05CED40E1C63BC5200623F80 /* UTURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CED4101C63BC5200623F80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05CED4121C63BC5200623F80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 				05D186721C7CB58F00B185B4 /* AppDelegate.swift */,
 				05D186741C7CB58F00B185B4 /* ViewController.swift */,
 				050F82611C7CB680006C2D05 /* UTStateTest.swift */,
+				058A62D51C93975500C76458 /* UTConsole.swift */,
 				05D186761C7CB58F00B185B4 /* Assets.xcassets */,
 				05D186781C7CB58F00B185B4 /* Main.storyboard */,
 				05D1867B1C7CB58F00B185B4 /* Info.plist */,
@@ -267,6 +272,7 @@
 		05D553841C49D96D0045B472 /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */,
 				056AA28E1C4A610B00E53092 /* CNTextConsole.swift */,
 				05D553851C49D9890045B472 /* CNConsole.swift */,
 			);
@@ -504,6 +510,7 @@
 				052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */,
+				05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +530,7 @@
 			files = (
 				05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */,
 				05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */,
+				058A62D61C93975500C76458 /* UTConsole.swift in Sources */,
 				050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
