@@ -12,12 +12,12 @@ public class CNConsoleWord
 {
 	public var string :	String = ""
 	public var attributes :	Dictionary<String, AnyObject>	= [:]
-	
+
 	public init(string str: String){
 		string     = str
 		attributes = [:]
 	}
-	
+
 	public init(string str: String, attribute attr: Dictionary<String, AnyObject>?){
 		string = str
 		if let dict = attr {
@@ -26,11 +26,11 @@ public class CNConsoleWord
 			}
 		}
 	}
-	
+
 	public func setForegroundColor(color: NSColor){
 		attributes[NSForegroundColorAttributeName] = color
 	}
-	
+
 	public func setBackgroundColor(color: NSColor){
 		attributes[NSBackgroundColorAttributeName] = color
 	}
@@ -39,20 +39,20 @@ public class CNConsoleWord
 public class CNConsoleText
 {
 	public var words : Array<CNConsoleWord> = []
-	
+
 	public init(words src: Array<CNConsoleWord>){
 		words = src
 	}
-	
+
 	public init(word src: CNConsoleWord){
 		words = [src]
 	}
-	
+
 	public init(string src: String){
 		let word = CNConsoleWord(string: src)
 		words = [word]
 	}
-	
+
 	public init(strings src: Array<String>){
 		words = []
 		for elm in src {
@@ -60,8 +60,14 @@ public class CNConsoleText
 			words.append(line)
 		}
 	}
-	
+
+	public init(color: NSColor, string: String){
+		let word = CNConsoleWord(string: string, attribute: [NSForegroundColorAttributeName: color])
+		words = [word]
+	}
+
 	public init(){
 		words = []
 	}
 }
+
