@@ -14,6 +14,14 @@ public class CNRedirectConsole : CNConsole
 	public override init(){
 		super.init()
 	}
+
+	public func addOutput(console: CNConsole){
+		mConsoles.append(console)
+	}
+	
+	public func removeAllOutputs(){
+		mConsoles.removeAll()
+	}
 	
 	public override func print(text src: CNConsoleText){
 		for console in mConsoles {
