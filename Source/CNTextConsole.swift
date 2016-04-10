@@ -1,6 +1,6 @@
 /**
  * @file	CNTextConsole.h
- * @brief	Define CNCTextConsole class
+ * @brief	Define CNTextConsole class
  * @par Copyright
  *   Copyright (C) 2015 Steel Wheels Project
  */

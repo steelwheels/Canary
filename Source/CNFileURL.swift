@@ -56,7 +56,7 @@ public extension NSURL
 			if common > 0 {
 				var resultpath = ""
 				let updirs = basecomp.count - common
-				for var i=0 ; i<updirs ; i++ {
+				for _ in 0..<updirs {
 					resultpath = "../" + resultpath
 				}
 				var is1st : Bool = true
@@ -96,7 +96,8 @@ public extension NSURL
 		let s0count = s0array.count
 		let s1count = s1array.count
 		let count   = s0count < s1count ? s0count : s1count
-		for var i:Int=0 ; i<count ; i++ {
+		
+		for i in 0..<count {
 			if s0array[i] != s1array[i] {
 				return i
 			}

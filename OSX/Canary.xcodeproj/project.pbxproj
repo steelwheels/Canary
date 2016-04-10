@@ -27,6 +27,7 @@
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
 		05ADB0AC1C70BA9400AA6EFC /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */; };
+		05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */; };
 		05CED4111C63BC5200623F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4101C63BC5200623F80 /* AppDelegate.swift */; };
 		05CED4131C63BC5200623F80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4121C63BC5200623F80 /* ViewController.swift */; };
 		05CED4151C63BC5200623F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CED4141C63BC5200623F80 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		058A62D51C93975500C76458 /* UTConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConsole.swift; sourceTree = "<group>"; };
 		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsoleText.swift; sourceTree = "<group>"; };
+		05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRedirectConsole.swift; sourceTree = "<group>"; };
 		05CED40E1C63BC5200623F80 /* UTURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CED4101C63BC5200623F80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05CED4121C63BC5200623F80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			children = (
 				05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */,
 				056AA28E1C4A610B00E53092 /* CNTextConsole.swift */,
+				05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */,
 				05D553851C49D9890045B472 /* CNConsole.swift */,
 			);
 			name = Terminal;
@@ -508,6 +511,7 @@
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
 				052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */,
+				05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */,
 				05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */,
@@ -715,7 +719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -742,7 +746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
