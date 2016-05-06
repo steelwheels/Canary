@@ -30,26 +30,25 @@ class ViewController: NSViewController
 	}
 
 	@IBAction func loadButtonPressed(sender: AnyObject) {
-		CNFileURL.openPanel("OpenPanel", fileTypes: [],
-		  openFileCallback: {(result: CNFileURL) -> Void in
+		NSURL.openPanel("OpenPanel", fileTypes: [],
+		  openFileCallback: {(result: Array<NSURL>) -> Void in
 			print("loadButtonPressed: \(result.description)")
 			self.dumpURL(result)
-			result.saveToUserDefaults(nil)
 		})
 	}
 
 	@IBAction func saveButtonPressed(sender: AnyObject) {
-		CNFileURL.savePanel("SavePanel", outputDirectory: nil,
-		  saveFileCallback: { (result : CNFileURL) -> Void in
+		NSURL.savePanel("SavePanel", outputDirectory: nil,
+		  saveFileCallback: { (result : NSURL) -> Bool in
 			let content = NSString(string: "a")
 			do {
-				try content.writeToURL(result.mainURL, atomically: false, encoding: NSUTF8StringEncoding)
-				result.saveToUserDefaults(nil)
+				try content.writeToURL(result, atomically: false, encoding: NSUTF8StringEncoding)
+				return true
 			}
 			catch {
 				NSLog("saveButtonPressed: can not write")
 			}
-			
+			return false
 		})
 	}
 
@@ -65,12 +64,14 @@ class ViewController: NSViewController
 		preference.synchronize()
 	}
 
-	private func dumpURL(url: CNFileURL){
-		let textp = url.stringWithContentsOfURL()
-		if let text = textp {
-			print("context: \"\(text)\"")
-		} else {
-			print("context: nil")
+	private func dumpURL(URLs: Array<NSURL>){
+		for url in URLs {
+			let (text, error) = url.loadContents()
+			if let err = error {
+				print("context: Error: \(err.toString)")
+			} else {
+				print("context: \"\(text)\"")
+			}
 		}
 	}
 }
