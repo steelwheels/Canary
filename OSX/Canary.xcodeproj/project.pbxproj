@@ -155,9 +155,9 @@
 		05042A3E1C3D764800E7DA7A /* File */ = {
 			isa = PBXGroup;
 			children = (
+				053AFE811C3EB4DD00F64198 /* CNFileURL.swift */,
 				054BD3A21C4B9BBC009713BB /* CNFilePath.swift */,
 				05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */,
-				053AFE811C3EB4DD00F64198 /* CNFileURL.swift */,
 				053807B31C441E6B0021BC51 /* CNBookmark.swift */,
 			);
 			name = File;

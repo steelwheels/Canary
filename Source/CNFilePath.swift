@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ * Define methods to operate the file URL
+ */
 public class CNFilePath
 {
 	public class func URLForHomeDirectory() -> NSURL {

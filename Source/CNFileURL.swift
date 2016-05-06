@@ -7,8 +7,18 @@
 
 import Foundation
 
+/**
+ * Extend the NSURL methods to open, load, save, close the files in the sand-box
+ */
 public extension NSURL
 {
+	/**
+	 Open the panel to select input file
+
+	 - parameter title:		Title of the open panel
+	 - parameter fileTypes:		Target file types to open
+	 - parameter openFileCallback:	Callback function to be called when the file is seleted
+	 */
 	public class func openPanel(title : String, fileTypes types: Array<String>?, openFileCallback: (result: Array<NSURL>) -> Void)
 	{
 		let panel = NSOpenPanel()
@@ -27,7 +37,15 @@ public extension NSURL
 			}
 		})
 	}
-
+	
+	/**
+	 Open the panel to select the file to save the current context
+	
+	 - returns:			Yes when the file is seleted to save
+	 - parameter title:		Title of the save panel
+	 - parameter outputDirectory:	Default parent directory to save the file
+	 - parameter saveFileCallback:	Callback function to be called when the file is selected
+	 */
 	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: NSURL) -> Bool)
 	{
 		let panel = NSSavePanel()
