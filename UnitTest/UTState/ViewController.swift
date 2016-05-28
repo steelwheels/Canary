@@ -19,6 +19,9 @@ class ViewController: NSViewController {
 		
 		print("UnitTest: State")
 		UTStateTest()
+		
+		print("UnitTest: List")
+		UTList()
 	}
 
 	override var representedObject: AnyObject? {

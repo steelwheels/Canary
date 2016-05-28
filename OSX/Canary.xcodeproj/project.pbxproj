@@ -18,14 +18,18 @@
 		0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA571C3D74AA008D34CA /* Assets.xcassets */; };
 		0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA591C3D74AA008D34CA /* Main.storyboard */; };
 		0535F6D51C413B64000A716A /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
+		05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD41CF8A7300083E05C /* CNListItem.swift */; };
+		05377BD71CF8B5E80083E05C /* CNList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD61CF8B5E80083E05C /* CNList.swift */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
 		053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNFileURL.swift */; };
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		056AA28F1C4A610B00E53092 /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNTextConsole.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058203F01CF7527C006BCEDF /* CNOrderedList.swift */; };
 		058A62D61C93975500C76458 /* UTConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A62D51C93975500C76458 /* UTConsole.swift */; };
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
 		05ADB0AC1C70BA9400AA6EFC /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
+		05B8C5421CF9129F00862F42 /* UTList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8C5401CF9125100862F42 /* UTList.swift */; };
 		05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */; };
 		05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */; };
 		05CED4111C63BC5200623F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CED4101C63BC5200623F80 /* AppDelegate.swift */; };
@@ -88,14 +92,18 @@
 		0534CA5A1C3D74AA008D34CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0534CA5C1C3D74AA008D34CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0535F6D31C413B59000A716A /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
+		05377BD41CF8A7300083E05C /* CNListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItem.swift; sourceTree = "<group>"; };
+		05377BD61CF8B5E80083E05C /* CNList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNList.swift; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		056AA28E1C4A610B00E53092 /* CNTextConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextConsole.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
+		058203F01CF7527C006BCEDF /* CNOrderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOrderedList.swift; sourceTree = "<group>"; };
 		058A62D51C93975500C76458 /* UTConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConsole.swift; sourceTree = "<group>"; };
 		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05B8C5401CF9125100862F42 /* UTList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTList.swift; sourceTree = "<group>"; };
 		05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsoleText.swift; sourceTree = "<group>"; };
 		05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRedirectConsole.swift; sourceTree = "<group>"; };
 		05CED40E1C63BC5200623F80 /* UTURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +241,7 @@
 				059881F91C63A4700027911D /* Info.plist */,
 				057A42AD1C3D6BB7006A48E6 /* Canary.h */,
 				052B3A731C49E95500805BD7 /* Object */,
+				059D95FE1CF1DCE200006FC9 /* List */,
 				05EF66001C40AB370019B4BB /* Error */,
 				05042A3E1C3D764800E7DA7A /* File */,
 				05D553841C49D96D0045B472 /* Terminal */,
@@ -241,6 +250,16 @@
 			name = Source;
 			path = ../Source;
 			sourceTree = SOURCE_ROOT;
+		};
+		059D95FE1CF1DCE200006FC9 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				05377BD41CF8A7300083E05C /* CNListItem.swift */,
+				05377BD61CF8B5E80083E05C /* CNList.swift */,
+				058203F01CF7527C006BCEDF /* CNOrderedList.swift */,
+			);
+			name = List;
+			sourceTree = "<group>";
 		};
 		05CED40F1C63BC5200623F80 /* UTURL */ = {
 			isa = PBXGroup;
@@ -263,6 +282,7 @@
 				05D186741C7CB58F00B185B4 /* ViewController.swift */,
 				050F82611C7CB680006C2D05 /* UTStateTest.swift */,
 				058A62D51C93975500C76458 /* UTConsole.swift */,
+				05B8C5401CF9125100862F42 /* UTList.swift */,
 				05D186761C7CB58F00B185B4 /* Assets.xcassets */,
 				05D186781C7CB58F00B185B4 /* Main.storyboard */,
 				05D1867B1C7CB58F00B185B4 /* Info.plist */,
@@ -501,12 +521,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */,
 				05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */,
 				05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */,
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
 				052A15AB1C4B94200023094E /* CNSerializer.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */,
+				05377BD71CF8B5E80083E05C /* CNList.swift in Sources */,
 				054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */,
+				05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */,
 				052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */,
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
@@ -534,6 +557,7 @@
 			files = (
 				05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */,
 				05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */,
+				05B8C5421CF9129F00862F42 /* UTList.swift in Sources */,
 				058A62D61C93975500C76458 /* UTConsole.swift in Sources */,
 				050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */,
 			);
