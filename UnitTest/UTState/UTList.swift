@@ -30,6 +30,23 @@ public func UTList()
 	
 	list0.remove(nil)
 	printList("list0 remove", list: list0)
+	
+	let list2 = list1.map({ data in data * 2 })
+	printList("list2 *2", list: list2)
+	
+	let list3 = list1.operate({ (data) -> CNListCommand<Int> in
+		/* Skip odd value */
+		var result: CNListCommand<Int>
+		if data % 2 == 1 {
+			result = .Skip
+		} else {
+			result = .Copy
+		}
+		return result
+	})
+	printList("list3", list: list3)
+	
+	CNListItemPool<Int>.allocatePool()
 }
 
 internal func printList(title:String, list: CNList<Int>){
