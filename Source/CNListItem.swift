@@ -86,6 +86,7 @@ public class CNListItemPool<T>
 			result = CNListItem<T>(data: d)
 		}
 		mLock.unlock()
+		result.next = nil
 		return result
 	}
 	

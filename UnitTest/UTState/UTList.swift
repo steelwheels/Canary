@@ -46,6 +46,26 @@ public func UTList()
 	})
 	printList("list3", list: list3)
 	
+	let list4 = CNList<Int>()
+	for i in 0..<10 {
+		list4.append(data: i)
+	}
+	let list5 = list4.operate({ (data) -> CNListCommand<Int> in
+		switch data {
+		case 0:
+			return .Insert(data: 10)
+		case 1:
+			return .Add(data: 11)
+		case 2:
+			return .Skip
+		case 3:
+			return .Replace(data: 33)
+		default:
+			return .Copy
+		}
+	})
+	printList("list5", list: list5)
+	
 	CNListItemPool<Int>.allocatePool()
 }
 

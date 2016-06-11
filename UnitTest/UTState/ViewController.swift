@@ -17,6 +17,9 @@ class ViewController: NSViewController {
 		print("UnitTest: Console")
 		UTConsoleTest()
 		
+		print("UnitTest: Tristate")
+		UTTristateTest()
+		
 		print("UnitTest: State")
 		UTStateTest()
 		

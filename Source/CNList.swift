@@ -51,6 +51,8 @@ public class CNList<T> : SequenceType
 			CNListItem.release(pool, listItem: i)
 			item = next
 		}
+		firstItem = nil
+		lastItem  = nil
 	}
 
 	/**
