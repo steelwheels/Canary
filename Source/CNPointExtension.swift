@@ -28,4 +28,12 @@ extension CGPoint : CNSerializerProtocol
 		}
 		return CGPointMake(x, y)
 	}
+	
+	public var description: String {
+		get {
+			let xstr = NSString(format: "%.2lf", self.x)
+			let ystr = NSString(format: "%.2lf", self.y)
+			return "{x:\(xstr), y:\(ystr)}"
+		}
+	}
 }

@@ -28,4 +28,12 @@ extension CGSize : CNSerializerProtocol
 		}
 		return CGSizeMake(width, height)
 	}
+	
+	public var description: String {
+		get {
+			let wstr = NSString(format: "%.2lf", self.width)
+			let hstr = NSString(format: "%.2lf", self.height)
+			return "{width:\(wstr), height:\(hstr)}"
+		}
+	}
 }
