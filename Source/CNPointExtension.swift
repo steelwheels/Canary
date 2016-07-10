@@ -31,8 +31,8 @@ extension CGPoint : CNSerializerProtocol
 	
 	public var description: String {
 		get {
-			let xstr = NSString(format: "%.2lf", self.x)
-			let ystr = NSString(format: "%.2lf", self.y)
+			let xstr = NSString(format: "%.2lf", Double(self.x))
+			let ystr = NSString(format: "%.2lf", Double(self.y))
 			return "{x:\(xstr), y:\(ystr)}"
 		}
 	}

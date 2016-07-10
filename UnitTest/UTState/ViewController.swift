@@ -25,6 +25,9 @@ class ViewController: NSViewController {
 		
 		print("UnitTest: List")
 		UTList()
+		
+		print("UnitTest: Graphics")
+		UTGraphics()
 	}
 
 	override var representedObject: AnyObject? {
