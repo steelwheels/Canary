@@ -278,8 +278,8 @@
 		059D95FE1CF1DCE200006FC9 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				05377BD41CF8A7300083E05C /* CNListItem.swift */,
 				05377BD61CF8B5E80083E05C /* CNList.swift */,
+				05377BD41CF8A7300083E05C /* CNListItem.swift */,
 				058203F01CF7527C006BCEDF /* CNOrderedList.swift */,
 			);
 			name = List;
