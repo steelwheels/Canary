@@ -152,9 +152,8 @@
 		05D186791C7CB58F00B185B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05D1867B1C7CB58F00B185B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
-		05D2259C1D604BB00010C876 /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Canary.framework; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
-		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTFileURL.swift; path = ../../UnitTest/UTURL/UTFileURL.swift; sourceTree = "<group>"; };
+		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
 		05E856E31D5FF07A00B0F2CC /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E856E51D5FF07A00B0F2CC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTristate.swift; sourceTree = "<group>"; };
@@ -265,7 +264,6 @@
 		057A42A01C3D6BB7006A48E6 = {
 			isa = PBXGroup;
 			children = (
-				05D2259C1D604BB00010C876 /* Canary.framework */,
 				057A42AC1C3D6BB7006A48E6 /* Source */,
 				0534CA621C3D74FF008D34CA /* UnitTest */,
 				057A42AB1C3D6BB7006A48E6 /* Products */,
@@ -364,8 +362,7 @@
 				05E856E51D5FF07A00B0F2CC /* main.swift */,
 				05DB4F481C63BE2500997C67 /* UTFileURL.swift */,
 			);
-			name = UnitTest;
-			path = ../OSX/UnitTest;
+			path = UnitTest;
 			sourceTree = "<group>";
 		};
 		05EF66001C40AB370019B4BB /* Error */ = {
