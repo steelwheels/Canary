@@ -1,0 +1,10 @@
+framework module Canary {
+  umbrella header "Canary.h"
+
+  export *
+  module * { export * }
+}
+
+module Canary.Swift {
+    header "Canary-Swift.h"
+}

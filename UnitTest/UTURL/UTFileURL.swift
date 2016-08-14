@@ -9,6 +9,13 @@
 import Foundation
 import Canary
 
+public func UTURLTest() -> Bool
+{
+	relativePathTest("/Users/someone/Documents/BattleFieldCode/script/a.js",
+	                 base: "/Users/someone/Documents/BattleFieldCode/team")
+	return true
+}
+
 public func relativePathTest(src: String, base: String)
 {
 	let srcurl  = NSURL(fileURLWithPath: src)
