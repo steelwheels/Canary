@@ -8,7 +8,7 @@
 
 import Canary
 
-public func UTList()
+public func UTListTest() -> Bool
 {
 	let list0 = CNList<Int>()
 	printList("initial state", list: list0)
@@ -67,6 +67,8 @@ public func UTList()
 	printList("list5", list: list5)
 	
 	CNListItemPool<Int>.allocatePool()
+	
+	return true
 }
 
 internal func printList(title:String, list: CNList<Int>){

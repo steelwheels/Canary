@@ -10,10 +10,19 @@ import Foundation
 
 print("Hello, World!")
 
-print("*** UTURLTest")
-let result0 = UTURLTest()
+print("*** UTListTest")
+let result0 = UTListTest()
 
-let result = result0
+print("*** UTURLTest")
+let result1 = UTURLTest()
+
+print("*** UTStateTest")
+let result2 = UTStateTest() && UTTristateTest()
+
+print("*** UTConsoleTest")
+let result3 = UTConsoleTest()
+
+let result = result0 && result1 && result2 && result3
 if result0 {
 	print("[SUMMARY] PASSED")
 	exit(0)

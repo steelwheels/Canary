@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F82611C7CB680006C2D05 /* UTStateTest.swift */; };
 		052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052330F51C7CB00000585F94 /* CNStateObserver.swift */; };
 		052A15AB1C4B94200023094E /* CNSerializerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A15AA1C4B94200023094E /* CNSerializerProtocol.swift */; };
 		052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */; };
@@ -27,28 +26,23 @@
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058203F01CF7527C006BCEDF /* CNOrderedList.swift */; };
 		058290951D040BE600255FC2 /* CNTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058290941D040BE600255FC2 /* CNTristate.swift */; };
-		058A62D61C93975500C76458 /* UTConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A62D51C93975500C76458 /* UTConsole.swift */; };
 		059491C61D1C30D0006FE9FC /* CNPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059491C51D1C30D0006FE9FC /* CNPointExtension.swift */; };
 		059491C81D1C3350006FE9FC /* CNSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059491C71D1C3350006FE9FC /* CNSizeExtension.swift */; };
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
-		05B8C5421CF9129F00862F42 /* UTList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8C5401CF9125100862F42 /* UTList.swift */; };
 		05BBED421C91E0DF001A3F4C /* CNConsoleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */; };
 		05C0F5031D2D60D900085CA4 /* CNVelocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0F5021D2D60D900085CA4 /* CNVelocity.swift */; };
 		05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */; };
-		05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D186721C7CB58F00B185B4 /* AppDelegate.swift */; };
-		05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D186741C7CB58F00B185B4 /* ViewController.swift */; };
-		05D186771C7CB58F00B185B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05D186761C7CB58F00B185B4 /* Assets.xcassets */; };
-		05D1867A1C7CB58F00B185B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D186781C7CB58F00B185B4 /* Main.storyboard */; };
-		05D186811C7CB5C900B185B4 /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
 		05D2259B1D602A1E0010C876 /* UTFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DB4F481C63BE2500997C67 /* UTFileURL.swift */; };
 		05D225A01D604DB10010C876 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
+		05D8BCE81D604FA900498215 /* UTTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */; };
+		05D8BCE91D604FED00498215 /* UTStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F82611C7CB680006C2D05 /* UTStateTest.swift */; };
+		05D8BCEA1D6051AD00498215 /* UTList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B8C5401CF9125100862F42 /* UTList.swift */; };
+		05D8BCEB1D6051F000498215 /* UTConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058A62D51C93975500C76458 /* UTConsole.swift */; };
 		05E856E61D5FF07A00B0F2CC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E856E51D5FF07A00B0F2CC /* main.swift */; };
 		05E856EC1D5FF27000B0F2CC /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
-		05ED5E1E1D04621800AD2FC1 /* UTTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */; };
 		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
-		05F708B91D3272C2002B8F45 /* UTGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F708B81D3272C2002B8F45 /* UTGraphics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,13 +66,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 057A42A91C3D6BB7006A48E6;
 			remoteInfo = Canary;
-		};
-		05D1867F1C7CB59B00B185B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05CC078F1C3D738800EF188D;
-			remoteInfo = Install;
 		};
 		05E856EA1D5FF08400B0F2CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -145,12 +132,6 @@
 		05BBED411C91E0DF001A3F4C /* CNConsoleText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsoleText.swift; sourceTree = "<group>"; };
 		05C0F5021D2D60D900085CA4 /* CNVelocity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVelocity.swift; sourceTree = "<group>"; };
 		05C40E351CBA181A0008C439 /* CNRedirectConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRedirectConsole.swift; sourceTree = "<group>"; };
-		05D186701C7CB58F00B185B4 /* UTState.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTState.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05D186721C7CB58F00B185B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05D186741C7CB58F00B185B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		05D186761C7CB58F00B185B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		05D186791C7CB58F00B185B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		05D1867B1C7CB58F00B185B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05DB4F481C63BE2500997C67 /* UTFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTFileURL.swift; sourceTree = "<group>"; };
@@ -159,7 +140,6 @@
 		05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTristate.swift; sourceTree = "<group>"; };
 		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
-		05F708B81D3272C2002B8F45 /* UTGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTGraphics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,14 +162,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05D1866D1C7CB58F00B185B4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05D186811C7CB5C900B185B4 /* Canary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +226,6 @@
 				05B4B78C1D5FE983002A42FF /* UnitTestBundle */,
 				05E856E41D5FF07A00B0F2CC /* UnitTest */,
 				0534CA521C3D74AA008D34CA /* UTFileManager */,
-				05D186711C7CB58F00B185B4 /* UTState */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
 			name = UnitTest;
@@ -275,7 +246,6 @@
 			children = (
 				057A42AA1C3D6BB7006A48E6 /* Canary.framework */,
 				0534CA511C3D74AA008D34CA /* UTFileManager.app */,
-				05D186701C7CB58F00B185B4 /* UTState.app */,
 				05B4B78B1D5FE983002A42FF /* UnitTest.bundle */,
 				05E856E31D5FF07A00B0F2CC /* UnitTest */,
 			);
@@ -327,24 +297,6 @@
 			path = UnitTestBundle;
 			sourceTree = "<group>";
 		};
-		05D186711C7CB58F00B185B4 /* UTState */ = {
-			isa = PBXGroup;
-			children = (
-				05D186721C7CB58F00B185B4 /* AppDelegate.swift */,
-				05D186741C7CB58F00B185B4 /* ViewController.swift */,
-				05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */,
-				050F82611C7CB680006C2D05 /* UTStateTest.swift */,
-				058A62D51C93975500C76458 /* UTConsole.swift */,
-				05B8C5401CF9125100862F42 /* UTList.swift */,
-				05F708B81D3272C2002B8F45 /* UTGraphics.swift */,
-				05D186761C7CB58F00B185B4 /* Assets.xcassets */,
-				05D186781C7CB58F00B185B4 /* Main.storyboard */,
-				05D1867B1C7CB58F00B185B4 /* Info.plist */,
-			);
-			name = UTState;
-			path = ../UnitTest/UTState;
-			sourceTree = SOURCE_ROOT;
-		};
 		05D553841C49D96D0045B472 /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,7 +312,11 @@
 			isa = PBXGroup;
 			children = (
 				05E856E51D5FF07A00B0F2CC /* main.swift */,
+				05B8C5401CF9125100862F42 /* UTList.swift */,
 				05DB4F481C63BE2500997C67 /* UTFileURL.swift */,
+				05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */,
+				050F82611C7CB680006C2D05 /* UTStateTest.swift */,
+				058A62D51C93975500C76458 /* UTConsole.swift */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -460,24 +416,6 @@
 			productReference = 05B4B78B1D5FE983002A42FF /* UnitTest.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		05D1866F1C7CB58F00B185B4 /* UTState */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05D1867E1C7CB58F00B185B4 /* Build configuration list for PBXNativeTarget "UTState" */;
-			buildPhases = (
-				05D1866C1C7CB58F00B185B4 /* Sources */,
-				05D1866D1C7CB58F00B185B4 /* Frameworks */,
-				05D1866E1C7CB58F00B185B4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				05D186801C7CB59B00B185B4 /* PBXTargetDependency */,
-			);
-			name = UTState;
-			productName = UTState;
-			productReference = 05D186701C7CB58F00B185B4 /* UTState.app */;
-			productType = "com.apple.product-type.application";
-		};
 		05E856E21D5FF07A00B0F2CC /* UnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05E856E71D5FF07A00B0F2CC /* Build configuration list for PBXNativeTarget "UnitTest" */;
@@ -525,9 +463,6 @@
 					05CC078F1C3D738800EF188D = {
 						CreatedOnToolsVersion = 7.2;
 					};
-					05D1866F1C7CB58F00B185B4 = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
 					05E856E21D5FF07A00B0F2CC = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -550,7 +485,6 @@
 				057A42A91C3D6BB7006A48E6 /* Canary */,
 				05CC078F1C3D738800EF188D /* Install */,
 				0534CA501C3D74AA008D34CA /* UTFileManager */,
-				05D1866F1C7CB58F00B185B4 /* UTState */,
 				05B4B78A1D5FE983002A42FF /* UnitTestBundle */,
 				05E856E21D5FF07A00B0F2CC /* UnitTest */,
 			);
@@ -579,15 +513,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		05D1866E1C7CB58F00B185B4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05D186771C7CB58F00B185B4 /* Assets.xcassets in Resources */,
-				05D1867A1C7CB58F00B185B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,25 +563,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		05D1866C1C7CB58F00B185B4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05D186751C7CB58F00B185B4 /* ViewController.swift in Sources */,
-				05F708B91D3272C2002B8F45 /* UTGraphics.swift in Sources */,
-				05D186731C7CB58F00B185B4 /* AppDelegate.swift in Sources */,
-				05B8C5421CF9129F00862F42 /* UTList.swift in Sources */,
-				058A62D61C93975500C76458 /* UTConsole.swift in Sources */,
-				05ED5E1E1D04621800AD2FC1 /* UTTristate.swift in Sources */,
-				050F82621C7CB680006C2D05 /* UTStateTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05E856DF1D5FF07A00B0F2CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				05D2259B1D602A1E0010C876 /* UTFileURL.swift in Sources */,
+				05D8BCE81D604FA900498215 /* UTTristate.swift in Sources */,
+				05D8BCEA1D6051AD00498215 /* UTList.swift in Sources */,
+				05D8BCE91D604FED00498215 /* UTStateTest.swift in Sources */,
+				05D8BCEB1D6051F000498215 /* UTConsole.swift in Sources */,
 				05E856E61D5FF07A00B0F2CC /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,11 +594,6 @@
 			target = 057A42A91C3D6BB7006A48E6 /* Canary */;
 			targetProxy = 05CC07931C3D739100EF188D /* PBXContainerItemProxy */;
 		};
-		05D186801C7CB59B00B185B4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05CC078F1C3D738800EF188D /* Install */;
-			targetProxy = 05D1867F1C7CB59B00B185B4 /* PBXContainerItemProxy */;
-		};
 		05E856EB1D5FF08400B0F2CC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05B4B78A1D5FE983002A42FF /* UnitTestBundle */;
@@ -696,14 +606,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				0534CA5A1C3D74AA008D34CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		05D186781C7CB58F00B185B4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05D186791C7CB58F00B185B4 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -954,43 +856,6 @@
 			};
 			name = Release;
 		};
-		05D1867C1C7CB58F00B185B4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = ../UnitTest/UTState/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTState";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Debug;
-		};
-		05D1867D1C7CB58F00B185B4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = ../UnitTest/UTState/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTState";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Release;
-		};
 		05E856E81D5FF07A00B0F2CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1075,15 +940,6 @@
 			buildConfigurations = (
 				05CC07911C3D738800EF188D /* Debug */,
 				05CC07921C3D738800EF188D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		05D1867E1C7CB58F00B185B4 /* Build configuration list for PBXNativeTarget "UTState" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05D1867C1C7CB58F00B185B4 /* Debug */,
-				05D1867D1C7CB58F00B185B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

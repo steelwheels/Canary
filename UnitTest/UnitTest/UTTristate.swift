@@ -9,9 +9,10 @@
 import Foundation
 import Canary
 
-public func UTTristateTest()
+public func UTTristateTest() -> Bool
 {
 	printTristate(.Unknown)
+	return true
 }
 
 internal func printTristate(state: CNTristate)

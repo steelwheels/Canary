@@ -27,10 +27,11 @@ internal class UTState : CNState
 	}
 }
 
-public func UTStateTest()
+public func UTStateTest() -> Bool
 {
 	testNormalState()
 	testCombinedState()
+	return true
 }
 
 internal func testNormalState()

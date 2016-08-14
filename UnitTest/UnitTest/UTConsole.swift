@@ -9,8 +9,9 @@
 import Foundation
 import Canary
 
-public func UTConsoleTest()
+public func UTConsoleTest() -> Bool
 {
 	let console = CNTextConsole()
 	console.print(text: CNConsoleText(string: "Hello, World"))
+	return true
 }
