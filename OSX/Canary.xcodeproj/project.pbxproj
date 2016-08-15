@@ -26,6 +26,7 @@
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058203F01CF7527C006BCEDF /* CNOrderedList.swift */; };
 		058290951D040BE600255FC2 /* CNTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058290941D040BE600255FC2 /* CNTristate.swift */; };
+		059206581D6161BE008CE72E /* CNListItemPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059206571D6161BE008CE72E /* CNListItemPoll.swift */; };
 		059491C61D1C30D0006FE9FC /* CNPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059491C51D1C30D0006FE9FC /* CNPointExtension.swift */; };
 		059491C81D1C3350006FE9FC /* CNSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059491C71D1C3350006FE9FC /* CNSizeExtension.swift */; };
 		059881FA1C63A4700027911D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 059881F91C63A4700027911D /* Info.plist */; };
@@ -66,6 +67,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 057A42A91C3D6BB7006A48E6;
 			remoteInfo = Canary;
+		};
+		05D8BCF01D6056E700498215 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05E856E21D5FF07A00B0F2CC;
+			remoteInfo = UnitTest;
 		};
 		05E856EA1D5FF08400B0F2CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -123,6 +131,7 @@
 		058203F01CF7527C006BCEDF /* CNOrderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOrderedList.swift; sourceTree = "<group>"; };
 		058290941D040BE600255FC2 /* CNTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTristate.swift; sourceTree = "<group>"; };
 		058A62D51C93975500C76458 /* UTConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTConsole.swift; sourceTree = "<group>"; };
+		059206571D6161BE008CE72E /* CNListItemPoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItemPoll.swift; sourceTree = "<group>"; };
 		059491C51D1C30D0006FE9FC /* CNPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPointExtension.swift; sourceTree = "<group>"; };
 		059491C71D1C3350006FE9FC /* CNSizeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSizeExtension.swift; sourceTree = "<group>"; };
 		059881F91C63A4700027911D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -284,6 +293,7 @@
 			children = (
 				05377BD61CF8B5E80083E05C /* CNList.swift */,
 				05377BD41CF8A7300083E05C /* CNListItem.swift */,
+				059206571D6161BE008CE72E /* CNListItemPoll.swift */,
 				058203F01CF7527C006BCEDF /* CNOrderedList.swift */,
 			);
 			name = List;
@@ -357,6 +367,21 @@
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
+		};
+		05D8BCEC1D6056DD00498215 /* Install_Test */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../Script/install_test.mk";
+			buildConfigurationList = 05D8BCED1D6056DD00498215 /* Build configuration list for PBXLegacyTarget "Install_Test" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05D8BCF11D6056E700498215 /* PBXTargetDependency */,
+			);
+			name = Install_Test;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install_Test;
 		};
 /* End PBXLegacyTarget section */
 
@@ -463,6 +488,10 @@
 					05CC078F1C3D738800EF188D = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					05D8BCEC1D6056DD00498215 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					05E856E21D5FF07A00B0F2CC = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -487,6 +516,7 @@
 				0534CA501C3D74AA008D34CA /* UTFileManager */,
 				05B4B78A1D5FE983002A42FF /* UnitTestBundle */,
 				05E856E21D5FF07A00B0F2CC /* UnitTest */,
+				05D8BCEC1D6056DD00498215 /* Install_Test */,
 			);
 		};
 /* End PBXProject section */
@@ -532,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059206581D6161BE008CE72E /* CNListItemPoll.swift in Sources */,
 				058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */,
 				05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */,
 				05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */,
@@ -593,6 +624,11 @@
 			isa = PBXTargetDependency;
 			target = 057A42A91C3D6BB7006A48E6 /* Canary */;
 			targetProxy = 05CC07931C3D739100EF188D /* PBXContainerItemProxy */;
+		};
+		05D8BCF11D6056E700498215 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05E856E21D5FF07A00B0F2CC /* UnitTest */;
+			targetProxy = 05D8BCF01D6056E700498215 /* PBXContainerItemProxy */;
 		};
 		05E856EB1D5FF08400B0F2CC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -856,9 +892,41 @@
 			};
 			name = Release;
 		};
+		05D8BCEE1D6056DD00498215 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05D8BCEF1D6056DD00498215 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05E856E81D5FF07A00B0F2CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -868,7 +936,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/Tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -880,6 +948,7 @@
 		05E856E91D5FF07A00B0F2CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -889,8 +958,9 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/Tools/bin";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../$(PRODUCT_NAME).bundle/Contents/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Bundles/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
@@ -940,6 +1010,15 @@
 			buildConfigurations = (
 				05CC07911C3D738800EF188D /* Debug */,
 				05CC07921C3D738800EF188D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05D8BCED1D6056DD00498215 /* Build configuration list for PBXLegacyTarget "Install_Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05D8BCEE1D6056DD00498215 /* Debug */,
+				05D8BCEF1D6056DD00498215 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

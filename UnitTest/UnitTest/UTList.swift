@@ -22,13 +22,13 @@ public func UTListTest() -> Bool
 	list1.prepend(data: 1)
 	printList("list1: prepend", list: list1)
 	
-	list1.add(nil, data: 2)
-	list1.add(list1.firstItem, data:3)
-	list1.add(list1.lastItem, data:4)
-	list1.add(list1.firstItem!.next, data:5)
+	list1.add(previousItem: nil, data: 2)
+	list1.add(previousItem: list1.firstItem, data:3)
+	list1.add(previousItem: list1.lastItem, data:4)
+	list1.add(previousItem: list1.firstItem!.next, data:5)
 	printList("list1: add", list: list1)
 	
-	list0.remove(nil)
+	list0.remove(previousItem: nil)
 	printList("list0 remove", list: list0)
 	
 	let list2 = list1.map({ data in data * 2 })

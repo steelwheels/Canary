@@ -19,16 +19,16 @@ public class CNState : NSObject
 	  Add observer object of this state
 	  - Parameter observer: Observer object
 	 */
-	public func addStateObserver(observer: NSObject){
-		self.addObserver(observer, forKeyPath: CNState.stateKey, options: .New, context: nil)
+	public func add(stateObserver obs: NSObject){
+		self.addObserver(obs, forKeyPath: CNState.stateKey, options: .New, context: nil)
 	}
 	
 	/**
 	  Stop the object to observe this state
 	  - Parameter observer: Object to stop observing this state
 	 */
-	public func removeStateObserver(observer: NSObject){
-		self.removeObserver(observer, forKeyPath: CNState.stateKey)
+	public func remove(stateObserver obs: NSObject){
+		self.removeObserver(obs, forKeyPath: CNState.stateKey)
 	}
 	
 	/**

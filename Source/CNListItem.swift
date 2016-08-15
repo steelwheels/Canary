@@ -12,7 +12,7 @@ public class CNListItem<T>
 	public var next: CNListItem?
 	public var data: T
 	
-	private init(data d: T){
+	public init(data d: T){
 		next = nil
 		data = d
 	}
@@ -21,26 +21,26 @@ public class CNListItem<T>
 		next = nil
 	}
 	
-	public class func allocate(pool: CNListItemPool<T>, data d: T) -> CNListItem<T> {
-		return pool.allocateItem(data: d)
+	public class func allocate(pool p: CNListItemPool<T>, data d: T) -> CNListItem<T> {
+		return p.allocateItem(data: d)
 	}
 	
-	public func add(pool: CNListItemPool<T>, data d: T) -> CNListItem<T> {
-		let newitem  = CNListItem<T>.allocate(pool, data: d)
+	public func add(pool p: CNListItemPool<T>, data d: T) -> CNListItem<T> {
+		let newitem  = CNListItem<T>.allocate(pool: p, data: d)
 		newitem.next = next
 		next         = newitem
 		return newitem
 	}
 	
-	public class func release(pool: CNListItemPool<T>, listItem: CNListItem<T>){
-		pool.releaseItem(listItem)
+	public class func release(pool p: CNListItemPool<T>, listItem i: CNListItem<T>){
+		p.releaseItem(i)
 	}
 
-	public func remove(pool: CNListItemPool<T>) -> Bool {
+	public func remove(pool p: CNListItemPool<T>) -> Bool {
 		if let nextitem = next {
 			let nextnext = nextitem.next
 			next         = nextnext
-			pool.releaseItem(nextitem)
+			p.releaseItem(nextitem)
 			return true
 		} else {
 			return false
@@ -48,53 +48,4 @@ public class CNListItem<T>
 	}
 }
 
-
-private var mPoolDictionary: Dictionary<String, AnyObject> = [:]
-
-public class CNListItemPool<T>
-{
-	private var mFirstItem : CNListItem<T>?
-	private var mLock : NSLock
-	
-	private init(){
-		mFirstItem = nil
-		mLock = NSLock()
-	}
-	
-	public class func allocatePool() -> CNListItemPool<T> {
-		let name = String(CNListItemPool<T>.self)
-		if let pool = mPoolDictionary[name] {
-			if let p = pool as? CNListItemPool<T> {
-				return p
-			}
-		} else {
-			let newpool = CNListItemPool<T>()
-			mPoolDictionary[name] = newpool
-			return newpool
-		}
-		fatalError("Invalid object type")
-	}
-	
-	internal func allocateItem(data d: T) -> CNListItem<T> {
-		var result: CNListItem<T>
-		mLock.lock()
-		if let item = mFirstItem {
-			item.data  = d
-			mFirstItem = item.next
-			result = item
-		} else {
-			result = CNListItem<T>(data: d)
-		}
-		mLock.unlock()
-		result.next = nil
-		return result
-	}
-	
-	internal func releaseItem(item: CNListItem<T>){
-		mLock.lock()
-		item.next  = mFirstItem
-		mFirstItem = item
-		mLock.unlock()
-	}
-}
 

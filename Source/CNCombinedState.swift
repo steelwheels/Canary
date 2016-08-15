@@ -12,14 +12,14 @@ public class CNCombinedState : CNState
 	private var mSourceStates: Array<CNState> = []
 	
 	deinit {
-		for srcstate in sourceStates {
-			srcstate.removeStateObserver(self)
+		for srcstate in mSourceStates {
+			srcstate.remove(stateObserver: self)
 		}
 	}
 	
 	public func addSourceState(state: CNState){
 		mSourceStates.append(state)
-		state.addStateObserver(self)
+		state.add(stateObserver: self)
 	}
 	
 	public var sourceStates: Array<CNState> {

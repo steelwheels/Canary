@@ -25,7 +25,7 @@ internal class CNBookmarks
 			}
 			return nil
 		} else {
-			return NSError.fileError("Invalid URL: \(url)")
+			return NSError.fileError(message: "Invalid URL: \(url)")
 		}
 	}
 
@@ -40,7 +40,7 @@ internal class CNBookmarks
 		return nil
 	}
 	
-	internal class func decode(dict : NSDictionary) -> CNBookmarks {
+	internal class func decode(dictionary dict : NSDictionary) -> CNBookmarks {
 		let newbookmarks = CNBookmarks()
 		newbookmarks.bookmarkDictionary.setDictionary(dict as [NSObject : AnyObject])
 		return newbookmarks
@@ -89,7 +89,7 @@ public class CNBookmarkPreference
 	
 	private init(){
 		if let pref = CNBookmarkPreference.rootPreferences() {
-			mBookmarks = CNBookmarks.decode(pref)
+			mBookmarks = CNBookmarks.decode(dictionary: pref)
 		} else {
 			mBookmarks = CNBookmarks()
 		}
@@ -107,8 +107,8 @@ public class CNBookmarkPreference
 		}
 	}
 	
-	public func loadFromUserDefaults(path:String) -> NSURL? {
-		return mBookmarks.searchBookmark(pathString: path)
+	public func loadFromUserDefaults(path p:String) -> NSURL? {
+		return mBookmarks.searchBookmark(pathString: p)
 	}
 	
 	public func clear(){

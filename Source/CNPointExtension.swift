@@ -14,7 +14,7 @@ extension CGPoint : CNSerializerProtocol
 		return dict
 	}
 
-	public static func unserialize(dict : Dictionary<String, AnyObject>) -> CGPoint? {
+	public static func unserialize(dictionary dict : Dictionary<String, AnyObject>) -> CGPoint? {
 		var x,y : CGFloat
 		if let tx = dict["x"] as? CGFloat {
 			x = tx

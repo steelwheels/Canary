@@ -14,7 +14,7 @@ public class CNStateObserver : NSObject
 	
 	deinit {
 		if let curstate = mState {
-			curstate.removeStateObserver(self)
+			curstate.remove(stateObserver: self)
 		}
 	}
 	
@@ -24,10 +24,10 @@ public class CNStateObserver : NSObject
 		}
 		set(newstate){
 			if let curstate = mState {
-				curstate.removeStateObserver(self)
+				curstate.remove(stateObserver: self)
 			}
 			if let nextstate = newstate {
-				nextstate.addStateObserver(self)
+				nextstate.add(stateObserver: self)
 			}
 			mState = newstate
 		}

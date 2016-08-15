@@ -15,42 +15,42 @@ public struct CNVelocity
 	private var mV:		CGFloat = 0.0
 	private var mAngle:	CGFloat	= 0.0
 
-	private static func angle2point(v:CGFloat, angle:CGFloat) -> (CGFloat, CGFloat) {
-		let x = v * sin(angle)
-		let y = v * cos(angle)
+	private static func angle2point(v vval:CGFloat, angle aval:CGFloat) -> (CGFloat, CGFloat) {
+		let x = vval * sin(aval)
+		let y = vval * cos(aval)
 		return (x, y)
 	}
 	
-	private static func point2angle(x:CGFloat, y:CGFloat) -> (CGFloat, CGFloat) {
-		let angle = atan2(x, y)
-		let speed = sqrt(x*x + y*y)
+	private static func point2angle(x xval:CGFloat, y yval:CGFloat) -> (CGFloat, CGFloat) {
+		let angle = atan2(xval, yval)
+		let speed = sqrt(xval*xval + yval*yval)
 		return (speed, angle)
 	}
 	
-	public init(x:CGFloat, y:CGFloat){
-		mX           = x
-		mY           = y
-		(mV, mAngle) = CNVelocity.point2angle(x, y: y)
+	public init(x xval:CGFloat, y yval:CGFloat){
+		mX           = xval
+		mY           = yval
+		(mV, mAngle) = CNVelocity.point2angle(x: xval, y: yval)
 	}
 	
-	public init(v:CGFloat, angle:CGFloat){
-		mV       = v
-		mAngle   = angle
-		(mX, mY) = CNVelocity.angle2point(v, angle: angle)
+	public init(v vval:CGFloat, angle aval:CGFloat){
+		mV       = vval
+		mAngle   = aval
+		(mX, mY) = CNVelocity.angle2point(v: vval, angle: aval)
 	}
 	
 	public var x:CGFloat {
 		get{ return mX }
 		set(newx) {
 			mX           = newx
-			(mV, mAngle) = CNVelocity.point2angle(newx, y: mY)
+			(mV, mAngle) = CNVelocity.point2angle(x: newx, y: mY)
 		}
 	}
 	public var y:CGFloat {
 		get{ return mY }
 		set(newy) {
 			mY		= newy
-			(mV, mAngle) = CNVelocity.point2angle(mX, y: newy)
+			(mV, mAngle) = CNVelocity.point2angle(x: mX, y: newy)
 		}
 	}
 	
@@ -58,27 +58,27 @@ public struct CNVelocity
 		get{ return mV }
 		set(newv){
 			mV       = newv
-			(mX, mY) = CNVelocity.angle2point(newv, angle: mAngle)
+			(mX, mY) = CNVelocity.angle2point(v: newv, angle: mAngle)
 		}
 	}
 	public var angle:CGFloat {
 		get{ return mAngle }
 		set(newangle){
 			mAngle   = newangle
-			(mX, mY) = CNVelocity.angle2point(mV, angle: newangle)
+			(mX, mY) = CNVelocity.angle2point(v: mV, angle: newangle)
 		}
 	}
 	
-	public mutating func set(x:CGFloat, y:CGFloat){
-		mX           = x
-		mY           = y
-		(mV, mAngle) = CNVelocity.point2angle(x, y: y)
+	public mutating func set(x xval:CGFloat, y yval:CGFloat){
+		mX           = xval
+		mY           = yval
+		(mV, mAngle) = CNVelocity.point2angle(x: x, y: yval)
 	}
 	
-	public mutating func set(v:CGFloat, angle:CGFloat){
-		mV       = v
-		mAngle   = angle
-		(mX, mY) = CNVelocity.angle2point(v, angle: angle)
+	public mutating func set(v vval:CGFloat, angle aval:CGFloat){
+		mV       = vval
+		mAngle   = aval
+		(mX, mY) = CNVelocity.angle2point(v: vval, angle: aval)
 	}
 
 	public var xAndY:CGPoint {

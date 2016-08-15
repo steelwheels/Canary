@@ -27,12 +27,12 @@ public class CNConsoleWord
 		}
 	}
 
-	public func setForegroundColor(color: NSColor){
-		attributes[NSForegroundColorAttributeName] = color
+	public func setForegroundColor(color c: NSColor){
+		attributes[NSForegroundColorAttributeName] = c
 	}
 
-	public func setBackgroundColor(color: NSColor){
-		attributes[NSBackgroundColorAttributeName] = color
+	public func setBackgroundColor(color c: NSColor){
+		attributes[NSBackgroundColorAttributeName] = c
 	}
 }
 
@@ -61,8 +61,8 @@ public class CNConsoleText
 		}
 	}
 
-	public init(color: NSColor, string: String){
-		let word = CNConsoleWord(string: string, attribute: [NSForegroundColorAttributeName: color])
+	public init(color c: NSColor, string s: String){
+		let word = CNConsoleWord(string: s, attribute: [NSForegroundColorAttributeName: c])
 		words = [word]
 	}
 

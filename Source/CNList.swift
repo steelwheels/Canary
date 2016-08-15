@@ -36,19 +36,19 @@ public class CNList<T> : SequenceType
 		count     = 0
 	}
 	
-	public init(list: CNList<T>){
+	public init(list l: CNList<T>){
 		pool      = CNListItemPool.allocatePool()
 		firstItem = nil
 		lastItem  = nil
 		count     = 0
-		list.forEach({ data in self.append(data: data) })
+		l.forEach({ data in self.append(data: data) })
 	}
 
 	deinit {
 		var item: CNListItem<T>? = firstItem
 		while let i = item {
 			let next = i.next
-			CNListItem.release(pool, listItem: i)
+			CNListItem.release(pool: pool, listItem: i)
 			item = next
 		}
 		firstItem = nil
@@ -61,9 +61,9 @@ public class CNList<T> : SequenceType
 	  - parameter data:		Source data
 	  - return:			Generated list item which has the source data
 	 */
-	public func add(previousItem: CNListItem<T>?, data d: T) -> CNListItem<T> {
-		if let pitem = previousItem {
-			let newitem = CNListItem<T>.allocate(pool, data: d)
+	public func add(previousItem pi: CNListItem<T>?, data d: T) -> CNListItem<T> {
+		if let pitem = pi {
+			let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 			if let nextitem = pitem.next {
 				newitem.next = nextitem
 				pitem.next   = newitem
@@ -79,10 +79,10 @@ public class CNList<T> : SequenceType
 		}
 	}
 	
-	public func remove(previousItem: CNListItem<T>?) -> Bool {
+	public func remove(previousItem pi: CNListItem<T>?) -> Bool {
 		var result = false
-		if let pitem = previousItem {
-			if pitem.remove(pool) {
+		if let pitem = pi {
+			if pitem.remove(pool: pool) {
 				if pitem.next == nil {
 					lastItem = pitem
 				}
@@ -92,7 +92,7 @@ public class CNList<T> : SequenceType
 		} else {
 			if let fitem = firstItem {
 				let nitem = fitem.next
-				CNListItem<T>.release(pool, listItem: fitem)
+				CNListItem<T>.release(pool: pool, listItem: fitem)
 				firstItem = nitem
 				count  -= 1
 				result = true
@@ -102,7 +102,7 @@ public class CNList<T> : SequenceType
 	}
 
 	public func append(data d: T) -> CNListItem<T> {
-		let newitem = CNListItem<T>.allocate(pool, data: d)
+		let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 		if let litem = lastItem {
 			litem.next = newitem
 			lastItem = newitem
@@ -115,7 +115,7 @@ public class CNList<T> : SequenceType
 	}
 	
 	public func prepend(data d: T) -> CNListItem<T> {
-		let newitem = CNListItem<T>.allocate(pool, data: d)
+		let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 		if let fitem = firstItem {
 			newitem.next = fitem
 			firstItem    = newitem

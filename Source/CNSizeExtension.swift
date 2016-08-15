@@ -14,7 +14,7 @@ extension CGSize : CNSerializerProtocol
 		return dict
 	}
 	
-	public static func unserialize(dict : Dictionary<String, AnyObject>) -> CGSize? {
+	public static func unserialize(dictionary dict : Dictionary<String, AnyObject>) -> CGSize? {
 		var width, height : CGFloat
 		if let w = dict["width"] as? CGFloat {
 			width = w

@@ -22,19 +22,19 @@ public class CNConsole : NSObject
 
 	public func print(text src: CNConsoleText){
 		accessLock.lock()
-		flush(src)
+		flush(text: src)
 		accessLock.unlock()
 	}
 	
 	public func print(string src: String){
 		let text = CNConsoleText(string: src)
 		accessLock.lock()
-		flush(text)
+		flush(text: text)
 		accessLock.unlock()
 	}
 
 	/* Do not call this method from the outside */
-	public func flush(text: CNConsoleText){
+	public func flush(text t: CNConsoleText){
 		fatalError("must be overriden")
 	}
 }

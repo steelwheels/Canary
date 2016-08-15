@@ -19,9 +19,9 @@ public extension NSError
 		return "github.com.steelwheels.Canary"
 	}
 	
-	public class func codeToValue(code : CNErrorCode) -> Int {
+	public class func codeToValue(code c: CNErrorCode) -> Int {
 		var value : Int = 0
-		switch(code){
+		switch(c){
 		case .ParseError:
 			value = 1
 		case .FileError:
@@ -36,39 +36,39 @@ public extension NSError
 		return "errorLocation"
 	}
 	
-	public class func parseError(message : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.ParseError), userInfo: userinfo)
+	public class func parseError(message m: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.ParseError), userInfo: userinfo)
 		return error
 	}
 	
-	public class func parseError(message : NSString, location : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message, self.errorLocationKey(): location]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.ParseError), userInfo: userinfo)
+	public class func parseError(message m: NSString, location l: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m, self.errorLocationKey(): l]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.ParseError), userInfo: userinfo)
 		return error
 	}
 	
-	public class func fileError(message : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.FileError), userInfo: userinfo)
+	public class func fileError(message m: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.FileError), userInfo: userinfo)
 		return error
 	}
 	
-	public class func fileError(message : NSString, location : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message, self.errorLocationKey(): location]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.FileError), userInfo: userinfo)
+	public class func fileError(message m: NSString, location l: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m, self.errorLocationKey(): l]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.FileError), userInfo: userinfo)
 		return error
 	}
 	
-	public class func serializeError(message : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.SerializeError), userInfo: userinfo)
+	public class func serializeError(message m: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.SerializeError), userInfo: userinfo)
 		return error
 	}
 	
-	public class func serializeError(message : NSString, location : NSString) -> NSError {
-		let userinfo = [NSLocalizedDescriptionKey: message, self.errorLocationKey(): location]
-		let error = NSError(domain: self.domain(), code: codeToValue(CNErrorCode.SerializeError), userInfo: userinfo)
+	public class func serializeError(message m: NSString, location l: NSString) -> NSError {
+		let userinfo = [NSLocalizedDescriptionKey: m, self.errorLocationKey(): l]
+		let error = NSError(domain: self.domain(), code: codeToValue(code: CNErrorCode.SerializeError), userInfo: userinfo)
 		return error
 	}
 	

@@ -19,10 +19,10 @@ public extension NSURL
 	 - parameter fileTypes:		Target file types to open
 	 - parameter openFileCallback:	Callback function to be called when the file is seleted
 	 */
-	public class func openPanel(title : String, fileTypes types: Array<String>?, openFileCallback: (result: Array<NSURL>) -> Void)
+	public class func openPanel(title tl: String, fileTypes types: Array<String>?, openFileCallback callback: (result: Array<NSURL>) -> Void)
 	{
 		let panel = NSOpenPanel()
-		panel.title = title
+		panel.title = tl
 		panel.canChooseDirectories = false
 		panel.allowsMultipleSelection = false
 		panel.allowedFileTypes = types
@@ -33,7 +33,7 @@ public extension NSURL
 				preference.saveToUserDefaults(URLs: panel.URLs)
 				preference.synchronize()
 
-				openFileCallback(result: panel.URLs)
+				callback(result: panel.URLs)
 			}
 		})
 	}
@@ -46,10 +46,10 @@ public extension NSURL
 	 - parameter outputDirectory:	Default parent directory to save the file
 	 - parameter saveFileCallback:	Callback function to be called when the file is selected
 	 */
-	public class func savePanel(title : String, outputDirectory outdir: NSURL?, saveFileCallback: (result: NSURL) -> Bool)
+	public class func savePanel(title tl: String, outputDirectory outdir: NSURL?, saveFileCallback callback: (result: NSURL) -> Bool)
 	{
 		let panel = NSSavePanel()
-		panel.title = title
+		panel.title = tl
 		panel.canCreateDirectories = true
 		panel.showsTagField = false
 		if let odir = outdir {
@@ -58,7 +58,7 @@ public extension NSURL
 		panel.beginWithCompletionHandler({ (result: Int) -> Void in
 			if result == NSFileHandlingPanelOKButton {
 				if let newurl = panel.URL {
-					if saveFileCallback(result: newurl) {
+					if callback(result: newurl) {
 						let preference = CNBookmarkPreference.sharedPreference
 						preference.saveToUserDefaults(URL: newurl)
 						preference.synchronize()
@@ -69,8 +69,8 @@ public extension NSURL
 	}
 
 	public class func relativePath(sourceURL src: NSURL, baseDirectory base: NSURL) -> NSURL {
-		if let srccomp = src.pathComponents, basecomp = base.pathComponents {
-			let common = findLastCommonComponent(srccomp, s1array: basecomp)
+		if let srccomp = src.pathComponents, let basecomp = base.pathComponents {
+			let common = findLastCommonComponent(array0: srccomp, array1: basecomp)
 			if common > 0 {
 				var resultpath = ""
 				let updirs = basecomp.count - common
@@ -101,22 +101,22 @@ public extension NSURL
 			}
 			catch {
 				stopAccessingSecurityScopedResource()
-				let error = NSError.fileError("Can not access: \(path)")
+				let error = NSError.fileError(message: "Can not access: \(path)")
 				return (nil, error)
 			}
 		} else {
-			let error = NSError.fileError("Can not access: \(path)")
+			let error = NSError.fileError(message: "Can not access: \(path)")
 			return (nil, error)
 		}
 	}
 
-	private class func findLastCommonComponent(s0array: Array<String>, s1array: Array<String>) -> Int {
-		let s0count = s0array.count
-		let s1count = s1array.count
+	private class func findLastCommonComponent(array0 s0: Array<String>, array1 s1: Array<String>) -> Int {
+		let s0count = s0.count
+		let s1count = s1.count
 		let count   = s0count < s1count ? s0count : s1count
 		
 		for i in 0..<count {
-			if s0array[i] != s1array[i] {
+			if s0[i] != s1[i] {
 				return i
 			}
 		}

@@ -11,25 +11,25 @@ public class CNObjectVisitor : NSObject
 {
 	public func acceptObject(object : NSObject){
 		if let number = object as? NSNumber {
-			visitNumberObject(number)
+			visit(number: number)
 		} else if let str = object as? NSString {
-			visitStringObject(str)
+			visit(string: str)
 		} else if let date = object as? NSDate {
-			visitDateObject(date)
+			visit(date: date)
 		} else if let dict = object as? NSDictionary {
-			visitDictionaryObject(dict)
+			visit(dictionary: dict)
 		} else if let arr = object as? NSArray {
-			visitArrayObject(arr)
+			visit(array: arr)
 		} else {
-			visitUnknownObject(object)
+			visit(object: object)
 		}
 	}
 	
-	public func visitNumberObject(number : NSNumber)	{		}
-	public func visitStringObject(string : NSString)	{		}
-	public func visitDateObject(date : NSDate)		{		}
-	public func visitDictionaryObject(dict : NSDictionary)	{		}
-	public func visitArrayObject(arr : NSArray)		{		}
-	public func visitUnknownObject(obj : NSObject)		{		}
+	public func visit(number n: NSNumber)		{		}
+	public func visit(string s: NSString)		{		}
+	public func visit(date d: NSDate)		{		}
+	public func visit(dictionary d: NSDictionary)	{		}
+	public func visit(array  a: NSArray)		{		}
+	public func visit(object o: NSObject)		{		}
 }
 

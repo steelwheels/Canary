@@ -10,7 +10,7 @@ import Foundation
 public protocol CNSerializerProtocol
 {
 	func serialize() -> Dictionary<String, AnyObject>
-	static func unserialize(src: Dictionary<String, AnyObject>) -> Self?
+	static func unserialize(dictionary d: Dictionary<String, AnyObject>) -> Self?
 }
 
 

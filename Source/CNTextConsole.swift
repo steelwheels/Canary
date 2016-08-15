@@ -14,8 +14,8 @@ public class CNTextConsole : CNConsole
 	}
 
 	/* Do not call this method from the outside */
-	public override func flush(text: CNConsoleText){
-		for word in text.words {
+	public override func flush(text t: CNConsoleText){
+		for word in t.words {
 			Swift.print(word.string)
 		}
 	}

@@ -22,13 +22,13 @@ public class CNOrderedList<T> : CNList<T>
 		while let curitem = item {
 			if compareMethod(source0: curitem.data, source1: d) != .OrderedAscending {
 				/* curitem < newdata */
-				super.add(previtem, data: d)
+				super.add(previousItem: previtem, data: d)
 				return /* added */
 			}
 			item     = curitem.next
 			previtem = curitem
 		}
-		super.add(previtem, data: d)
+		super.add(previousItem: previtem, data: d)
 	}
 	
 }
