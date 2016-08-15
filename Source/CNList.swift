@@ -61,7 +61,7 @@ public class CNList<T> : SequenceType
 	  - parameter data:		Source data
 	  - return:			Generated list item which has the source data
 	 */
-	public func add(previousItem pi: CNListItem<T>?, data d: T) -> CNListItem<T> {
+	public func add(previousItem pi: CNListItem<T>?, data d: T) {
 		if let pitem = pi {
 			let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 			if let nextitem = pitem.next {
@@ -73,9 +73,8 @@ public class CNList<T> : SequenceType
 				lastItem   = newitem
 			}
 			count += 1
-			return newitem
 		} else {
-			return prepend(data: d)
+			prepend(data: d)
 		}
 	}
 	
@@ -101,7 +100,7 @@ public class CNList<T> : SequenceType
 		return result
 	}
 
-	public func append(data d: T) -> CNListItem<T> {
+	public func append(data d: T) {
 		let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 		if let litem = lastItem {
 			litem.next = newitem
@@ -111,10 +110,9 @@ public class CNList<T> : SequenceType
 			lastItem  = newitem
 		}
 		count += 1
-		return newitem
 	}
 	
-	public func prepend(data d: T) -> CNListItem<T> {
+	public func prepend(data d: T) {
 		let newitem = CNListItem<T>.allocate(pool: pool, data: d)
 		if let fitem = firstItem {
 			newitem.next = fitem
@@ -124,7 +122,6 @@ public class CNList<T> : SequenceType
 			lastItem  = newitem
 		}
 		count += 1
-		return newitem
 	}
 	
 	public func forEach(forEachFunc: (T) -> Void) {
