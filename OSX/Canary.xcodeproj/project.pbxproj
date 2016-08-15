@@ -12,11 +12,6 @@
 		052B3A751C49E96100805BD7 /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */; };
 		05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6A1C74D25B00BAA730 /* CNState.swift */; };
 		05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */; };
-		0534CA541C3D74AA008D34CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA531C3D74AA008D34CA /* AppDelegate.swift */; };
-		0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0534CA551C3D74AA008D34CA /* ViewController.swift */; };
-		0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA571C3D74AA008D34CA /* Assets.xcassets */; };
-		0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0534CA591C3D74AA008D34CA /* Main.storyboard */; };
-		0535F6D51C413B64000A716A /* Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0535F6D31C413B59000A716A /* Canary.framework */; };
 		05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD41CF8A7300083E05C /* CNListItem.swift */; };
 		05377BD71CF8B5E80083E05C /* CNList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD61CF8B5E80083E05C /* CNList.swift */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
@@ -47,13 +42,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0534CA601C3D74B4008D34CA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05CC078F1C3D738800EF188D;
-			remoteInfo = Install;
-		};
 		05B4B7911D5FE9A5002A42FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
@@ -113,12 +101,6 @@
 		052B3A741C49E96100805BD7 /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
 		05318A6A1C74D25B00BAA730 /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
 		05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCombinedState.swift; sourceTree = "<group>"; };
-		0534CA511C3D74AA008D34CA /* UTFileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTFileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0534CA531C3D74AA008D34CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0534CA551C3D74AA008D34CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0534CA571C3D74AA008D34CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0534CA5A1C3D74AA008D34CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0534CA5C1C3D74AA008D34CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0535F6D31C413B59000A716A /* Canary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Canary.framework; path = ../../../Library/Frameworks/Canary.framework; sourceTree = "<group>"; };
 		05377BD41CF8A7300083E05C /* CNListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItem.swift; sourceTree = "<group>"; };
 		05377BD61CF8B5E80083E05C /* CNList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNList.swift; sourceTree = "<group>"; };
@@ -147,19 +129,10 @@
 		05E856E31D5FF07A00B0F2CC /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E856E51D5FF07A00B0F2CC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTTristate.swift; sourceTree = "<group>"; };
-		05ED76201C4134A2003B4310 /* UTFileManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = UTFileManager.entitlements; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0534CA4E1C3D74AA008D34CA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0535F6D51C413B64000A716A /* Canary.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		057A42A61C3D6BB7006A48E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,25 +189,11 @@
 			name = State;
 			sourceTree = "<group>";
 		};
-		0534CA521C3D74AA008D34CA /* UTFileManager */ = {
-			isa = PBXGroup;
-			children = (
-				0534CA531C3D74AA008D34CA /* AppDelegate.swift */,
-				0534CA551C3D74AA008D34CA /* ViewController.swift */,
-				0534CA571C3D74AA008D34CA /* Assets.xcassets */,
-				0534CA591C3D74AA008D34CA /* Main.storyboard */,
-				0534CA5C1C3D74AA008D34CA /* Info.plist */,
-				05ED76201C4134A2003B4310 /* UTFileManager.entitlements */,
-			);
-			path = UTFileManager;
-			sourceTree = "<group>";
-		};
 		0534CA621C3D74FF008D34CA /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
 				05B4B78C1D5FE983002A42FF /* UnitTestBundle */,
 				05E856E41D5FF07A00B0F2CC /* UnitTest */,
-				0534CA521C3D74AA008D34CA /* UTFileManager */,
 				0535F6D31C413B59000A716A /* Canary.framework */,
 			);
 			name = UnitTest;
@@ -254,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				057A42AA1C3D6BB7006A48E6 /* Canary.framework */,
-				0534CA511C3D74AA008D34CA /* UTFileManager.app */,
 				05B4B78B1D5FE983002A42FF /* UnitTest.bundle */,
 				05E856E31D5FF07A00B0F2CC /* UnitTest */,
 			);
@@ -386,24 +344,6 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		0534CA501C3D74AA008D34CA /* UTFileManager */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0534CA5F1C3D74AA008D34CA /* Build configuration list for PBXNativeTarget "UTFileManager" */;
-			buildPhases = (
-				0534CA4D1C3D74AA008D34CA /* Sources */,
-				0534CA4E1C3D74AA008D34CA /* Frameworks */,
-				0534CA4F1C3D74AA008D34CA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0534CA611C3D74B4008D34CA /* PBXTargetDependency */,
-			);
-			name = UTFileManager;
-			productName = UTFileManager;
-			productReference = 0534CA511C3D74AA008D34CA /* UTFileManager.app */;
-			productType = "com.apple.product-type.application";
-		};
 		057A42A91C3D6BB7006A48E6 /* Canary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 057A42B21C3D6BB7006A48E6 /* Build configuration list for PBXNativeTarget "Canary" */;
@@ -469,14 +409,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
-					0534CA501C3D74AA008D34CA = {
-						CreatedOnToolsVersion = 7.2;
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
-					};
 					057A42A91C3D6BB7006A48E6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = TR2DNF3P93;
@@ -513,7 +445,6 @@
 			targets = (
 				057A42A91C3D6BB7006A48E6 /* Canary */,
 				05CC078F1C3D738800EF188D /* Install */,
-				0534CA501C3D74AA008D34CA /* UTFileManager */,
 				05B4B78A1D5FE983002A42FF /* UnitTestBundle */,
 				05E856E21D5FF07A00B0F2CC /* UnitTest */,
 				05D8BCEC1D6056DD00498215 /* Install_Test */,
@@ -522,15 +453,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0534CA4F1C3D74AA008D34CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0534CA581C3D74AA008D34CA /* Assets.xcassets in Resources */,
-				0534CA5B1C3D74AA008D34CA /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		057A42A81C3D6BB7006A48E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,15 +471,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0534CA4D1C3D74AA008D34CA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0534CA561C3D74AA008D34CA /* ViewController.swift in Sources */,
-				0534CA541C3D74AA008D34CA /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		057A42A51C3D6BB7006A48E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,11 +523,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0534CA611C3D74B4008D34CA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05CC078F1C3D738800EF188D /* Install */;
-			targetProxy = 0534CA601C3D74B4008D34CA /* PBXContainerItemProxy */;
-		};
 		05B4B7921D5FE9A5002A42FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05CC078F1C3D738800EF188D /* Install */;
@@ -637,56 +545,7 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		0534CA591C3D74AA008D34CA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0534CA5A1C3D74AA008D34CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		0534CA5D1C3D74AA008D34CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ../UnitTest/UTFileManager/UTFileManager.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTFileManager";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Debug;
-		};
-		0534CA5E1C3D74AA008D34CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ../UnitTest/UTFileManager/UTFileManager.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Tomoo Hamada (TR2DNF3P93)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Frameworks",
-				);
-				INFOPLIST_FILE = ../UnitTest/UTFileManager/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.UTFileManager";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
-			};
-			name = Release;
-		};
 		057A42B01C3D6BB7006A48E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -969,15 +828,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0534CA5F1C3D74AA008D34CA /* Build configuration list for PBXNativeTarget "UTFileManager" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0534CA5D1C3D74AA008D34CA /* Debug */,
-				0534CA5E1C3D74AA008D34CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		057A42A41C3D6BB7006A48E6 /* Build configuration list for PBXProject "Canary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
