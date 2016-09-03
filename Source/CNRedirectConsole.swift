@@ -37,7 +37,7 @@ public class CNRedirectConsole : CNConsole
 	}
 	
 	/* Do not call this method from the outside */
-	public override func flush(text t: CNConsoleText){
+	open override func flush(text t: CNConsoleText){
 		for console in mConsoles {
 			console.flush(text: t)
 		}

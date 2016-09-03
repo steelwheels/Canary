@@ -10,7 +10,7 @@ import Foundation
 public class CNStateObserver : NSObject
 {
 	private dynamic var mState : CNState? = nil
-	private var mCallback : ((state : CNState) -> Void)? = nil
+	private var mCallback : ((_ : CNState) -> Void)? = nil
 	
 	deinit {
 		if let curstate = mState {
@@ -33,16 +33,16 @@ public class CNStateObserver : NSObject
 		}
 	}
 	
-	public var callback : ((state : CNState) -> Void)? {
+	public var callback : ((_ : CNState) -> Void)? {
 		get { return mCallback }
 		set(newcallback) { mCallback = newcallback }
 	}
 
-	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
 		if let state = object as? CNState {
 			if keyPath == CNState.stateKey {
 				if let callback = mCallback {
-					callback(state: state)
+					callback(state)
 				}
 			}
 		}

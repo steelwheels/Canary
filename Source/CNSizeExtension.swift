@@ -10,23 +10,25 @@ import CoreGraphics
 extension CGSize : CNSerializerProtocol
 {
 	public func serialize() -> Dictionary<String, AnyObject> {
-		let dict : Dictionary<String, AnyObject> = ["width":width, "height":height]
+		let wval = NSNumber(value: Double(width))
+		let hval = NSNumber(value: Double(height))
+		let dict : Dictionary<String, AnyObject> = ["width":wval, "height":hval]
 		return dict
 	}
 	
 	public static func unserialize(dictionary dict : Dictionary<String, AnyObject>) -> CGSize? {
-		var width, height : CGFloat
-		if let w = dict["width"] as? CGFloat {
-			width = w
+		var width, height : Double
+		if let wval = dict["width"] as? NSNumber {
+			width = wval.doubleValue
 		} else {
 			return nil
 		}
-		if let h = dict["height"] as? CGFloat {
-			height = h
+		if let hval = dict["height"] as? NSNumber {
+			height = hval.doubleValue
 		} else {
 			return nil
 		}
-		return CGSizeMake(width, height)
+		return CGSize(width: CGFloat(width), height: CGFloat(height))
 	}
 	
 	public var description: String {

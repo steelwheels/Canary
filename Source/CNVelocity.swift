@@ -82,7 +82,7 @@ public struct CNVelocity
 	}
 
 	public var xAndY:CGPoint {
-		get { return CGPointMake(mX, mY) }
+		get { return CGPoint(x: mX, y: mY) }
 	}
 	
 	public var longDescription: String {
@@ -101,9 +101,24 @@ public struct CNVelocity
 	
 	public static func serialize(velocity: CNVelocity) -> Dictionary<String, AnyObject> {
 		var dict: Dictionary<String, AnyObject>  = [:]
-		dict["x"] = velocity.x
-		dict["y"] = velocity.y
+		dict["x"] = NSNumber(value: Double(velocity.x))
+		dict["y"] = NSNumber(value: Double(velocity.y))
 		return dict
+	}
+
+	public static func unserialize(dictionary dict : Dictionary<String, AnyObject>) -> CNVelocity? {
+		var x,y: Double
+		if let xval = dict["x"] as? NSNumber {
+			x = xval.doubleValue
+		} else {
+			return nil
+		}
+		if let yval = dict["y"] as? NSNumber {
+			y = yval.doubleValue
+		} else {
+			return nil
+		}
+		return CNVelocity(x: CGFloat(x), y: CGFloat(y))
 	}
 }
 

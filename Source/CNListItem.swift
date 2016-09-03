@@ -33,14 +33,14 @@ public class CNListItem<T>
 	}
 	
 	public class func release(pool p: CNListItemPool<T>, listItem i: CNListItem<T>){
-		p.releaseItem(i)
+		p.releaseItem(item: i)
 	}
 
 	public func remove(pool p: CNListItemPool<T>) -> Bool {
 		if let nextitem = next {
 			let nextnext = nextitem.next
 			next         = nextnext
-			p.releaseItem(nextitem)
+			p.releaseItem(item: nextitem)
 			return true
 		} else {
 			return false

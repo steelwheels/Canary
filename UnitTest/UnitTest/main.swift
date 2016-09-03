@@ -14,17 +14,23 @@ print("Hello, World!")
 print("*** UTListTest")
 let result0 = UTListTest()
 
+print("*** UTNumber")
+let result1 = UTNumber()
+
 print("*** UTURLTest")
-let result1 = UTURLTest()
+let result2 = UTURLTest()
 
 print("*** UTStateTest")
-let result2 = UTStateTest() && UTTristateTest()
+let result3 = UTStateTest() && UTTristateTest()
 
 print("*** UTConsoleTest")
-let result3 = UTConsoleTest()
+let result4 = UTConsoleTest()
 
-let result = result0 && result1 && result2 && result3
-if result0 {
+print("*** UTObjectVisitor")
+let result5 = UTObjectVisitor()
+
+let result = result0 && result1 && result2 && result3 && result4 && result5
+if result {
 	print("[SUMMARY] PASSED")
 	exit(0)
 } else {

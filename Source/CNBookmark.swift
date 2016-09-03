@@ -9,28 +9,24 @@ import Foundation
 
 internal class CNBookmarks
 {
-	private var bookmarkDictionary : NSMutableDictionary
+	private var bookmarkDictionary : [String:Data]
 	
 	internal init(){
-		bookmarkDictionary = NSMutableDictionary(capacity: 8)
+		bookmarkDictionary = [:]
 	}
 	
-	internal func addBookmark(URL url: NSURL) -> NSError? {
-		if let path = url.path {
-			if let _ = bookmarkDictionary.objectForKey(path) as? NSData {
-				/* Already store */
-			} else {
-				let data = allocateBookmarkData(URL: url)
-				bookmarkDictionary.setObject(data, forKey: path)
-			}
-			return nil
+	internal func addBookmark(URL url: URL) {
+		let path = url.path
+		if let _ = bookmarkDictionary[path] {
+			/* Already store */
 		} else {
-			return NSError.fileError(message: "Invalid URL: \(url)")
+			let data = allocateBookmarkData(URL: url)
+			bookmarkDictionary[path] = data
 		}
 	}
 
-	internal func searchBookmark(pathString path: String) -> NSURL? {
-		if let data = bookmarkDictionary.objectForKey(path) as? NSData {
+	internal func searchBookmark(pathString path: String) -> URL? {
+		if let data = bookmarkDictionary[path] {
 			if let url = CNBookmarks.resolveURL(bookmarkData: data) {
 				return url
 			} else {
@@ -40,27 +36,27 @@ internal class CNBookmarks
 		return nil
 	}
 	
-	internal class func decode(dictionary dict : NSDictionary) -> CNBookmarks {
+	internal class func decode(dictionary dict : [String:Data]) -> CNBookmarks {
 		let newbookmarks = CNBookmarks()
-		newbookmarks.bookmarkDictionary.setDictionary(dict as [NSObject : AnyObject])
+		newbookmarks.bookmarkDictionary = dict
 		return newbookmarks
 	}
 
-	internal func encode() -> NSDictionary {
+	internal func encode() -> [String:Data] {
 		return bookmarkDictionary
 	}
 	
 	internal func clear() {
-		bookmarkDictionary.removeAllObjects()
+		bookmarkDictionary = [:]
 	}
 	
 	internal func dump(){
 		Swift.print("(CNBookmarks \(bookmarkDictionary))")
 	}
 	
-	private func allocateBookmarkData(URL url: NSURL) -> NSData {
+	private func allocateBookmarkData(URL url: URL) -> Data {
 		do {
-			let data = try url.bookmarkDataWithOptions(.WithSecurityScope, includingResourceValuesForKeys: nil, relativeToURL: nil)
+			let data = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
 			return data
 		}
 		catch {
@@ -69,10 +65,10 @@ internal class CNBookmarks
 		}
 	}
 	
-	private class func resolveURL(bookmarkData bmdata: NSData) -> NSURL? {
+	private class func resolveURL(bookmarkData bmdata: Data) -> URL? {
 		do {
-			var isstale: ObjCBool = false;
-			let newurl = try NSURL(byResolvingBookmarkData: bmdata, options: .WithSecurityScope, relativeToURL: nil, bookmarkDataIsStale: &isstale)
+			var isstale: Bool = false;
+			let newurl = try URL(resolvingBookmarkData: bmdata, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isstale)
 			return newurl
 		}
 		catch {
@@ -95,19 +91,19 @@ public class CNBookmarkPreference
 		}
 	}
 	
-	public func saveToUserDefaults(URL url: NSURL)
+	public func saveToUserDefaults(URL url: URL)
 	{
 		mBookmarks.addBookmark(URL: url)
 	}
 	
-	public func saveToUserDefaults(URLs urls: Array<NSURL>)
+	public func saveToUserDefaults(URLs urls: Array<URL>)
 	{
 		for url in urls {
 			mBookmarks.addBookmark(URL: url)
 		}
 	}
 	
-	public func loadFromUserDefaults(path p:String) -> NSURL? {
+	public func loadFromUserDefaults(path p:String) -> URL? {
 		return mBookmarks.searchBookmark(pathString: p)
 	}
 	
@@ -117,8 +113,8 @@ public class CNBookmarkPreference
 	
 	public func synchronize() {
 		let dict = mBookmarks.encode()
-		let preference = NSUserDefaults.standardUserDefaults()
-		preference.setObject(dict, forKey: CNBookmarkPreference.bookmarkPreferekceKey())
+		let preference = UserDefaults.standard
+		preference.set(dict, forKey: CNBookmarkPreference.bookmarkPreferekceKey())
 		preference.synchronize()
 	}
 	
@@ -126,10 +122,14 @@ public class CNBookmarkPreference
 		mBookmarks.dump()
 	}
 	
-	private class func rootPreferences() -> NSDictionary? {
-		let preference = NSUserDefaults.standardUserDefaults()
-		if let dict = preference.dictionaryForKey(CNBookmarkPreference.bookmarkPreferekceKey()) {
-			return dict
+	private class func rootPreferences() -> [String:Data]? {
+		let preference = UserDefaults.standard
+		if let pref = preference.dictionary(forKey: CNBookmarkPreference.bookmarkPreferekceKey()) {
+			if let dict = pref as? [String:Data] {
+				return dict
+			} else {
+				fatalError("Can not convert preference")
+			}
 		} else {
 			return nil
 		}

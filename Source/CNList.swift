@@ -19,7 +19,7 @@ public enum CNListCommand<T> {
 /**
   Single linked list
  */
-public class CNList<T> : SequenceType
+public class CNList<T> : Sequence
 {
 	/**
 	  First list item
@@ -173,12 +173,12 @@ public class CNList<T> : SequenceType
 	/**
 	 Support SequenceType
 	 */
-	public func generate() -> CNListGenerator<T> {
+	public func makeIterator() -> CNListGenerator<T> {
 		return CNListGenerator(list: self)
 	}
 }
 
-public class CNListGenerator<T>: GeneratorType
+public class CNListGenerator<T>: IteratorProtocol
 {
 	private var mList:        CNList<T>
 	private var mCurrentItem: CNListItem<T>?

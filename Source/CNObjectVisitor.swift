@@ -7,29 +7,29 @@
 
 import Foundation
 
-public class CNObjectVisitor : NSObject
+open class CNObjectVisitor : NSObject
 {
-	public func acceptObject(object : NSObject){
+	public func acceptObject(object : AnyObject){
 		if let number = object as? NSNumber {
 			visit(number: number)
-		} else if let str = object as? NSString {
+		} else if let str = object as? String {
 			visit(string: str)
-		} else if let date = object as? NSDate {
+		} else if let date = object as? Date {
 			visit(date: date)
-		} else if let dict = object as? NSDictionary {
+		} else if let dict = object as? [String:AnyObject] {
 			visit(dictionary: dict)
-		} else if let arr = object as? NSArray {
+		} else if let arr = object as? [AnyObject] {
 			visit(array: arr)
 		} else {
 			visit(object: object)
 		}
 	}
 	
-	public func visit(number n: NSNumber)		{		}
-	public func visit(string s: NSString)		{		}
-	public func visit(date d: NSDate)		{		}
-	public func visit(dictionary d: NSDictionary)	{		}
-	public func visit(array  a: NSArray)		{		}
-	public func visit(object o: NSObject)		{		}
+	open func visit(number n: NSNumber)			{		}
+	open func visit(string s: String)			{		}
+	open func visit(date d: Date)				{		}
+	open func visit(dictionary d: [String:AnyObject])	{		}
+	open func visit(array  a: [AnyObject])			{		}
+	open func visit(object o: AnyObject)			{		}
 }
 

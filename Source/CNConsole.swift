@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CNConsole : NSObject
+open class CNConsole : NSObject
 {
 	private let accessLock	  : NSLock ;
 
@@ -34,7 +34,7 @@ public class CNConsole : NSObject
 	}
 
 	/* Do not call this method from the outside */
-	public func flush(text t: CNConsoleText){
+	open func flush(text t: CNConsoleText){
 		fatalError("must be overriden")
 	}
 }

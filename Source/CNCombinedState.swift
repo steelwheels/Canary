@@ -25,8 +25,8 @@ public class CNCombinedState : CNState
 	public var sourceStates: Array<CNState> {
 		get{ return mSourceStates }
 	}
-	
-	public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
 		if let _ = object as? CNState {
 			if keyPath == CNState.stateKey {
 				updateState()

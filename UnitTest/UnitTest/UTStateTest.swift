@@ -58,8 +58,8 @@ internal func testCombinedState()
 	let s0 = UTState(newval:  0)
 	let s1 = UTState(newval: 10)
 	let sc = CNCombinedState()
-	sc.addSourceState(s0)
-	sc.addSourceState(s1)
+	sc.addSourceState(state: s0)
+	sc.addSourceState(state: s1)
 	
 	let observer0 = CNStateObserver()
 	observer0.state = sc

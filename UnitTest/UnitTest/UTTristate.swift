@@ -11,11 +11,11 @@ import Canary
 
 public func UTTristateTest() -> Bool
 {
-	printTristate(.Unknown)
+	printTristate(state: .Unknown)
 	return true
 }
 
-internal func printTristate(state: CNTristate)
+internal func printTristate(state stat: CNTristate)
 {
-	print("state = \(state.description)")
+	print("state = \(stat.description)")
 }

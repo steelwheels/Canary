@@ -9,9 +9,8 @@ import Foundation
 
 public class CNOrderedList<T> : CNList<T>
 {
-	private let	compareMethod:	(source0:T, source1:T) -> NSComparisonResult
-	
-	public init(compareMethod comp: (source0:T, source1:T) -> NSComparisonResult){
+	private let	compareMethod:	(_:T, _:T) -> ComparisonResult
+	public init(compareMethod comp: ((_:T, _:T) -> ComparisonResult)){
 		compareMethod	= comp
 		super.init()
 	}
@@ -20,7 +19,7 @@ public class CNOrderedList<T> : CNList<T>
 		var previtem: CNListItem<T>? = nil
 		var item = firstItem
 		while let curitem = item {
-			if compareMethod(source0: curitem.data, source1: d) != .OrderedAscending {
+			if compareMethod(curitem.data, d) != .orderedAscending {
 				/* curitem < newdata */
 				super.add(previousItem: previtem, data: d)
 				return /* added */

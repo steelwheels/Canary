@@ -20,7 +20,7 @@ public class CNListItemPool<T>
 	}
 
 	public class func allocatePool() -> CNListItemPool<T> {
-		let name = String(CNListItemPool<T>.self)
+		let name = NSStringFromClass(CNListItemPool<T>.self)
 		if let pool = mPoolDictionary[name] {
 			if let p = pool as? CNListItemPool<T> {
 				return p

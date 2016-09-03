@@ -11,15 +11,15 @@ import Canary
 
 public func UTURLTest() -> Bool
 {
-	relativePathTest("/Users/someone/Documents/BattleFieldCode/script/a.js",
+	relativePathTest(relativePath: "/Users/someone/Documents/BattleFieldCode/script/a.js",
 	                 base: "/Users/someone/Documents/BattleFieldCode/team")
 	return true
 }
 
-public func relativePathTest(src: String, base: String)
+public func relativePathTest(relativePath src: String, base: String)
 {
-	let srcurl  = NSURL(fileURLWithPath: src)
-	let baseurl = NSURL(fileURLWithPath: base)
-	let relurl  = NSURL.relativePath(sourceURL: srcurl, baseDirectory: baseurl)
+	let srcurl  = URL(fileURLWithPath: src)
+	let baseurl = URL(fileURLWithPath: base)
+	let relurl  = URL.relativePath(sourceURL: srcurl, baseDirectory: baseurl)
 	print("srcurl=\(srcurl.path), baseurl=\(baseurl.path) => relurl = \(relurl.relativePath)")
 }

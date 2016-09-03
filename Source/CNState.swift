@@ -10,7 +10,7 @@ import Foundation
 /**
    The data object to present the state of the object
  */
-public class CNState : NSObject
+open class CNState : NSObject
 {
 	/** The updated count */
 	private dynamic var mStateId = 0
@@ -20,7 +20,7 @@ public class CNState : NSObject
 	  - Parameter observer: Observer object
 	 */
 	public func add(stateObserver obs: NSObject){
-		self.addObserver(obs, forKeyPath: CNState.stateKey, options: .New, context: nil)
+		self.addObserver(obs, forKeyPath: CNState.stateKey, options: .new, context: nil)
 	}
 	
 	/**
