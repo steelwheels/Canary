@@ -9,17 +9,18 @@ import Foundation
 
 public class CNOrderedList<T> : CNList<T>
 {
-	private let	compareMethod:	(_:T, _:T) -> ComparisonResult
-	public init(compareMethod comp: ((_:T, _:T) -> ComparisonResult)){
-		compareMethod	= comp
+	private let	mCompareMethod:	(_:T, _:T) -> ComparisonResult
+
+	public init(compareMethod: @escaping ((_:T, _:T) -> ComparisonResult)){
+		mCompareMethod	= compareMethod
 		super.init()
 	}
-	
+
 	public func add(data d: T){
 		var previtem: CNListItem<T>? = nil
 		var item = firstItem
 		while let curitem = item {
-			if compareMethod(curitem.data, d) != .orderedAscending {
+			if mCompareMethod(curitem.data, d) != .orderedAscending {
 				/* curitem < newdata */
 				super.add(previousItem: previtem, data: d)
 				return /* added */
@@ -29,6 +30,5 @@ public class CNOrderedList<T> : CNList<T>
 		}
 		super.add(previousItem: previtem, data: d)
 	}
-	
 }
 

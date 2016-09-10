@@ -20,13 +20,13 @@ private func numberKind() -> Bool
 	
 	let result0  = checkNumberKind(number: NSNumber(value:	true), expectedKind: NSNumberKind.booleanNumber)
 	let result1  = checkNumberKind(number: NSNumber(value:	Int8(-1)), expectedKind: NSNumberKind.int8Number)
-	let result2  = checkNumberKind(number: NSNumber(value:	UInt8(1)), expectedKind: NSNumberKind.uInt8Number)
+	let result2  = checkNumberKind(number: NSNumber(value:	UInt8(1)), expectedKind: NSNumberKind.int16Number)
 	let result3  = checkNumberKind(number: NSNumber(value:	Int16(-1)), expectedKind: NSNumberKind.int16Number)
-	let result4  = checkNumberKind(number: NSNumber(value:	UInt16(1)), expectedKind: NSNumberKind.uInt16Number)
+	let result4  = checkNumberKind(number: NSNumber(value:	UInt16(1)), expectedKind: NSNumberKind.int32Number)
 	let result5  = checkNumberKind(number: NSNumber(value:	Int32(-1)), expectedKind: NSNumberKind.int32Number)
-	let result6  = checkNumberKind(number: NSNumber(value:	UInt32(1)), expectedKind: NSNumberKind.uInt32Number)
+	let result6  = checkNumberKind(number: NSNumber(value:	UInt32(1)), expectedKind: NSNumberKind.int64Number)
 	let result7  = checkNumberKind(number: NSNumber(value:	Int64(-1)), expectedKind: NSNumberKind.int64Number)
-	let result8  = checkNumberKind(number: NSNumber(value:	UInt64(1)), expectedKind: NSNumberKind.uInt64Number)
+	let result8  = checkNumberKind(number: NSNumber(value:	UInt64(1)), expectedKind: NSNumberKind.int64Number)
 	let result9  = checkNumberKind(number: NSNumber(value:	Float(1.2)), expectedKind: NSNumberKind.floatNumber)
 	let result10 = checkNumberKind(number: NSNumber(value:	Double(-2.3)), expectedKind: NSNumberKind.doubleNumber)
 

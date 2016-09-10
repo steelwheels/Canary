@@ -29,7 +29,10 @@ let result4 = UTConsoleTest()
 print("*** UTObjectVisitor")
 let result5 = UTObjectVisitor()
 
-let result = result0 && result1 && result2 && result3 && result4 && result5
+print("*** UTMath")
+let result6 = UTMathTest()
+
+let result = result0 && result1 && result2 && result3 && result4 && result5 && result6
 if result {
 	print("[SUMMARY] PASSED")
 	exit(0)
