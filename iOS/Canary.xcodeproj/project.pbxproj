@@ -205,7 +205,7 @@
 /* Begin PBXLegacyTarget section */
 		0544D0B21D8CBB4400FA246C /* Install */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-f ../Script/install_osx.mk";
+			buildArgumentsString = "-f ../Script/install.mk";
 			buildConfigurationList = 0544D0B31D8CBB4400FA246C /* Build configuration list for PBXLegacyTarget "Install" */;
 			buildPhases = (
 			);
@@ -532,6 +532,7 @@
 				0544D0B51D8CBB4400FA246C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
