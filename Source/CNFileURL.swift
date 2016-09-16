@@ -19,6 +19,7 @@ public extension URL
 	 - parameter fileTypes:		Target file types to open
 	 - parameter openFileCallback:	Callback function to be called when the file is seleted
 	 */
+#if os(OSX)
 	public static func openPanel(title tl: String, fileTypes types: Array<String>?, openFileCallback callback: @escaping ((_: Array<URL>) -> Void))
 	{
 		let panel = NSOpenPanel()
@@ -37,7 +38,8 @@ public extension URL
 			}
 		})
 	}
-	
+#endif
+
 	/**
 	 Open the panel to select the file to save the current context
 	
@@ -46,6 +48,7 @@ public extension URL
 	 - parameter outputDirectory:	Default parent directory to save the file
 	 - parameter saveFileCallback:	Callback function to be called when the file is selected
 	 */
+#if os(OSX)
 	public static func savePanel(title tl: String, outputDirectory outdir: URL?, saveFileCallback callback: @escaping ((_: URL) -> Bool))
 	{
 		let panel = NSSavePanel()
@@ -67,6 +70,7 @@ public extension URL
 			}
 		})
 	}
+#endif
 
 	public static func relativePath(sourceURL src: URL, baseDirectory base: URL) -> URL {
 		let srccomp = src.pathComponents

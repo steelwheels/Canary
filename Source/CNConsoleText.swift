@@ -10,6 +10,12 @@ import Foundation
 
 public class CNConsoleWord
 {
+	#if os(iOS)
+	public typealias CNColor = UIColor
+	#elseif os(OSX)
+	public typealias CNColor = NSColor
+	#endif
+
 	public var string :	String = ""
 	public var attributes :	Dictionary<String, AnyObject>	= [:]
 
@@ -27,17 +33,23 @@ public class CNConsoleWord
 		}
 	}
 
-	public func setForegroundColor(color c: NSColor){
+	public func setForegroundColor(color c: CNColor){
 		attributes[NSForegroundColorAttributeName] = c
 	}
 
-	public func setBackgroundColor(color c: NSColor){
+	public func setBackgroundColor(color c: CNColor){
 		attributes[NSBackgroundColorAttributeName] = c
 	}
 }
 
 public class CNConsoleText
 {
+	#if os(iOS)
+	public typealias CNColor = UIColor
+	#elseif os(OSX)
+	public typealias CNColor = NSColor
+	#endif
+
 	public var words : Array<CNConsoleWord> = []
 
 	public init(words src: Array<CNConsoleWord>){
@@ -61,7 +73,7 @@ public class CNConsoleText
 		}
 	}
 
-	public init(color c: NSColor, string s: String){
+	public init(color c: CNColor, string s: String){
 		let word = CNConsoleWord(string: s, attribute: [NSForegroundColorAttributeName: c])
 		words = [word]
 	}

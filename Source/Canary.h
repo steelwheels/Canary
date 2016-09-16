@@ -6,7 +6,12 @@
 //  Copyright © 2016年 Steel Wheels Project. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "TargetConditionals.h"
+#if TARGET_OS_IPHONE
+#	import <UIKit/UIKit.h>
+#else
+#	import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for Canary.
 FOUNDATION_EXPORT double CanaryVersionNumber;

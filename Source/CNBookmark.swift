@@ -7,6 +7,8 @@
 
 import Foundation
 
+#if os(OSX)
+
 internal class CNBookmarks
 {
 	private var bookmarkDictionary : [String:Data]
@@ -139,5 +141,8 @@ public class CNBookmarkPreference
 		return "bookmarks"
 	}
 }
+
+#endif /* os(OSX) */
+
 
 
