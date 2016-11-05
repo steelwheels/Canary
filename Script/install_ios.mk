@@ -4,7 +4,6 @@
 # Reference URL: http://stackoverflow.com/questions/28652650/how-to-build-cocoa-touch-framework-for-i386-and-x86-64-architecture
 #
 
-PROJECT_NAME ?= Canary
 INSTALL_PATH ?= $(HOME)/local/Frameworks
 
 OS_DIR     = $(BUILD_DIR)/Release-iphoneos/

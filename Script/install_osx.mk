@@ -2,7 +2,7 @@
 # install.mk
 #
 
-PROJECT_NAME=Canary
+INSTALL_PATH ?= $(HOME)/Library/Frameworks
 
 install: dummy
 	xcodebuild build -target $(PROJECT_NAME) \
