@@ -29,3 +29,13 @@ public func clip<T: Comparable>(value v:T, max mx:T, min mn: T) -> T
 	return result
 }
 
+public func random(between val0: UInt32, and val1: UInt32) -> UInt32
+{
+	if val0 > val1 {
+		return arc4random_uniform(val0 - val1) + val1
+	} else if val1 > val0 {
+		return arc4random_uniform(val1 - val0) + val0
+	} else { // val0 == val1
+		return val0
+	}
+}
