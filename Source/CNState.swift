@@ -14,7 +14,11 @@ open class CNState : NSObject
 {
 	/** The updated count */
 	private dynamic var mStateId = 0
-	
+	/** Lock to single access for mStateId */
+	private var mStateIdLock = NSLock()
+	/** The factor update this state */
+	public var factorValue: Int = 0
+
 	/**
 	  Add observer object of this state
 	  - Parameter observer: Observer object
@@ -34,8 +38,11 @@ open class CNState : NSObject
 	/**
 	  Increment the update count. This method will be called 
 	 */
-	public func updateState() -> Void {
-		self.mStateId += 1
+	public func updateState(factorValue fv: Int) -> Void {
+		mStateIdLock.lock()
+			factorValue = fv
+			self.mStateId += 1
+		mStateIdLock.unlock()
 	}
 	
 	public static var stateKey: String {

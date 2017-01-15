@@ -11,18 +11,32 @@ import Canary
 
 internal class UTState : CNState
 {
+	public enum Factor: Int {
+		case ValueFactor	= 123
+	}
+
 	private var mValue: Int
 	
 	init(newval: Int){
 		mValue = newval
 	}
-	
+
+	public var factor: Factor {
+		if let f = Factor(rawValue: factorValue) {
+			return f
+		} else {
+			fatalError("Invalid factor value")
+		}
+	}
+
 	internal var value: Int {
-		get { return mValue }
+		get {
+			return mValue
+		}
 		set(newval){
 			mValue = newval
 			print("set new value: \(mValue)")
-			updateState()
+			updateState(factorValue: Factor.ValueFactor.rawValue)
 		}
 	}
 }
@@ -42,7 +56,7 @@ internal func testNormalState()
 	observer0.state = s0
 	observer0.callback = { (state : CNState) -> Void in
 		if let s = state as? UTState {
-			print("Observed state value = \(s.value)")
+			print("Observed state value = \(s.value), factor = \(s.factor.rawValue)")
 		} else {
 			fatalError("Invalid state class")
 		}
