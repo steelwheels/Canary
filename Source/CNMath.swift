@@ -39,3 +39,13 @@ public func random(between val0: UInt32, and val1: UInt32) -> UInt32
 		return val0
 	}
 }
+
+public func round(value v:Double, atPoint p:Int) -> Double
+{
+	var mult: Double = 1.0
+	for _ in 0..<p {
+		mult = mult * 10.0
+	}
+	let ival = Int(v * mult)
+	return Double(ival) * mult
+}
