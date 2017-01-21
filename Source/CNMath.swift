@@ -47,5 +47,5 @@ public func round(value v:Double, atPoint p:Int) -> Double
 		mult = mult * 10.0
 	}
 	let ival = Int(v * mult)
-	return Double(ival) * mult
+	return Double(ival) / mult
 }
