@@ -12,6 +12,9 @@ import Foundation
  */
 open class CNState : NSObject
 {
+	/** Parent state  */
+	public weak var parentState: CNState? = nil
+
 	/** The updated count */
 	private dynamic var mStateId = 0
 	/** Lock to single access for mStateId */
