@@ -3,7 +3,7 @@
 //  Canary
 //
 //  Created by Tomoo Hamada on 2016/08/19.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
+//  Copyright 2016, 2017 Steel Wheels Project. All rights reserved.
 //
 
 import Foundation
