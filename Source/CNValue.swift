@@ -34,7 +34,7 @@ public enum CNValue: Hashable, CustomStringConvertible
 		case .DoubleValue(let value):
 			desc = "\(value)"
 		case .StringValue(let value):
-			desc = "\(value)"
+			desc = "\"\(value)\""
 		case .ArrayValue(let value):
 			desc = "\(value)"
 		case .SetValue(let value):

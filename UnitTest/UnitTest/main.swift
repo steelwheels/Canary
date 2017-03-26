@@ -41,7 +41,11 @@ let result8 = UTMathTest()
 print("*** UTToken")
 let result9 = UTTokenTest()
 
-let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9
+print("*** UTObjectNotation")
+let result10 = UTObjectNotation()
+
+let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
+	     result10
 if result {
 	print("[SUMMARY] PASSED")
 	exit(0)

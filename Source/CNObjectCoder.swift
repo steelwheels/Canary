@@ -7,6 +7,45 @@
 
 import Foundation
 
+public class CNObjectCoder
+{
+	public static func encode(notation src: CNObjectNotation) -> String {
+		return CNObjectCoder.encodeToString(indent: 0, notation: src)
+	}
+
+	private static func encodeToString(indent idt: Int, notation src: CNObjectNotation) -> String {
+		var result: String = indentString(indent: idt) + "("
+
+		if let label = src.label {
+			result += label + ": "
+		}
+		result += src.className + " "
+
+		switch src.value {
+		case .PrimitiveValue(let value):
+			result += value.description
+		case .ObjectValue(let objects):
+			result += "\n"
+			for object in objects {
+				let objstr = encodeToString(indent: idt+1, notation: object)
+				result += objstr
+			}
+			result += indentString(indent: idt)
+		}
+
+		result += ")\n"
+		return result
+	}
+
+	private static func indentString(indent idt: Int) -> String {
+		var result = ""
+		for _ in 0..<idt {
+			result += " "
+		}
+		return result
+	}
+}
+
 /*
 public class CNObjectCoder
 {

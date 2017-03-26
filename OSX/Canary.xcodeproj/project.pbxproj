@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05081B381E875DBF007B6A12 /* UTObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05081B371E875DBF007B6A12 /* UTObjectNotation.swift */; };
 		051491001D67085E00D09907 /* UTObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051490FF1D67085E00D09907 /* UTObjectVisitor.swift */; };
 		051BA8E61E86527F00E42E5E /* UTCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BA8E51E86527F00E42E5E /* UTCharacter.swift */; };
 		051C21641E7C3F2900A629DB /* CNObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C21631E7C3F2900A629DB /* CNObjectNotation.swift */; };
@@ -104,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05081B371E875DBF007B6A12 /* UTObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObjectNotation.swift; sourceTree = "<group>"; };
 		050F82611C7CB680006C2D05 /* UTStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStateTest.swift; sourceTree = "<group>"; };
 		051490FF1D67085E00D09907 /* UTObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObjectVisitor.swift; sourceTree = "<group>"; };
 		051BA8E51E86527F00E42E5E /* UTCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCharacter.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				051490FF1D67085E00D09907 /* UTObjectVisitor.swift */,
 				05BCEC3A1D83874100AAEA48 /* UTMath.swift */,
 				058FC9411E867C750015726E /* UTToken.swift */,
+				05081B371E875DBF007B6A12 /* UTObjectNotation.swift */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				05692FB81E6872AA00687615 /* UTValue.swift in Sources */,
 				058FC9421E867C750015726E /* UTToken.swift in Sources */,
 				05E856E61D5FF07A00B0F2CC /* main.swift in Sources */,
+				05081B381E875DBF007B6A12 /* UTObjectNotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
