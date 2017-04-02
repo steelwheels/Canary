@@ -25,7 +25,7 @@ public class CNFilePath
 					let url = URL(string: "file://" + resourcepath)
 					return (url, nil)
 				} else {
-					let error = NSError.fileError(message: "File \"\(fname)\" of type \"\(type)\" is not found")
+					let error = NSError.fileError(message: "File \"\(name(fname))\" of type \"\(name(type))\" is not found")
 					return (nil, error)
 				}
 			} else {
@@ -33,9 +33,19 @@ public class CNFilePath
 				return (nil, error)
 			}
 		} else {
-			let error = NSError.fileError(message: "\(bname).bundle is not found")
+			let error = NSError.fileError(message: "\(name(bname)).bundle is not found")
 			return (nil, error)
 		}
 	}
+
+	private class func name(_ name: String?) -> String {
+		if let str = name {
+			return str
+		} else {
+			return "<unknown>"
+		}
+	}
+
+
 }
 

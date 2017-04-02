@@ -7,13 +7,13 @@
 
 import Foundation
 
-public class CNObjectCoder
-{
-	public static func encode(notation src: CNObjectNotation) -> String {
-		return CNObjectCoder.encodeToString(indent: 0, notation: src)
-	}
+public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String {
+	let encoder = CNObjectEncoder()
+	return encoder.encodeToString(indent: 0, notation: src)
+}
 
-	private static func encodeToString(indent idt: Int, notation src: CNObjectNotation) -> String {
+private class CNObjectEncoder {
+	public func encodeToString(indent idt: Int, notation src: CNObjectNotation) -> String {
 		var result: String = indentString(indent: idt) + "("
 
 		if let label = src.label {
@@ -37,7 +37,7 @@ public class CNObjectCoder
 		return result
 	}
 
-	private static func indentString(indent idt: Int) -> String {
+	private func indentString(indent idt: Int) -> String {
 		var result = ""
 		for _ in 0..<idt {
 			result += " "
@@ -46,99 +46,246 @@ public class CNObjectCoder
 	}
 }
 
-/*
-public class CNObjectCoder
+public enum CNObjectDecodeError: Error {
+	case NoError
+	case ParseError(Int, String)
+}
+
+public func CNDecodeObjectNotation(string srcstr: String) -> (CNObjectDecodeError, CNObjectNotation?)
 {
-	public static func encode(notation src: CNObjectNotation) -> String {
-		return CNObjectCoder.encodeToString(indent: 0, notation: src)
-	}
+	let encoder = CNObjectDecoder()
+	return encoder.decode(string: srcstr)
+}
 
-	private static func encodeToString(indent idt: Int, notation src: CNObjectNotation) -> String {
-		var result	: String = indentString(indent: idt) + "("
-		var hasmulti	: Bool   = false
-
-		if let label = src.label {
-			result += "\(label): "
-		}
-		result += src.className + " "
-		switch src.value {
-		case .ObjectValue(let array):
-			hasmulti = true
-			result += "\n"
-			for elmobj in array {
-				result += CNObjectCoder.encodeToString(indent: idt+1, notation: elmobj) + "\n"
-			}
-		case .PrimitiveValue(let value):
-			result += value.description
-		}
-		if hasmulti {
-			result += indentString(indent: idt)
-		}
-		return result + ")"
-	}
-
-	private static func indentString(indent idt: Int) -> String {
-		var result = ""
-		for _ in 0..<idt {
-			result += " "
-		}
-		return result
-	}
-
-	public static func decode(string src:String) -> (NSError?, CNObjectNotation?) {
-		let start = src.startIndex
-		let end   = src.endIndex
-		return decodeFromString(sourceString: src, sourceRange: start..<end, lineNo: 1)
-	}
-
-	private static func decodeFromString(sourceString src:String, sourceRange srcrange: Range<String.Index>, lineNo line:Int) -> (NSError?, CNObjectNotation?) {
-		/* skip spaces */
-		let (range0, line0) = skipSpaces(sourceString: src, sourceRange: srcrange, lineNo: line)
-		/* check 1st "(" */
-		let (match1, range1) = matchChar(sourceString: src, sourceRange: range0, matchingFunc: {
-			(c: Character) -> Bool in
-			return c == "("
-		})
-		if !match1 {
-			let error  = NSError.parseError(message: "\"(\" is expected at line \(line0)")
-			return (error, nil)
-		}
-		/* skip spaces */
-		let (range2, line2) = skipSpaces(sourceString: src, sourceRange: range1, lineNo: line0)
-		/* get label (option) */
-
-		
-		return (error, result)
-	}
-
-	private static func skipSpaces(sourceString src:String, sourceRange range: Range<String.Index>, lineNo line:Int) -> (Range<String.Index>, Int) {
-		var i	   : String.Index = range.lowerBound
-		var lno	   : Int	  = line
-		let eidx   : String.Index = range.upperBound
-		while i < eidx {
-			if src[i].isSpace() {
-				if src[i] == "\n" {
-					lno += 1
+private class CNObjectDecoder {
+	public func decode(string srcstr: String) -> (CNObjectDecodeError, CNObjectNotation?) {
+		let (err, tokens) = CNStringToToken(string: srcstr)
+		switch err {
+		case .NoError:
+			if tokens.count > 0 {
+				do {
+					let object = try decodeFromTokens(startIndex: 0, tokens: tokens)
+					return (.NoError, object)
+				} catch let error {
+					if let e = error as? CNObjectDecodeError {
+						return (e, nil)
+					} else {
+						fatalError("Invalid error type")
+					}
 				}
-				i = src.index(after: i)
+			} else {
+				return (CNObjectDecodeError.NoError, nil)
+			}
+		case .ParseError(let lineno, let message):
+			return (CNObjectDecodeError.ParseError(lineno, message), nil)
+		}
+	}
+
+	private func decodeFromTokens(startIndex sidx: Int, tokens srctokens: Array<CNToken>) throws -> CNObjectNotation {
+		var label : String?	= nil
+		var idx			= sidx
+
+		/* Decode "(" */
+		if let sym = srctokens[idx].getSymbol() {
+			if sym == "(" {
+				idx += 1
+				try assertEndOfString(index: idx, tokens: srctokens, message: "Terminated by \"(\"")
+			} else {
+				throw parseError(index: idx, tokens: srctokens, message: "\"(\" is expected but \(sym) is given")
+			}
+		} else {
+			throw parseError(index: idx, tokens: srctokens, message: "\"(\" is required")
+		}
+
+		/* Decode "label:" */
+		label = getLabel(index: &idx, tokens: srctokens)
+		try assertEndOfString(index: idx, tokens: srctokens, message: "Terminated by label")
+
+		/* Get class */
+		var result: CNObjectNotation
+		if let typestr = srctokens[idx].getString() {
+			idx += 1
+			try assertEndOfString(index: idx, tokens: srctokens, message: "Primitive or collection value is required")
+
+			switch typestr {
+			case "Bool":	let value  = try decodeBoolValue(index: &idx, tokens: srctokens)
+					result     = CNObjectNotation(label: label, primitiveValue: value)
+			case "Int":	let value  = try decodeIntValue(index: &idx, tokens: srctokens)
+					result     = CNObjectNotation(label: label, primitiveValue: value)
+			case "UInt":	let value  = try decodeUIntValue(index: &idx, tokens: srctokens)
+					result     = CNObjectNotation(label: label, primitiveValue: value)
+			case "Double",
+			     "Float":	let value  = try decodeDoubleValue(index: &idx, tokens: srctokens)
+					result     = CNObjectNotation(label: label, primitiveValue: value)
+			case "String":	let value  = try decodeStringValue(index: &idx, tokens: srctokens)
+					result     = CNObjectNotation(label: label, primitiveValue: value)
+			default:	let values = try decodeCollectionValues(index: &idx, tokens: srctokens)
+					result	   = CNObjectNotation(label: label, className: typestr, objectValues: values)
+			}
+		} else {
+			throw parseError(index: idx, tokens: srctokens, message: "Class name is required")
+		}
+
+		if let sym = srctokens[idx].getSymbol() {
+			if sym == "(" {
+				idx += 1
+				return result
+			}
+		}
+		throw parseError(index: idx, tokens: srctokens, message: "\")\" is required")
+	}
+
+	private func getLabel(index idx: inout Int, tokens srctokens: Array<CNToken>) -> String? {
+		if idx+1 < srctokens.count {
+			if let labstr = srctokens[idx].getString() {
+				if let labsym = srctokens[idx+1].getSymbol() {
+					if labsym == ":" {
+						idx += 2
+						return labstr
+					}
+				}
+			}
+		}
+		return nil
+	}
+
+	private func decodeBoolValue(index idx: inout Int, tokens srctokens: Array<CNToken>) throws -> CNValue {
+		if let ident = srctokens[idx].getIdentifier() {
+			if ident == "true" {
+				idx += 1
+				return CNValue.BooleanValue(value: true)
+			} else if ident == "false" {
+				idx += 1
+				return CNValue.BooleanValue(value: false)
+			}
+		}
+		throw parseError(index: idx, tokens: srctokens, message: "Boolean value (true or false) is required")
+	}
+
+	private func decodeIntValue(index idx: inout Int, tokens srctokens: Array<CNToken>) throws -> CNValue {
+		var isnegative = false
+		if let sym = srctokens[idx].getSymbol() {
+			switch sym {
+			case "+": isnegative = false
+			case "-": isnegative = true
+			default:
+				throw parseError(index: idx, tokens: srctokens, message: "Unexpected symbol \(sym)")
+			}
+			idx += 1
+			try assertEndOfString(index: idx, tokens: srctokens, message: "Integer value is required")
+		}
+		if let value = srctokens[idx].getInteger() {
+			if isnegative {
+				idx += 1
+				return CNValue.IntValue(value: -Int(value))
+			} else {
+				idx += 1
+				return CNValue.UIntValue(value: value)
+			}
+		} else {
+			throw parseError(index: idx, tokens: srctokens, message: "Integer value required")
+		}
+	}
+
+	private func decodeUIntValue(index idx: inout Int, tokens srctokens: Array<CNToken>) throws -> CNValue {
+		if let sym = srctokens[idx].getSymbol() {
+			switch sym {
+			case "+":
+				break
+			default:
+				let lineno = srctokens[idx].lineNo
+				throw CNObjectDecodeError.ParseError(lineno, "Unexpected symbol \(sym)")
+			}
+			idx += 1
+			try assertEndOfString(index: idx, tokens: srctokens, message: "Integer value is required")
+		}
+		if let value = srctokens[idx].getInteger() {
+			idx += 1
+			return CNValue.UIntValue(value: value)
+		} else {
+			let lineno = srctokens[idx].lineNo
+			throw CNObjectDecodeError.ParseError(lineno, "Integer value is required")
+		}
+	}
+
+	private func decodeDoubleValue(index idx: inout Int, tokens srctokens: Array<CNToken>) throws -> CNValue {
+		var isnegative = false
+		if let sym = srctokens[idx].getSymbol() {
+			switch sym {
+			case "+": isnegative = false
+			case "-": isnegative = true
+			default:
+				throw parseError(index: idx, tokens: srctokens, message: "Unexpected symbol \(sym)")
+			}
+			idx += 1
+			try assertEndOfString(index: idx, tokens: srctokens, message: "Float value is required")
+		}
+		if let value = srctokens[idx].getFloat() {
+			if isnegative {
+				idx += 1
+				return CNValue.DoubleValue(value: -value)
+			} else {
+				idx += 1
+				return CNValue.DoubleValue(value: value)
+			}
+		} else {
+			throw parseError(index: idx, tokens: srctokens, message: "Float value is required")
+		}
+	}
+
+	private func decodeStringValue(index idx: inout Int, tokens srctokens: Array<CNToken>) throws-> CNValue {
+		var hasres: Bool = false
+		var resstr: String = ""
+		while idx < srctokens.count {
+			if let str = srctokens[idx].getString() {
+				resstr += str
+				idx += 1
+				hasres = true
 			} else {
 				break
 			}
 		}
-		return (i..<eidx, lno)
+		if hasres {
+			return CNValue.StringValue(value: resstr)
+		} else {
+			throw parseError(index: idx, tokens: srctokens, message: "String value is required")
+		}
 	}
 
-	private static func matchChar(sourceString srcstr: String, sourceRange range: Range<String.Index>, matchingFunc matchfunc: (_ c: Character) -> Bool) -> (Bool, Range<String.Index>) {
-		var matched = false
-		var sidx    = range.lowerBound
-		let eidx    = range.upperBound
-		if sidx < eidx {
-			if matchfunc(srcstr[sidx]) {
-				matched = true
-				sidx    = srcstr.index(after: sidx)
+	private func decodeCollectionValues(index idx: inout Int, tokens srctokens: Array<CNToken>) throws-> Array<CNObjectNotation> {
+		var results: Array<CNObjectNotation> = []
+
+		let count = srctokens.count
+		while idx < count {
+			if let sym = srctokens[idx].getSymbol() {
+				if sym == "(" {
+					let notation = try decodeFromTokens(startIndex: idx, tokens: srctokens)
+					results.append(notation)
+				} else {
+					break
+				}
+			} else {
+				break
 			}
 		}
-		return (matched, sidx..<eidx)
+		return results
+	}
+
+	private func parseError(index idx: Int, tokens srctokens: Array<CNToken>, message srcmsg: String) -> CNObjectDecodeError {
+		let count = srctokens.count
+		var lineno : Int
+		if count > 0 {
+			let nidx = min(idx, count-1)
+			lineno = srctokens[nidx].lineNo
+		} else {
+			lineno = 1
+		}
+		return CNObjectDecodeError.ParseError(lineno, srcmsg)
+	}
+
+	private func assertEndOfString(index idx: Int, tokens srctokens: Array<CNToken>, message srcmsg: String) throws {
+		if !(idx < srctokens.count){
+			throw parseError(index: idx, tokens: srctokens, message: srcmsg)
+		}
 	}
 }
-*/

@@ -66,26 +66,26 @@ public enum CNValue: Hashable, CustomStringConvertible
 		switch self {
 		case .BooleanValue(let value):
 			if value {
-				result = 0x10000000
+				result = 0x01000000
 			} else {
-				result = 0x10000001
+				result = 0x01000001
 			}
 		case .IntValue(let value):
-			result = Int(0x20000000) | Int(value)
+			result = Int(0x02000000) | Int(value)
 		case .UIntValue(let value):
-			result = Int(0x30000000) | Int(value)
+			result = Int(0x03000000) | Int(value)
 		case .FloatValue(let value):
-			result = Int(0x40000000) | Int(value * 100.0)
+			result = Int(0x04000000) | Int(value * 100.0)
 		case .DoubleValue(let value):
-			result = Int(0x50000000) | Int(value * 100.0)
+			result = Int(0x05000000) | Int(value * 100.0)
 		case .StringValue(let value):
-			result = Int(0x60000000) | value.hash
+			result = Int(0x06000000) | value.hash
 		case .ArrayValue(let value):
-			result = Int(0x70000000) | value.count
+			result = Int(0x07000000) | value.count
 		case .SetValue(let value):
-			result = Int(0x80000000) | value.count
+			result = Int(0x08000000) | value.count
 		case .DictionaryValue(let value):
-			result = Int(0x90000000) | value.count
+			result = Int(0x09000000) | value.count
 		}
 		return result
 	}

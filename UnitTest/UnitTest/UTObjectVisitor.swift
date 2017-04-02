@@ -49,7 +49,10 @@ class UTVisitor : CNObjectVisitor
 		print("visit(array: \(a.description))")
 	}
 	public override func visit(object o: AnyObject){
-		let type = o.className
-		print("visit(object: \(type):\(o))")
+		if let type = o.className as NSString? {
+			print("visit(object: \(type.description):\(o))")
+		} else {
+			print("")
+		}
 	}
 }

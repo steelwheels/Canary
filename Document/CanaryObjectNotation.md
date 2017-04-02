@@ -2,47 +2,69 @@ Canary Object Notation
 ======================
 
 # Introduction
-The *Canary Object Notation* defines the text format to describe Swift object.
+The *Canary Object Notation* defines the text format to describe object.
 
-# Basic Notation
-## Syntax
-`(label: class values)`
-- `label` : Member name in the parent Object
-- `class` : Name of class of the Object
-- `values` : The value of the object. There are 2 kind of values
-  + Primitive value: Immediate values
-  + Collection value: Some objects which is contained in the object.
+# Syntax
+## Basic rule
+`identifier: type value`
+- `identifier` : Name of the object.
+- `type`: Data type of object. The declaration of type is optional. When there are no type declaration, the type will be estimated by the value. For example `a: (Int) -1` and `a: -1` will have same type `Int`.
+- `values` : Value of the object. There are 2 kind of object:
+  * Primitive value: Single immediate value
+  * Collection value: Set, Array and Dictionary
 
-## Primitive Object
+### examples
 ````
-    (Bool true)
-    (Int -1234)
-    (UInt 0xabcd)
-    (Float -0.1234)
-    (String "a" "b" "c")
+pi: 3.14
+pi: Double 3.14
+bounds: Size {width:10.0, height:20.0}
 ````
 
-## Collection object
+## Identifier
+The identifier is started by alphabet. The alphabet, underscore (' ') and digit (0-9)
+will follow it.
+
+## Primitive Value
+### Boolean value
+`true`, `false`
+### Integer value, Unsigned integer value
+`0`, `-1`, `+3`, `0x123`
+### Floating point value
+`0.0`, `-0.123`, `+1.0`
+### String value
+``"a"``, ``"Hello, word"``, `"\\\"\n"`
+
+The sequence of 2 or more strings will be concatenated and treated as a single string.
+
+## Collection value
+### Array, Set value
+The array and set contains same typed objects.
 ````
-    (Array (Int 0)(Int 1)(Int 2))
-    (Set (Int 0)(Int 1)(Int 2))
-    (Dictionary
-      (member_a: Int 0)
-      (member_b: Int 1)
-    )
+[1, 2, 3]
+[{x:0.0, y:1.0}, {x:2.0, y:3.0}]
+Array [] // Empty Array
+Set [1,2,3]
 ````
 
-## Class object
-The *Class object* resembles to *Dictionary*. But the class object contains predefined members to present class name, properties and super class of it.
+If you want to define the set of data, give data type like `a: Set [1,2,3]`. If the type is not given the value will have array type.
+
+### Dictionary value
+The identifier of the object will be used as the key of the dictionary which contains it.
 ````
-    (Class
-      (name:  String "class-name")
-      (super: Class
-        (super_member_a: Int 0)
-        (super_member_b: String "b")
-      )
-      (property: Dictionary
-        ...
-      )
-    )  
+{
+  member0 : "0"
+  member1 : {
+    member1a: 123.4
+    member1b: "Hello"
+  }
+}
+````
+The data type is `Dictionary`.
+
+### Class object
+The *Class object* is similar to dictionary value. But the type declaration (It can not be `Dictionary`) will be required.
+````
+    done_button: Button {
+      label: "Press me"
+    }
 ````

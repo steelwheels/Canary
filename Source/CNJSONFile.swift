@@ -13,7 +13,7 @@ public class CNJSONFile {
 			var result : Dictionary<String, AnyObject>? = nil
 			var error : NSError? = nil
 			let datap : NSData?  = NSData(contentsOf: url)
-			if let data = datap as? Data {
+			if let data = datap as Data? {
 				let json = try JSONSerialization.jsonObject(with: data, options: [])
 				if let dict = json as? Dictionary<String, AnyObject> {
 					result = dict

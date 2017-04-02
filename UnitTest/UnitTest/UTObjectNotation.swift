@@ -22,5 +22,5 @@ public func UTObjectNotation() -> Bool
 
 private func encode(object: CNObjectNotation)
 {
-	print(CNObjectCoder.encode(notation: object))
+	print(CNEncodeObjectNotation(notation: object))
 }

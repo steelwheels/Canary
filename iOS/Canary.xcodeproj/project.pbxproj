@@ -23,11 +23,16 @@
 		05269DFF1D9146920075A14C /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEA1D9146920075A14C /* CNObjectVisitor.swift */; };
 		05269E001D9146920075A14C /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEB1D9146920075A14C /* CNOrderedList.swift */; };
 		05269E011D9146920075A14C /* CNRedirectConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEC1D9146920075A14C /* CNRedirectConsole.swift */; };
-		05269E021D9146920075A14C /* CNSerializerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DED1D9146920075A14C /* CNSerializerProtocol.swift */; };
 		05269E031D9146920075A14C /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEE1D9146920075A14C /* CNState.swift */; };
 		05269E041D9146920075A14C /* CNStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEF1D9146920075A14C /* CNStateObserver.swift */; };
 		05269E051D9146920075A14C /* CNTextConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DF01D9146920075A14C /* CNTextConsole.swift */; };
 		05269E061D9146920075A14C /* CNTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DF11D9146920075A14C /* CNTristate.swift */; };
+		05CD9B361E876131000A60F7 /* CNCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B351E876131000A60F7 /* CNCharacter.swift */; };
+		05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B381E876174000A60F7 /* CNObjectCoder.swift */; };
+		05CD9B3B1E876174000A60F7 /* CNObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B391E876174000A60F7 /* CNObjectNotation.swift */; };
+		05CD9B3E1E876187000A60F7 /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B3C1E876187000A60F7 /* CNValue.swift */; };
+		05CD9B3F1E876187000A60F7 /* CNValueCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B3D1E876187000A60F7 /* CNValueCoder.swift */; };
+		05CD9B411E876192000A60F7 /* CNToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B401E876192000A60F7 /* CNToken.swift */; };
 		05E7AB871D9145D300D29BF3 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E7AB851D9145D300D29BF3 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -58,12 +63,17 @@
 		05269DEA1D9146920075A14C /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
 		05269DEB1D9146920075A14C /* CNOrderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOrderedList.swift; sourceTree = "<group>"; };
 		05269DEC1D9146920075A14C /* CNRedirectConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRedirectConsole.swift; sourceTree = "<group>"; };
-		05269DED1D9146920075A14C /* CNSerializerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNSerializerProtocol.swift; sourceTree = "<group>"; };
 		05269DEE1D9146920075A14C /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
 		05269DEF1D9146920075A14C /* CNStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStateObserver.swift; sourceTree = "<group>"; };
 		05269DF01D9146920075A14C /* CNTextConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextConsole.swift; sourceTree = "<group>"; };
 		05269DF11D9146920075A14C /* CNTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTristate.swift; sourceTree = "<group>"; };
 		05AE7F4D1D9155FA009E781D /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
+		05CD9B351E876131000A60F7 /* CNCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCharacter.swift; sourceTree = "<group>"; };
+		05CD9B381E876174000A60F7 /* CNObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectCoder.swift; sourceTree = "<group>"; };
+		05CD9B391E876174000A60F7 /* CNObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectNotation.swift; sourceTree = "<group>"; };
+		05CD9B3C1E876187000A60F7 /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
+		05CD9B3D1E876187000A60F7 /* CNValueCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueCoder.swift; sourceTree = "<group>"; };
+		05CD9B401E876192000A60F7 /* CNToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNToken.swift; sourceTree = "<group>"; };
 		05E7AB821D9145D300D29BF3 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7AB851D9145D300D29BF3 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		05E7AB861D9145D300D29BF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +101,7 @@
 				05269E0A1D9147080075A14C /* File */,
 				05269E0B1D9147320075A14C /* Terminal */,
 				05269E0C1D9147520075A14C /* State */,
+				05CD9B371E87615A000A60F7 /* Value */,
 			);
 			name = Source;
 			path = ../Source;
@@ -99,7 +110,6 @@
 		05269DDC1D9146800075A14C /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				05269DED1D9146920075A14C /* CNSerializerProtocol.swift */,
 				05269DEA1D9146920075A14C /* CNObjectVisitor.swift */,
 			);
 			name = Object;
@@ -108,6 +118,8 @@
 		05269E071D9146B30075A14C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				05CD9B401E876192000A60F7 /* CNToken.swift */,
+				05CD9B351E876131000A60F7 /* CNCharacter.swift */,
 				05269DE91D9146920075A14C /* CNNumberExtension.swift */,
 				05269DE81D9146920075A14C /* CNMath.swift */,
 			);
@@ -164,6 +176,17 @@
 				05269DF11D9146920075A14C /* CNTristate.swift */,
 			);
 			name = State;
+			sourceTree = "<group>";
+		};
+		05CD9B371E87615A000A60F7 /* Value */ = {
+			isa = PBXGroup;
+			children = (
+				05CD9B3C1E876187000A60F7 /* CNValue.swift */,
+				05CD9B3D1E876187000A60F7 /* CNValueCoder.swift */,
+				05CD9B381E876174000A60F7 /* CNObjectCoder.swift */,
+				05CD9B391E876174000A60F7 /* CNObjectNotation.swift */,
+			);
+			name = Value;
 			sourceTree = "<group>";
 		};
 		05E7AB781D9145D200D29BF3 = {
@@ -299,24 +322,29 @@
 			files = (
 				05269DFC1D9146920075A14C /* CNListItemPoll.swift in Sources */,
 				05269DF61D9146920075A14C /* CNErrorExtension.swift in Sources */,
-				05269E021D9146920075A14C /* CNSerializerProtocol.swift in Sources */,
 				05269E051D9146920075A14C /* CNTextConsole.swift in Sources */,
 				05269E061D9146920075A14C /* CNTristate.swift in Sources */,
 				05269E001D9146920075A14C /* CNOrderedList.swift in Sources */,
 				05269DFB1D9146920075A14C /* CNListItem.swift in Sources */,
 				05269DF71D9146920075A14C /* CNFilePath.swift in Sources */,
 				05269DFF1D9146920075A14C /* CNObjectVisitor.swift in Sources */,
+				05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */,
 				05269DF21D9146920075A14C /* CNBookmark.swift in Sources */,
 				05269E031D9146920075A14C /* CNState.swift in Sources */,
+				05CD9B3F1E876187000A60F7 /* CNValueCoder.swift in Sources */,
 				05269DF31D9146920075A14C /* CNCombinedState.swift in Sources */,
 				05269E011D9146920075A14C /* CNRedirectConsole.swift in Sources */,
+				05CD9B411E876192000A60F7 /* CNToken.swift in Sources */,
 				05269DFE1D9146920075A14C /* CNNumberExtension.swift in Sources */,
+				05CD9B3E1E876187000A60F7 /* CNValue.swift in Sources */,
 				05269DF81D9146920075A14C /* CNFileURL.swift in Sources */,
 				05269DF41D9146920075A14C /* CNConsole.swift in Sources */,
 				05269DF91D9146920075A14C /* CNJSONFile.swift in Sources */,
 				05269DFA1D9146920075A14C /* CNList.swift in Sources */,
 				05269DFD1D9146920075A14C /* CNMath.swift in Sources */,
 				05269E041D9146920075A14C /* CNStateObserver.swift in Sources */,
+				05CD9B3B1E876174000A60F7 /* CNObjectNotation.swift in Sources */,
+				05CD9B361E876131000A60F7 /* CNCharacter.swift in Sources */,
 				05269DF51D9146920075A14C /* CNConsoleText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -39,7 +39,7 @@ private func testToken(text txt: String, expectedResult expres: Bool, expectedNu
 		print("result -> ")
 		var i: Int = 0
 		for token in tokens {
-			print("  \(i): \(token.description())")
+			print("  \(i): \(token.description)")
 			i += 1
 		}
 		realres = (tokens.count == expnum)
