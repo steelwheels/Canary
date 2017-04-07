@@ -11,14 +11,14 @@ The *Canary Object Notation* defines the text format to describe object.
 - `values` : Value of the object. There are 3 kind of object:
   * Primitive value: Single immediate value
   * Collection value: Set, Array and Dictionary
-  * Raw text value: The raw text string. The canary object parser does not check the context.
+  * Script value: The text which contains script. The canary object notation does not define it's context.
 
 #### examples
 ````
 pi: 3.14
 pi: Float 3.14
 bounds: Size {width:10.0, height:20.0}
-message: Script %{ echo "hello, world !!" %}
+message: Void %{ echo "hello, world !!" %}
 ````
 
 ### Identifier
@@ -70,11 +70,14 @@ The *Class object* is similar to dictionary value. But the type declaration (It 
     }
 ````
 
-### Raw Text Value
-#### Script
-The context of the script is *not* parsed by the Caray Object Notation decoder. The script is referred by the other engines which execute the script. The Canary Object Notation specification *does not* define the kind of engines.
+### Script Value
+The context of the script is *not* checked by the Caray Object Notation decoder. The application uses this format define the context. The type of script value presents the type of return value of execution of the script.
 ````
-    print_initial_message: Script %{
+    width: Int %{
+        return a + b
+    }%
+
+    print_initial_message: Void %{
       echo "hello, world !!"
     }%
 ````
