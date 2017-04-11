@@ -3,14 +3,18 @@
 ## Introduction
 The *Canary Object Notation* defines the text format to describe object.
 
+## Copyright
+Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This document distributed under
+[GNU Free Documentation License](https://www.gnu.org/licenses/fdl-1.3.en.html).
+
 ## Syntax
 ### Basic rule
 `identifier: type value`
 - `identifier` : Name of the object.
 - `type`: Data type of object. This is optional. When there are no type declaration, the type will be estimated by the value.
 - `values` : Value of the object. There are 3 kind of object:
-  * Primitive value: Single immediate value
-  * Collection value: Set, Array and Dictionary
+  * Primitive value: An immediate value
+  * Collection value: Set, Array and Structure
   * Script value: The text which contains script. The canary object notation does not define it's context.
 
 #### examples
@@ -25,21 +29,39 @@ message: Void %{ echo "hello, world !!" %}
 The identifier is started by alphabet. The alphabet, underscore (' ') and digit (0-9)
 will follow it.
 
-### Primitive Value
-#### Boolean value
-`true`, `false`
-#### Integer value, Unsigned integer value
-`0`, `-1`, `+3`, `0x123`
-#### Floating point value
-`0.0`, `-0.123`, `+1.0`
-#### String value
-``"a"``, ``"Hello, word"``, `"\\\"\n"`
+### Type
+#### Primitive Type
+* `Bool`: Boolean
+* `Int`: 32bit or 64bit signed integer
+* `UInt`: 32bit or 64bit unsigned integer
+* `Float`: Floating point number
+* `String`: String
 
+#### Collection type
+* `Array`:
+* `Set`:
+* `Struct`:
+
+### Value
+#### Primitive Value
+##### Boolean value
+`true`, `false`
+
+##### Signed and unsigned integer value
+`0`, `-1`, `+3`, `0x123`
+
+##### Floating point value
+`0.0`, `-0.123`, `+1.0`
+
+##### String value
 The sequence of 2 or more strings will be concatenated and treated as a single string.
 
-### Collection value
-#### Array, Set value
+``"a"``, ``"Hello, word"``, `"\\\"\n"`.
+
+#### Collection value
+##### Array, Set value:
 The array and set contains same typed objects.
+Each elements are separated by comma ','.
 ````
 [1, 2, 3]
 [{x:0.0, y:1.0}, {x:2.0, y:3.0}]
@@ -49,28 +71,34 @@ Set [1,2,3]
 
 If you want to define the set of data, give data type like `a: Set [1,2,3]`. If the type is not given the value will have array type.
 
-#### Dictionary value
-The identifier of the object will be used as the key of the dictionary which contains it.
+##### Structure value
+Presents the hierarchical data structure.
 ````
 {
   member0 : "0"
   member1 : {
-    member1a: 123.4
-    member1b: "Hello"
+    member1_a: 123.4
+    member1_b: "Hello"
   }
 }
 ````
-The data type is `Dictionary`.
-
-#### Class object
-The *Class object* is similar to dictionary value. But the type declaration (It can not be `Dictionary`) will be required.
+The path expression is used to access members in the data structure.
 ````
-    done_button: Button {
-      label: "Press me"
-    }
+member0.member1_a
 ````
 
-### Script Value
+##### Class object
+The *Class object* is similar to structure value. But it is mapped to the built-in or user defined class.
+````
+done_button: Button {
+  label: "Press me"
+  button_pressed: %{
+    app.exit(0)
+  }%
+}
+````
+
+#### Script Value
 The context of the script is *not* checked by the Caray Object Notation decoder. The application uses this format define the context. The type of script value presents the type of return value of execution of the script.
 ````
     width: Int %{
@@ -81,3 +109,4 @@ The context of the script is *not* checked by the Caray Object Notation decoder.
       echo "hello, world !!"
     }%
 ````
+The script can not contain `}%` except the text which is enclosed by '"'.

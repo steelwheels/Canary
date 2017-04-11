@@ -8,6 +8,17 @@
 import Foundation
 import CoreGraphics
 
+/// Store multi kind primitive values
+///
+/// - BooleanValue: Boolean value
+/// - IntValue: Signed integer value
+/// - UIntValue: Unsigned integer value
+/// - FloatValue: Floating point value
+/// - DoubleValue: Double precision floating point value
+/// - StringValue: String value
+/// - ArrayValue: Array of CNValue value
+/// - SetValue: Set of CNValue value
+/// - DictionaryValue: Dictionary of CNValue value
 public enum CNValue: Hashable, CustomStringConvertible
 {
 	case BooleanValue(value: Bool)
@@ -20,6 +31,88 @@ public enum CNValue: Hashable, CustomStringConvertible
 	case SetValue(value: Set<CNValue>)
 	case DictionaryValue(value: Dictionary<String, CNValue>)
 
+	public var booleanValue: Bool {
+		switch self {
+		case .BooleanValue(let v):
+			return v
+		default:
+			fatalError("Does not have booleanValue")
+		}
+	}
+
+	public var intValue: Int {
+		switch self {
+		case .IntValue(let v):
+			return v
+		default:
+			fatalError("Does not have intValue")
+		}
+	}
+
+	public var uIntValue: UInt {
+		switch self {
+		case .UIntValue(let v):
+			return v
+		default:
+			fatalError("Does not have uIntValue")
+		}
+	}
+
+	public var floatValue: CGFloat {
+		switch self {
+		case .FloatValue(let v):
+			return v
+		default:
+			fatalError("Does not have floatValue")
+		}
+	}
+
+	public var doubleValue: Double {
+		switch self {
+		case .DoubleValue(let v):
+			return v
+		default:
+			fatalError("Does not have doubleValue")
+		}
+	}
+
+	public var stringValue: String {
+		switch self {
+		case .StringValue(let v):
+			return v
+		default:
+			fatalError("Does not have stringValue")
+		}
+	}
+
+	public var arrayValue: Array<CNValue> {
+		switch self {
+		case .ArrayValue(let v):
+			return v
+		default:
+			fatalError("Does not have arrayValue")
+		}
+	}
+
+	public var setValue: Set<CNValue> {
+		switch self {
+		case .SetValue(let v):
+			return v
+		default:
+			fatalError("Does not have setValue")
+		}
+	}
+
+	public var dictionaryValue: Dictionary<String, CNValue> {
+		switch self {
+		case .DictionaryValue(let v):
+			return v
+		default:
+			fatalError("Does not have dictionaryValue")
+		}
+	}
+
+	/// String to describe the context
 	public var description: String {
 		let desc: String
 		switch self {
