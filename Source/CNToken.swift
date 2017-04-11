@@ -13,6 +13,7 @@ public enum CNTokenType {
 	case IntegerToken(UInt)
 	case FloatToken(Double)
 	case StringToken(String)
+	case TextToken(String)
 
 	public func description() -> String {
 		let result: String
@@ -27,6 +28,8 @@ public enum CNTokenType {
 			result = "FloatToken(\(val))"
 		case .StringToken(let val):
 			result = "StringToken(\(val))"
+		case .TextToken(let val):
+			result = "TextToken(\(val))"
 		}
 		return result
 	}
@@ -98,6 +101,17 @@ public struct CNToken {
 		let result: String?
 		switch self.type {
 		case .StringToken(let s):
+			result = s
+		default:
+			result = nil
+		}
+		return result
+	}
+
+	public func getText() -> String? {
+		let result: String?
+		switch self.type {
+		case .TextToken(let s):
 			result = s
 		default:
 			result = nil
@@ -196,6 +210,20 @@ private class CNTokenizer
 				return getIdentifierTokenFromString(range: srcrange, string: srcstr)
 			} else if c1 == "\"" {
 				return try getStringTokenFromString(range: srcrange, string: srcstr)
+			} else if c1 == "%" {
+				let (c2p, _) = getChar(range: range1, string: srcstr)
+				if let c2 = c2p {
+					switch c2 {
+					case "{":
+						return try getTextTokenFromString(range: srcrange, string: srcstr)
+					default:
+						let token = CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
+						return (token, range1)
+					}
+				} else {
+					let token = CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
+					return (token, range1)
+				}
 			} else {
 				if c1 == "\n" {
 					mCurrentLine += 1
@@ -347,6 +375,62 @@ private class CNTokenizer
 			}
 		}
 		throw CNTokenizeError.ParseError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
+	}
+
+	private func getTextTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>)
+	{
+		/* Check the source string is started by "%{" */
+		var hasheader = false
+		var range0: Range<String.Index> = srcrange
+		let (c0p, range0a) = getChar(range: srcrange, string: srcstr)
+		if let c0 = c0p {
+			let (c1p, range0b) = getChar(range: range0a, string: srcstr)
+			if let c1 = c1p {
+				hasheader = (c0 == "%") && (c1 == "{")
+				range0    = range0b
+			}
+		}
+		if !hasheader {
+			throw CNTokenizeError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+		}
+
+		var prevchar	: Character = " "
+		var isinstr	: Bool = false
+		let (resstr, resrange) = getAnyTokenFromString(range: range0, string: srcstr, matchingFunc: {
+			(_ c: Character) -> Bool in
+
+			var docont = true
+
+			/* count newlines */
+			if c == "\n" {
+				mCurrentLine += 1
+			}
+			if isinstr {
+				if prevchar != "\\" && c == "\"" {
+					isinstr = false
+				}
+			} else {
+				if prevchar == "}" && c == "%" {
+					docont = false
+				} else if prevchar != "\\" && c == "\"" {
+					isinstr = true
+				}
+			}
+			prevchar = c
+			return docont
+		})
+
+		let (clp, rangel) = getChar(range: resrange, string: srcstr)
+		if let cl = clp {
+			if cl == "%" {
+				/* Delete last "}" */
+				let sidx = resstr.startIndex
+				let eidx = resstr.index(before: resstr.endIndex)
+				let substr = resstr.substring(with: sidx..<eidx)
+				return (CNToken(type: .StringToken(substr), lineNo: mCurrentLine), rangel)
+			}
+		}
+		throw CNTokenizeError.ParseError(mCurrentLine, "Text value is not ended by }% but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,

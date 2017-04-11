@@ -16,15 +16,16 @@ public func UTTokenTest() -> Bool
 	result = result && testToken(text: "0 0xff", expectedResult: true, expectedNum: 2)
 	result = result && testToken(text: "0 0xa 0.123", expectedResult: true, expectedNum: 3)
 	result = result && testToken(text: "321", expectedResult: true, expectedNum: 1)
-	result = result && testToken(text: "-321", expectedResult: true, expectedNum: 1)
+	result = result && testToken(text: "-321", expectedResult: true, expectedNum: 2)
 	result = result && testToken(text: "1 Hello0 2", expectedResult: true, expectedNum: 3)
 	result = result && testToken(text: "\"a\"", expectedResult: true, expectedNum: 1)
-	result = result && testToken(text: "0 \"a\" \"b\" 1", expectedResult: true, expectedNum: 3) // "a", "b" -> "ab"
-	result = result && testToken(text: "0 \"a\" \"b\" \"c\" 1", expectedResult: true, expectedNum: 3) // "a", "b", "c" -> "abc"
+	result = result && testToken(text: "0 \"a\" \"b\" 1", expectedResult: true, expectedNum: 4)
+	result = result && testToken(text: "0 \"a\" \"b\" \"c\" 1", expectedResult: true, expectedNum: 5)
 	result = result && testToken(text: "\"\"", expectedResult: true, expectedNum: 1)
 	result = result && testToken(text: "\"\\\"\"", expectedResult: true, expectedNum: 1)
 	result = result && testToken(text: "\"\\\\\"", expectedResult: true, expectedNum: 1)
 	result = result && testToken(text: "\"hello", expectedResult: false, expectedNum: 1)
+	result = result && testToken(text: "%{ abc }%", expectedResult: true, expectedNum: 1)
 	return true
 }
 
