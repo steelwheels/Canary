@@ -129,11 +129,38 @@ public enum CNValue: Hashable, CustomStringConvertible
 		case .StringValue(let value):
 			desc = "\"\(value)\""
 		case .ArrayValue(let value):
-			desc = "\(value)"
+			var result = "["
+			var is1st  = true
+			for val in value {
+				if !is1st {
+					result += ", "
+				}
+				result += val.description
+				is1st = false
+			}
+			desc = result + "]"
 		case .SetValue(let value):
-			desc = "\(value)"
+			var result = "["
+			var is1st  = true
+			for val in value {
+				if !is1st {
+					result += ", "
+				}
+				result += val.description
+				is1st = false
+			}
+			desc = result + "]"
 		case .DictionaryValue(let value):
-			desc = "\(value)"
+			var result = "["
+			var is1st  = true
+			for (key, val) in value {
+				if !is1st {
+					result += ", "
+				}
+				result += key + ":" + val.description
+				is1st = false
+			}
+			desc = result + "]"
 		}
 		return desc
 	}

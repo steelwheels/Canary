@@ -7,6 +7,55 @@
 
 import Foundation
 
+public enum CNObjectCoderError {
+	case NoError
+	case ParseError(message: String, lineNo: Int)
+}
+
+public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String
+{
+	let encoder = CNEncoder()
+	return encoder.encode(indent: 0, notation: src)
+}
+
+private class CNEncoder
+{
+	public func encode(indent idt: Int, notation src: CNObjectNotation) -> String
+	{
+		let header = src.identifier + ": " + src.type.description + " "
+		let value  = encodeValue(indent: idt, notation: src)
+		return indent2string(indent: idt) + header + value ;
+	}
+
+	private func encodeValue(indent idt: Int, notation src: CNObjectNotation) -> String {
+		var result: String
+		switch src.value {
+		case .PrimitiveValue(let v):
+			result = v.description
+		case .ScriptValue(let script):
+			result = "{\n"
+			result += script + "\n"
+			result += indent2string(indent: idt) + "}"
+		case .StructureValue(let array):
+			result = "{\n"
+			for child in array {
+				result += encode(indent: idt+1, notation: child) + "\n"
+			}
+			result += indent2string(indent: idt) + "}"
+		}
+		return result
+	}
+
+	private func indent2string(indent idt: Int) -> String {
+		var result = ""
+		for _ in 0..<idt {
+			result += "  "
+		}
+		return result ;
+	}
+}
+
+/*
 public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String {
 	let encoder = CNObjectEncoder()
 	return encoder.encodeToString(indent: 0, notation: src)
@@ -289,3 +338,4 @@ private class CNObjectDecoder {
 		}
 	}
 }
+*/
