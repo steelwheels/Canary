@@ -1,10 +1,9 @@
-//
-//  UTList.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/05/28.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTList.swift
+ * @brief	Unit test for CNList class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Canary
 

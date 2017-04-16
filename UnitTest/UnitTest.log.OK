@@ -1,0 +1,179 @@
+Hello, World!
+*** UTCharacter
+test: isSpace( ) == true -> OK
+test: isSpace(a) == false -> OK
+test: isDigit(4) == true -> OK
+test: isDigit(a) == false -> OK
+test: isHex(4) == true -> OK
+test: isHex(a) == true -> OK
+test: isAlphaOrNum(4) == true -> OK
+test: isAlphaOrNum(a) == true -> OK
+test: isAlphaOrNum( ) == false -> OK
+*** UTListTest
+initial state 0 []
+list0: add 1 [0 ]
+list1: init 1 [0 ]
+list1: prepend 2 [1 0 ]
+list1: add 6 [2 3 5 1 0 4 ]
+list0 remove 0 []
+list2 *2 6 [4 6 10 2 0 8 ]
+list3 3 [2 0 4 ]
+list5 11 [10 0 1 11 33 4 5 6 7 8 9 ]
+*** UTNumber
+*** UTNumber: NSNumberKind
+checkNumber: 1 symbol:c real:boolean == expected:boolean
+checkNumber: -1 symbol:c real:int8 == expected:int8
+checkNumber: 1 symbol:s real:int16 == expected:int16
+checkNumber: -1 symbol:s real:int16 == expected:int16
+checkNumber: 1 symbol:i real:int32 == expected:int32
+checkNumber: -1 symbol:i real:int32 == expected:int32
+checkNumber: 1 symbol:q real:int64 == expected:int64
+checkNumber: -1 symbol:q real:int64 == expected:int64
+checkNumber: 1 symbol:q real:int64 == expected:int64
+checkNumber: 1.2 symbol:f real:float == expected:float
+checkNumber: -2.3 symbol:d real:double == expected:double
+*** UTValue
+val0 = Bool:true
+val1 = Int:-123
+val2 = UInt:255
+val3 = Float:0.123
+val4 = Double:-1.23
+val5 = Array:[true, -123]
+val6 = Set:[true, -123]
+val7 = Dictionary:[b:-123, a:true]
+val8 = Dictionary:[b:255, a:-123]
+compare: Bool:true == Bool:true
+compare: Bool:true != Int:-123
+compare: Array:[true, -123] == Array:[true, -123]
+compare: Set:[true, -123] == Set:[true, -123]
+compare: Dictionary:[b:-123, a:true] == Dictionary:[b:-123, a:true]
+compare: Dictionary:[b:-123, a:true] != Dictionary:[b:255, a:-123]
+*** UTURLTest
+srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
+*** UTStateTest
+* Start: testNormalState
+set new value: 1
+Observed state value = 1, factor = 123
+* Done: testNormalState
+* Start: testCombinedState
+set new value: 1
+Observe combined values
+Observed state value = 1
+Observed state value = 10
+set new value: 11
+Observe combined values
+Observed state value = 1
+Observed state value = 11
+* End: testCombinedState
+state = Unknown
+*** UTConsoleTest
+Hello, World
+*** UTObjectVisitor
+visit(number: 1)
+visit(number: 3.14)
+visit(string: String object)
+visit(string: NSString object)
+visit(dictionary: ["b": 1, "a": 0])
+visit(array: [1, 2, 3])
+visit(array: [a, b, c])
+visit(array: [1.1, 2.2, 3.3])
+*** UTMath
+clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
+[UTMath] OK
+*** UTToken
+Source: "()"
+result -> 
+  0: SymbolToken(()
+  1: SymbolToken())
+  => OK
+Source: "0"
+result -> 
+  0: UIntToken(0)
+  => OK
+Source: "0 0xff"
+result -> 
+  0: UIntToken(0)
+  1: UIntToken(255)
+  => OK
+Source: "0 0xa 0.123"
+result -> 
+  0: UIntToken(0)
+  1: UIntToken(10)
+  2: FloatToken(0.123)
+  => OK
+Source: "321"
+result -> 
+  0: UIntToken(321)
+  => OK
+Source: "-321"
+result -> 
+  0: SymbolToken(-)
+  1: UIntToken(321)
+  => OK
+Source: "1 Hello0 2"
+result -> 
+  0: UIntToken(1)
+  1: IdentifierToken(Hello0)
+  2: UIntToken(2)
+  => OK
+Source: ""a""
+result -> 
+  0: StringToken(a)
+  => OK
+Source: "0 "a" "b" 1"
+result -> 
+  0: UIntToken(0)
+  1: StringToken(a)
+  2: StringToken(b)
+  3: UIntToken(1)
+  => OK
+Source: "0 "a" "b" "c" 1"
+result -> 
+  0: UIntToken(0)
+  1: StringToken(a)
+  2: StringToken(b)
+  3: StringToken(c)
+  4: UIntToken(1)
+  => OK
+Source: """"
+result -> 
+  0: StringToken()
+  => OK
+Source: ""\"""
+result -> 
+  0: StringToken(\")
+  => OK
+Source: ""\\""
+result -> 
+  0: StringToken(\\)
+  => OK
+Source: ""hello"
+result -> Error: String value is not ended by " but ""hello" is given at line 1
+  => OK
+Source: "%{ abc }%"
+result -> 
+  0: StringToken( abc )
+  => OK
+*** UTObjectNotation
+obj0: Bool true
+obj1: Float 12.3
+obj2: String "Hello, world!"
+obj3: Script {
+exit(0)
+}
+obj4: ClassA {
+  obj2: String "Hello, world!"
+  obj3: Script {
+exit(0)
+  }
+}
+*** UTObjectCoder
+[Input] ident0: Bool true
+RESULT: <root>:  {
+  ident0: Bool true
+}
+[Input] {ident0: Int 1234}
+RESULT: <root>:  {
+  ident0: UInt 1234
+}
+[SUMMARY] PASSED

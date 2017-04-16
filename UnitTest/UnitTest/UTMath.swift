@@ -1,10 +1,9 @@
-//
-//  UTMath.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/09/10.
-//  Copyright 2016, 2017 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTMath.swift
+ * @brief	Unit test for math functions
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

@@ -14,7 +14,8 @@ Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This do
 - `type`: Data type of object. This is optional. When there are no type declaration, the type will be estimated by the value.
 - `values` : Value of the object. There are 3 kind of object:
   * Primitive value: An immediate value
-  * Collection value: Set, Array and Structure
+  * Collection value: Set, Array
+  * Class value: hierarchical value structure to map with the properties in the class
   * Script value: The text which contains script. The canary object notation does not define it's context.
 
 #### examples
@@ -40,7 +41,12 @@ will follow it.
 #### Collection type
 * `Array`:
 * `Set`:
-* `Struct`:
+
+### Class type
+* *identifier*: The identifier to present the class name. The name is NOT defined in this specification.
+
+### Script type
+* `Script`:
 
 ### Value
 #### Primitive Value
@@ -71,24 +77,8 @@ Set [1,2,3]
 
 If you want to define the set of data, give data type like `a: Set [1,2,3]`. If the type is not given the value will have array type.
 
-##### Structure value
-Presents the hierarchical data structure.
-````
-{
-  member0 : "0"
-  member1 : {
-    member1_a: 123.4
-    member1_b: "Hello"
-  }
-}
-````
-The path expression is used to access members in the data structure.
-````
-member0.member1_a
-````
-
-##### Class object
-The *Class object* is similar to structure value. But it is mapped to the built-in or user defined class.
+#### Class value
+The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.
 ````
 done_button: Button {
   label: "Press me"

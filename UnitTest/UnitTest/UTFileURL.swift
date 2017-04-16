@@ -1,10 +1,9 @@
-//
-//  UTFileURL.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/02/05.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTFileURL.swift
+ * @brief	Unit test for URL class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

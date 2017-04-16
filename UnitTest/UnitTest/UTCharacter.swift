@@ -1,10 +1,9 @@
-//
-//  UTCharacter.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/08/20.
-//  Copyright © 2016, 2017 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTCharacter.swift
+ * @brief	Unit test for Character class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

@@ -1,10 +1,9 @@
-//
-//  UTConsole.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/03/12.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTConsole.swift
+ * @brief	Unit test for CNConsole class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

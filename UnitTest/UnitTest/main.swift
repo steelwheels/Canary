@@ -1,10 +1,9 @@
-//
-//  main.swift
-//  UnitTest
-//
-//  Created by Tomoo Hamada on 2016/08/14.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	main.swift
+ * @brief	Main function for unit tests
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary
@@ -44,8 +43,11 @@ let result9 = UTTokenTest()
 print("*** UTObjectNotation")
 let result10 = UTObjectNotation()
 
+print("*** UTObjectCoder")
+let result11 = UTObjectCoder()
+
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
-	     result10
+	     result10 && result11
 if result {
 	print("[SUMMARY] PASSED")
 	exit(0)

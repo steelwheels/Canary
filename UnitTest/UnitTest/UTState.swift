@@ -1,10 +1,9 @@
-//
-//  UTStateTest.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/02/24.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTState.swift
+ * @brief	Unit test for CNState class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

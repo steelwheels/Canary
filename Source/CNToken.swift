@@ -1,5 +1,5 @@
 /**
- * @file	CNToken.h
+ * @file	CNToken.swift
  * @brief	Define CNToken class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
@@ -10,7 +10,9 @@ import Foundation
 public enum CNTokenType {
 	case SymbolToken(Character)
 	case IdentifierToken(String)
-	case IntegerToken(UInt)
+	case BoolToken(Bool)
+	case UIntToken(UInt)
+	case IntToken(Int)
 	case FloatToken(Double)
 	case StringToken(String)
 	case TextToken(String)
@@ -22,8 +24,12 @@ public enum CNTokenType {
 			result = "SymbolToken(\(val))"
 		case .IdentifierToken(let val):
 			result = "IdentifierToken(\(val))"
-		case .IntegerToken(let val):
-			result = "UnsignedIntegerToken(\(val))"
+		case .BoolToken(let val):
+			result = "BoolToken(\(val))"
+		case .IntToken(let val):
+			result = "IntToken(\(val))"
+		case .UIntToken(let val):
+			result = "UIntToken(\(val))"
 		case .FloatToken(let val):
 			result = "FloatToken(\(val))"
 		case .StringToken(let val):
@@ -75,10 +81,32 @@ public struct CNToken {
 		return result
 	}
 
-	public func getInteger() -> UInt? {
+	public func getBool() -> Bool? {
+		let result: Bool?
+		switch self.type {
+		case .BoolToken(let v):
+			result = v
+		default:
+			result = nil
+		}
+		return result
+	}
+
+	public func getInt() -> Int? {
+		let result: Int?
+		switch self.type {
+		case .IntToken(let v):
+			result = v
+		default:
+			result = nil
+		}
+		return result
+	}
+
+	public func getUInt() -> UInt? {
 		let result: UInt?
 		switch self.type {
-		case .IntegerToken(let v):
+		case .UIntToken(let v):
 			result = v
 		default:
 			result = nil
@@ -120,23 +148,7 @@ public struct CNToken {
 	}
 }
 
-public enum CNTokenizeError: Error {
-	case NoError
-	case ParseError(Int, String)
-
-	public func description() -> String {
-		let result: String
-		switch self {
-		case .NoError:
-			result = "No error"
-		case .ParseError(let line, let message):
-			result = "Error: \(message) at line \(line)"
-		}
-		return result
-	}
-}
-
-public func CNStringToToken(string srcstr: String) -> (CNTokenizeError, Array<CNToken>)
+public func CNStringToToken(string srcstr: String) -> (CNParseError, Array<CNToken>)
 {
 	let tokenizer = CNTokenizer()
 	return tokenizer.tokenize(string: srcstr)
@@ -150,12 +162,12 @@ private class CNTokenizer
 		mCurrentLine = 1
 	}
 
-	public func tokenize(string srcstr: String) -> (CNTokenizeError, Array<CNToken>) {
+	public func tokenize(string srcstr: String) -> (CNParseError, Array<CNToken>) {
 		do {
 			let tokens = try stringToTokens(string: srcstr)
 			return (.NoError, tokens)
 		} catch let error {
-			if let tkerr = error as? CNTokenizeError {
+			if let tkerr = error as? CNParseError {
 				return (tkerr, [])
 			} else {
 				fatalError("Unknown error")
@@ -197,11 +209,11 @@ private class CNTokenizer
 					case "x", "X":
 						return try getHexTokenFromString(range: srcrange, string: srcstr)
 					default:
-						let token = CNToken(type: .IntegerToken(0), lineNo: mCurrentLine)
+						let token = CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
 						return (token, range1)
 					}
 				} else {
-					let token = CNToken(type: .IntegerToken(0), lineNo: mCurrentLine)
+					let token = CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
 					return (token, range1)
 				}
 			} else if c1.isDigit() {
@@ -280,13 +292,13 @@ private class CNTokenizer
 			if let value = Double(resstr) {
 				return (CNToken(type:.FloatToken(value), lineNo: mCurrentLine), resrange)
 			} else {
-				throw CNTokenizeError.ParseError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
+				throw CNParseError.ParseError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
 			}
 		} else {
 			if let value = UInt(resstr) {
-				return (CNToken(type: .IntegerToken(value), lineNo: mCurrentLine), resrange)
+				return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
 			} else {
-				throw CNTokenizeError.ParseError(mCurrentLine, "Integer value is expected but \"\(resstr)\" is given")
+				throw CNParseError.ParseError(mCurrentLine, "Integer value is expected but \"\(resstr)\" is given")
 			}
 		}
 	}
@@ -310,7 +322,7 @@ private class CNTokenizer
 
 		if !hasprefix {
 			let hexstr = srcstr.substring(with: srcrange)
-			throw CNTokenizeError.ParseError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
+			throw CNParseError.ParseError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
 		}
 
 		let (resstr, resrange) = getAnyTokenFromString(range: skippedrange, string: srcstr, matchingFunc: {
@@ -318,9 +330,9 @@ private class CNTokenizer
 			return c.isHex()
 		})
 		if let value = UInt(resstr, radix: 16) {
-			return (CNToken(type: .IntegerToken(value), lineNo: mCurrentLine), resrange)
+			return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
 		} else {
-			throw CNTokenizeError.ParseError(mCurrentLine, "Hex integer value is expected but \"\(resstr)\" is given")
+			throw CNParseError.ParseError(mCurrentLine, "Hex integer value is expected but \"\(resstr)\" is given")
 		}
 	}
 
@@ -342,7 +354,7 @@ private class CNTokenizer
 			}
 		}
 		if !has1stquot {
-			throw CNTokenizeError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -374,7 +386,7 @@ private class CNTokenizer
 				return (CNToken(type: .StringToken(resstr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNTokenizeError.ParseError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.ParseError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getTextTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>)
@@ -391,7 +403,7 @@ private class CNTokenizer
 			}
 		}
 		if !hasheader {
-			throw CNTokenizeError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -430,7 +442,7 @@ private class CNTokenizer
 				return (CNToken(type: .StringToken(substr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNTokenizeError.ParseError(mCurrentLine, "Text value is not ended by }% but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.ParseError(mCurrentLine, "Text value is not ended by }% but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,
@@ -451,123 +463,4 @@ private class CNTokenizer
 		return (result, idx..<eidx)
 	}
 }
-
-/*
-
-private func CNGetHexTokenFromString(range srcrange: Range<String.Index>, string srcstr: String, lineNo lineno: Int) -> (CNTokenizeError, CNToken, Range<String.Index>)
-{
-
-}
-
-private func CNGetIdentifierTokenFromString(range srcrange: Range<String.Index>, string srcstr: String, lineNo lineno: Int) -> (CNTokenizeError, CNToken, Range<String.Index>)
-{
-
-}
-
-private func CNGetStringTokenFromString(range srcrange: Range<String.Index>, string srcstr: String, lineNo lineno: Int) -> (CNTokenizeError, CNToken, Range<String.Index>, Int)
-{
-
-}
-
-
-
-private func CNMergeTokens(source src: Array<CNToken>) -> (CNTokenizeError, Array<CNToken>)
-{
-	let reserror: CNTokenizeError = CNTokenizeError.NoError
-	var resarray: Array<CNToken>  = []
-
-	let srccount = src.count
-	var i: Int   = 0
-	while i < srccount {
-		var donormalcopy = true
-
-		switch src[i].type {
-		case .SymbolToken(let c):
-			switch c {
-			case "+", "-":
-				let j = i + 1
-				if j < srccount {
-					let lineno = src[j].lineNo
-					switch src[j].type {
-					case .UnsignedIntegerToken(let v):
-						let newtoken = CNNegateIntegerToken(sign: c, value: Int(v), lineNo: lineno)
-						resarray.append(newtoken)
-						i += 2
-						donormalcopy = false
-					case .SignedIntegerToken(let v):
-						let newtoken = CNNegateIntegerToken(sign: c, value: v, lineNo: lineno)
-						resarray.append(newtoken)
-						i += 2
-						donormalcopy = false
-					case .FloatToken(let v):
-						let newtoken = CNNegateFloatToken(sign: c, value: v, lineNo: lineno)
-						resarray.append(newtoken)
-						i += 2
-						donormalcopy = false
-					default:
-						break
-					}
-				}
-			default:
-				break
-			}
-		case .IdentifierToken(_):
-			break
-		case .UnsignedIntegerToken(_):
-			break
-		case .SignedIntegerToken(_):
-			break
-		case .FloatToken(_):
-			break
-		case .StringToken(let str0):
-			var catstr   = str0
-			var catcount = 0
-			catloop: for j in i+1..<srccount {
-				switch src[j].type {
-				case .StringToken(let val):
-					catstr   = catstr + val
-					catcount += 1
-				default:
-					break catloop
-				}
-			}
-			if catcount > 0 {
-				let cattoken = CNToken(type: .StringToken(catstr), lineNo: src[i].lineNo)
-				resarray.append(cattoken)
-				i += catcount + 1
-				donormalcopy = false
-			}
-		}
-		if donormalcopy {
-			resarray.append(src[i])
-			i += 1
-		}
-	}
-
-	return (reserror, resarray)
-}
-
-private func CNNegateIntegerToken(sign s:Character, value v: Int, lineNo lineno: Int) -> CNToken
-{
-	let newval: Int
-	switch s {
-	case "-":	newval = -v
-	default:	newval = v
-	}
-	return CNToken(type: .SignedIntegerToken(newval), lineNo: lineno)
-}
-
-private func CNNegateFloatToken(sign s:Character, value v: Double, lineNo lineno: Int) -> CNToken
-{
-	let newval: Double
-	switch s {
-	case "-":	newval = -v
-	default:	newval = v
-	}
-	return CNToken(type: .FloatToken(newval), lineNo: lineno)
-}
-
-
-*/
-
 

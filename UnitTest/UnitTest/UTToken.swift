@@ -1,9 +1,9 @@
-//  UTToken.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/09/10.
-//  Copyright (C) 2016, 2017 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTToken.swift
+ * @brief	Unit test for CNToken class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Foundation
 import Canary

@@ -15,9 +15,10 @@ public class CNObjectNotation
 		case UIntType
 		case FloatType
 		case StringType
+		case ArrayType
+		case SetType
+		case ClassType(name: String?)
 		case ScriptType
-		case StructType
-		case ClassType(name: String)
 
 		public var description: String {
 			var result: String
@@ -27,9 +28,15 @@ public class CNObjectNotation
 			case .UIntType:		result = "UInt"
 			case .FloatType:	result = "Float"
 			case .StringType:	result = "String"
+			case .ArrayType:	result = "Array"
+			case .SetType:		result = "Set"
+			case .ClassType(let name):
+				if let n = name {
+					result = n
+				} else {
+					result = ""
+				}
 			case .ScriptType:	result = "Script"
-			case .StructType:	result = ""
-			case .ClassType(let n):	result = n
 			}
 			return result
 		}
@@ -37,13 +44,20 @@ public class CNObjectNotation
 
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
+		case CollectionValue(value: Array<CNObjectNotation>)
+		case ClassValue(value: Array<CNObjectNotation>)
 		case ScriptValue(value: String)
-		case StructureValue(value: Array<CNObjectNotation>)
 	}
 
 	private var mIdentifier	: String
 	private var mType	: ValueType
 	private var mValue	: ValueObject
+
+	public init(identifier ident: String, type t: ValueType, value v: ValueObject){
+		mIdentifier	= ident
+		mType		= t
+		mValue		= v
+	}
 
 	public init(identifier ident: String, boolValue v: Bool){
 		mIdentifier	= ident
@@ -75,22 +89,28 @@ public class CNObjectNotation
 		mValue		= ValueObject.PrimitiveValue(value: CNValue.StringValue(value: v))
 	}
 
+	public init(identifier ident: String, arrayValue v:Array<CNObjectNotation>){
+		mIdentifier	= ident
+		mType		= .ArrayType
+		mValue		= ValueObject.CollectionValue(value: v)
+	}
+
+	public init(identifier ident: String, setValue v:Array<CNObjectNotation>){
+		mIdentifier	= ident
+		mType		= .SetType
+		mValue		= ValueObject.CollectionValue(value: v)
+	}
+
 	public init(identifier ident: String, scriptValue v: String){
 		mIdentifier	= ident
 		mType		= .ScriptType
 		mValue		= ValueObject.ScriptValue(value: v)
 	}
 
-	public init(identifier ident: String, structValue v: Array<CNObjectNotation>){
-		mIdentifier	= ident
-		mType		= .StructType
-		mValue		= ValueObject.StructureValue(value: v)
-	}
-
-	public init(identifier ident: String, className name: String, structValue v: Array<CNObjectNotation>){
+	public init(identifier ident: String, className name: String?, classValue v: Array<CNObjectNotation>){
 		mIdentifier	= ident
 		mType		= .ClassType(name: name)
-		mValue		= ValueObject.StructureValue(value: v)
+		mValue		= ValueObject.ClassValue(value: v)
 	}
 
 	public var identifier	: String	{ return mIdentifier	}

@@ -1,10 +1,9 @@
-//
-//  UTValue.swift
-//  Canary
-//
-//  Created by Tomoo Hamada on 2017/03/03.
-//  Copyright © 2017年 Steel Wheels Project. All rights reserved.
-//
+/**
+ * @file	UTValue.swift
+ * @brief	Unit test for CNValue class
+ * @par Copyright
+ *   Copyright (C) 2016, 2017 Steel Wheels Project
+ */
 
 import Canary
 
