@@ -32,7 +32,13 @@ private class CNEncoder
 {
 	public func encode(indent idt: Int, notation src: CNObjectNotation) -> String
 	{
-		let header = src.identifier + ": " + src.type.description + " "
+		var typename: String
+		if let name = src.typeName() {
+			typename = name
+		} else {
+			typename = ""
+		}
+		let header = src.identifier + ": " + typename + " "
 		let value  = encodeValue(indent: idt, notation: src)
 		return indent2string(indent: idt) + header + value ;
 	}
@@ -42,12 +48,12 @@ private class CNEncoder
 		switch src.value {
 		case .PrimitiveValue(let v):
 			result = v.description
-		case .CollectionValue(let array):
+		case .ArrayValue(let array), .SetValue(let array):
 			var is1st = true
 			result = "["
 			for v in array {
 				if is1st {
-					result += ", "
+					result += " "
 				}
 				result += encodeValue(indent: 0, notation: v)
 				is1st = false
@@ -57,7 +63,7 @@ private class CNEncoder
 			result = "{\n"
 			result += script + "\n"
 			result += indent2string(indent: idt) + "}"
-		case .ClassValue(let children):
+		case .ClassValue(_, let children):
 			result = "{\n"
 			for child in children {
 				result += encode(indent: idt+1, notation: child) + "\n"
@@ -171,7 +177,9 @@ private class CNDecoder
 		} else {
 			idx2 = idx1
 		}
-		return (CNObjectNotation(identifier: "<root>", className: nil, classValue: result), idx2)
+
+		let valobj = CNObjectNotation.ValueObject.ClassValue(name: nil, value: result)
+		return (CNObjectNotation(identifier: "<root>", value: valobj), idx2)
 	}
 
 	public func decodeObject(tokens src: Array<CNToken>, index idx: Int) throws -> (CNObjectNotation, Int)
@@ -187,13 +195,12 @@ private class CNDecoder
 			throw CNParseError.ParseError(src[idx].lineNo, "\":\" is required after identifier \(identp!)")
 		}
 		/* Get type name */
-		let (typep, idx2) = getIdentifier(tokens: src, index: idx1)
+		let (typestrp, idx2) = getIdentifier(tokens: src, index: idx1)
 		if !(idx2 < src.count) {
 			throw CNParseError.ParseError(src[idx].lineNo, "Object value is not declared")
 		}
 
 		/* Get value */
-		var objtype3	: CNObjectNotation.ValueType
 		var objvalue3	: CNObjectNotation.ValueObject
 		var idx3	: Int
 		switch src[idx2].type {
@@ -201,13 +208,11 @@ private class CNDecoder
 			switch sym {
 			case "[":
 				let (objs, newidx) = try decodeCollectionValue(tokens: src, index: idx2)
-				objtype3  = .ArrayType
-				objvalue3 = CNObjectNotation.ValueObject.CollectionValue(value: objs)
+				objvalue3 = CNObjectNotation.ValueObject.ArrayValue(value: objs)
 				idx3      = newidx
 			case "{":
 				let (objs, newidx) = try decodeClassValue(tokens: src, index: idx2)
-				objtype3  = .ClassType(name: typep)
-				objvalue3 = CNObjectNotation.ValueObject.ClassValue(value: objs)
+				objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typestrp, value: objs)
 				idx3      = newidx
 			default:
 				throw CNParseError.ParseError(src[idx].lineNo, "Unexpected symbol \"\(sym)\"")
@@ -215,33 +220,36 @@ private class CNDecoder
 		case .IdentifierToken(let ident):
 			throw CNParseError.ParseError(src[idx].lineNo, "Unexpected identifier \"\(ident)\"")
 		case .BoolToken(let value):
-			objtype3  = .BoolType
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.BooleanValue(value: value))
 			idx3      = idx2 + 1
 		case .IntToken(let value):
-			objtype3  = .IntType
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.IntValue(value: value))
 			idx3      = idx2 + 1
 		case .UIntToken(let value):
-			objtype3  = .UIntType
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.UIntValue(value: value))
 			idx3      = idx2 + 1
 		case .FloatToken(let value):
-			objtype3  = .FloatType
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.DoubleValue(value: value))
 			idx3      = idx2 + 1
 		case .StringToken(let value):
-			objtype3  = .StringType
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.StringValue(value: value))
 			idx3      = idx2 + 1
 		case .TextToken(let value):
-			objtype3  = .ScriptType
 			objvalue3 = CNObjectNotation.ValueObject.ScriptValue(value: value)
 			idx3      = idx2 + 1
 		}
 
+		/* check type matching */
+		var objvalue4	: CNObjectNotation.ValueObject
+		let idx4	: Int = idx3
+		if let typestr = typestrp {
+			objvalue4 = try cast(source: objvalue3, to: typestr, lineNo: src[idx2].lineNo)
+		} else {
+			objvalue4 = objvalue3
+		}
+		
 		/* allocate object notation */
-		return (CNObjectNotation(identifier: identp!, type: objtype3, value: objvalue3), idx3)
+		return (CNObjectNotation(identifier: identp!, value: objvalue4), idx4)
 	}
 
 	public func decodeCollectionValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNObjectNotation>, Int) {
@@ -300,6 +308,77 @@ private class CNDecoder
 			throw CNParseError.ParseError(src[idx].lineNo, "\"}\" is required")
 		}
 		return (result, idx2)
+	}
+
+	private func cast(source src: CNObjectNotation.ValueObject, to dststr: String, lineNo line: Int) throws -> (CNObjectNotation.ValueObject) {
+		var result: CNObjectNotation.ValueObject? = nil
+		switch dststr {
+		case "Bool":
+			switch src {
+			case .PrimitiveValue(let srcval):
+				switch srcval {
+				case .BooleanValue(_):		result = src
+				default:			break
+				}
+			default:
+				break
+			}
+		case "Int":
+			switch src {
+			case .PrimitiveValue(let srcval):
+				switch srcval {
+				case .IntValue(_):		result = src
+				case .UIntValue(let v):		result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.IntValue(value: Int(v)))
+				case .DoubleValue(let v):	result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.IntValue(value: Int(v)))
+				default:			break
+				}
+			default:
+				break
+			}
+		case "UInt":
+			switch src {
+			case .PrimitiveValue(let srcval):
+				switch srcval {
+				case .IntValue(let v):		result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.UIntValue(value: UInt(v)))
+				case .UIntValue(_):		result = src
+				case .DoubleValue(let v):	result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.UIntValue(value: UInt(v)))
+				default:			break
+				}
+			default:
+				break
+			}
+		case "Double":
+			switch src {
+			case .PrimitiveValue(let srcval):
+				switch srcval {
+				case .IntValue(let v):		result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.DoubleValue(value: Double(v)))
+				case .UIntValue(let v):		result = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.DoubleValue(value: Double(v)))
+				case .DoubleValue(_):		result = src
+				default:			break
+				}
+			default:
+				break
+			}
+		case "Array":
+			switch src {
+			case .ArrayValue(_):			result = src
+			case .SetValue(let v):			result = CNObjectNotation.ValueObject.ArrayValue(value: v)
+			default:				break
+			}
+		case "Set":
+			switch src {
+			case .ArrayValue(let v):		result = CNObjectNotation.ValueObject.SetValue(value: v)
+			case .SetValue(_):			result = src
+			default:				break
+			}
+		default:
+			result = src
+		}
+		if let r = result {
+			return r
+		} else {
+			throw CNParseError.ParseError(line, "Could not cast")
+		}
 	}
 
 	private func getIdentifier(tokens src: Array<CNToken>, index idx: Int) -> (String?, Int) {

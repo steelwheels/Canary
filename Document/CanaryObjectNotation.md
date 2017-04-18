@@ -22,7 +22,7 @@ Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This do
 ````
 pi: 3.14
 pi: Float 3.14
-bounds: Size {width:10.0, height:20.0}
+bounds: Size {width:10.0 height:20.0}
 message: Void %{ echo "hello, world !!" %}
 ````
 
@@ -41,12 +41,6 @@ will follow it.
 #### Collection type
 * `Array`:
 * `Set`:
-
-### Class type
-* *identifier*: The identifier to present the class name. The name is NOT defined in this specification.
-
-### Script type
-* `Script`:
 
 ### Value
 #### Primitive Value
@@ -70,12 +64,12 @@ The array and set contains same typed objects.
 Each elements are separated by comma ','.
 ````
 [1, 2, 3]
-[{x:0.0, y:1.0}, {x:2.0, y:3.0}]
+[{x:0.0 y:1.0} {x:2.0 y:3.0}]
 Array [] // Empty Array
-Set [1,2,3]
+Set [1 2 3]
 ````
 
-If you want to define the set of data, give data type like `a: Set [1,2,3]`. If the type is not given the value will have array type.
+If you want to define the set of data, give data type like `a: Set [1 2 3]`. If the type is not given the value will have array type.
 
 #### Class value
 The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.

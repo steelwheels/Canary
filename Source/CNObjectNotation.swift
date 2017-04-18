@@ -9,111 +9,59 @@ import Foundation
 
 public class CNObjectNotation
 {
-	public enum ValueType {
-		case BoolType
-		case IntType
-		case UIntType
-		case FloatType
-		case StringType
-		case ArrayType
-		case SetType
-		case ClassType(name: String?)
-		case ScriptType
-
-		public var description: String {
-			var result: String
-			switch self {
-			case .BoolType:		result = "Bool"
-			case .IntType:		result = "Int"
-			case .UIntType:		result = "UInt"
-			case .FloatType:	result = "Float"
-			case .StringType:	result = "String"
-			case .ArrayType:	result = "Array"
-			case .SetType:		result = "Set"
-			case .ClassType(let name):
-				if let n = name {
-					result = n
-				} else {
-					result = ""
-				}
-			case .ScriptType:	result = "Script"
-			}
-			return result
-		}
-	}
-
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
-		case CollectionValue(value: Array<CNObjectNotation>)
-		case ClassValue(value: Array<CNObjectNotation>)
+		case ArrayValue(value: Array<CNObjectNotation>)
+		case SetValue(value: Array<CNObjectNotation>)
+		case ClassValue(name: String?, value: Array<CNObjectNotation>)
 		case ScriptValue(value: String)
 	}
 
 	private var mIdentifier	: String
-	private var mType	: ValueType
 	private var mValue	: ValueObject
 
-	public init(identifier ident: String, type t: ValueType, value v: ValueObject){
+	public var identifier	: String	{ return mIdentifier	}
+	public var value	: ValueObject	{ return mValue		}
+
+	public init(identifier ident: String, value v: ValueObject){
 		mIdentifier	= ident
-		mType		= t
 		mValue		= v
 	}
 
-	public init(identifier ident: String, boolValue v: Bool){
+	public init(identifier ident: String, primitiveValue value: CNValue){
 		mIdentifier	= ident
-		mType		= .BoolType
-		mValue		= ValueObject.PrimitiveValue(value: CNValue.BooleanValue(value: v))
+		mValue		= ValueObject.PrimitiveValue(value: value)
 	}
 
-	public init(identifier ident: String, intValue v: Int){
+	public init(identifier ident: String, arrayValue value: Array<CNObjectNotation>){
 		mIdentifier	= ident
-		mType		= .IntType
-		mValue		= ValueObject.PrimitiveValue(value: CNValue.IntValue(value: v))
+		mValue		= ValueObject.ArrayValue(value: value)
 	}
 
-	public init(identifier ident: String, uIntValue v: UInt){
+	public init(identifier ident: String, setValue value: Array<CNObjectNotation>){
 		mIdentifier	= ident
-		mType		= .UIntType
-		mValue		= ValueObject.PrimitiveValue(value: CNValue.UIntValue(value: v))
+		mValue		= ValueObject.SetValue(value: value)
 	}
 
-	public init(identifier ident: String, floatValue v: Double){
+	public init(identifier ident: String, className name: String?, properties prop: Array<CNObjectNotation>){
 		mIdentifier	= ident
-		mType		= .FloatType
-		mValue		= ValueObject.PrimitiveValue(value: CNValue.DoubleValue(value: v))
-	}
-	
-	public init(identifier ident: String, stringValue v: String){
-		mIdentifier	= ident
-		mType		= .StringType
-		mValue		= ValueObject.PrimitiveValue(value: CNValue.StringValue(value: v))
+		mValue		= ValueObject.ClassValue(name: name, value: prop)
 	}
 
-	public init(identifier ident: String, arrayValue v:Array<CNObjectNotation>){
+	public init(identifier ident: String, script scr: String){
 		mIdentifier	= ident
-		mType		= .ArrayType
-		mValue		= ValueObject.CollectionValue(value: v)
+		mValue		= ValueObject.ScriptValue(value: scr)
 	}
 
-	public init(identifier ident: String, setValue v:Array<CNObjectNotation>){
-		mIdentifier	= ident
-		mType		= .SetType
-		mValue		= ValueObject.CollectionValue(value: v)
+	public func typeName() -> String? {
+		var result: String?
+		switch mValue {
+		case .PrimitiveValue(let v):	result = v.typeDescription
+		case .ArrayValue(_):		result = "Array"
+		case .SetValue(_):		result = "Set"
+		case .ClassValue(let name, _):	result = name
+		case .ScriptValue(_):		result = nil
+		}
+		return result
 	}
-
-	public init(identifier ident: String, scriptValue v: String){
-		mIdentifier	= ident
-		mType		= .ScriptType
-		mValue		= ValueObject.ScriptValue(value: v)
-	}
-
-	public init(identifier ident: String, className name: String?, classValue v: Array<CNObjectNotation>){
-		mIdentifier	= ident
-		mType		= .ClassType(name: name)
-		mValue		= ValueObject.ClassValue(value: v)
-	}
-
-	public var identifier	: String	{ return mIdentifier	}
-	public var type		: ValueType	{ return mType		}
-	public var value	: ValueObject	{ return mValue		}
 }
