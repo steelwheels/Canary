@@ -60,9 +60,9 @@ private class CNEncoder
 			}
 			result += "]"
 		case .ScriptValue(let script):
-			result = "{\n"
+			result = "%{\n"
 			result += script + "\n"
-			result += indent2string(indent: idt) + "}"
+			result += indent2string(indent: idt) + "%}"
 		case .ClassValue(_, let children):
 			result = "{\n"
 			for child in children {
@@ -126,7 +126,7 @@ private class CNDecoder
 					result.append(src[idx])
 				}
 				idx += 1
-			case .BoolToken(_), .IntToken(_), .UIntToken(_), .FloatToken(_), .TextToken(_):
+			case .BoolToken(_), .IntToken(_), .UIntToken(_), .DoubleToken(_), .TextToken(_):
 				result.append(src[idx])
 				idx += 1
 			case .StringToken(let str):
@@ -228,7 +228,7 @@ private class CNDecoder
 		case .UIntToken(let value):
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.UIntValue(value: value))
 			idx3      = idx2 + 1
-		case .FloatToken(let value):
+		case .DoubleToken(let value):
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue.DoubleValue(value: value))
 			idx3      = idx2 + 1
 		case .StringToken(let value):

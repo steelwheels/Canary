@@ -13,7 +13,7 @@ public enum CNTokenType {
 	case BoolToken(Bool)
 	case UIntToken(UInt)
 	case IntToken(Int)
-	case FloatToken(Double)
+	case DoubleToken(Double)
 	case StringToken(String)
 	case TextToken(String)
 
@@ -30,8 +30,8 @@ public enum CNTokenType {
 			result = "IntToken(\(val))"
 		case .UIntToken(let val):
 			result = "UIntToken(\(val))"
-		case .FloatToken(let val):
-			result = "FloatToken(\(val))"
+		case .DoubleToken(let val):
+			result = "DoubleToken(\(val))"
 		case .StringToken(let val):
 			result = "StringToken(\(val))"
 		case .TextToken(let val):
@@ -114,10 +114,10 @@ public struct CNToken {
 		return result
 	}
 
-	public func getFloat() -> Double? {
+	public func getDouble() -> Double? {
 		let result: Double?
 		switch self.type {
-		case .FloatToken(let v):
+		case .DoubleToken(let v):
 			result = v
 		default:
 			result = nil
@@ -290,7 +290,7 @@ private class CNTokenizer
 		})
 		if hasperiod {
 			if let value = Double(resstr) {
-				return (CNToken(type:.FloatToken(value), lineNo: mCurrentLine), resrange)
+				return (CNToken(type:.DoubleToken(value), lineNo: mCurrentLine), resrange)
 			} else {
 				throw CNParseError.ParseError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
 			}

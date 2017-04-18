@@ -10,13 +10,17 @@ import Canary
 
 public func UTObjectCoder() -> Bool
 {
-	let result0 = testCoder(text: "ident0: Bool true")
-	let result1 = testCoder(text: "{ident0: Int 1234}")
-	let result2 = testCoder(text:     "{ident0: Int 1234\n"
-					+ " ident1: Float 1.240 \n"
+	let result0 = testCoder(text: "pi: 3.14")
+	let result1 = testCoder(text: "pi: Double 3.14")
+	let result2 = testCoder(text: "pi: Int 3.14")
+	let result3 = testCoder(text: "ident0: Bool true")
+	let result4 = testCoder(text: "{ident0: Int 1234}")
+	let result5 = testCoder(text:     "{ident0: Int 1234\n"
+					+ " ident1: Double 1.240 \n"
 					+ "}")
-	let result3 = testCoder(text: "{ident0: \"hello\"}")
-	let summary = result0 && result1 && result2 && result3
+	let result6 = testCoder(text: "{ident0: \"hello\"}")
+	let summary = result0 && result1 && result2 && result3 && result4
+	  && result5 && result6
 	return summary
 }
 

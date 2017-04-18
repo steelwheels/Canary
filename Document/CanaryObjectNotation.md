@@ -21,7 +21,7 @@ Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This do
 #### examples
 ````
 pi: 3.14
-pi: Float 3.14
+pi: Double 3.14
 bounds: Size {width:10.0 height:20.0}
 message: Void %{ echo "hello, world !!" %}
 ````
@@ -35,7 +35,7 @@ will follow it.
 * `Bool`: Boolean
 * `Int`: 32bit or 64bit signed integer
 * `UInt`: 32bit or 64bit unsigned integer
-* `Float`: Floating point number
+* `Double`:  Double precision floating point number
 * `String`: String
 
 #### Collection type
