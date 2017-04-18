@@ -78,7 +78,7 @@ done_button: Button {
   label: "Press me"
   button_pressed: %{
     app.exit(0)
-  }%
+  %}
 }
 ````
 
@@ -87,10 +87,10 @@ The context of the script is *not* checked by the Caray Object Notation decoder.
 ````
     width: Int %{
         return a + b
-    }%
+    %}
 
     print_initial_message: Void %{
       echo "hello, world !!"
-    }%
+    %}
 ````
-The script can not contain `}%` except the text which is enclosed by '"'.
+The script can not contain `%}` except the text which is enclosed by '"'.

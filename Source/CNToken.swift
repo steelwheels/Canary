@@ -422,7 +422,7 @@ private class CNTokenizer
 					isinstr = false
 				}
 			} else {
-				if prevchar == "}" && c == "%" {
+				if prevchar == "%" && c == "}" {
 					docont = false
 				} else if prevchar != "\\" && c == "\"" {
 					isinstr = true
@@ -434,15 +434,15 @@ private class CNTokenizer
 
 		let (clp, rangel) = getChar(range: resrange, string: srcstr)
 		if let cl = clp {
-			if cl == "%" {
-				/* Delete last "}" */
+			if cl == "}" {
+				/* Delete last "%" */
 				let sidx = resstr.startIndex
 				let eidx = resstr.index(before: resstr.endIndex)
 				let substr = resstr.substring(with: sidx..<eidx)
-				return (CNToken(type: .StringToken(substr), lineNo: mCurrentLine), rangel)
+				return (CNToken(type: .TextToken(substr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNParseError.ParseError(mCurrentLine, "Text value is not ended by }% but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.ParseError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,

@@ -19,8 +19,9 @@ public func UTObjectCoder() -> Bool
 					+ " ident1: Double 1.240 \n"
 					+ "}")
 	let result6 = testCoder(text: "{ident0: \"hello\"}")
+	let result7 = testCoder(text: "command: %{ exit(0) ; %}")
 	let summary = result0 && result1 && result2 && result3 && result4
-	  && result5 && result6
+	  && result5 && result6 && result7
 	return summary
 }
 

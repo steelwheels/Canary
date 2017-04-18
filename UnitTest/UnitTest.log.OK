@@ -99,7 +99,7 @@ Source: "0 0xa 0.123"
 result -> 
   0: UIntToken(0)
   1: UIntToken(10)
-  2: FloatToken(0.123)
+  2: DoubleToken(0.123)
   => OK
 Source: "321"
 result -> 
@@ -150,37 +150,59 @@ result ->
 Source: ""hello"
 result -> Error: String value is not ended by " but ""hello" is given at line 1
   => OK
-Source: "%{ abc }%"
+Source: "%{ abc %}"
 result -> 
-  0: StringToken( abc )
+  0: TextToken( abc )
   => OK
 *** UTObjectNotation
 obj0: Bool true
-obj1: Float 12.3
-obj2: String "Hello, world!"
-obj3: Script {
+obj1: Double 12.3
+obj2: String "Hello, world"
+obj3:  %{
 exit(0)
-}
+%}
 obj4: ClassA {
-  obj2: String "Hello, world!"
-  obj3: Script {
+  obj2: String "Hello, world"
+  obj3:  %{
 exit(0)
-  }
+  %}
 }
 *** UTObjectCoder
+[Input] pi: 3.14
+RESULT: <root>:  {
+  pi: Double 3.14
+}
+[Input] pi: Double 3.14
+RESULT: <root>:  {
+  pi: Double 3.14
+}
+[Input] pi: Int 3.14
+RESULT: <root>:  {
+  pi: Int 3
+}
 [Input] ident0: Bool true
 RESULT: <root>:  {
   ident0: Bool true
 }
 [Input] {ident0: Int 1234}
 RESULT: <root>:  {
-  ident0: UInt 1234
+  ident0: Int 1234
 }
 [Input] {ident0: Int 1234
- ident1: Float 1.240 
+ ident1: Double 1.240 
 }
 RESULT: <root>:  {
-  ident0: UInt 1234
-  ident1: Float 1.24
+  ident0: Int 1234
+  ident1: Double 1.24
+}
+[Input] {ident0: "hello"}
+RESULT: <root>:  {
+  ident0: String "hello"
+}
+[Input] command: %{ exit(0) ; %}
+RESULT: <root>:  {
+  command:  %{
+ exit(0) ; 
+  %}
 }
 [SUMMARY] PASSED
