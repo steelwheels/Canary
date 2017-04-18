@@ -20,8 +20,9 @@ public func UTObjectCoder() -> Bool
 					+ "}")
 	let result6 = testCoder(text: "{ident0: \"hello\"}")
 	let result7 = testCoder(text: "command: %{ exit(0) ; %}")
+	let result8 = testCoder(text: "rect: Size {width:10.0 height:22.2}")
 	let summary = result0 && result1 && result2 && result3 && result4
-	  && result5 && result6 && result7
+	  && result5 && result6 && result7 && result8
 	return summary
 }
 

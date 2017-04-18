@@ -26,6 +26,7 @@ public func UTTokenTest() -> Bool
 	result = result && testToken(text: "\"\\\\\"", expectedResult: true, expectedNum: 1)
 	result = result && testToken(text: "\"hello", expectedResult: false, expectedNum: 1)
 	result = result && testToken(text: "%{ abc %}", expectedResult: true, expectedNum: 1)
+	result = result && testToken(text: "rect: Size {width:10.0 height:22.2}", expectedResult: true, expectedNum: 11)
 	return true
 }
 

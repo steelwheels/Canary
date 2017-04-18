@@ -39,8 +39,6 @@ public enum CNTokenType {
 		}
 		return result
 	}
-
-
 }
 
 public struct CNToken {
@@ -143,6 +141,29 @@ public struct CNToken {
 			result = s
 		default:
 			result = nil
+		}
+		return result
+	}
+
+	public func toString() -> String {
+		let result: String
+		switch self.type {
+		case .SymbolToken(let val):
+			result = "\(val)"
+		case .IdentifierToken(let val):
+			result = "\(val)"
+		case .BoolToken(let val):
+			if val { result = "true" } else { result = "false" }
+		case .IntToken(let val):
+			result = "\(val)"
+		case .UIntToken(let val):
+			result = "\(val)"
+		case .DoubleToken(let val):
+			result = "\(val)"
+		case .StringToken(let val):
+			result = val
+		case .TextToken(let val):
+			result = val
 		}
 		return result
 	}

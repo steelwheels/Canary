@@ -187,7 +187,8 @@ private class CNDecoder
 		/* Get identifier */
 		let (identp, idx0) = getIdentifier(tokens: src, index: idx)
 		if identp == nil {
-			throw CNParseError.ParseError(src[idx].lineNo, "Identifier is required")
+			let str = src[idx].toString()
+			throw CNParseError.ParseError(src[idx].lineNo, "Identifier is required but \"\(str)\" is given")
 		}
 		/* Get ":" */
 		let (hascomma, idx1) = hasSymbol(tokens: src, index: idx0, symbol: ":")
@@ -276,6 +277,15 @@ private class CNDecoder
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
 			idx1   = newidx
+
+			/* If rest token is only "}", breakout this loop */
+			if idx1 + 1 >= src.count {
+				let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
+				if hasrp {
+					break
+				}
+			}
+
 			is1st1 = false
 		}
 		/* get "]" */
@@ -290,7 +300,7 @@ private class CNDecoder
 		var result: Array<CNObjectNotation> = []
 
 		/* get "{" */
-		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "[")
+		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "{")
 		if !haslp {
 			throw CNParseError.ParseError(src[idx].lineNo, "\"{\" is required")
 		}
@@ -301,6 +311,14 @@ private class CNDecoder
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
 			idx1   = newidx
+			
+			/* If rest token is only "}", breakout this loop */
+			if idx1 + 1 >= src.count {
+				let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
+				if hasrp {
+					break
+				}
+			}
 		}
 		/* get "}" */
 		let (hasrp, idx2) = hasSymbol(tokens: src, index: idx1, symbol: "}")

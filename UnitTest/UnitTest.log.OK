@@ -154,6 +154,20 @@ Source: "%{ abc %}"
 result -> 
   0: TextToken( abc )
   => OK
+Source: "rect: Size {width:10.0 height:22.2}"
+result -> 
+  0: IdentifierToken(rect)
+  1: SymbolToken(:)
+  2: IdentifierToken(Size)
+  3: SymbolToken({)
+  4: IdentifierToken(width)
+  5: SymbolToken(:)
+  6: DoubleToken(10.0)
+  7: IdentifierToken(height)
+  8: SymbolToken(:)
+  9: DoubleToken(22.2)
+  10: SymbolToken(})
+  => OK
 *** UTObjectNotation
 obj0: Bool true
 obj1: Double 12.3
@@ -204,5 +218,12 @@ RESULT: <root>:  {
   command:  %{
  exit(0) ; 
   %}
+}
+[Input] rect: Size {width:10.0 height:22.2}
+RESULT: <root>:  {
+  rect: Size {
+    width: Double 10.0
+    height: Double 22.2
+  }
 }
 [SUMMARY] PASSED
