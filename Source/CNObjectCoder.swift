@@ -52,10 +52,10 @@ private class CNEncoder
 			var is1st = true
 			result = "["
 			for v in array {
-				if is1st {
-					result += " "
+				if !is1st {
+					result += ", "
 				}
-				result += encodeValue(indent: 0, notation: v)
+				result += v.description
 				is1st = false
 			}
 			result += "]"
@@ -153,18 +153,11 @@ private class CNDecoder
 		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "{")
 
 		var idx1   : Int = idx0
-		let count  : Int = src.count
-		while idx1 < count {
+		let lastidx      = src.count - 1
+		while idx1 < lastidx {
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
 			idx1 = newidx
-			/* If rest token is only "}", breakout this loop */
-			if idx1 + 1 >= count {
-				let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-				if hasrp {
-					break
-				}
-			}
 		}
 
 		var idx2 : Int
@@ -253,8 +246,8 @@ private class CNDecoder
 		return (CNObjectNotation(identifier: identp!, value: objvalue4), idx4)
 	}
 
-	public func decodeCollectionValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNObjectNotation>, Int) {
-		var result: Array<CNObjectNotation> = []
+	public func decodeCollectionValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNValue>, Int) {
+		var result: Array<CNValue> = []
 
 		/* get "[" */
 		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "[")
@@ -262,9 +255,10 @@ private class CNDecoder
 			throw CNParseError.ParseError(src[idx].lineNo, "\"[\" is required")
 		}
 		/* get objects */
-		var idx1   = idx0
-		var is1st1 = true
-		while idx1 < src.count {
+		var idx1    = idx0
+		var is1st1  = true
+		let lastidx = src.count - 1
+		while idx1 < lastidx {
 			/* get comma */
 			if !is1st1 {
 				let (hascomm, newidx) = hasSymbol(tokens: src, index: idx1, symbol: ",")
@@ -273,21 +267,30 @@ private class CNDecoder
 				}
 				idx1 = newidx
 			}
-			/* get object */
-			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
-			result.append(newobj)
-			idx1   = newidx
-
-			/* If rest token is only "}", breakout this loop */
-			if idx1 + 1 >= src.count {
-				let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-				if hasrp {
-					break
-				}
+			/* value */
+			var value: CNValue
+			switch src[idx1].type {
+			case .BoolToken(let v):
+				value = CNValue.BooleanValue(value: v)
+			case .UIntToken(let v):
+				value = CNValue.UIntValue(value: v)
+			case .IntToken(let v):
+				value = CNValue.IntValue(value: v)
+			case .DoubleToken(let v):
+				value = CNValue.DoubleValue(value: v)
+			case .StringToken(let v):
+				value = CNValue.StringValue(value: v)
+			case .IdentifierToken(_), .SymbolToken(_), .TextToken(_):
+				let strval = src[idx1].toString()
+				throw CNParseError.ParseError(src[idx].lineNo,
+				  "The primitive value is required, But \(strval)\" is given")
 			}
+			result.append(value)
 
-			is1st1 = false
+			idx1   += 1
+			is1st1  = false
 		}
+
 		/* get "]" */
 		let (hasrp, idx2) = hasSymbol(tokens: src, index: idx1, symbol: "]")
 		if !hasrp {
@@ -305,20 +308,13 @@ private class CNDecoder
 			throw CNParseError.ParseError(src[idx].lineNo, "\"{\" is required")
 		}
 		/* get objects */
-		var idx1   = idx0
-		while idx1 < src.count {
+		var idx1    = idx0
+		let lastidx = src.count - 1
+		while idx1 < lastidx {
 			/* get object */
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
 			idx1   = newidx
-			
-			/* If rest token is only "}", breakout this loop */
-			if idx1 + 1 >= src.count {
-				let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-				if hasrp {
-					break
-				}
-			}
 		}
 		/* get "}" */
 		let (hasrp, idx2) = hasSymbol(tokens: src, index: idx1, symbol: "}")

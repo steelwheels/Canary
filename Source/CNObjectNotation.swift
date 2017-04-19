@@ -11,8 +11,8 @@ public class CNObjectNotation
 {
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
-		case ArrayValue(value: Array<CNObjectNotation>)
-		case SetValue(value: Array<CNObjectNotation>)
+		case ArrayValue(value: Array<CNValue>)
+		case SetValue(value: Array<CNValue>)
 		case ClassValue(name: String?, value: Array<CNObjectNotation>)
 		case ScriptValue(value: String)
 	}
@@ -33,12 +33,12 @@ public class CNObjectNotation
 		mValue		= ValueObject.PrimitiveValue(value: value)
 	}
 
-	public init(identifier ident: String, arrayValue value: Array<CNObjectNotation>){
+	public init(identifier ident: String, arrayValue value: Array<CNValue>){
 		mIdentifier	= ident
 		mValue		= ValueObject.ArrayValue(value: value)
 	}
 
-	public init(identifier ident: String, setValue value: Array<CNObjectNotation>){
+	public init(identifier ident: String, setValue value: Array<CNValue>){
 		mIdentifier	= ident
 		mValue		= ValueObject.SetValue(value: value)
 	}
