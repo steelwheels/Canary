@@ -226,4 +226,8 @@ RESULT: <root>:  {
     height: Double 22.2
   }
 }
+[Input] arr: [1,2, 3]
+RESULT: <root>:  {
+  arr: Array [1, 2, 3]
+}
 [SUMMARY] PASSED
