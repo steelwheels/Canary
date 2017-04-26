@@ -61,15 +61,11 @@ The sequence of 2 or more strings will be concatenated and treated as a single s
 #### Collection value
 ##### Array, Set value:
 The array and set contains same typed primitive values.
-Each elements are separated by comma ','.
 ````
-[1, 2, 3]
-[{x:0.0 y:1.0}, {x:2.0 y:3.0}]
+[1 2 3] // Estimated as an Array
 Array [] // Empty Array
-Set [1, 2, 3]
+Set [1 2 3]
 ````
-
-If you want to define the set of data, give data type like `a: Set [1 2 3]`. If the type is not given the value will have array type.
 
 #### Class value
 The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.
