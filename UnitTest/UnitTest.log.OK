@@ -183,51 +183,31 @@ exit(0)
 }
 *** UTObjectCoder
 [Input] pi: 3.14
-RESULT: <root>:  {
-  pi: Double 3.14
-}
+RESULT: pi: Double 3.14
 [Input] pi: Double 3.14
-RESULT: <root>:  {
-  pi: Double 3.14
-}
+RESULT: pi: Double 3.14
 [Input] pi: Int 3.14
-RESULT: <root>:  {
-  pi: Int 3
-}
+RESULT: pi: Int 3
 [Input] ident0: Bool true
-RESULT: <root>:  {
-  ident0: Bool true
-}
+RESULT: ident0: Bool true
 [Input] {ident0: Int 1234}
-RESULT: <root>:  {
-  ident0: Int 1234
-}
+RESULT: ident0: Int 1234
 [Input] {ident0: Int 1234
  ident1: Double 1.240 
 }
-RESULT: <root>:  {
-  ident0: Int 1234
-  ident1: Double 1.24
-}
+RESULT: ident0: Int 1234
+RESULT: ident1: Double 1.24
 [Input] {ident0: "hello"}
-RESULT: <root>:  {
-  ident0: String "hello"
-}
+RESULT: ident0: String "hello"
 [Input] command: %{ exit(0) ; %}
-RESULT: <root>:  {
-  command:  %{
+RESULT: command:  %{
  exit(0) ; 
-  %}
-}
+%}
 [Input] rect: Size {width:10.0 height:22.2}
-RESULT: <root>:  {
-  rect: Size {
-    width: Double 10.0
-    height: Double 22.2
-  }
+RESULT: rect: Size {
+  width: Double 10.0
+  height: Double 22.2
 }
 [Input] arr: [1,2, 3]
-RESULT: <root>:  {
-  arr: Array [1, 2, 3]
-}
+RESULT: arr: Array [1, 2, 3]
 [SUMMARY] PASSED

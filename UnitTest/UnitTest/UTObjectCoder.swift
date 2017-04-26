@@ -34,12 +34,10 @@ private func testCoder(text txt: String) -> Bool
 	let (err0, object0) = CNDecodeObjectNotation(text: txt)
 	switch err0 {
 	case .NoError:
-		if let obj = object0 {
+		for obj in object0 {
 			let encoded = CNEncodeObjectNotation(notation: obj)
 			print("RESULT: \(encoded)")
 			result = true
-		} else {
-			print("[Error] Can not happen")
 		}
 	case .ParseError(let line, let message):
 		print("[Error] \(message) at line \(line)")

@@ -13,7 +13,7 @@ public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String
 	return encoder.encode(indent: 0, notation: src)
 }
 
-public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectNotation?)
+public func CNDecodeObjectNotation(text src: String) -> (CNParseError, Array<CNObjectNotation>)
 {
 	do {
 		let decoder = CNDecoder()
@@ -21,7 +21,7 @@ public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectN
 		return (.NoError, result)
 	} catch let error {
 		if let psrerr = error as? CNParseError {
-			return (psrerr, nil)
+			return (psrerr, [])
 		} else {
 			fatalError("Unknown error")
 		}
@@ -86,7 +86,7 @@ private class CNDecoder
 {
 	static let DO_DEBUG = false
 
-	public func decode(text src: String) throws -> CNObjectNotation
+	public func decode(text src: String) throws -> Array<CNObjectNotation>
 	{
 		/* Tokenier */
 		let (tkerr, tokens) = CNStringToToken(string: src)
@@ -98,8 +98,8 @@ private class CNDecoder
 				dumpTokens(tokens: mtokens)
 			}
 			/* Decode tokens */
-			let (obj, _) = try decode(tokens: mtokens, index: 0)
-			return obj
+			let (objs, _) = try decode(tokens: mtokens, index: 0)
+			return objs
 		case .ParseError(_, _):
 			throw tkerr
 		}
@@ -147,7 +147,7 @@ private class CNDecoder
 		return result
 	}
 
-	private func decode(tokens src: Array<CNToken>, index idx: Int) throws -> (CNObjectNotation, Int) {
+	private func decode(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNObjectNotation>, Int) {
 		var result : Array<CNObjectNotation> = []
 
 		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "{")
@@ -171,8 +171,7 @@ private class CNDecoder
 			idx2 = idx1
 		}
 
-		let valobj = CNObjectNotation.ValueObject.ClassValue(name: nil, value: result)
-		return (CNObjectNotation(identifier: "<root>", value: valobj), idx2)
+		return (result, idx2)
 	}
 
 	public func decodeObject(tokens src: Array<CNToken>, index idx: Int) throws -> (CNObjectNotation, Int)
@@ -206,7 +205,11 @@ private class CNDecoder
 				idx3      = newidx
 			case "{":
 				let (objs, newidx) = try decodeClassValue(tokens: src, index: idx2)
-				objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typestrp, value: objs)
+				if let typestr = typestrp {
+					objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typestr, value: objs)
+				} else {
+					throw CNParseError.ParseError(src[idx].lineNo, "No class name")
+				}
 				idx3      = newidx
 			default:
 				throw CNParseError.ParseError(src[idx].lineNo, "Unexpected symbol \"\(sym)\"")
@@ -243,7 +246,7 @@ private class CNDecoder
 		}
 		
 		/* allocate object notation */
-		return (CNObjectNotation(identifier: identp!, value: objvalue4), idx4)
+		return (CNObjectNotation(identifier: identp!, value: objvalue4, lineNo: src[idx].lineNo), idx4)
 	}
 
 	public func decodeCollectionValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNValue>, Int) {
