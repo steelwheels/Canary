@@ -6,19 +6,7 @@
  */
 
 import Foundation
-import CoreGraphics
 
-/// Store multi kind primitive values
-///
-/// - BooleanValue: Boolean value
-/// - IntValue: Signed integer value
-/// - UIntValue: Unsigned integer value
-/// - FloatValue: Floating point value
-/// - DoubleValue: Double precision floating point value
-/// - StringValue: String value
-/// - ArrayValue: Array of CNValue value
-/// - SetValue: Set of CNValue value
-/// - DictionaryValue: Dictionary of CNValue value
 public enum CNValue: Hashable, CustomStringConvertible
 {
 	case BooleanValue(value: Bool)
@@ -279,5 +267,88 @@ public enum CNValue: Hashable, CustomStringConvertible
 		}
 		return result
 	}
+}
+
+public func CNHasSameValueType(_ v0: CNValue, _ v1: CNValue) -> Bool
+{
+	let result: Bool
+	switch v0 {
+	case .BooleanValue(_):
+		switch v1 {
+		case .BooleanValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .IntValue(_):
+		switch v1 {
+		case .IntValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .UIntValue(_):
+		switch v1 {
+		case .UIntValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .FloatValue(_):
+		switch v1 {
+		case .FloatValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .DoubleValue(_):
+		switch v1 {
+		case .DoubleValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .StringValue(_):
+		switch v1 {
+		case .StringValue(_):
+			result = true
+		default:
+			result = false
+		}
+	case .ArrayValue(let a0):
+		switch v1 {
+		case .ArrayValue(let a1):
+			if a0.count > 0 && a1.count > 0 {
+				result = CNHasSameValueType(a0[0], a1[0])
+			} else {
+				result = true
+			}
+		default:
+			result = false
+		}
+	case .SetValue(let a0):
+		switch v1 {
+		case .SetValue(let a1):
+			if let e0 = a0.first, let e1 = a1.first {
+				result = CNHasSameValueType(e0, e1)
+			} else {
+				result = true
+			}
+		default:
+			result = false
+		}
+	case .DictionaryValue(let a0):
+		switch v1 {
+		case .DictionaryValue(let a1):
+			if let e0 = a0.first, let e1 = a1.first {
+				result = CNHasSameValueType(e0.value, e1.value)
+			} else {
+				result = true
+			}
+		default:
+			result = false
+		}
+	}
+	return result
 }
 
