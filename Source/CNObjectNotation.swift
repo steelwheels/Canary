@@ -11,8 +11,6 @@ public class CNObjectNotation
 {
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
-		case ArrayValue(value: Array<CNValue>)
-		case SetValue(value: Array<CNValue>)
 		case ClassValue(name: String, value: Array<CNObjectNotation>)
 		case ScriptValue(value: String)
 	}
@@ -38,14 +36,16 @@ public class CNObjectNotation
 	}
 
 	public init(identifier ident: String, arrayValue value: Array<CNValue>, lineNo line: Int){
+		let arrayval = CNValue(arrayValue: value)
 		mIdentifier	= ident
-		mValue		= ValueObject.ArrayValue(value: value)
+		mValue		= ValueObject.PrimitiveValue(value: arrayval)
 		mLineNo		= line
 	}
 
 	public init(identifier ident: String, setValue value: Array<CNValue>, lineNo line: Int){
+		let setval = CNValue(arrayValue: value)
 		mIdentifier	= ident
-		mValue		= ValueObject.SetValue(value: value)
+		mValue		= ValueObject.PrimitiveValue(value: setval)
 		mLineNo		= line
 	}
 
@@ -61,12 +61,37 @@ public class CNObjectNotation
 		mLineNo		= line
 	}
 
+	public var primitiveValue: CNValue? {
+		switch mValue {
+		case .PrimitiveValue(let val):
+			return val
+		default:
+			return nil
+		}
+	}
+
+	public var classValue: (String?, Array<CNObjectNotation>?) {
+		switch mValue {
+		case .ClassValue(let name, let props):
+			return (name, props)
+		default:
+			return (nil, nil)
+		}
+	}
+
+	public var scriptValue: String? {
+		switch mValue {
+		case .ScriptValue(let val):
+			return val
+		default:
+			return nil
+		}
+	}
+
 	public func typeName() -> String? {
 		var result: String?
 		switch mValue {
-		case .PrimitiveValue(let v):	result = v.typeDescription
-		case .ArrayValue(_):		result = "Array"
-		case .SetValue(_):		result = "Set"
+		case .PrimitiveValue(let v):	result = v.type.description
 		case .ClassValue(let name, _):	result = name
 		case .ScriptValue(_):		result = nil
 		}

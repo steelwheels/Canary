@@ -48,6 +48,7 @@ compare: Array:[true, -123] == Array:[true, -123]
 compare: Set:[true, -123] == Set:[true, -123]
 compare: Dictionary:[b:-123, a:true] == Dictionary:[b:-123, a:true]
 compare: Dictionary:[b:-123, a:true] != Dictionary:[b:255, a:-123]
+val1f = Float:-123.0
 *** UTURLTest
 srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
 *** UTStateTest

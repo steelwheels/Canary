@@ -10,9 +10,9 @@ import Canary
 
 public func UTObjectNotation() -> Bool
 {
-	let obj0 = CNObjectNotation(identifier: "obj0", primitiveValue: CNValue.BooleanValue(value: true), lineNo: 1)
-	let obj1 = CNObjectNotation(identifier: "obj1", primitiveValue: CNValue.DoubleValue(value: 12.3), lineNo: 1)
-	let obj2 = CNObjectNotation(identifier: "obj2", primitiveValue: CNValue.StringValue(value: "Hello, world"), lineNo: 1)
+	let obj0 = CNObjectNotation(identifier: "obj0", primitiveValue: CNValue(booleanValue: true), lineNo: 1)
+	let obj1 = CNObjectNotation(identifier: "obj1", primitiveValue: CNValue(doubleValue: 12.3), lineNo: 1)
+	let obj2 = CNObjectNotation(identifier: "obj2", primitiveValue: CNValue(stringValue: "Hello, world"), lineNo: 1)
 	let obj3 = CNObjectNotation(identifier: "obj3", script: "exit(0)", lineNo: 1)
 	let obj4 = CNObjectNotation(identifier: "obj4", className: "ClassA", properties: [obj2, obj3], lineNo: 1)
 
