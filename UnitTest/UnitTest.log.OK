@@ -39,7 +39,6 @@ val2 = UInt:255
 val3 = Float:0.123
 val4 = Double:-1.23
 val5 = Array:[true, -123]
-val6 = Set:[true, -123]
 val7 = Dictionary:[b:-123, a:true]
 val8 = Dictionary:[b:255, a:-123]
 compare: Bool:true == Bool:true

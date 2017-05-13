@@ -30,7 +30,7 @@ public func UTValueTest() -> Bool
 	print("val5 = \(val5.typeDescription):\(val5.description)")
 
 	let val6: CNValue = CNValue(setValue: [val0, val1, val0])
-	print("val6 = \(val6.typeDescription):\(val6.description)")
+	//print("val6 = \(val6.typeDescription):\(val6.description)")
 
 	let val7: CNValue = CNValue(dictionaryValue: ["a":val0, "b":val1])
 	print("val7 = \(val7.typeDescription):\(val7.description)")

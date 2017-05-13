@@ -32,7 +32,7 @@ private class CNEncoder
 {
 	public func encode(indent idt: Int, notation src: CNObjectNotation) -> String
 	{
-		var typename: String
+		let typename: String
 		if let name = src.typeName() {
 			typename = name
 		} else {
