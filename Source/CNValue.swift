@@ -131,26 +131,26 @@ private enum CNValueData {
 
 	public var hashValue: Int {
 		var result	: Int
-		let MASK	: Int = 0x0FFF_FFFF
+		let MASK	: Int = 0x00FF_FFFF
 		switch self {
 		case .BooleanValue(let val):
-			result = 0x1000_0000 | (val ? 0x1 : 0x0)
+			result = 0x0100_0000 | (val ? 0x1 : 0x0)
 		case .IntValue(let val):
-			result = 0x2000_0000 | (Int(val) & MASK)
+			result = 0x0200_0000 | (Int(val) & MASK)
 		case .UIntValue(let val):
-			result = 0x3000_0000 | (Int(val) & MASK)
+			result = 0x0300_0000 | (Int(val) & MASK)
 		case .FloatValue(let val):
-			result = 0x4000_0000 | (Int(val * 100.0) & MASK)
+			result = 0x0400_0000 | (Int(val * 100.0) & MASK)
 		case .DoubleValue(let val):
-			result = 0x4000_0000 | (Int(val * 100.0) & MASK)
+			result = 0x0500_0000 | (Int(val * 100.0) & MASK)
 		case .StringValue(let val):
-			result = 0x5000_0000 | (Int(val.lengthOfBytes(using: .utf8)) & MASK)
+			result = 0x0600_0000 | (Int(val.lengthOfBytes(using: .utf8)) & MASK)
 		case .ArrayValue(let val):
-			result = 0x6000_0000 | (Int(val.count) & MASK)
+			result = 0x0700_0000 | (Int(val.count) & MASK)
 		case .SetValue(let val):
-			result = 0x7000_0000 | (Int(val.count) & MASK)
+			result = 0x0800_0000 | (Int(val.count) & MASK)
 		case .DictionaryValue(let val):
-			result = 0x8000_0000 | (Int(val.count) & MASK)
+			result = 0x0900_0000 | (Int(val.count) & MASK)
 		}
 		return result
 	}
