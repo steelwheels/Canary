@@ -129,6 +129,32 @@ private enum CNValueData {
 		}
 	}
 
+	public var hashValue: Int {
+		var result	: Int
+		let MASK	: Int = 0x0FFF_FFFF
+		switch self {
+		case .BooleanValue(let val):
+			result = 0x1000_0000 | (val ? 0x1 : 0x0)
+		case .IntValue(let val):
+			result = 0x2000_0000 | (Int(val) & MASK)
+		case .UIntValue(let val):
+			result = 0x3000_0000 | (Int(val) & MASK)
+		case .FloatValue(let val):
+			result = 0x4000_0000 | (Int(val * 100.0) & MASK)
+		case .DoubleValue(let val):
+			result = 0x4000_0000 | (Int(val * 100.0) & MASK)
+		case .StringValue(let val):
+			result = 0x5000_0000 | (Int(val.lengthOfBytes(using: .utf8)) & MASK)
+		case .ArrayValue(let val):
+			result = 0x6000_0000 | (Int(val.count) & MASK)
+		case .SetValue(let val):
+			result = 0x7000_0000 | (Int(val.count) & MASK)
+		case .DictionaryValue(let val):
+			result = 0x8000_0000 | (Int(val.count) & MASK)
+		}
+		return result
+	}
+
 	public var description: String {
 		get {
 			var result: String
@@ -245,7 +271,6 @@ public class CNValue: NSObject
 	public var setValue: Set<CNValue>?	{ return mData.setValue }
 	public var dictionaryValue: Dictionary<String, CNValue>?
 						{ return mData.dictionaryValue }
-
 	public override var description: String {
 		get { return mData.description }
 	}

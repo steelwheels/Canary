@@ -210,4 +210,13 @@ RESULT: rect: Size {
 }
 [Input] arr: [1,2, 3]
 RESULT: arr: Array [1, 2, 3]
+[Input] {
+  button0: Button { }
+  button1: Button { }
+}
+
+RESULT: button0: Button {
+}
+RESULT: button1: Button {
+}
 [SUMMARY] PASSED

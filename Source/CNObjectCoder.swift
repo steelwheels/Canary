@@ -142,8 +142,12 @@ private class CNDecoder
 		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "{")
 
 		var idx1   : Int = idx0
-		let lastidx      = src.count - 1
-		while idx1 < lastidx {
+		let count  = src.count
+		while idx1 < count {
+			let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
+			if hasrp {
+				break
+			}
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
 			idx1 = newidx
@@ -249,13 +253,19 @@ private class CNDecoder
 		/* get objects */
 		var idx1    = idx0
 		var is1st1  = true
-		let lastidx = src.count - 1
-		while idx1 < lastidx {
+		let count   = src.count
+		while idx1 < count {
+			/* check "]" */
+			let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "]")
+			if hasrp {
+				break
+			}
 			/* get comma */
 			if !is1st1 {
 				let (hascomm, newidx) = hasSymbol(tokens: src, index: idx1, symbol: ",")
 				if !hascomm {
-					throw CNParseError.ParseError(src[idx].lineNo, "\",\" is required")
+					let tkstr = src[idx1].toString()
+					throw CNParseError.ParseError(src[idx].lineNo, "\",\" is required. But is \(tkstr) given.")
 				}
 				idx1 = newidx
 			}
@@ -301,8 +311,12 @@ private class CNDecoder
 		}
 		/* get objects */
 		var idx1    = idx0
-		let lastidx = src.count - 1
-		while idx1 < lastidx {
+		let count   = src.count
+		while idx1 < count {
+			let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
+			if hasrp {
+				break
+			}
 			/* get object */
 			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
 			result.append(newobj)
@@ -310,7 +324,7 @@ private class CNDecoder
 		}
 		/* get "}" */
 		let (hasrp, idx2) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-		if !hasrp {
+		if haslp && !hasrp {
 			throw CNParseError.ParseError(src[idx].lineNo, "\"}\" is required")
 		}
 		return (result, idx2)

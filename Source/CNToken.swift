@@ -204,7 +204,7 @@ private class CNTokenizer
 
 		while true {
 			let range0 = skipSpaces(range: srcrange, string: srcstr)
-			if isEndOfString(range: srcrange) {
+			if isEndOfString(range: range0) {
 				break
 			}
 			let (token, range1) = try getTokenFromString(range: range0, string: srcstr)
@@ -265,7 +265,7 @@ private class CNTokenizer
 				return (token, range1)
 			}
 		} else {
-			fatalError("Can not reach here")
+			fatalError("Can not reach here: srcrange=\(srcrange.lowerBound)...\(srcrange.upperBound)")
 		}
 	}
 
@@ -276,7 +276,9 @@ private class CNTokenizer
 		while idx < eidx {
 			if srcstr[idx].isSpace() {
 				idx = srcstr.index(after: idx)
-				if srcstr[idx] == "\n" { mCurrentLine += 1 }
+				if idx < eidx {
+					if srcstr[idx] == "\n" { mCurrentLine += 1 }
+				}
 			} else {
 				break
 			}
