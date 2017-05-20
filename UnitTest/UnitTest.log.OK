@@ -44,7 +44,7 @@ val8 = Dictionary:[b:255, a:-123]
 compare: Bool:true == Bool:true
 compare: Bool:true != Int:-123
 compare: Array:[true, -123] == Array:[true, -123]
-compare: Set:[true, -123] == Set:[true, -123]
+compare: Set:[-123, true] == Set:[-123, true]
 compare: Dictionary:[b:-123, a:true] == Dictionary:[b:-123, a:true]
 compare: Dictionary:[b:-123, a:true] != Dictionary:[b:255, a:-123]
 val1f = Float:-123.0
@@ -66,6 +66,27 @@ Observed state value = 1
 Observed state value = 11
 * End: testCombinedState
 state = Unknown
+*** UTText
+***** Empty line *****
+
+***** Append "ABCD"to line *****
+ABCD
+***** Empty section *****
+***** Add line0 *****
+  ABCD
+  , EFGH
+  1
+  2
+  3
+  45
+***** CNAddStringToText *****
+  ABCD
+  Hello
+  World
+***** CNAddStringsToText *****
+  abcd
+  Hello
+  ,World
 *** UTConsoleTest
 Hello, World
 *** UTObjectVisitor
