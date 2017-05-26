@@ -10,7 +10,7 @@ import Canary
 
 public func UTConsoleTest() -> Bool
 {
-	let console = CNTextConsole()
-	console.print(text: CNConsoleText(string: "Hello, World"))
+	let console = CNFileConsole(file: CNTextFile.stdout)
+	console.print(string: "!!! Hello, World !!!\n")
 	return true
 }

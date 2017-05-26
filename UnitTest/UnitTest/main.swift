@@ -34,23 +34,20 @@ let result6 = UTText()
 print("*** UTConsoleTest")
 let result7 = UTConsoleTest()
 
-print("*** UTObjectVisitor")
-let result8 = UTObjectVisitor()
-
 print("*** UTMath")
-let result9 = UTMathTest()
+let result8 = UTMathTest()
 
 print("*** UTToken")
-let result10 = UTTokenTest()
+let result9 = UTTokenTest()
 
 print("*** UTObjectNotation")
-let result11 = UTObjectNotation()
+let result10 = UTObjectNotation()
 
 print("*** UTObjectCoder")
-let result12 = UTObjectCoder()
+let result11 = UTObjectCoder()
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
-	     result10 && result11 && result12
+	     result10 && result11
 if result {
 	print("[SUMMARY] PASSED")
 	exit(0)

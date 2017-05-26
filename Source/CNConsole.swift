@@ -7,34 +7,20 @@
 
 import Foundation
 
-open class CNConsole : NSObject
+open class CNConsole
 {
-	private let accessLock	  : NSLock ;
-
-	public class ConsoleText {
-		private var	mText : String = ""
-	}
+	public let accessLock	  : NSLock ;
 	
-	public override init(){
+	public init(){
 		accessLock	= NSLock()
-		super.init()
-	}
-
-	public func print(text src: CNConsoleText){
-		accessLock.lock()
-		flush(text: src)
-		accessLock.unlock()
 	}
 	
 	public func print(string src: String){
-		let text = CNConsoleText(string: src)
-		accessLock.lock()
-		flush(text: text)
-		accessLock.unlock()
+		flush(string: src)
 	}
 
 	/* Do not call this method from the outside */
-	open func flush(text t: CNConsoleText){
+	open func flush(string str: String){
 		fatalError("must be overriden")
 	}
 }

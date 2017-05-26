@@ -38,12 +38,12 @@ public func UTValueTest() -> Bool
 	let val8: CNValue = CNValue(dictionaryValue: ["a":val1, "b":val2])
 	print("val8 = \(val8.typeDescription):\(val8.description)")
 
-	result = result && compare(val0: val0, val1: val0)
-	result = result && compare(val0: val0, val1: val1)
-	result = result && compare(val0: val5, val1: val5)
-	result = result && compare(val0: val6, val1: val6)
-	result = result && compare(val0: val7, val1: val7)
-	result = result && compare(val0: val7, val1: val8)
+	result = result && compare(expected: true,  val0: val0, val1: val0)
+	result = result && compare(expected: false, val0: val0, val1: val1)
+	result = result && compare(expected: true,  val0: val5, val1: val5)
+	result = result && compare(expected: true,  val0: val6, val1: val6)
+	result = result && compare(expected: true,  val0: val7, val1: val7)
+	result = result && compare(expected: false,  val0: val7, val1: val8)
 
 	if let val1f = val1.cast(to: .FloatType) {
 		print("val1f = \(val1f.typeDescription):\(val1f.description)")
@@ -54,13 +54,17 @@ public func UTValueTest() -> Bool
 	return result
 }
 
-private func compare(val0: CNValue, val1: CNValue) -> Bool {
-	let opstr: String
+private func compare(expected exp: Bool, val0: CNValue, val1: CNValue) -> Bool {
+	var issame: Bool
 	if val0 == val1 {
-		opstr = "=="
+		issame = true
 	} else {
-		opstr = "!="
+		issame = false
 	}
-	print("compare: \(val0.typeDescription):\(val0.description) \(opstr) \(val1.typeDescription):\(val1.description)")
-	return true
+
+	if (exp && issame) || (!exp && !issame) {
+		return true
+	} else {
+		return false
+	}
 }

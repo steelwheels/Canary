@@ -1,3 +1,18 @@
+
+ABCD
+  ABCD
+  , EFGH
+  1
+  2
+  3
+  45
+  ABCD
+  Hello
+  World
+  abcd
+  Hello
+  ,World
+!!! Hello, World !!!
 Hello, World!
 *** UTCharacter
 test: isSpace( ) == true -> OK
@@ -41,12 +56,6 @@ val4 = Double:-1.23
 val5 = Array:[true, -123]
 val7 = Dictionary:[b:-123, a:true]
 val8 = Dictionary:[b:255, a:-123]
-compare: Bool:true == Bool:true
-compare: Bool:true != Int:-123
-compare: Array:[true, -123] == Array:[true, -123]
-compare: Set:[-123, true] == Set:[-123, true]
-compare: Dictionary:[b:-123, a:true] == Dictionary:[b:-123, a:true]
-compare: Dictionary:[b:-123, a:true] != Dictionary:[b:255, a:-123]
 val1f = Float:-123.0
 *** UTURLTest
 srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
@@ -68,36 +77,12 @@ Observed state value = 11
 state = Unknown
 *** UTText
 ***** Empty line *****
-
 ***** Append "ABCD"to line *****
-ABCD
 ***** Empty section *****
 ***** Add line0 *****
-  ABCD
-  , EFGH
-  1
-  2
-  3
-  45
 ***** CNAddStringToText *****
-  ABCD
-  Hello
-  World
 ***** CNAddStringsToText *****
-  abcd
-  Hello
-  ,World
 *** UTConsoleTest
-Hello, World
-*** UTObjectVisitor
-visit(number: 1)
-visit(number: 3.14)
-visit(string: String object)
-visit(string: NSString object)
-visit(dictionary: ["b": 1, "a": 0])
-visit(array: [1, 2, 3])
-visit(array: [a, b, c])
-visit(array: [1.1, 2.2, 3.3])
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
 [UTMath] OK

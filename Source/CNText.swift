@@ -15,19 +15,21 @@ public class CNText
 		dummy = 1
 	}
 
-	public func print()
+	public func print(console cons: CNConsole)
 	{
-		print(indent: 0)
+		print(console: cons, indent: 0)
 	}
 
-	open func print(indent idt: Int){
+	open func print(console cons: CNConsole, indent idt: Int){
 		fatalError("Must be override")
 	}
 
-	public func printIndent(indent idt: Int){
+	public func printIndent(console cons: CNConsole, indent idt: Int){
+		var str: String = ""
 		for _ in 0..<idt {
-			Swift.print("  ", terminator:"")
+			str = str + "  "
 		}
+		cons.print(string: str)
 	}
 
 	open func append(string src: String){
@@ -50,9 +52,9 @@ public class CNTextLine: CNText
 		mString += src
 	}
 
-	open override func print(indent idt: Int){
-		printIndent(indent: idt)
-		Swift.print(mString)
+	open override func print(console cons: CNConsole, indent idt: Int){
+		printIndent(console: cons, indent: idt)
+		cons.print(string: mString + "\n")
 	}
 }
 
@@ -93,15 +95,21 @@ public class CNTextSection: CNText
 		}
 	}
 
-	open override func print(indent idt: Int){
-		if header != "" { printIndent(indent: idt) ; Swift.print(header) }
+	open override func print(console cons: CNConsole, indent idt: Int){
+		if header != "" {
+			printIndent(console: cons, indent: idt) ;
+			cons.print(string: header + "\n")
+		}
 
 		let nextidt = idt + 1
 		for text in mContents {
-			text.print(indent: nextidt)
+			text.print(console: cons, indent: nextidt)
 		}
 
-		if footer != "" { printIndent(indent: idt) ; Swift.print(footer) }
+		if footer != "" {
+			printIndent(console: cons, indent: idt) ;
+			cons.print(string: footer + "\n")
+		}
 	}
 }
 

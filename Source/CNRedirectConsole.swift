@@ -23,23 +23,9 @@ public class CNRedirectConsole : CNConsole
 		mConsoles.removeAll()
 	}
 	
-	public override func print(text src: CNConsoleText){
+	public override func print(string str: String){
 		for console in mConsoles {
-			console.print(text: src)
-		}
-	}
-	
-	public override func print(string src: String){
-		let text = CNConsoleText(string: src)
-		for console in mConsoles {
-			console.print(text: text)
-		}
-	}
-	
-	/* Do not call this method from the outside */
-	open override func flush(text t: CNConsoleText){
-		for console in mConsoles {
-			console.flush(text: t)
+			console.print(string: str)
 		}
 	}
 }
