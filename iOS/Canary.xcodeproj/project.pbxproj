@@ -19,7 +19,6 @@
 		05269DFB1D9146920075A14C /* CNListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DE61D9146920075A14C /* CNListItem.swift */; };
 		05269DFC1D9146920075A14C /* CNListItemPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DE71D9146920075A14C /* CNListItemPoll.swift */; };
 		05269DFD1D9146920075A14C /* CNMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DE81D9146920075A14C /* CNMath.swift */; };
-		05269DFF1D9146920075A14C /* CNObjectVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEA1D9146920075A14C /* CNObjectVisitor.swift */; };
 		05269E001D9146920075A14C /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEB1D9146920075A14C /* CNOrderedList.swift */; };
 		05269E011D9146920075A14C /* CNRedirectConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEC1D9146920075A14C /* CNRedirectConsole.swift */; };
 		05269E031D9146920075A14C /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DEE1D9146920075A14C /* CNState.swift */; };
@@ -62,7 +61,6 @@
 		05269DE61D9146920075A14C /* CNListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItem.swift; sourceTree = "<group>"; };
 		05269DE71D9146920075A14C /* CNListItemPoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItemPoll.swift; sourceTree = "<group>"; };
 		05269DE81D9146920075A14C /* CNMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMath.swift; sourceTree = "<group>"; };
-		05269DEA1D9146920075A14C /* CNObjectVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectVisitor.swift; sourceTree = "<group>"; };
 		05269DEB1D9146920075A14C /* CNOrderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOrderedList.swift; sourceTree = "<group>"; };
 		05269DEC1D9146920075A14C /* CNRedirectConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNRedirectConsole.swift; sourceTree = "<group>"; };
 		05269DEE1D9146920075A14C /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				050421561EC68F1000B8CC51 /* CNObject.swift */,
-				05269DEA1D9146920075A14C /* CNObjectVisitor.swift */,
 			);
 			name = Object;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				05269DFB1D9146920075A14C /* CNListItem.swift in Sources */,
 				050421571EC68F1000B8CC51 /* CNObject.swift in Sources */,
 				05269DF71D9146920075A14C /* CNFilePath.swift in Sources */,
-				05269DFF1D9146920075A14C /* CNObjectVisitor.swift in Sources */,
 				05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */,
 				05269DF21D9146920075A14C /* CNBookmark.swift in Sources */,
 				0556D2021EB8A93200692D2A /* CNNumber.swift in Sources */,
@@ -527,7 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.Canary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
