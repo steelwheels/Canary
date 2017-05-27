@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050421571EC68F1000B8CC51 /* CNObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050421561EC68F1000B8CC51 /* CNObject.swift */; };
+		051C4DB71ED89471006A7145 /* CNVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C4DB61ED89471006A7145 /* CNVisitor.swift */; };
 		05269DF21D9146920075A14C /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DDD1D9146920075A14C /* CNBookmark.swift */; };
 		05269DF31D9146920075A14C /* CNCombinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DDE1D9146920075A14C /* CNCombinedState.swift */; };
 		05269DF41D9146920075A14C /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DDF1D9146920075A14C /* CNConsole.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		050421561EC68F1000B8CC51 /* CNObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObject.swift; sourceTree = "<group>"; };
+		051C4DB61ED89471006A7145 /* CNVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVisitor.swift; sourceTree = "<group>"; };
 		05269DDD1D9146920075A14C /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
 		05269DDE1D9146920075A14C /* CNCombinedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCombinedState.swift; sourceTree = "<group>"; };
 		05269DDF1D9146920075A14C /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		05269DDC1D9146800075A14C /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				051C4DB61ED89471006A7145 /* CNVisitor.swift */,
 				050421561EC68F1000B8CC51 /* CNObject.swift */,
 			);
 			name = Object;
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05269DFC1D9146920075A14C /* CNListItemPoll.swift in Sources */,
+				051C4DB71ED89471006A7145 /* CNVisitor.swift in Sources */,
 				05269DF61D9146920075A14C /* CNErrorExtension.swift in Sources */,
 				05269E061D9146920075A14C /* CNTristate.swift in Sources */,
 				054453771EA91DE60069867F /* CNReservedWord.swift in Sources */,

@@ -38,12 +38,19 @@ public func UTValueTest() -> Bool
 	let val8: CNValue = CNValue(dictionaryValue: ["a":val1, "b":val2])
 	print("val8 = \(val8.typeDescription):\(val8.description)")
 
-	result = result && compare(expected: true,  val0: val0, val1: val0)
-	result = result && compare(expected: false, val0: val0, val1: val1)
-	result = result && compare(expected: true,  val0: val5, val1: val5)
-	result = result && compare(expected: true,  val0: val6, val1: val6)
-	result = result && compare(expected: true,  val0: val7, val1: val7)
-	result = result && compare(expected: false,  val0: val7, val1: val8)
+	let val9: CNValue = CNValue(characterValue: "A")
+	print("val9 = \(val9.typeDescription):\(val9.description)")
+
+	let val10: CNValue = CNValue(characterValue: "A")
+	print("val10 = \(val10.typeDescription):\(val10.description)")
+
+	result = result && compare(title:"c0", expected: true,  val0: val0, val1: val0)
+	result = result && compare(title:"c1", expected: false, val0: val0, val1: val1)
+	result = result && compare(title:"c2", expected: true,  val0: val5, val1: val5)
+	result = result && compare(title:"c3", expected: true,  val0: val6, val1: val6)
+	result = result && compare(title:"c4", expected: true,  val0: val7, val1: val7)
+	result = result && compare(title:"c5", expected: false, val0: val7, val1: val8)
+	result = result && compare(title:"c6", expected: true,  val0: val9, val1: val10)
 
 	if let val1f = val1.cast(to: .FloatType) {
 		print("val1f = \(val1f.typeDescription):\(val1f.description)")
@@ -54,7 +61,8 @@ public func UTValueTest() -> Bool
 	return result
 }
 
-private func compare(expected exp: Bool, val0: CNValue, val1: CNValue) -> Bool {
+private func compare(title titl:String, expected exp: Bool, val0: CNValue, val1: CNValue) -> Bool
+{
 	var issame: Bool
 	if val0 == val1 {
 		issame = true
@@ -65,6 +73,7 @@ private func compare(expected exp: Bool, val0: CNValue, val1: CNValue) -> Bool {
 	if (exp && issame) || (!exp && !issame) {
 		return true
 	} else {
+		print("TEST: \(titl) was failed")
 		return false
 	}
 }

@@ -9,11 +9,13 @@ import Foundation
 
 public enum CNValueType {
 	case BooleanType
+	case CharacterType
 	case IntType
 	case UIntType
 	case FloatType
 	case DoubleType
 	case StringType
+	case DateType
 	case ArrayType
 	case SetType
 	case DictionaryType
@@ -23,11 +25,13 @@ public enum CNValueType {
 			var result: String
 			switch self {
 			case .BooleanType:	result = "Bool"
+			case .CharacterType:	result = "Character"
 			case .IntType:		result = "Int"
 			case .UIntType:		result = "UInt"
 			case .FloatType:	result = "Float"
 			case .DoubleType:	result = "Double"
 			case .StringType:	result = "String"
+			case .DateType:		result = "Date"
 			case .ArrayType:	result = "Array"
 			case .SetType:		result = "Set"
 			case .DictionaryType:	result = "Dictionary"
@@ -39,11 +43,13 @@ public enum CNValueType {
 
 private enum CNValueData {
 	case BooleanValue(value: Bool)
+	case CharacterValue(value: Character)
 	case IntValue(value: Int)
 	case UIntValue(value: UInt)
 	case FloatValue(value: Float)
 	case DoubleValue(value: Double)
 	case StringValue(value: String)
+	case DateValue(value: Date)
 	case ArrayValue(value: Array<CNValue>)
 	case SetValue(value: Set<CNValue>)
 	case DictionaryValue(value: Dictionary<String, CNValue>)
@@ -52,6 +58,15 @@ private enum CNValueData {
 		get {
 			switch self {
 			case .BooleanValue(let val):	return val
+			default:			return nil
+			}
+		}
+	}
+
+	public var characterValue: Character? {
+		get {
+			switch self {
+			case .CharacterValue(let val):	return val
 			default:			return nil
 			}
 		}
@@ -102,6 +117,15 @@ private enum CNValueData {
 		}
 	}
 
+	public var dateValue: Date? {
+		get {
+			switch self {
+			case .DateValue(let val):	return val
+			default:			return nil
+			}
+		}
+	}
+
 	public var arrayValue: Array<CNValue>? {
 		get {
 			switch self {
@@ -135,22 +159,26 @@ private enum CNValueData {
 		switch self {
 		case .BooleanValue(let val):
 			result = 0x0100_0000 | (val ? 0x1 : 0x0)
+		case .CharacterValue(let val):
+			result = 0x0200_0000 | (val.hashValue & MASK)
 		case .IntValue(let val):
-			result = 0x0200_0000 | (Int(val) & MASK)
-		case .UIntValue(let val):
 			result = 0x0300_0000 | (Int(val) & MASK)
+		case .UIntValue(let val):
+			result = 0x0400_0000 | (Int(val) & MASK)
 		case .FloatValue(let val):
-			result = 0x0400_0000 | (Int(val * 100.0) & MASK)
-		case .DoubleValue(let val):
 			result = 0x0500_0000 | (Int(val * 100.0) & MASK)
+		case .DoubleValue(let val):
+			result = 0x0600_0000 | (Int(val * 100.0) & MASK)
 		case .StringValue(let val):
-			result = 0x0600_0000 | (Int(val.lengthOfBytes(using: .utf8)) & MASK)
+			result = 0x0700_0000 | (Int(val.lengthOfBytes(using: .utf8)) & MASK)
+		case .DateValue(let val):
+			result = 0x0800_0000 | (val.hashValue & MASK)
 		case .ArrayValue(let val):
-			result = 0x0700_0000 | (Int(val.count) & MASK)
-		case .SetValue(let val):
-			result = 0x0800_0000 | (Int(val.count) & MASK)
-		case .DictionaryValue(let val):
 			result = 0x0900_0000 | (Int(val.count) & MASK)
+		case .SetValue(let val):
+			result = 0x0A00_0000 | (Int(val.count) & MASK)
+		case .DictionaryValue(let val):
+			result = 0x0B00_0000 | (Int(val.count) & MASK)
 		}
 		return result
 	}
@@ -160,11 +188,13 @@ private enum CNValueData {
 			var result: String
 			switch self {
 			case .BooleanValue(let val):	result = "\(val)"
+			case .CharacterValue(let val):	result = "\(val)"
 			case .IntValue(let val):	result = "\(val)"
 			case .UIntValue(let val):	result = "\(val)"
 			case .FloatValue(let val):	result = "\(val)"
 			case .DoubleValue(let val):	result = "\(val)"
 			case .StringValue(let val):	result = "\"" + val + "\""
+			case .DateValue(let val):	result = val.description
 			case .ArrayValue(let arr):
 				var str:String = "["
 				var is1st      = true
@@ -207,7 +237,7 @@ private enum CNValueData {
 	}
 }
 
-public class CNValue: NSObject
+public class CNValue: NSObject, Comparable
 {
 	private var mType: CNValueType
 	private var mData: CNValueData
@@ -219,6 +249,11 @@ public class CNValue: NSObject
 	public init(booleanValue val: Bool){
 		mType = .BooleanType
 		mData = .BooleanValue(value: val)
+	}
+
+	public init(characterValue val: Character){
+		mType = .CharacterType
+		mData = .CharacterValue(value: val)
 	}
 
 	public init(intValue val: Int){
@@ -246,6 +281,11 @@ public class CNValue: NSObject
 		mData = .StringValue(value: val)
 	}
 
+	public init(dateValue val: Date){
+		mType = .DateType
+		mData = .DateValue(value: val)
+	}
+
 	public init(arrayValue val: Array<CNValue>){
 		mType = .ArrayType
 		mData = .ArrayValue(value: val)
@@ -262,11 +302,13 @@ public class CNValue: NSObject
 	}
 
 	public var booleanValue: Bool?		{ return mData.booleanValue }
+	public var characterValue: Character?	{ return mData.characterValue }
 	public var intValue: Int?		{ return mData.intValue }
 	public var uIntValue: UInt?		{ return mData.uIntValue }
 	public var floatValue: Float?		{ return mData.floatValue }
 	public var doubleValue: Double?		{ return mData.doubleValue }
 	public var stringValue: String?		{ return mData.stringValue }
+	public var dateValue: Date?		{ return mData.dateValue }
 	public var arrayValue: Array<CNValue>?	{ return mData.arrayValue }
 	public var setValue: Set<CNValue>?	{ return mData.setValue }
 	public var dictionaryValue: Dictionary<String, CNValue>?
@@ -285,6 +327,22 @@ public class CNValue: NSObject
 			switch type {
 			case .BooleanType:
 				return self
+			default:
+				return nil
+			}
+		case .CharacterType:
+			switch type {
+			case .CharacterType:
+				return self
+			case .StringType:
+				if let str = stringValue {
+					if str.characters.count == 1 {
+						if let c = str.characters.first {
+							return CNValue(characterValue: c)
+						}
+					}
+				}
+				return nil
 			default:
 				return nil
 			}
@@ -342,6 +400,13 @@ public class CNValue: NSObject
 			}
 		case .StringType:
 			return CNValue(stringValue: description)
+		case .DateType:
+			switch type {
+			case .DateType:
+				return self
+			default:
+				return nil
+			}
 		case .ArrayType:
 			switch type {
 			case .ArrayType:
@@ -375,6 +440,131 @@ public class CNValue: NSObject
 			default:
 				return nil
 			}
+		}
+	}
+
+	static public func < (_ lhs: CNValue, _ rhs: CNValue) -> Bool {
+		return compareValue(lhs, rhs) == .orderedAscending
+	}
+
+	static public func == (_ lhs: CNValue, _ rhs: CNValue) -> Bool {
+		return compareValue(lhs, rhs) == .orderedSame
+	}
+
+	static private func compareValue(_ lhs: CNValue, _ rhs: CNValue) -> ComparisonResult {
+		if lhs.type == rhs.type {
+			var result: ComparisonResult
+			switch lhs.type {
+			case .BooleanType:
+				let v0 = lhs.booleanValue! ? 1 : 0
+				let v1 = rhs.booleanValue! ? 1 : 0
+				result = compareElement(v0, v1)
+			case .CharacterType:
+				result = compareElement(lhs.characterValue!, rhs.characterValue!)
+			case .IntType:
+				result = compareElement(lhs.intValue!, rhs.intValue!)
+			case .UIntType:
+				result = compareElement(lhs.uIntValue!, rhs.uIntValue!)
+			case .FloatType:
+				result = compareElement(lhs.floatValue!, rhs.floatValue!)
+			case .DoubleType:
+				result = compareElement(lhs.doubleValue!, rhs.doubleValue!)
+			case .StringType:
+				result = compareElement(lhs.stringValue!, rhs.stringValue!)
+			case .DateType:
+				result = compareElement(lhs.dateValue!, rhs.dateValue!)
+			case .ArrayType:
+				result = compareArray(lhs.arrayValue!, rhs.arrayValue!)
+			case .SetType:
+				result = compareSet(lhs.setValue!, rhs.setValue!)
+			case .DictionaryType:
+				result = compareDictionary(lhs.dictionaryValue!, rhs.dictionaryValue!)
+			}
+			return result
+		} else {
+			let res = compareElement(lhs.type.description, rhs.type.description)
+			assert(res != .orderedSame)
+			return res
+		}
+	}
+
+	static private func compareArray(_ s0: Array<CNValue>, _ s1: Array<CNValue>) -> ComparisonResult {
+		let count0 = s0.count
+		let count1 = s1.count
+		if count0 == count1 {
+			for i in 0..<count0 {
+				let eres = compareValue(s0[i], s1[i])
+				if eres != .orderedSame {
+					return eres
+				}
+			}
+			return .orderedSame
+		} else {
+			return compareElement(count0, count1)
+		}
+	}
+
+	static private func compareSet(_ s0: Set<CNValue>, _ s1: Set<CNValue>) -> ComparisonResult {
+		let count0 = s0.count
+		let count1 = s1.count
+		if count0 == count1 {
+			let a0 = s0.sorted()
+			let a1 = s1.sorted()
+			return compareArray(a0, a1)
+		} else {
+			return compareElement(count0, count1)
+		}
+	}
+
+	static private func compareDictionary(_ s0: Dictionary<String, CNValue>, _ s1: Dictionary<String, CNValue>) -> ComparisonResult {
+		let keys0 = Array<String>(s0.keys)
+		let keys1 = Array<String>(s1.keys)
+		if keys0.count == keys1.count {
+			let sorted0 = keys0.sorted()
+			let sorted1 = keys1.sorted()
+			let resA = compareSortedArray(sorted0, sorted1)
+			if resA == .orderedSame {
+				/* Keys are same */
+				for key in sorted0 {
+					let val0 = s0[key]
+					let val1 = s1[key]
+					let resB = compareValue(val0!, val1!)
+					if resB != .orderedSame {
+						return resB
+					}
+				}
+				return .orderedSame
+			} else {
+				return resA
+			}
+		} else {
+			return compareElement(keys0.count, keys1.count)
+		}
+	}
+
+	static private func compareSortedArray(_ s0: Array<String>, _ s1: Array<String>) -> ComparisonResult {
+		let count0 = s0.count
+		let count1 = s1.count
+		if count0 == count1 {
+			for i in 0..<count0 {
+				let resA = compareElement(s0[i], s1[i])
+				if resA != .orderedSame {
+					return resA
+				}
+			}
+			return .orderedSame
+		} else {
+			return compareElement(count0, count1)
+		}
+	}
+
+	static private func compareElement<T:Comparable>(_ s0: T, _ s1: T) -> ComparisonResult {
+		if s0 < s1 {
+			return .orderedAscending
+		} else if s0 > s1 {
+			return .orderedDescending
+		} else {
+			return .orderedSame
 		}
 	}
 }
