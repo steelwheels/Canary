@@ -20,6 +20,8 @@
 		05377BD71CF8B5E80083E05C /* CNList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD61CF8B5E80083E05C /* CNList.swift */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
 		053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNFileURL.swift */; };
+		054324001EDA3DE4006BF839 /* CNValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054323FF1EDA3DE4006BF839 /* CNValueTable.swift */; };
+		054324021EDA44CA006BF839 /* UTValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054324011EDA44CA006BF839 /* UTValueTable.swift */; };
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		054EED311E7FD58A003C1F57 /* CNObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */; };
 		054EED331E7FED27003C1F57 /* CNCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED321E7FED27003C1F57 /* CNCharacter.swift */; };
@@ -130,6 +132,8 @@
 		05377BD61CF8B5E80083E05C /* CNList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNList.swift; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
+		054323FF1EDA3DE4006BF839 /* CNValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueTable.swift; sourceTree = "<group>"; };
+		054324011EDA44CA006BF839 /* UTValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValueTable.swift; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectCoder.swift; sourceTree = "<group>"; };
 		054EED321E7FED27003C1F57 /* CNCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCharacter.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 				051BA8E51E86527F00E42E5E /* UTCharacter.swift */,
 				05EFBD691D685D49009A778A /* UTNumber.swift */,
 				05692FB71E6872AA00687615 /* UTValue.swift */,
+				054324011EDA44CA006BF839 /* UTValueTable.swift */,
 				05DB4F481C63BE2500997C67 /* UTFileURL.swift */,
 				05ED5E1D1D04621800AD2FC1 /* UTTristate.swift */,
 				050F82611C7CB680006C2D05 /* UTState.swift */,
@@ -355,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				05F1F0891E67366600792828 /* CNValue.swift */,
+				054323FF1EDA3DE4006BF839 /* CNValueTable.swift */,
 			);
 			name = Value;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */,
 				05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */,
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
+				054324001EDA3DE4006BF839 /* CNValueTable.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */,
 				05377BD71CF8B5E80083E05C /* CNList.swift in Sources */,
 				05AA59E31ED886060028E1D9 /* CNVisitor.swift in Sources */,
@@ -601,6 +608,7 @@
 			files = (
 				05D2259B1D602A1E0010C876 /* UTFileURL.swift in Sources */,
 				051E640F1EA2EC6A003C1FE2 /* UTObjectCoder.swift in Sources */,
+				054324021EDA44CA006BF839 /* UTValueTable.swift in Sources */,
 				05D8BCE81D604FA900498215 /* UTTristate.swift in Sources */,
 				05BCEC3B1D83874100AAEA48 /* UTMath.swift in Sources */,
 				05EFBD6A1D685D49009A778A /* UTNumber.swift in Sources */,

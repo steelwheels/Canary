@@ -1,10 +1,9 @@
-//
-//  Canary.h
-//  Canary
-//
-//  Created by Tomoo Hamada on 2016/01/07.
-//  Copyright © 2016年 Steel Wheels Project. All rights reserved.
-//
+/*
+ * @file	Canary.h
+ * @brief	Objective-C header file for Canary Framework
+ * @par Copyright
+ *   Copyright (C) 2017 Steel Wheels Project
+ */
 
 #import "TargetConditionals.h"
 #if TARGET_OS_IPHONE
