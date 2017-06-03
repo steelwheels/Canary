@@ -1,3 +1,11 @@
+*** UTValueTable
+idx="v0", value="true" ... OK
+idx="v1", value="c" ... OK
+idx="v2", value="-1234" ... OK
+idx="v3", value="2345" ... OK
+idx="v4", value="12.3" ... OK
+idx="v5", value="-34.5" ... OK
+idx="v6", value=""Hello"" ... OK
 
 ABCD
   ABCD
@@ -56,8 +64,9 @@ val4 = Double:-1.23
 val5 = Array:[true, -123]
 val7 = Dictionary:[b:-123, a:true]
 val8 = Dictionary:[b:255, a:-123]
-val9 = Character:A
+val9 = Dictionary:[b:255, a:-123]
 val10 = Character:A
+val11 = Character:A
 val1f = Float:-123.0
 *** UTURLTest
 srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
