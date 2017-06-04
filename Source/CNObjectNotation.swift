@@ -12,7 +12,7 @@ public class CNObjectNotation
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
 		case ClassValue(name: String, value: Array<CNObjectNotation>)
-		case ScriptValue(value: String)
+		case ScriptValue(pathExpressions: Array<CNPathExpression>, script: String)
 	}
 
 	private var mIdentifier	: String
@@ -55,9 +55,9 @@ public class CNObjectNotation
 		mLineNo		= line
 	}
 
-	public init(identifier ident: String, script scr: String, lineNo line: Int){
+	public init(identifier ident: String, pathExpressions path: Array<CNPathExpression>, script scr: String, lineNo line: Int){
 		mIdentifier	= ident
-		mValue		= ValueObject.ScriptValue(value: scr)
+		mValue		= ValueObject.ScriptValue(pathExpressions:  path, script: scr)
 		mLineNo		= line
 	}
 
@@ -70,19 +70,19 @@ public class CNObjectNotation
 		}
 	}
 
-	public var classValue: (String?, Array<CNObjectNotation>?) {
+	public var classValue: (String, Array<CNObjectNotation>)? {
 		switch mValue {
 		case .ClassValue(let name, let props):
 			return (name, props)
 		default:
-			return (nil, nil)
+			return nil
 		}
 	}
 
-	public var scriptValue: String? {
+	public var scriptValue: (Array<CNPathExpression>, String)? {
 		switch mValue {
-		case .ScriptValue(let val):
-			return val
+		case .ScriptValue(let exps, let scr):
+			return (exps, scr)
 		default:
 			return nil
 		}

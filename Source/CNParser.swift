@@ -10,15 +10,20 @@ import Foundation
 public enum CNParseError: Error
 {
 	case NoError
-	case ParseError(Int, String)
+	case TokenizeError(Int, String)
+	case ParseError(CNToken, String)
 
 	public func description() -> String {
 		let result: String
 		switch self {
 		case .NoError:
 			result = "No error"
-		case .ParseError(let line, let message):
-			result = "Error: \(message) at line \(line)"
+		case .TokenizeError(let lineno, let message):
+			result = "Error: \(message) at line \(lineno)"
+		case .ParseError(let token, let message):
+			let lineno = token.lineNo
+			let desc   = token.toString()
+			result = "Error: \(message) at line \(lineno) near \"\(desc)\""
 		}
 		return result
 	}

@@ -23,9 +23,15 @@ public func UTObjectCoder() -> Bool
 	let result8  = testCoder(text: "rect: Size {width:10.0 height:22.2}")
 	let result9  = testCoder(text: "arr: [1,2, 3]")
 	let result10 = testCoder(text: pattern10())
+	let result11 = testCoder(text: pattern11())
 	let summary = result0 && result1 && result2 && result3 && result4
 	  && result5 && result6 && result7 && result8 && result9
-	  && result10
+	  && result10 && result11
+	if summary {
+		print("[UTObjectCoder] Summary: OK")
+	} else {
+		print("[UTObjectCoder] Summary: NG")
+	}
 	return summary
 }
 
@@ -35,6 +41,16 @@ private func pattern10() -> String
 		  + "  button0: Button { }\n"
 		  + "  button1: Button { }\n"
 		  + "}\n"
+	return input
+}
+
+private func pattern11() -> String
+{
+	let input = "{\n"
+		+ "  pressed: (self.exp0, self.exp1) %{"
+		+ "    echo(\"Hello, World\"); "
+		+ "  %}\n"
+		+ "}\n"
 	return input
 }
 
@@ -50,8 +66,10 @@ private func testCoder(text txt: String) -> Bool
 			print("RESULT: \(encoded)")
 			result = true
 		}
-	case .ParseError(let line, let message):
+	case .TokenizeError(let line, let message):
 		print("[Error] \(message) at line \(line)")
+	case .ParseError(let token, let message):
+		print("[Error] \(message) at token \(token.description)")
 	}
 	return result
 }

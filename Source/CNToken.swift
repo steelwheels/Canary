@@ -315,13 +315,13 @@ private class CNTokenizer
 			if let value = Double(resstr) {
 				return (CNToken(type:.DoubleToken(value), lineNo: mCurrentLine), resrange)
 			} else {
-				throw CNParseError.ParseError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
+				throw CNParseError.TokenizeError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
 			}
 		} else {
 			if let value = UInt(resstr) {
 				return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
 			} else {
-				throw CNParseError.ParseError(mCurrentLine, "Integer value is expected but \"\(resstr)\" is given")
+				throw CNParseError.TokenizeError(mCurrentLine, "Integer value is expected but \"\(resstr)\" is given")
 			}
 		}
 	}
@@ -345,7 +345,7 @@ private class CNTokenizer
 
 		if !hasprefix {
 			let hexstr = srcstr.substring(with: srcrange)
-			throw CNParseError.ParseError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
 		}
 
 		let (resstr, resrange) = getAnyTokenFromString(range: skippedrange, string: srcstr, matchingFunc: {
@@ -355,7 +355,7 @@ private class CNTokenizer
 		if let value = UInt(resstr, radix: 16) {
 			return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
 		} else {
-			throw CNParseError.ParseError(mCurrentLine, "Hex integer value is expected but \"\(resstr)\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "Hex integer value is expected but \"\(resstr)\" is given")
 		}
 	}
 
@@ -377,7 +377,7 @@ private class CNTokenizer
 			}
 		}
 		if !has1stquot {
-			throw CNParseError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -409,7 +409,7 @@ private class CNTokenizer
 				return (CNToken(type: .StringToken(resstr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNParseError.ParseError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.TokenizeError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getTextTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>)
@@ -426,7 +426,7 @@ private class CNTokenizer
 			}
 		}
 		if !hasheader {
-			throw CNParseError.ParseError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -465,7 +465,7 @@ private class CNTokenizer
 				return (CNToken(type: .TextToken(substr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNParseError.ParseError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.TokenizeError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr.substring(with: srcrange))\" is given")
 	}
 
 	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,

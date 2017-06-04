@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05081B381E875DBF007B6A12 /* UTObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05081B371E875DBF007B6A12 /* UTObjectNotation.swift */; };
 		0509C3A11ED10446009D8A6A /* CNTextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509C3A01ED10446009D8A6A /* CNTextFile.swift */; };
+		050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050EA5481EE35F5600961900 /* CNPathExpression.swift */; };
 		051BA8E61E86527F00E42E5E /* UTCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051BA8E51E86527F00E42E5E /* UTCharacter.swift */; };
 		051C21641E7C3F2900A629DB /* CNObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C21631E7C3F2900A629DB /* CNObjectNotation.swift */; };
 		051E640F1EA2EC6A003C1FE2 /* UTObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E640E1EA2EC6A003C1FE2 /* UTObjectCoder.swift */; };
@@ -119,6 +120,7 @@
 /* Begin PBXFileReference section */
 		05081B371E875DBF007B6A12 /* UTObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObjectNotation.swift; sourceTree = "<group>"; };
 		0509C3A01ED10446009D8A6A /* CNTextFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextFile.swift; sourceTree = "<group>"; };
+		050EA5481EE35F5600961900 /* CNPathExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPathExpression.swift; sourceTree = "<group>"; };
 		050F82611C7CB680006C2D05 /* UTState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTState.swift; sourceTree = "<group>"; };
 		051BA8E51E86527F00E42E5E /* UTCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCharacter.swift; sourceTree = "<group>"; };
 		051C21631E7C3F2900A629DB /* CNObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectNotation.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				05C15D9D1E9FC8C4008093C5 /* CNParser.swift */,
 				0521AF591E82A1F000E25D02 /* CNToken.swift */,
 				05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */,
+				050EA5481EE35F5600961900 /* CNPathExpression.swift */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
 				0509C3A11ED10446009D8A6A /* CNTextFile.swift in Sources */,
 				05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */,
+				050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				0521AF5A1E82A1F000E25D02 /* CNToken.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNFileConsole.swift in Sources */,

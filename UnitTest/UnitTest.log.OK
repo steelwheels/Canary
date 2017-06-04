@@ -189,13 +189,13 @@ result ->
 obj0: Bool true
 obj1: Double 12.3
 obj2: String "Hello, world"
-obj3:  %{
-exit(0)
+obj3:  (ident0.ident1) %{
+exit(0) ; 
 %}
 obj4: ClassA {
   obj2: String "Hello, world"
-  obj3:  %{
-exit(0)
+  obj3:  (ident0.ident1) %{
+exit(0) ; 
   %}
 }
 *** UTObjectCoder
@@ -236,4 +236,12 @@ RESULT: button0: Button {
 }
 RESULT: button1: Button {
 }
+[Input] {
+  pressed: (self.exp0, self.exp1) %{    echo("Hello, World");   %}
+}
+
+RESULT: pressed:  (self.exp0, self.exp1) %{
+    echo("Hello, World");   
+%}
+[UTObjectCoder] Summary: OK
 [SUMMARY] PASSED

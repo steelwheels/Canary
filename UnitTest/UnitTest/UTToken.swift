@@ -45,7 +45,7 @@ private func testToken(text txt: String, expectedResult expres: Bool, expectedNu
 			i += 1
 		}
 		realres = (tokens.count == expnum)
-	case .ParseError(_, _):
+	case .TokenizeError(_, _), .ParseError(_, _):
 		let desc = error.description()
 		print("result -> \(desc)")
 		realres = false
