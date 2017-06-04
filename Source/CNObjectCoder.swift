@@ -48,7 +48,7 @@ private class CNEncoder
 		switch src.value {
 		case .PrimitiveValue(let v):
 			result = v.description
-		case .ScriptValue(let exps, let script):
+		case .MethodValue(let exps, let script):
 			result = ""
 			if exps.count > 0 {
 				result += "("
@@ -220,7 +220,7 @@ private class CNDecoder
 				idx3      = newidx
 			case "(":
 				let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
-				objvalue3 = CNObjectNotation.ValueObject.ScriptValue(pathExpressions: exps, script: script)
+				objvalue3 = CNObjectNotation.ValueObject.MethodValue(pathExpressions: exps, script: script)
 				idx3      = newidx
 			default:
 				throw CNParseError.ParseError(src[idx], "Unexpected symbol \"\(sym)\"")
@@ -242,9 +242,10 @@ private class CNDecoder
 		case .StringToken(let value):
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue(stringValue: value))
 			idx3      = idx2 + 1
-		case .TextToken(let value):
-			objvalue3 = CNObjectNotation.ValueObject.ScriptValue(pathExpressions: [], script: value)
-			idx3      = idx2 + 1
+		case .TextToken(_):
+			let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
+			objvalue3 = CNObjectNotation.ValueObject.MethodValue(pathExpressions: exps, script: script)
+			idx3      = newidx
 		}
 
 		/* check type matching */
