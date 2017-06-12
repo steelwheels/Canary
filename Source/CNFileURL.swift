@@ -12,31 +12,35 @@ import Foundation
  */
 public extension URL
 {
-	/**
-	 Open the panel to select input file
-
-	 - parameter title:		Title of the open panel
-	 - parameter fileTypes:		Target file types to open
-	 - parameter openFileCallback:	Callback function to be called when the file is seleted
-	 */
 #if os(OSX)
-	public static func openPanel(title tl: String, fileTypes types: Array<String>?, openFileCallback callback: @escaping ((_: Array<URL>) -> Void))
+	public static func openPanel(title tl: String, fileTypes types: Array<String>?) -> URL?
 	{
 		let panel = NSOpenPanel()
+
 		panel.title = tl
 		panel.canChooseDirectories = false
 		panel.allowsMultipleSelection = false
 		panel.allowedFileTypes = types
-		panel.begin(completionHandler: { (result: Int) -> Void in
-			if result == NSFileHandlingPanelOKButton {
 
+		var result: URL? = nil
+		switch panel.runModal() {
+		case NSFileHandlingPanelOKButton:
+			let urls = panel.urls
+			if urls.count == 1 {
 				let preference = CNBookmarkPreference.sharedPreference
-				preference.saveToUserDefaults(URLs: panel.urls)
+				preference.saveToUserDefaults(URLs: urls)
 				preference.synchronize()
 
-				callback(panel.urls)
+				result = urls[0]
+			} else {
+				NSLog("Invalid result: \(urls)")
 			}
-		})
+		case NSFileHandlingPanelCancelButton:
+			break
+		default:
+			break
+		}
+		return result
 	}
 #endif
 
