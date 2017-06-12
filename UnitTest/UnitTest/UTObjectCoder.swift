@@ -14,11 +14,11 @@ public func UTObjectCoder() -> Bool
 	let result1  = testCoder(text: "pi: Double 3.14")
 	let result2  = testCoder(text: "pi: Int 3.14")
 	let result3  = testCoder(text: "ident0: Bool true")
-	let result4  = testCoder(text: "{ident0: Int 1234}")
-	let result5  = testCoder(text:     "{ident0: Int 1234\n"
+	let result4  = testCoder(text: "dict0: C {ident0: Int 1234}")
+	let result5  = testCoder(text:    "dict1: D {ident0: Int 1234\n"
 					+ " ident1: Double 1.240 \n"
 					+ "}")
-	let result6  = testCoder(text: "{ident0: \"hello\"}")
+	let result6  = testCoder(text: "dict0: C {ident0: \"hello\"}")
 	let result7  = testCoder(text: "command: %{ exit(0) ; %}")
 	let result8  = testCoder(text: "rect: Size {width:10.0 height:22.2}")
 	let result9  = testCoder(text: "arr: [1,2, 3]")
@@ -37,7 +37,7 @@ public func UTObjectCoder() -> Bool
 
 private func pattern10() -> String
 {
-	let input = "{\n"
+	let input = "main_window: Window {\n"
 		  + "  button0: Button { }\n"
 		  + "  button1: Button { }\n"
 		  + "}\n"
@@ -46,7 +46,7 @@ private func pattern10() -> String
 
 private func pattern11() -> String
 {
-	let input = "{\n"
+	let input = "main_window: Window {\n"
 		+ "  pressed: (self.exp0, self.exp1) %{"
 		+ "    echo(\"Hello, World\"); "
 		+ "  %}\n"
@@ -61,11 +61,9 @@ private func testCoder(text txt: String) -> Bool
 	let (err0, object0) = CNDecodeObjectNotation(text: txt)
 	switch err0 {
 	case .NoError:
-		for obj in object0 {
-			let encoded = CNEncodeObjectNotation(notation: obj)
-			print("RESULT: \(encoded)")
-			result = true
-		}
+		let encoded = CNEncodeObjectNotation(notation: object0)
+		print("RESULT: \(encoded)")
+		result = true
 	case .TokenizeError(let line, let message):
 		print("[Error] \(message) at line \(line)")
 	case .ParseError(let token, let message):

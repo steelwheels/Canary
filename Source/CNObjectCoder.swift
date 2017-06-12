@@ -13,7 +13,7 @@ public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String
 	return encoder.encode(indent: 0, notation: src)
 }
 
-public func CNDecodeObjectNotation(text src: String) -> (CNParseError, Array<CNObjectNotation>)
+public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectNotation)
 {
 	do {
 		let decoder = CNDecoder()
@@ -21,7 +21,9 @@ public func CNDecodeObjectNotation(text src: String) -> (CNParseError, Array<CNO
 		return (.NoError, result)
 	} catch let error {
 		if let psrerr = error as? CNParseError {
-			return (psrerr, [])
+			let val = CNValue(booleanValue: false)
+			let empty = CNObjectNotation(identifier: "null", primitiveValue: val, lineNo: 0)
+			return (psrerr, empty)
 		} else {
 			fatalError("Unknown error")
 		}
@@ -89,7 +91,7 @@ private class CNDecoder
 {
 	static let DO_DEBUG = false
 
-	public func decode(text src: String) throws -> Array<CNObjectNotation>
+	public func decode(text src: String) throws -> CNObjectNotation
 	{
 		/* Tokenier */
 		let (tkerr, tokens) = CNStringToToken(string: src)
@@ -101,8 +103,8 @@ private class CNDecoder
 				dumpTokens(tokens: mtokens)
 			}
 			/* Decode tokens */
-			let (objs, _) = try decode(tokens: mtokens, index: 0)
-			return objs
+			let (notation, _) = try decode(tokens: mtokens, index: 0)
+			return notation
 		case .TokenizeError(_, _), .ParseError(_, _):
 			throw tkerr
 		}
@@ -150,38 +152,7 @@ private class CNDecoder
 		return result
 	}
 
-	private func decode(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNObjectNotation>, Int) {
-		var result : Array<CNObjectNotation> = []
-
-		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "{")
-
-		var idx1   : Int = idx0
-		let count  = src.count
-		while idx1 < count {
-			let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-			if hasrp {
-				break
-			}
-			let (newobj, newidx) = try decodeObject(tokens: src, index: idx1)
-			result.append(newobj)
-			idx1 = newidx
-		}
-
-		var idx2 : Int
-		if haslp {
-			let (hasrp, newidx) = hasSymbol(tokens: src, index: idx1, symbol: "}")
-			if !hasrp {
-				throw CNParseError.ParseError(src[idx], "Last \"}\" is required")
-			}
-			idx2 = newidx
-		} else {
-			idx2 = idx1
-		}
-
-		return (result, idx2)
-	}
-
-	public func decodeObject(tokens src: Array<CNToken>, index idx: Int) throws -> (CNObjectNotation, Int)
+	public func decode(tokens src: Array<CNToken>, index idx: Int) throws -> (CNObjectNotation, Int)
 	{
 		/* Get identifier */
 		let (identp, idx0) = getIdentifier(tokens: src, index: idx)
@@ -339,7 +310,7 @@ private class CNDecoder
 				break
 			}
 			/* get object */
-			let (newobj, idx2) = try decodeObject(tokens: src, index: curidx)
+			let (newobj, idx2) = try decode(tokens: src, index: curidx)
 			result.append(newobj)
 			curidx   = idx2
 		}

@@ -207,15 +207,21 @@ RESULT: pi: Double 3.14
 RESULT: pi: Int 3
 [Input] ident0: Bool true
 RESULT: ident0: Bool true
-[Input] {ident0: Int 1234}
-RESULT: ident0: Int 1234
-[Input] {ident0: Int 1234
+[Input] dict0: C {ident0: Int 1234}
+RESULT: dict0: C {
+  ident0: Int 1234
+}
+[Input] dict1: D {ident0: Int 1234
  ident1: Double 1.240 
 }
-RESULT: ident0: Int 1234
-RESULT: ident1: Double 1.24
-[Input] {ident0: "hello"}
-RESULT: ident0: String "hello"
+RESULT: dict1: D {
+  ident0: Int 1234
+  ident1: Double 1.24
+}
+[Input] dict0: C {ident0: "hello"}
+RESULT: dict0: C {
+  ident0: String "hello"
+}
 [Input] command: %{ exit(0) ; %}
 RESULT: command:  %{
  exit(0) ; 
@@ -227,21 +233,25 @@ RESULT: rect: Size {
 }
 [Input] arr: [1,2, 3]
 RESULT: arr: Array [1, 2, 3]
-[Input] {
+[Input] main_window: Window {
   button0: Button { }
   button1: Button { }
 }
 
-RESULT: button0: Button {
+RESULT: main_window: Window {
+  button0: Button {
+  }
+  button1: Button {
+  }
 }
-RESULT: button1: Button {
-}
-[Input] {
+[Input] main_window: Window {
   pressed: (self.exp0, self.exp1) %{    echo("Hello, World");   %}
 }
 
-RESULT: pressed:  (self.exp0, self.exp1) %{
+RESULT: main_window: Window {
+  pressed:  (self.exp0, self.exp1) %{
     echo("Hello, World");   
-%}
+  %}
+}
 [UTObjectCoder] Summary: OK
 [SUMMARY] PASSED
