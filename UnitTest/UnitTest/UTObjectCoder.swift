@@ -61,9 +61,13 @@ private func testCoder(text txt: String) -> Bool
 	let (err0, object0) = CNDecodeObjectNotation(text: txt)
 	switch err0 {
 	case .NoError:
-		let encoded = CNEncodeObjectNotation(notation: object0)
-		print("RESULT: \(encoded)")
-		result = true
+		if let obj = object0 {
+			let encoded = CNEncodeObjectNotation(notation: obj)
+			print("RESULT: \(encoded)")
+			result = true
+		} else {
+			print("[Error] Can not happen")
+		}
 	case .TokenizeError(let line, let message):
 		print("[Error] \(message) at line \(line)")
 	case .ParseError(let token, let message):

@@ -13,7 +13,7 @@ public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String
 	return encoder.encode(indent: 0, notation: src)
 }
 
-public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectNotation)
+public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectNotation?)
 {
 	do {
 		let decoder = CNDecoder()
@@ -21,9 +21,7 @@ public func CNDecodeObjectNotation(text src: String) -> (CNParseError, CNObjectN
 		return (.NoError, result)
 	} catch let error {
 		if let psrerr = error as? CNParseError {
-			let val = CNValue(booleanValue: false)
-			let empty = CNObjectNotation(identifier: "null", primitiveValue: val, lineNo: 0)
-			return (psrerr, empty)
+			return (psrerr, nil)
 		} else {
 			fatalError("Unknown error")
 		}
