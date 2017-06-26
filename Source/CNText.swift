@@ -33,6 +33,11 @@ public class CNText
 	}
 
 	open func append(string src: String){
+		NSLog("Must be override")
+	}
+
+	public final func append(text src: CNTextLine){
+		append(string: src.string)
 	}
 }
 
@@ -64,6 +69,8 @@ public class CNTextSection: CNText
 	public var footer: String	= ""
 
 	private var mContents: Array<CNText> = []
+
+	public var count: Int { get{ return mContents.count }}
 
 	public func add(text txt: CNText){
 		mContents.append(txt)

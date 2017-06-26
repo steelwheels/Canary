@@ -44,7 +44,7 @@ list3 3 [2 0 4 ]
 list5 11 [10 0 1 11 33 4 5 6 7 8 9 ]
 *** UTNumber
 *** UTNumber: NSNumberKind
-checkNumber: 1 symbol:c real:boolean == expected:boolean
+checkNumber: 1 symbol:c real:int8 == expected:int8
 checkNumber: -1 symbol:c real:int8 == expected:int8
 checkNumber: 1 symbol:s real:int16 == expected:int16
 checkNumber: -1 symbol:s real:int16 == expected:int16

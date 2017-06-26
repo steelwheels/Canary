@@ -44,8 +44,6 @@ open class CNVisitor
 
 	public func accept(nsNumber obj: NSNumber) {
 		switch obj.decodeKind() {
-		case .booleanNumber:
-			visit(bool: obj.boolValue)
 		case .int8Number:
 			visit(int: Int(obj.int8Value))
 		case .int16Number:

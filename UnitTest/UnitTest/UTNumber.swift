@@ -17,7 +17,7 @@ private func numberKind() -> Bool
 {
 	print("*** UTNumber: NSNumberKind")
 	
-	let result0  = checkNumberKind(number: NSNumber(value:	true), expectedKind: NSNumberKind.booleanNumber)
+	let result0  = checkNumberKind(number: NSNumber(value:	true), expectedKind: NSNumberKind.int8Number)
 	let result1  = checkNumberKind(number: NSNumber(value:	Int8(-1)), expectedKind: NSNumberKind.int8Number)
 	let result2  = checkNumberKind(number: NSNumber(value:	UInt8(1)), expectedKind: NSNumberKind.int16Number)
 	let result3  = checkNumberKind(number: NSNumber(value:	Int16(-1)), expectedKind: NSNumberKind.int16Number)
