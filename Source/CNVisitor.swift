@@ -12,8 +12,19 @@ open class CNVisitor
 	public init() {
 	}
 
-	public func accept(any anyobj: Any){
-		if let v = anyobj as? Bool {
+	public func accept(any anyobj: Any)
+	{
+		if let v = anyobj as? NSNumber {
+			accept(number: v)
+		} else if let v = anyobj as? Date {
+			visit(date: v)
+		} else if let v = anyobj as? Array<Any> {
+			visit(array: v)
+		} else if let v = anyobj as? Set<AnyHashable> {
+			visit(set: v)
+		} else if let v = anyobj as? Dictionary<AnyHashable, Any> {
+			visit(dictionary: v)
+		} else if let v = anyobj as? Bool {
 			visit(bool: v)
 		} else if let v = anyobj as? Character {
 			visit(character: v)
@@ -27,22 +38,12 @@ open class CNVisitor
 			visit(double: v)
 		} else if let v = anyobj as? String {
 			visit(string: v)
-		} else if let v = anyobj as? Date {
-			visit(date: v)
-		} else if let v = anyobj as? Array<Any> {
-			visit(array: v)
-		} else if let v = anyobj as? Set<AnyHashable> {
-			visit(set: v)
-		} else if let v = anyobj as? Dictionary<AnyHashable, Any> {
-			visit(dictionary: v)
-		} else if let v = anyobj as? NSNumber {
-			visit(nsNumber: v)
 		} else {
 			visit(any: anyobj)
 		}
 	}
 
-	public func accept(nsNumber obj: NSNumber) {
+	public func accept(number obj: NSNumber) {
 		switch obj.decodeKind() {
 		case .int8Number:
 			visit(int: Int(obj.int8Value))
@@ -79,5 +80,4 @@ open class CNVisitor
 	open func visit(set		val: Set<AnyHashable>)			{		}
 	open func visit(dictionary	val: Dictionary<AnyHashable, Any>)	{		}
 	open func visit(any		val: Any)				{		}
-	open func visit(nsNumber	val: NSNumber)				{		}
 }
