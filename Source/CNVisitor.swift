@@ -14,6 +14,9 @@ open class CNVisitor
 
 	public func accept(any anyobj: Any)
 	{
+		/**
+		 * FIX ME: the order to determine the data type is IMPORTANT
+		 */
 		if let v = anyobj as? NSNumber {
 			accept(number: v)
 		} else if let v = anyobj as? Date {
