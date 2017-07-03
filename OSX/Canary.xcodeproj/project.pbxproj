@@ -26,6 +26,8 @@
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		054EED311E7FD58A003C1F57 /* CNObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */; };
 		054EED331E7FED27003C1F57 /* CNCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED321E7FED27003C1F57 /* CNCharacter.swift */; };
+		05658E2D1F0AA8C8002FF2B7 /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05658E2C1F0AA8C8002FF2B7 /* CNStack.swift */; };
+		05658E311F0AAB1A002FF2B7 /* UTStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05658E301F0AAB1A002FF2B7 /* UTStack.swift */; };
 		05692FB81E6872AA00687615 /* UTValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05692FB71E6872AA00687615 /* UTValue.swift */; };
 		056AA28F1C4A610B00E53092 /* CNFileConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AA28E1C4A610B00E53092 /* CNFileConsole.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -139,6 +141,8 @@
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectCoder.swift; sourceTree = "<group>"; };
 		054EED321E7FED27003C1F57 /* CNCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCharacter.swift; sourceTree = "<group>"; };
+		05658E2C1F0AA8C8002FF2B7 /* CNStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStack.swift; sourceTree = "<group>"; };
+		05658E301F0AAB1A002FF2B7 /* UTStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTStack.swift; sourceTree = "<group>"; };
 		05692FB71E6872AA00687615 /* UTValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTValue.swift; sourceTree = "<group>"; };
 		056AA28E1C4A610B00E53092 /* CNFileConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileConsole.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +300,7 @@
 				054EED321E7FED27003C1F57 /* CNCharacter.swift */,
 				05BD1B3F1EC35C1000B32E1C /* CNText.swift */,
 				05AA59E21ED886060028E1D9 /* CNVisitor.swift */,
+				05658E2C1F0AA8C8002FF2B7 /* CNStack.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 			children = (
 				05E856E51D5FF07A00B0F2CC /* main.swift */,
 				05B8C5401CF9125100862F42 /* UTList.swift */,
+				05658E301F0AAB1A002FF2B7 /* UTStack.swift */,
 				051BA8E51E86527F00E42E5E /* UTCharacter.swift */,
 				05EFBD691D685D49009A778A /* UTNumber.swift */,
 				05692FB71E6872AA00687615 /* UTValue.swift */,
@@ -592,6 +598,7 @@
 				0509C3A11ED10446009D8A6A /* CNTextFile.swift in Sources */,
 				05C40E361CBA181A0008C439 /* CNRedirectConsole.swift in Sources */,
 				050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */,
+				05658E2D1F0AA8C8002FF2B7 /* CNStack.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				0521AF5A1E82A1F000E25D02 /* CNToken.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNFileConsole.swift in Sources */,
@@ -617,6 +624,7 @@
 				05BCEC3B1D83874100AAEA48 /* UTMath.swift in Sources */,
 				05EFBD6A1D685D49009A778A /* UTNumber.swift in Sources */,
 				05D8BCEA1D6051AD00498215 /* UTList.swift in Sources */,
+				05658E311F0AAB1A002FF2B7 /* UTStack.swift in Sources */,
 				05D8BCE91D604FED00498215 /* UTState.swift in Sources */,
 				05D8BCEB1D6051F000498215 /* UTConsole.swift in Sources */,
 				05B924781ED06F77006A7543 /* UTText.swift in Sources */,

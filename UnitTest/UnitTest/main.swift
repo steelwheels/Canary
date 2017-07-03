@@ -18,41 +18,44 @@ let result0 = UTCharacter()
 print("*** UTListTest")
 let result1 = UTListTest()
 
+print("*** UTStackTest")
+let result2 = UTStackTest()
+
 print("*** UTNumber")
-let result2 = UTNumber()
+let result3 = UTNumber()
 
 print("*** UTValue")
-let result3 = UTValueTest()
+let result4 = UTValueTest()
 
 console.print(string: "*** UTValueTable\n")
-let result4 = UTValueTableTest(console: console)
+let result5 = UTValueTableTest(console: console)
 
 print("*** UTURLTest")
-let result5 = UTURLTest()
+let result6 = UTURLTest()
 
 print("*** UTStateTest")
-let result6 = UTStateTest() && UTTristateTest()
+let result7 = UTStateTest() && UTTristateTest()
 
 print("*** UTText")
-let result7 = UTText()
+let result8 = UTText()
 
 print("*** UTConsoleTest")
-let result8 = UTConsoleTest()
+let result9 = UTConsoleTest()
 
 print("*** UTMath")
-let result9 = UTMathTest()
+let result10 = UTMathTest()
 
 print("*** UTToken")
-let result10 = UTTokenTest()
+let result11 = UTTokenTest()
 
 print("*** UTObjectNotation")
-let result11 = UTObjectNotation()
+let result12 = UTObjectNotation()
 
 print("*** UTObjectCoder")
-let result12 = UTObjectCoder()
+let result13 = UTObjectCoder()
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
-	     result10 && result11 && result12
+	     result10 && result11 && result12 && result13
 if result {
 	print("[SUMMARY] PASSED")
 	exit(0)
