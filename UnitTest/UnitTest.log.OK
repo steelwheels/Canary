@@ -1,3 +1,15 @@
+* Graph1
+  n0: I0 O1
+    n1: I1 O0
+* Graph2
+  n0: I0 O1
+    n1: I1 O1
+      n2: I1 O0
+* Graph3
+  n0: I0 O1
+    n1: I1 O1
+  n3: I0 O1
+    n2: I2 O0
 *** UTValueTable
 idx="v0", value="true" ... OK
 idx="v1", value="c" ... OK
@@ -42,6 +54,7 @@ list0 remove 0 []
 list2 *2 6 [4 6 10 2 0 8 ]
 list3 3 [2 0 4 ]
 list5 11 [10 0 1 11 33 4 5 6 7 8 9 ]
+*** UTGraphTest
 *** UTStackTest
 Top: None
 * push 1
