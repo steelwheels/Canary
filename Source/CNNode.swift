@@ -18,15 +18,18 @@ public class CNNode: Equatable
 	private var mUniqueId:		Int
 	private var mInputEdges:	Array<CNWeakEdgeReference>
 	private var mOutputEdges:	Array<CNWeakEdgeReference>
+	private var mTriggerCallback:	((_ node: CNNode) -> Void)?
 
-	public var uniqueId: Int { get { return mUniqueId }}
-	public var didVisited: Bool
+	public var uniqueId		: Int { get { return mUniqueId }}
+	public var didVisited		: Bool
 
-	public init(uniqueId uid: Int){
-		mUniqueId	= uid	/* The ID is managed by owner graph (See CNGraph) */
-		mInputEdges	= []
-		mOutputEdges	= []
-		didVisited	= false
+
+	public init(uniqueId uid: Int, triggerCallback callback: @escaping (_ node: CNNode) -> Void){
+		mUniqueId		= uid	/* The ID is managed by owner graph (See CNGraph) */
+		mInputEdges		= []
+		mOutputEdges		= []
+		mTriggerCallback	= callback
+		didVisited		= false
 	}
 
 	public var inputEdges:  Array<CNWeakEdgeReference> { get { return mInputEdges  } }
@@ -50,6 +53,12 @@ public class CNNode: Equatable
 			}
 		}
 		mOutputEdges.append(CNWeakEdgeReference(object: newedge))
+	}
+
+	public func trigger() {
+		if let callback = mTriggerCallback {
+			callback(self)
+		}
 	}
 
 	public var description: String {

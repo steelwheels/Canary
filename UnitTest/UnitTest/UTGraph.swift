@@ -37,7 +37,10 @@ public func UTGraphTest() -> Bool
 private func allocateNode(graph g: CNGraph) -> CNNode {
 	return g.allocateNode(allocFunc: {
 		(_ uid: Int) -> CNNode in
-		return CNNode(uniqueId: uid)
+		return CNNode(uniqueId: uid, triggerCallback: {
+			(_ node:CNNode) -> Void in
+			Swift.print("*trigger*")
+		})
 	})
 }
 
