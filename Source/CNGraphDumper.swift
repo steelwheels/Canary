@@ -1,5 +1,5 @@
 /**
- * @file	CNGraphDumper.h
+ * @file	CNGraph.swift
  * @brief	Define CNGraphDumper class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project

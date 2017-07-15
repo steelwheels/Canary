@@ -11,22 +11,24 @@ public func UTGraphTest() -> Bool
 {
 	let console = CNFileConsole(file: CNTextFile.stdout)
 
+	let owner = NSNumber(booleanLiteral: true)
+
 	console.print(string: "* Graph1\n")
 	let graph = CNGraph()
-	let n0 = allocateNode(graph: graph)
-	let n1 = allocateNode(graph: graph)
+	let n0 = allocateNode(name: "n0", graph: graph, owner: owner)
+	let n1 = allocateNode(name: "n1", graph: graph, owner: owner)
 	let e0 = allocateEdge(graph: graph)
 	CNGraph.link(from: n0, to: n1, by: e0)
 	dump(console: console, graph: graph)
 
 	console.print(string: "* Graph2\n")
-	let n2 = allocateNode(graph: graph)
+	let n2 = allocateNode(name: "n2", graph: graph, owner: owner)
 	let e1 = allocateEdge(graph: graph)
 	CNGraph.link(from: n1, to: n2, by: e1)
 	dump(console: console, graph: graph)
 
 	console.print(string: "* Graph3\n")
-	let n3 = allocateNode(graph: graph)
+	let n3 = allocateNode(name: "n3", graph: graph, owner: owner)
 	let e2 = allocateEdge(graph: graph)
 	CNGraph.link(from: n3, to: n2, by: e2)
 	dump(console: console, graph: graph)
@@ -34,21 +36,12 @@ public func UTGraphTest() -> Bool
 	return true
 }
 
-private func allocateNode(graph g: CNGraph) -> CNNode {
-	return g.allocateNode(allocFunc: {
-		(_ uid: Int) -> CNNode in
-		return CNNode(uniqueId: uid, triggerCallback: {
-			(_ node:CNNode) -> Void in
-			Swift.print("*trigger*")
-		})
-	})
+private func allocateNode(name nm:String, graph g: CNGraph, owner own: AnyObject) -> CNNode {
+	return g.allocateNode(name: nm, owner: own)
 }
 
 private func allocateEdge(graph g: CNGraph) -> CNEdge {
-	return g.allocateEdge(allocFunc: {
-		(_ uid: Int) -> CNEdge in
-		return CNEdge(uniqueId: uid)
-	})
+	return g.allocateEdge()
 }
 
 private func dump(console cons: CNConsole, graph src: CNGraph)

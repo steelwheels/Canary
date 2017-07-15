@@ -1,5 +1,5 @@
 /**
- * @file	CNGraph.h
+ * @file	CNGraph.swift
  * @brief	Define CNGraph class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
@@ -25,15 +25,15 @@ public class CNGraph
 		mEdges			= []
 	}
 
-	public func allocateNode(allocFunc alloc: (_ uid: Int) -> CNNode) -> CNNode {
-		let newnode = alloc(mNextNodeUniqId)
+	public func allocateNode(name nm: String, owner own: AnyObject) -> CNNode {
+		let newnode = CNNode(uniqueId: mNextNodeUniqId, name: nm, owner: own)
 		mNodes.append(newnode)
 		mNextNodeUniqId += 1
 		return newnode
 	}
 
-	public func allocateEdge(allocFunc alloc: (_ uid: Int) -> CNEdge) -> CNEdge {
-		let newedge = alloc(mNextEdgeUniqId)
+	public func allocateEdge() -> CNEdge {
+		let newedge = CNEdge(uniqueId: mNextEdgeUniqId)
 		mEdges.append(newedge)
 		mNextEdgeUniqId += 1
 		return newedge

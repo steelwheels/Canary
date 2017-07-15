@@ -14,6 +14,7 @@
 		051C21641E7C3F2900A629DB /* CNObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C21631E7C3F2900A629DB /* CNObjectNotation.swift */; };
 		051E640F1EA2EC6A003C1FE2 /* UTObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E640E1EA2EC6A003C1FE2 /* UTObjectCoder.swift */; };
 		0521AF5A1E82A1F000E25D02 /* CNToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521AF591E82A1F000E25D02 /* CNToken.swift */; };
+		052201801F1992CF00009C37 /* CNNodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522017F1F1992CF00009C37 /* CNNodeTable.swift */; };
 		052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052330F51C7CB00000585F94 /* CNStateObserver.swift */; };
 		05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6A1C74D25B00BAA730 /* CNState.swift */; };
 		05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */; };
@@ -135,6 +136,7 @@
 		051C21631E7C3F2900A629DB /* CNObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectNotation.swift; sourceTree = "<group>"; };
 		051E640E1EA2EC6A003C1FE2 /* UTObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTObjectCoder.swift; sourceTree = "<group>"; };
 		0521AF591E82A1F000E25D02 /* CNToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNToken.swift; sourceTree = "<group>"; };
+		0522017F1F1992CF00009C37 /* CNNodeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNodeTable.swift; sourceTree = "<group>"; };
 		052330F51C7CB00000585F94 /* CNStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStateObserver.swift; sourceTree = "<group>"; };
 		05318A6A1C74D25B00BAA730 /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
 		05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCombinedState.swift; sourceTree = "<group>"; };
@@ -271,8 +273,8 @@
 		057A42AC1C3D6BB7006A48E6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				05EE15C31F1112DC0025FF6B /* Object */,
 				057A42AD1C3D6BB7006A48E6 /* Canary.h */,
+				05EE15C31F1112DC0025FF6B /* Object */,
 				05AD3A181D67D72F00B033EF /* Data */,
 				059D95FE1CF1DCE200006FC9 /* List */,
 				057A72181F0FDB8200F1243E /* Graph */,
@@ -294,6 +296,7 @@
 				057A721B1F0FDC0600F1243E /* CNGraph.swift */,
 				05EE15C11F10E36F0025FF6B /* CNGraphDumper.swift */,
 				057A72191F0FDBA800F1243E /* CNNode.swift */,
+				0522017F1F1992CF00009C37 /* CNNodeTable.swift */,
 				057A721D1F0FDC3700F1243E /* CNEdge.swift */,
 			);
 			name = Graph;
@@ -640,6 +643,7 @@
 				05658E2D1F0AA8C8002FF2B7 /* CNStack.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
 				0521AF5A1E82A1F000E25D02 /* CNToken.swift in Sources */,
+				052201801F1992CF00009C37 /* CNNodeTable.swift in Sources */,
 				057A721C1F0FDC0600F1243E /* CNGraph.swift in Sources */,
 				056AA28F1C4A610B00E53092 /* CNFileConsole.swift in Sources */,
 				05EE15BC1F104BF10025FF6B /* CNObjectReference.swift in Sources */,

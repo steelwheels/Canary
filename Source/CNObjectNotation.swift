@@ -19,9 +19,9 @@ public class CNObjectNotation
 	private var mValue	: ValueObject
 	private var mLineNo	: Int
 
-	public var identifier	: String	{ return mIdentifier	}
-	public var value	: ValueObject	{ return mValue		}
-	public var lineNo	: Int		{ return mLineNo	}
+	public var identifier	: String	{ get{ return mIdentifier }	}
+	public var value	: ValueObject	{ get{ return mValue	  }	}
+	public var lineNo	: Int		{ get{ return mLineNo	  }	}
 
 	public init(identifier ident: String, value v: ValueObject, lineNo line: Int){
 		mIdentifier	= ident
