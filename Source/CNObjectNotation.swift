@@ -12,7 +12,7 @@ public class CNObjectNotation
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
 		case ClassValue(name: String, value: Array<CNObjectNotation>)
-		case MethodValue(pathExpressions: Array<CNPathExpression>, script: String)
+		case MethodValue(type: CNValueType, pathExpressions: Array<CNPathExpression>, script: String)
 	}
 
 	private var mIdentifier	: String
@@ -55,9 +55,9 @@ public class CNObjectNotation
 		mLineNo		= line
 	}
 
-	public init(identifier ident: String, pathExpressions path: Array<CNPathExpression>, script scr: String, lineNo line: Int){
+	public init(identifier ident: String, type valtype: CNValueType, pathExpressions path: Array<CNPathExpression>, script scr: String, lineNo line: Int){
 		mIdentifier	= ident
-		mValue		= ValueObject.MethodValue(pathExpressions:  path, script: scr)
+		mValue		= ValueObject.MethodValue(type: valtype, pathExpressions:  path, script: scr)
 		mLineNo		= line
 	}
 
@@ -79,21 +79,21 @@ public class CNObjectNotation
 		}
 	}
 
-	public var methodValue: (Array<CNPathExpression>, String)? {
+	public var methodValue: (CNValueType, Array<CNPathExpression>, String)? {
 		switch mValue {
-		case .MethodValue(let exps, let scr):
-			return (exps, scr)
+		case .MethodValue(let type, let exps, let scr):
+			return (type, exps, scr)
 		default:
 			return nil
 		}
 	}
 
-	public func typeName() -> String? {
-		var result: String?
+	public func typeName() -> String {
+		var result: String
 		switch mValue {
-		case .PrimitiveValue(let v):	result = v.type.description
-		case .ClassValue(let name, _):	result = name
-		case .MethodValue(_):		result = nil
+		case .PrimitiveValue(let v):		result = v.type.description
+		case .ClassValue(let name, _):		result = name
+		case .MethodValue(let type, _, _):	result = type.description
 		}
 		return result
 	}

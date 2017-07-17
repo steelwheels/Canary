@@ -32,12 +32,7 @@ private class CNEncoder
 {
 	public func encode(indent idt: Int, notation src: CNObjectNotation) -> String
 	{
-		let typename: String
-		if let name = src.typeName() {
-			typename = name
-		} else {
-			typename = ""
-		}
+		let typename = src.typeName()
 		let header = src.identifier + ": " + typename + " "
 		let value  = encodeValue(indent: idt, notation: src)
 		return indent2string(indent: idt) + header + value ;
@@ -48,7 +43,7 @@ private class CNEncoder
 		switch src.value {
 		case .PrimitiveValue(let v):
 			result = v.description
-		case .MethodValue(let exps, let script):
+		case .MethodValue(_, let exps, let script):
 			result = ""
 			if exps.count > 0 {
 				result += "("
@@ -164,7 +159,13 @@ private class CNDecoder
 			throw CNParseError.ParseError(src[idx], "\":\" is required after identifier \(identp!)")
 		}
 		/* Get type name */
-		let (typestrp, idx2) = getIdentifier(tokens: src, index: idx1)
+		let (typenamep, idx2) = getIdentifier(tokens: src, index: idx1)
+		var typename: String
+		if let t = typenamep {
+			typename = t
+		} else {
+			throw CNParseError.ParseError(src[idx], "Type name is expected")
+		}
 		if !(idx2 < src.count) {
 			throw CNParseError.ParseError(src[idx], "Object value is not declared")
 		}
@@ -181,15 +182,12 @@ private class CNDecoder
 				idx3      = newidx
 			case "{":
 				let (objs, newidx) = try decodeClassValue(tokens: src, index: idx2)
-				if let typestr = typestrp {
-					objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typestr, value: objs)
-				} else {
-					throw CNParseError.ParseError(src[idx], "No class name")
-				}
+				objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typename, value: objs)
 				idx3      = newidx
 			case "(":
+				let type = try decodeType(tokens: src, index: idx, typeName: typename)
 				let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
-				objvalue3 = CNObjectNotation.ValueObject.MethodValue(pathExpressions: exps, script: script)
+				objvalue3 = CNObjectNotation.ValueObject.MethodValue(type: type, pathExpressions: exps, script: script)
 				idx3      = newidx
 			default:
 				throw CNParseError.ParseError(src[idx], "Unexpected symbol \"\(sym)\"")
@@ -212,19 +210,16 @@ private class CNDecoder
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue(stringValue: value))
 			idx3      = idx2 + 1
 		case .TextToken(_):
+			let type = try decodeType(tokens: src, index: idx, typeName: typename)
 			let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
-			objvalue3 = CNObjectNotation.ValueObject.MethodValue(pathExpressions: exps, script: script)
+			objvalue3 = CNObjectNotation.ValueObject.MethodValue(type: type, pathExpressions: exps, script: script)
 			idx3      = newidx
 		}
 
 		/* check type matching */
 		var objvalue4	: CNObjectNotation.ValueObject
 		let idx4	: Int = idx3
-		if let typestr = typestrp {
-			objvalue4 = try cast(source: objvalue3, to: typestr, lineNo: src[idx2].lineNo)
-		} else {
-			objvalue4 = objvalue3
-		}
+		objvalue4 = try cast(source: objvalue3, to: typename, lineNo: src[idx2].lineNo)
 		
 		/* allocate object notation */
 		return (CNObjectNotation(identifier: identp!, value: objvalue4, lineNo: src[idx].lineNo), idx4)
@@ -372,6 +367,14 @@ private class CNDecoder
 			}
 		}
 		throw CNParseError.ParseError(src[curidx], "script of method is required")
+	}
+
+	private func decodeType(tokens src: Array<CNToken>, index idx: Int, typeName name: String) throws -> CNValueType {
+		if let type = CNValueType.decode(typeName: name) {
+			return type
+		} else {
+			throw CNParseError.ParseError(src[idx], "Unknown data type: \"\(name)\"")
+		}
 	}
 
 	private func cast(source src: CNObjectNotation.ValueObject, to dststr: String, lineNo line: Int) throws -> (CNObjectNotation.ValueObject) {

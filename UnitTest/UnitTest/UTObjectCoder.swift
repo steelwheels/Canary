@@ -10,7 +10,6 @@ import Canary
 
 public func UTObjectCoder() -> Bool
 {
-	let result0  = testCoder(text: "pi: 3.14")
 	let result1  = testCoder(text: "pi: Double 3.14")
 	let result2  = testCoder(text: "pi: Int 3.14")
 	let result3  = testCoder(text: "ident0: Bool true")
@@ -18,13 +17,13 @@ public func UTObjectCoder() -> Bool
 	let result5  = testCoder(text:    "dict1: D {ident0: Int 1234\n"
 					+ " ident1: Double 1.240 \n"
 					+ "}")
-	let result6  = testCoder(text: "dict0: C {ident0: \"hello\"}")
-	let result7  = testCoder(text: "command: %{ exit(0) ; %}")
-	let result8  = testCoder(text: "rect: Size {width:10.0 height:22.2}")
-	let result9  = testCoder(text: "arr: [1,2, 3]")
+	let result6  = testCoder(text: "dict0: C {ident0: String \"hello\"}")
+	let result7  = testCoder(text: "command: Void %{ exit(0) ; %}")
+	let result8  = testCoder(text: "rect: Size {width:Float 10.0 height:Float 22.2}")
+	let result9  = testCoder(text: "arr: Array [1,2, 3]")
 	let result10 = testCoder(text: pattern10())
 	let result11 = testCoder(text: pattern11())
-	let summary = result0 && result1 && result2 && result3 && result4
+	let summary = result1 && result2 && result3 && result4
 	  && result5 && result6 && result7 && result8 && result9
 	  && result10 && result11
 	if summary {
@@ -47,7 +46,7 @@ private func pattern10() -> String
 private func pattern11() -> String
 {
 	let input = "main_window: Window {\n"
-		+ "  pressed: (self.exp0, self.exp1) %{"
+		+ "  pressed: Void (self.exp0, self.exp1) %{"
 		+ "    echo(\"Hello, World\"); "
 		+ "  %}\n"
 		+ "}\n"

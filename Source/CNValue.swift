@@ -8,6 +8,7 @@
 import Foundation
 
 public enum CNValueType {
+	case VoidType
 	case BooleanType
 	case CharacterType
 	case IntType
@@ -24,6 +25,7 @@ public enum CNValueType {
 		get {
 			var result: String
 			switch self {
+			case .VoidType:		result = "Void"
 			case .BooleanType:	result = "Bool"
 			case .CharacterType:	result = "Character"
 			case .IntType:		result = "Int"
@@ -38,6 +40,26 @@ public enum CNValueType {
 			}
 			return result
 		}
+	}
+
+	public static func decode(typeName name: String) -> CNValueType? {
+		var result: CNValueType?
+		switch name {
+		case "Void":		result = .VoidType
+		case "Bool":		result = .BooleanType
+		case "Charancter":	result = .CharacterType
+		case "Int":		result = .IntType
+		case "UInt":		result = .UIntType
+		case "Float":		result = .FloatType
+		case "Double":		result = .DoubleType
+		case "String":		result = .StringType
+		case "Date":		result = .DateType
+		case "Array":		result = .ArrayType
+		case "Set":		result = .SetType
+		case "Dictionary":	result = .DictionaryType
+		default:		result = nil
+		}
+		return result
 	}
 }
 
@@ -440,6 +462,13 @@ public class CNValue: NSObject, Comparable
 			default:
 				return nil
 			}
+		case .VoidType:
+			switch type {
+			case .VoidType:
+				return self
+			default:
+				return nil
+			}
 		}
 	}
 
@@ -479,6 +508,8 @@ public class CNValue: NSObject, Comparable
 				result = compareSet(lhs.setValue!, rhs.setValue!)
 			case .DictionaryType:
 				result = compareDictionary(lhs.dictionaryValue!, rhs.dictionaryValue!)
+			case .VoidType:
+				result = .orderedSame
 			}
 			return result
 		} else {
