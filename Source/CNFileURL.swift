@@ -13,12 +13,25 @@ import Foundation
 public extension URL
 {
 #if os(OSX)
-	public static func openPanel(title tl: String, fileTypes types: Array<String>?) -> URL?
+	public enum CNFileSelection {
+		case SelectFile
+		case SelectDirectory
+	}
+
+	public static func openPanel(title tl: String, selection sel: CNFileSelection, fileTypes types: Array<String>?) -> URL?
 	{
 		let panel = NSOpenPanel()
 
 		panel.title = tl
-		panel.canChooseDirectories = false
+
+		switch sel {
+		case .SelectFile:
+			panel.canChooseFiles       = true
+			panel.canChooseDirectories = false
+		case .SelectDirectory:
+			panel.canChooseFiles       = false
+			panel.canChooseDirectories = true
+		}
 		panel.allowsMultipleSelection = false
 		panel.allowedFileTypes = types
 

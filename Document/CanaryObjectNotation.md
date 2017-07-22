@@ -7,6 +7,9 @@ The *Canary Object Notation* defines the text format to describe object.
 Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This document distributed under
 [GNU Free Documentation License](https://www.gnu.org/licenses/fdl-1.3.en.html).
 
+## Download
+- [Canary Framework](https://github.com/steelwheels/Canary): Source code repository which implements Canary Object Notation
+
 ## Syntax
 ### Basic rule
 `identifier: type value`
@@ -72,28 +75,36 @@ Set [1 2 3]
 The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.
 ````
 done_button: Button {
-  label: "Press me"
-  button_pressed: %{
+  title: "Press me"
+  pressed: %{
     app.exit(0)
   %}
 }
 ````
 
 #### Method Value
-The method value consists of listener part and script part.
-* `Listener part` has some *path expressions*. If there are no path expression, the part is not described.
-* `Script part` has implementation of the method. the script is *not* checked by the Caray Object Notation decoder.
+At the Amber Programming Language, here are 2 kinds of method.
 
-The semantics of listener part and script part is defined by the application. The Canary Object parser does not check them. 
-
-The type of method value presents the type of return value of execution of the script.
+##### Event method
+The event method is called by controller when the user action is detected. For example, when the button is pressed by user, the "pressed" method will be called.
 ````
-    width: Int (self.a, self.b) %{
-        return a + b
-    %}
-
-    print_initial_message: Void %{
-      echo "hello, world !!"
-    %}
+pressed: Void %{
+    /* Event method */
+%}
 ````
-The script can not contain `%}` except the text which is enclosed by '"'.
+
+The event method does not have return value because there are no object which accepts it.
+
+##### Listener method
+The listener method will be called when the context of listening parameter (which is described by path expression) is changed.
+````
+enable: Bool (self.count) %{
+    /* Listener method */
+    if (self.count > 1) {
+      return true
+    } else {
+      return false
+    }
+%}
+````
+The return value is passed into the property of the owner component.
