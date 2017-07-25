@@ -28,6 +28,7 @@
 		05269E061D9146920075A14C /* CNTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05269DF11D9146920075A14C /* CNTristate.swift */; };
 		054453741EA91DCA0069867F /* CNParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054453731EA91DCA0069867F /* CNParser.swift */; };
 		054453771EA91DE60069867F /* CNReservedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054453761EA91DE60069867F /* CNReservedWord.swift */; };
+		0551B9771F264C8200A0DFA7 /* CNThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0551B9761F264C8200A0DFA7 /* CNThread.swift */; };
 		0556A4961ED10F1500CEBC8A /* CNTextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556A4951ED10F1500CEBC8A /* CNTextFile.swift */; };
 		0556A4981ED10F2900CEBC8A /* CNFileConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556A4971ED10F2900CEBC8A /* CNFileConsole.swift */; };
 		0556D2021EB8A93200692D2A /* CNNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556D2011EB8A93200692D2A /* CNNumber.swift */; };
@@ -80,6 +81,7 @@
 		05269DF11D9146920075A14C /* CNTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTristate.swift; sourceTree = "<group>"; };
 		054453731EA91DCA0069867F /* CNParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNParser.swift; sourceTree = "<group>"; };
 		054453761EA91DE60069867F /* CNReservedWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNReservedWord.swift; sourceTree = "<group>"; };
+		0551B9761F264C8200A0DFA7 /* CNThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNThread.swift; sourceTree = "<group>"; };
 		0556A4951ED10F1500CEBC8A /* CNTextFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTextFile.swift; sourceTree = "<group>"; };
 		0556A4971ED10F2900CEBC8A /* CNFileConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileConsole.swift; sourceTree = "<group>"; };
 		0556D2011EB8A93200692D2A /* CNNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNumber.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				05E7AB851D9145D300D29BF3 /* Canary.h */,
 				05269DDC1D9146800075A14C /* Object */,
+				0551B9751F264C6D00A0DFA7 /* Thread */,
 				05269E071D9146B30075A14C /* Data */,
 				05269E081D9146D50075A14C /* List */,
 				05801FD11F0FDC95007DD866 /* Graph */,
@@ -217,6 +220,14 @@
 				054453761EA91DE60069867F /* CNReservedWord.swift */,
 			);
 			name = Parser;
+			sourceTree = "<group>";
+		};
+		0551B9751F264C6D00A0DFA7 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				0551B9761F264C8200A0DFA7 /* CNThread.swift */,
+			);
+			name = Thread;
 			sourceTree = "<group>";
 		};
 		05801FD11F0FDC95007DD866 /* Graph */ = {
@@ -393,6 +404,7 @@
 				05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */,
 				05269DF21D9146920075A14C /* CNBookmark.swift in Sources */,
 				0556D2021EB8A93200692D2A /* CNNumber.swift in Sources */,
+				0551B9771F264C8200A0DFA7 /* CNThread.swift in Sources */,
 				0556A4961ED10F1500CEBC8A /* CNTextFile.swift in Sources */,
 				05BAE4DC1EE37A2E0074DF41 /* CNPathExpression.swift in Sources */,
 				05269E031D9146920075A14C /* CNState.swift in Sources */,

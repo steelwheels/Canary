@@ -18,10 +18,9 @@ public extension URL
 		case SelectDirectory
 	}
 
-	public static func openPanel(title tl: String, selection sel: CNFileSelection, fileTypes types: Array<String>?) -> URL?
+	public static func openPanel(title tl: String, selection sel: CNFileSelection, fileTypes types: Array<String>) -> URL?
 	{
 		let panel = NSOpenPanel()
-
 		panel.title = tl
 
 		switch sel {
@@ -43,7 +42,6 @@ public extension URL
 				let preference = CNBookmarkPreference.sharedPreference
 				preference.saveToUserDefaults(URLs: urls)
 				preference.synchronize()
-
 				result = urls[0]
 			} else {
 				NSLog("Invalid result: \(urls)")
@@ -55,17 +53,8 @@ public extension URL
 		}
 		return result
 	}
-#endif
 
-	/**
-	 Open the panel to select the file to save the current context
-	
-	 - returns:			Yes when the file is seleted to save
-	 - parameter title:		Title of the save panel
-	 - parameter outputDirectory:	Default parent directory to save the file
-	 - parameter saveFileCallback:	Callback function to be called when the file is selected
-	 */
-#if os(OSX)
+
 	public static func savePanel(title tl: String, outputDirectory outdir: URL?, saveFileCallback callback: @escaping ((_: URL) -> Bool))
 	{
 		let panel = NSSavePanel()
