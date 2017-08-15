@@ -2,12 +2,15 @@
 ## Introduction
 The *Canary Command Line Parameter Notation* defines object notation to present parameters of command line tools (such as Unit shell commands).
 
+The text format of this notation is defined by [Canary Object Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryObjectNotation.md).
+
 ## Copyright
 Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This document distributed under
 [GNU Free Documentation License](https://www.gnu.org/licenses/fdl-1.3.en.html).
 
 ## Reference
 * [Mac OS X Manual Pages](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/#): This base information to define this notation.
+* [Canary Object Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryObjectNotation.md): The text format to describe this notation.
 
 ## General notation
 ### Log value

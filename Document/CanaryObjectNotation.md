@@ -108,3 +108,6 @@ enable: Bool (self.count) %{
 %}
 ````
 The return value is passed into the property of the owner component.
+
+## Related Links
+* *Canary Command Line Parameter Notation*: The [Canary Command Line Parameter Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryParameter.md) defines notations to present parameters for command line tools. The text format for the parameter notation uses this notation.
