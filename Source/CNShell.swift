@@ -66,8 +66,12 @@ public class CNShell
 				termhdr()
 			}
 			if let outpipe = process.standardOutput as? Pipe {
-				//Swift.print("**** Close readabilityHandler")
+				//Swift.print("**** Close readabilityHandler for standardOutput")
 				outpipe.fileHandleForReading.readabilityHandler = nil
+			}
+			if let errpipe = process.standardError as? Pipe {
+				//Swift.print("**** Close readabilityHandler for standardError")
+				errpipe.fileHandleForReading.readabilityHandler = nil
 			}
 			self.mProcess = nil
 		}
