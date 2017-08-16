@@ -287,8 +287,8 @@ UnitTest
 UnitTest.log.OK
 UnitTestBundle
 
-[UTShell] Iterminated
+status = Finished(0)
 [UTShell] error = /bin/sh: /bin/lsx: No such file or directory
 
-[UTShell] Iterminated
+status = Finished(127)
 [SUMMARY] PASSED

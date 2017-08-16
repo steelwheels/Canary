@@ -9,17 +9,36 @@ import Foundation
 
 public class CNShell
 {
+	public enum Status {
+		case Idle
+		case Running
+		case Finished(code: Int32)
+
+		public var description: String {
+			var result: String
+			switch self {
+			case .Idle:			result = "Idle"
+			case .Running:			result = "Running"
+			case .Finished(let code):	result = "Finished(\(code))"
+			}
+			return result
+		}
+	}
+
 	private var mShellCommand:	String
 	private var mProcess:		Process?
+	private var mStatus:		Status
 
-	public var terminationHandler	: ((_ pid: Int32) -> Void)?
+	public var terminateHandler	: ((_ pid: Int32) -> Void)?
 	public var outputHandler	: ((_ string: String) -> Void)?
 	public var errorHandler		: ((_ string: String) -> Void)?
-
+	public var status		: Status { get { return mStatus } }
+	
 	public init(command cmd: String){
 		mShellCommand		= cmd
 		mProcess		= nil
-		terminationHandler	= nil
+		mStatus			= .Idle
+		terminateHandler	= nil
 		outputHandler		= nil
 		errorHandler		= nil
 	}
@@ -27,6 +46,7 @@ public class CNShell
 	public func execute() -> Int32 {
 		let process = Process()
 		mProcess = process
+		mStatus  = .Running
 
 		let args = ["-c", mShellCommand]
 		process.launchPath = "/bin/sh"
@@ -62,7 +82,7 @@ public class CNShell
 
 		process.terminationHandler = {
 			(process: Process) -> Void in
-			if let termhdr = self.terminationHandler {
+			if let termhdr = self.terminateHandler {
 				termhdr(process.processIdentifier)
 			}
 			if let outpipe = process.standardOutput as? Pipe {
@@ -73,6 +93,7 @@ public class CNShell
 				//Swift.print("**** Close readabilityHandler for standardError")
 				errpipe.fileHandleForReading.readabilityHandler = nil
 			}
+			self.mStatus  = .Finished(code: process.terminationStatus)
 			self.mProcess = nil
 		}
 
@@ -80,13 +101,11 @@ public class CNShell
 		return process.processIdentifier
 	}
 
-	public static let NoProcess: Int32 = -1
-
-	public func processIdentifier() -> Int32 {
+	public func processIdentifier() -> Int32? {
 		if let process = mProcess {
 			return process.processIdentifier
 		} else {
-			return CNShell.NoProcess
+			return nil
 		}
 	}
 

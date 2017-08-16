@@ -26,6 +26,7 @@ private func testShell0() -> Bool
 	if pid != mStaticPid {
 		Swift.print("[Error] Unmatched pid: \(pid) != \(mStaticPid)")
 	}
+	Swift.print("status = \(shell.status.description)")
 	return true
 }
 
@@ -38,6 +39,7 @@ private func testShell1() -> Bool
 	if pid != mStaticPid {
 		Swift.print("[Error] Unmatched pid: \(pid) != \(mStaticPid)")
 	}
+	Swift.print("status = \(shell.status.description)")
 	return true
 }
 
@@ -51,9 +53,9 @@ private func setHandler(shell sh: CNShell)
 		(_ string: String) -> Void in
 		Swift.print("[UTShell] error = \(string)")
 	}
-	sh.terminationHandler = {
+	sh.terminateHandler = {
 		(_ pid: Int32) -> Void in
-		Swift.print("[UTShell] Iterminated")
+		//Swift.print("[UTShell] Iterminated")
 		mStaticPid = pid
 	}
 }
