@@ -8,6 +8,8 @@
 import Canary
 import Foundation
 
+private var mStaticPid: Int32 = -1
+
 public func UTShell() -> Bool
 {
 	let result0 = testShell0()
@@ -19,8 +21,11 @@ private func testShell0() -> Bool
 {
 	let shell = CNShell(command: "/bin/ls")
 	setHandler(shell: shell)
-	shell.execute()
+	let pid = shell.execute()
 	shell.waitUntilExit()
+	if pid != mStaticPid {
+		Swift.print("[Error] Unmatched pid: \(pid) != \(mStaticPid)")
+	}
 	return true
 }
 
@@ -28,8 +33,11 @@ private func testShell1() -> Bool
 {
 	let shell = CNShell(command: "/bin/lsx")
 	setHandler(shell: shell)
-	shell.execute()
+	let pid = shell.execute()
 	shell.waitUntilExit()
+	if pid != mStaticPid {
+		Swift.print("[Error] Unmatched pid: \(pid) != \(mStaticPid)")
+	}
 	return true
 }
 
@@ -44,8 +52,9 @@ private func setHandler(shell sh: CNShell)
 		Swift.print("[UTShell] error = \(string)")
 	}
 	sh.terminationHandler = {
-		() -> Void in
+		(_ pid: Int32) -> Void in
 		Swift.print("[UTShell] Iterminated")
+		mStaticPid = pid
 	}
 }
 

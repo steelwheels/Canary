@@ -12,7 +12,7 @@ public class CNShell
 	private var mShellCommand:	String
 	private var mProcess:		Process?
 
-	public var terminationHandler	: (() -> Void)?
+	public var terminationHandler	: ((_ pid: Int32) -> Void)?
 	public var outputHandler	: ((_ string: String) -> Void)?
 	public var errorHandler		: ((_ string: String) -> Void)?
 
@@ -24,7 +24,7 @@ public class CNShell
 		errorHandler		= nil
 	}
 
-	public func execute(){
+	public func execute() -> Int32 {
 		let process = Process()
 		mProcess = process
 
@@ -63,7 +63,7 @@ public class CNShell
 		process.terminationHandler = {
 			(process: Process) -> Void in
 			if let termhdr = self.terminationHandler {
-				termhdr()
+				termhdr(process.processIdentifier)
 			}
 			if let outpipe = process.standardOutput as? Pipe {
 				//Swift.print("**** Close readabilityHandler for standardOutput")
@@ -77,6 +77,17 @@ public class CNShell
 		}
 
 		process.launch()
+		return process.processIdentifier
+	}
+
+	public static let NoProcess: Int32 = -1
+
+	public func processIdentifier() -> Int32 {
+		if let process = mProcess {
+			return process.processIdentifier
+		} else {
+			return CNShell.NoProcess
+		}
 	}
 
 	public func waitUntilExit()

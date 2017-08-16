@@ -280,7 +280,6 @@ RESULT: main_window: Window {
 }
 [UTObjectCoder] Summary: OK
 *** UTShell
-[UTShell] Iterminated
 [UTShell] output = UTFileManager
 UTState
 UTURL
@@ -288,6 +287,7 @@ UnitTest
 UnitTest.log.OK
 UnitTestBundle
 
+[UTShell] Iterminated
 [UTShell] error = /bin/sh: /bin/lsx: No such file or directory
 
 [UTShell] Iterminated
