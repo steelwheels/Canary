@@ -33,6 +33,42 @@ ABCD
   Hello
   ,World
 !!! Hello, World !!!
+*** test0[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+  [OptionValues]
+  [Arguments]
+    hello
+*** test1[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+  [OptionValues]
+      option-id: 0, value:false
+  [Arguments]
+    hello
+*** test2[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+  [OptionValues]
+      option-id: 1, value:true
+  [Arguments]
+    hello
+*** test3[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+  [OptionValues]
+      option-id: 1, value:true
+      option-id: 2, value:1234
+  [Arguments]
+    hello, world
 Hello, World!
 *** UTCharacter
 test: isSpace( ) == true -> OK
@@ -291,4 +327,5 @@ status = Finished(0)
 [UTShell] error = /bin/sh: /bin/lsx: No such file or directory
 
 status = Finished(127)
+*** UTCommandLine
 [SUMMARY] PASSED

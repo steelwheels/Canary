@@ -37,6 +37,10 @@
 		05801FD51F0FDCAF007DD866 /* CNGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05801FD41F0FDCAF007DD866 /* CNGraph.swift */; };
 		05801FD71F0FDCB7007DD866 /* CNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05801FD61F0FDCB7007DD866 /* CNNode.swift */; };
 		05801FD91F0FE486007DD866 /* CNObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05801FD81F0FE486007DD866 /* CNObjectReference.swift */; };
+		0592CBC51F49551D001E362E /* CNValueUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBC41F49551D001E362E /* CNValueUtil.swift */; };
+		0592CBC91F495539001E362E /* CNCommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBC71F495539001E362E /* CNCommandLine.swift */; };
+		0592CBCA1F495539001E362E /* CNCommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBC81F495539001E362E /* CNCommandLineParser.swift */; };
+		0592CBCD1F4955B7001E362E /* CNShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBCC1F4955B7001E362E /* CNShell.swift */; };
 		05B3AFDB1EDA4E7000716DEC /* CNValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3AFDA1EDA4E7000716DEC /* CNValueTable.swift */; };
 		05BAE4DC1EE37A2E0074DF41 /* CNPathExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAE4DB1EE37A2E0074DF41 /* CNPathExpression.swift */; };
 		05BD1B421EC35C5300B32E1C /* CNText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD1B411EC35C5300B32E1C /* CNText.swift */; };
@@ -90,6 +94,10 @@
 		05801FD41F0FDCAF007DD866 /* CNGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNGraph.swift; sourceTree = "<group>"; };
 		05801FD61F0FDCB7007DD866 /* CNNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNode.swift; sourceTree = "<group>"; };
 		05801FD81F0FE486007DD866 /* CNObjectReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectReference.swift; sourceTree = "<group>"; };
+		0592CBC41F49551D001E362E /* CNValueUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueUtil.swift; sourceTree = "<group>"; };
+		0592CBC71F495539001E362E /* CNCommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLine.swift; sourceTree = "<group>"; };
+		0592CBC81F495539001E362E /* CNCommandLineParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLineParser.swift; sourceTree = "<group>"; };
+		0592CBCC1F4955B7001E362E /* CNShell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNShell.swift; sourceTree = "<group>"; };
 		05AE7F4D1D9155FA009E781D /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05B3AFDA1EDA4E7000716DEC /* CNValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueTable.swift; sourceTree = "<group>"; };
 		05BAE4DB1EE37A2E0074DF41 /* CNPathExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPathExpression.swift; sourceTree = "<group>"; };
@@ -129,9 +137,11 @@
 				05269E0A1D9147080075A14C /* File */,
 				05269E0B1D9147320075A14C /* Terminal */,
 				054453751EA91DD20069867F /* Parser */,
+				0592CBC61F495525001E362E /* CommandLine */,
 				05EE15C61F11137C0025FF6B /* ObjectNotation */,
 				05269E0C1D9147520075A14C /* State */,
 				05CD9B371E87615A000A60F7 /* Value */,
+				0592CBCB1F49559D001E362E /* Shell */,
 			);
 			name = Source;
 			path = ../Source;
@@ -242,11 +252,30 @@
 			name = Graph;
 			sourceTree = "<group>";
 		};
+		0592CBC61F495525001E362E /* CommandLine */ = {
+			isa = PBXGroup;
+			children = (
+				0592CBC71F495539001E362E /* CNCommandLine.swift */,
+				0592CBC81F495539001E362E /* CNCommandLineParser.swift */,
+			);
+			name = CommandLine;
+			sourceTree = "<group>";
+		};
+		0592CBCB1F49559D001E362E /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				0592CBCC1F4955B7001E362E /* CNShell.swift */,
+			);
+			name = Shell;
+			path = ../iOS;
+			sourceTree = "<group>";
+		};
 		05CD9B371E87615A000A60F7 /* Value */ = {
 			isa = PBXGroup;
 			children = (
 				05B3AFDA1EDA4E7000716DEC /* CNValueTable.swift */,
 				05CD9B3C1E876187000A60F7 /* CNValue.swift */,
+				0592CBC41F49551D001E362E /* CNValueUtil.swift */,
 			);
 			name = Value;
 			sourceTree = "<group>";
@@ -402,11 +431,14 @@
 				050421571EC68F1000B8CC51 /* CNObject.swift in Sources */,
 				05269DF71D9146920075A14C /* CNFilePath.swift in Sources */,
 				05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */,
+				0592CBCA1F495539001E362E /* CNCommandLineParser.swift in Sources */,
 				05269DF21D9146920075A14C /* CNBookmark.swift in Sources */,
 				0556D2021EB8A93200692D2A /* CNNumber.swift in Sources */,
 				0551B9771F264C8200A0DFA7 /* CNThread.swift in Sources */,
+				0592CBCD1F4955B7001E362E /* CNShell.swift in Sources */,
 				0556A4961ED10F1500CEBC8A /* CNTextFile.swift in Sources */,
 				05BAE4DC1EE37A2E0074DF41 /* CNPathExpression.swift in Sources */,
+				0592CBC51F49551D001E362E /* CNValueUtil.swift in Sources */,
 				05269E031D9146920075A14C /* CNState.swift in Sources */,
 				05801FD31F0FDCA9007DD866 /* CNEdge.swift in Sources */,
 				05658E2F1F0AA8D9002FF2B7 /* CNStack.swift in Sources */,
@@ -414,6 +446,7 @@
 				05BD1B421EC35C5300B32E1C /* CNText.swift in Sources */,
 				05269DF31D9146920075A14C /* CNCombinedState.swift in Sources */,
 				05269E011D9146920075A14C /* CNRedirectConsole.swift in Sources */,
+				0592CBC91F495539001E362E /* CNCommandLine.swift in Sources */,
 				05801FD91F0FE486007DD866 /* CNObjectReference.swift in Sources */,
 				054453741EA91DCA0069867F /* CNParser.swift in Sources */,
 				05CD9B411E876192000A60F7 /* CNToken.swift in Sources */,

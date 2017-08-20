@@ -364,7 +364,14 @@ private class CNTokenizer
 			(_ c: Character) -> Bool in
 			return c.isAlphaOrNum() || c == "_"
 		})
-		return (CNToken(type: .IdentifierToken(resstr), lineNo: mCurrentLine), resrange)
+		let lresstr = resstr.lowercased()
+		if lresstr == "true"{
+			return (CNToken(type: .BoolToken(true), lineNo: mCurrentLine), resrange)
+		} else if lresstr == "false" {
+			return (CNToken(type: .BoolToken(false), lineNo: mCurrentLine), resrange)
+		} else {
+			return (CNToken(type: .IdentifierToken(resstr), lineNo: mCurrentLine), resrange)
+		}
 	}
 
 	private func getStringTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>) {
