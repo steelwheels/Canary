@@ -1,13 +1,13 @@
 /*
- * @file	CNCommandLineParser.swift
- * @brief	Define CNCommandLineParser class
+ * @file	CNCommandLineManager.swift
+ * @brief	Define CNCommandLineManager class
  * @par Copyright
  *   Copyright (C) 2017 Steel Wheels Project
  */
 
 import Foundation
 
-public class CNCommandLineParser
+public class CNCommandLineManager
 {
 	private var mCommandLine:	CNCommandLine
 	private var mErrors:		Array<String>

@@ -17,7 +17,7 @@
 		052201801F1992CF00009C37 /* CNNodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522017F1F1992CF00009C37 /* CNNodeTable.swift */; };
 		052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052330F51C7CB00000585F94 /* CNStateObserver.swift */; };
 		052C98C41F47DAFB00658DF4 /* CNCommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C98C31F47DAFB00658DF4 /* CNCommandLine.swift */; };
-		052C98C61F47E56800658DF4 /* CNCommandLineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C98C51F47E56800658DF4 /* CNCommandLineParser.swift */; };
+		052C98C61F47E56800658DF4 /* CNCommandLineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C98C51F47E56800658DF4 /* CNCommandLineManager.swift */; };
 		052C98CA1F483A2B00658DF4 /* CNValueUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C98C91F483A2B00658DF4 /* CNValueUtil.swift */; };
 		052C98CC1F485EC600658DF4 /* UTCommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052C98CB1F485EC600658DF4 /* UTCommandLine.swift */; };
 		05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6A1C74D25B00BAA730 /* CNState.swift */; };
@@ -146,7 +146,7 @@
 		0522017F1F1992CF00009C37 /* CNNodeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNodeTable.swift; sourceTree = "<group>"; };
 		052330F51C7CB00000585F94 /* CNStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStateObserver.swift; sourceTree = "<group>"; };
 		052C98C31F47DAFB00658DF4 /* CNCommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLine.swift; sourceTree = "<group>"; };
-		052C98C51F47E56800658DF4 /* CNCommandLineParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLineParser.swift; sourceTree = "<group>"; };
+		052C98C51F47E56800658DF4 /* CNCommandLineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLineManager.swift; sourceTree = "<group>"; };
 		052C98C91F483A2B00658DF4 /* CNValueUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueUtil.swift; sourceTree = "<group>"; };
 		052C98CB1F485EC600658DF4 /* UTCommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCommandLine.swift; sourceTree = "<group>"; };
 		05318A6A1C74D25B00BAA730 /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				052C98C31F47DAFB00658DF4 /* CNCommandLine.swift */,
-				052C98C51F47E56800658DF4 /* CNCommandLineParser.swift */,
+				052C98C51F47E56800658DF4 /* CNCommandLineManager.swift */,
 			);
 			name = Commandline;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */,
 				05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */,
 				054324001EDA3DE4006BF839 /* CNValueTable.swift in Sources */,
-				052C98C61F47E56800658DF4 /* CNCommandLineParser.swift in Sources */,
+				052C98C61F47E56800658DF4 /* CNCommandLineManager.swift in Sources */,
 				053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */,
 				05377BD71CF8B5E80083E05C /* CNList.swift in Sources */,
 				05B9E9CD1F26485C0098A060 /* CNThread.swift in Sources */,

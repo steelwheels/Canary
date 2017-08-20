@@ -28,7 +28,7 @@ private func testCommandLine(strings strs: Array<String>, console cons: CNConsol
 	let type2 = CNOptionType(id: 2, name: "type2", type: .IntType)
 
 	let result: Bool
-	let parser = CNCommandLineParser(types: [type0, type1, type2])
+	let parser = CNCommandLineManager(types: [type0, type1, type2])
 	if parser.parse(inputStrings: strs) {
 		let cmdline = parser.commandLine
 		let text = cmdline.toText()
