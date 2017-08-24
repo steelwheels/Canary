@@ -38,6 +38,7 @@ ABCD
       id: 0, name:type0, type:Void
       id: 1, name:type1, type:Bool
       id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
   [OptionValues]
   [Arguments]
     hello
@@ -46,6 +47,7 @@ ABCD
       id: 0, name:type0, type:Void
       id: 1, name:type1, type:Bool
       id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
   [OptionValues]
       option-id: 0, value:false
   [Arguments]
@@ -55,6 +57,7 @@ ABCD
       id: 0, name:type0, type:Void
       id: 1, name:type1, type:Bool
       id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
   [OptionValues]
       option-id: 1, value:true
   [Arguments]
@@ -64,11 +67,34 @@ ABCD
       id: 0, name:type0, type:Void
       id: 1, name:type1, type:Bool
       id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
   [OptionValues]
       option-id: 1, value:true
       option-id: 2, value:1234
   [Arguments]
     hello, world
+*** test4[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 2, value:200
+  [Arguments]
+    test.app
+    a
+    b
+*** test5[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 3, value:"a/b"
+  [Arguments]
+    test.app
 Hello, World!
 *** UTCharacter
 test: isSpace( ) == true -> OK

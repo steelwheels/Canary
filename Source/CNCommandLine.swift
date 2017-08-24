@@ -13,9 +13,9 @@ public class CNOptionType
 	private var mOptionName:	String
 	private var mValueType:		CNValueType
 
-	public var optionId: Int		{ get { return mOptionId } }
-	public var optionName: String		{ get { return mOptionName } }
-	public var valueType: CNValueType	{ get { return mValueType } }
+	public var id:   Int		{ get { return mOptionId } }
+	public var name: String		{ get { return mOptionName } }
+	public var type: CNValueType	{ get { return mValueType } }
 
 	public init(id oid: Int, name oname: String, type vtype: CNValueType){
 		mOptionId	= oid
@@ -39,8 +39,8 @@ public struct CNOptionValue
 	private weak var mOptionType:		CNOptionType?
 	private var	 mOptionValue:		CNValue
 
-	public var optionType:  CNOptionType { get { return mOptionType! } }
-	public var optionValue: CNValue	     { get { return mOptionValue } }
+	public var type:  CNOptionType { get { return mOptionType! } }
+	public var value: CNValue	     { get { return mOptionValue } }
 
 	public init(type otype: CNOptionType, value oval: CNValue){
 		mOptionType	= otype
@@ -48,7 +48,7 @@ public struct CNOptionValue
 	}
 
 	public func toText() -> CNTextSection {
-		let optid  = mOptionType!.optionId
+		let optid  = mOptionType!.id
 		let valstr = mOptionValue.description
 		let sect  = CNTextSection()
 		sect.add(string: "option-id: \(optid), value:\(valstr)")
@@ -61,22 +61,120 @@ public class CNCommandLine
 	private var	mOptionTypes:		Array<CNOptionType>
 	private var	mOptionValues:		Array<CNOptionValue>
 	private var	mArguments:		Array<String>
+	private var	mErrors:		Array<String>
 
-	public var optionTypes:   Array<CNOptionType>  { get { return mOptionTypes }}
-	public var optionValuess: Array<CNOptionValue> { get { return mOptionValues }}
-
-	public init(types otypes: Array<CNOptionType>){
-		mOptionTypes	= otypes
+	public init(){
+		mOptionTypes	= []
 		mOptionValues	= []
 		mArguments	= []
+		mErrors		= []
 	}
 
-	public func addOption(value val: CNOptionValue){
-		mOptionValues.append(val)
+	public var optionTypes:  Array<CNOptionType>  { get { return mOptionTypes }}
+	public var optionValues: Array<CNOptionValue> { get { return mOptionValues }}
+	public var errors:	 Array<String>        { get { return mErrors }}
+
+	public func parseArguments(types otypes: Array<CNOptionType>, arguments args: Array<String>){
+		mOptionTypes	= otypes
+
+		let argnum = args.count
+		var i : Int = 0
+		while i < argnum {
+			let arg = args[i]
+			if let type = isOptionString(string: arg) {
+				if type.hasOptionValue() {
+					/* Option with parameter */
+					let nexti = i + 1
+					if nexti < argnum {
+						let nextarg = args[nexti]
+						if let value = decodeOptionValue(type: type, argument: nextarg) {
+							let option = CNOptionValue(type: type, value: value)
+							mOptionValues.append(option)
+						} else {
+							let error = "The parameter \(nextarg) is not suitable for the option \"\(type.name)\""
+							mErrors.append(error)
+						}
+					} else {
+						let error = "The option \"\(type.name)\" require parameter"
+						mErrors.append(error)
+					}
+					i = nexti
+				} else {
+					/* Option without parameter */
+					let nullvalue = CNValue(booleanValue: false)
+					let option    = CNOptionValue(type: type, value: nullvalue)
+					mOptionValues.append(option)
+				}
+			} else {
+				mArguments.append(arg)
+			}
+			i += 1
+		}
 	}
 
-	public func addArgument(value val: String){
-		mArguments.append(val)
+	private func isOptionString(string str: String) -> CNOptionType? {
+		for type in mOptionTypes {
+			let optname = "--" + type.name
+			if optname == str {
+				return type
+			}
+		}
+		return nil
+	}
+
+	private func decodeOptionValue(type otype: CNOptionType, argument arg: String) -> CNValue? {
+		switch otype.type {
+		case .VoidType:
+			break
+		case .BooleanType:
+			let larg = arg.lowercased()
+			if larg == "true" {
+				return CNValue(booleanValue: true)
+			} else if larg == "false" {
+				return CNValue(booleanValue: false)
+			}
+		case .CharacterType:
+			if arg.characters.count == 1 {
+				let c = arg.characters[arg.startIndex]
+				return CNValue(characterValue: c)
+			}
+		case .IntType:
+			let len = arg.characters.count
+			if len >= 3 {
+				if arg.characters[arg.startIndex] == "0" {
+					let nextidx = arg.index(after: arg.startIndex)
+					switch arg.characters[nextidx] {
+					case "x", "X":	return decodeOptionIntegerValue(argument: arg, radix: 16)
+					case "o", "O":	return decodeOptionIntegerValue(argument: arg, radix:  8)
+					case "b", "B":  return decodeOptionIntegerValue(argument: arg, radix:  2)
+					default:
+						break
+					}
+				}
+			}
+			return decodeOptionIntegerValue(argument: arg, radix: 10)
+		case .FloatType:
+			if let val = Float(arg) {
+				return CNValue(floatValue: val)
+			}
+		case .DoubleType:
+			if let val = Double(arg) {
+				return CNValue(doubleValue: val)
+			}
+		case .StringType:
+			return CNValue(stringValue: arg)
+		default:
+			break
+		}
+		return nil
+	}
+
+	public func decodeOptionIntegerValue(argument arg:String, radix rdx: Int) -> CNValue? {
+		if let val = Int(arg, radix: rdx) {
+			return CNValue(intValue: val)
+		} else {
+			return nil
+		}
 	}
 
 	public func toText() -> CNTextSection {
@@ -104,3 +202,5 @@ public class CNCommandLine
 		return sumsect
 	}
 }
+
+
