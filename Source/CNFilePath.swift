@@ -38,6 +38,10 @@ public class CNFilePath
 		}
 	}
 
+	public class func URLForResourceFile(fileName fname: String, fileExtension fext: String) -> URL? {
+		return Bundle.main.url(forResource: fname, withExtension: fext)
+	}
+
 	private class func name(_ name: String?) -> String {
 		if let str = name {
 			return str

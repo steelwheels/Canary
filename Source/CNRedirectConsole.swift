@@ -24,8 +24,20 @@ public class CNRedirectConsole : CNConsole
 	}
 	
 	public override func print(string str: String){
-		for console in mConsoles {
-			console.print(string: str)
+		if mConsoles.count > 0 {
+			for console in mConsoles {
+				console.print(string: str)
+			}
+		} else {
+			NSLog("[CNRedirectConsole] \(str)")
+		}
+	}
+
+	public func print(consoleId cid: Int, string str: String){
+		if cid < mConsoles.count {
+			mConsoles[cid].print(string: str)
+		} else {
+			NSLog("[CNRedirectConsole:\(cid)] \(str)")
 		}
 	}
 }
