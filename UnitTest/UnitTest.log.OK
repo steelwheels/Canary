@@ -349,9 +349,9 @@ UnitTest
 UnitTest.log.OK
 UnitTestBundle
 
-status = Finished(0)
+status = Succeed
 [UTShell] error = /bin/sh: /bin/lsx: No such file or directory
 
-status = Finished(127)
+status = Failed
 *** UTCommandLine
 [SUMMARY] PASSED

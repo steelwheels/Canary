@@ -7,46 +7,58 @@
 
 import Foundation
 
-public class CNShell
+@objc public class CNShell: NSObject
 {
-	public enum Status {
-		case Idle
-		case Running
-		case Finished(code: Int32)
+	@objc public enum Status: Int {
+		case Idle		= 0
+		case CouldNotLaunch	= 1
+		case Running		= 2
+		case Succeed		= 3
+		case Failed		= 4
 
 		public var description: String {
-			var result: String
-			switch self {
-			case .Idle:			result = "Idle"
-			case .Running:			result = "Running"
-			case .Finished(let code):	result = "Finished(\(code))"
+			get {
+				var result = "?"
+				switch self {
+				case .Idle:		result = "Idle"
+				case .CouldNotLaunch:	result = "CouldNotLaunch"
+				case .Running:		result = "Running"
+				case .Succeed:		result = "Succeed"
+				case .Failed:		result = "Failed"
+				}
+				return result
 			}
-			return result
 		}
 	}
 
 	private var mShellCommand:	String
 	private var mProcess:		Process?
-	private var mStatus:		Status
 
 	public var terminateHandler	: ((_ pid: Int32) -> Void)?
 	public var outputHandler	: ((_ string: String) -> Void)?
 	public var errorHandler		: ((_ string: String) -> Void)?
-	public var status		: Status { get { return mStatus } }
-	
+
+	public dynamic var status	: Status
+
 	public init(command cmd: String){
+		status			= .Idle
 		mShellCommand		= cmd
 		mProcess		= nil
-		mStatus			= .Idle
 		terminateHandler	= nil
 		outputHandler		= nil
 		errorHandler		= nil
 	}
 
-	public func execute() -> Int32 {
+	public func execute() -> Int32
+	{
+		if mProcess != nil {
+			status = .CouldNotLaunch
+			return -1
+		}
+
 		let process = Process()
 		mProcess = process
-		mStatus  = .Running
+		status  = .Running
 
 		let args = ["-c", mShellCommand]
 		process.launchPath = "/bin/sh"
@@ -93,7 +105,11 @@ public class CNShell
 				//Swift.print("**** Close readabilityHandler for standardError")
 				errpipe.fileHandleForReading.readabilityHandler = nil
 			}
-			self.mStatus  = .Finished(code: process.terminationStatus)
+			if process.terminationStatus == 0 {
+				self.status = .Succeed
+			} else {
+				self.status = .Failed
+			}
 			self.mProcess = nil
 		}
 
