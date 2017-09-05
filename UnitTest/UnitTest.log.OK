@@ -278,12 +278,12 @@ result ->
 obj0: Bool true
 obj1: Double 12.3
 obj2: String "Hello, world"
-obj3: Int (ident0.ident1) %{
+obj3: Int [ident0.ident1] %{
 exit(0) ; 
 %}
 obj4: ClassA {
   obj2: String "Hello, world"
-  obj3: Int (ident0.ident1) %{
+  obj3: Int [ident0.ident1] %{
 exit(0) ; 
   %}
 }
@@ -318,8 +318,6 @@ RESULT: rect: Size {
   width: Double 10.0
   height: Double 22.2
 }
-[Input] arr: Array [1,2, 3]
-RESULT: arr: Array [1, 2, 3]
 [Input] main_window: Window {
   button0: Button { }
   button1: Button { }
@@ -332,17 +330,16 @@ RESULT: main_window: Window {
   }
 }
 [Input] main_window: Window {
-  pressed: Void (self.exp0, self.exp1) %{    echo("Hello, World");   %}
+  pressed: Void [self.exp0, self.exp1] %{    echo("Hello, World");   %}
 }
 
 RESULT: main_window: Window {
-  pressed: Void (self.exp0, self.exp1) %{
+  pressed: Void [self.exp0, self.exp1] %{
     echo("Hello, World");   
   %}
 }
 [UTObjectCoder] Summary: OK
 *** UTShell
-command start: Succeed
 output: "UTFileManager
 UTState
 UTURL
@@ -350,8 +347,6 @@ UnitTest
 UnitTest.log.OK
 UnitTestBundle
 "
-command done: Succeed
-command start: Succeed
 output: "0 Hello, world !
 1 Hello, world !
 2 Hello, world !
@@ -363,6 +358,5 @@ output: "0 Hello, world !
 8 Hello, world !
 9 Hello, world !
 "
-command done: Succeed
 *** UTCommandLine
 [SUMMARY] PASSED

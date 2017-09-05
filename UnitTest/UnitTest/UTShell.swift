@@ -34,19 +34,15 @@ private func lsCommand() -> Bool
 
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
-		if exitcode == 0 {
-			Swift.print("command done: Succeed")
-		} else {
-			Swift.print("command done: Failed")
+		if exitcode != 0 {
+			Swift.print("ls command done: Failed")
 		}
 		mLsCommandDone = true
 	}
 
 	let pid = shell.execute()
-	if pid > 0 {
-		Swift.print("command start: Succeed")
-	} else {
-		Swift.print("command start: Failed")
+	if pid <= 0 {
+		Swift.print("ls command start: Failed")
 	}
 	return true
 }
@@ -65,19 +61,15 @@ private func catCommand() -> Bool
 
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
-		if exitcode == 0 {
-			Swift.print("command done: Succeed")
-		} else {
-			Swift.print("command done: Failed")
+		if exitcode != 0 {
+			Swift.print("cat command done: Failed")
 		}
 		mCatCommandDone = true
 	}
 
 	let pid = shell.execute()
-	if pid > 0 {
-		Swift.print("command start: Succeed")
-	} else {
-		Swift.print("command start: Failed")
+	if pid <= 0 {
+		Swift.print("cat command start: Failed")
 	}
 
 	var wcount = 0

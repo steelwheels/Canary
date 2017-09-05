@@ -46,7 +46,7 @@ private class CNEncoder
 		case .MethodValue(_, let exps, let script):
 			result = ""
 			if exps.count > 0 {
-				result += "("
+				result += "["
 				var is1st = true
 				for exp in exps {
 					if is1st {
@@ -56,7 +56,7 @@ private class CNEncoder
 					}
 					result += exp.description
 				}
-				result += ") "
+				result += "] "
 			}
 			result += "%{\n"
 			result += script + "\n"
@@ -176,15 +176,11 @@ private class CNDecoder
 		switch src[idx2].type {
 		case .SymbolToken(let sym):
 			switch sym {
-			case "[":
-				let (objs, newidx) = try decodeCollectionValue(tokens: src, index: idx2)
-				objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue(arrayValue: objs))
-				idx3      = newidx
 			case "{":
 				let (objs, newidx) = try decodeClassValue(tokens: src, index: idx2)
 				objvalue3 = CNObjectNotation.ValueObject.ClassValue(name: typename, value: objs)
 				idx3      = newidx
-			case "(":
+			case "[":
 				let type = try decodeType(tokens: src, index: idx, typeName: typename)
 				let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
 				objvalue3 = CNObjectNotation.ValueObject.MethodValue(type: type, pathExpressions: exps, script: script)
@@ -225,65 +221,6 @@ private class CNDecoder
 		return (CNObjectNotation(identifier: identp!, value: objvalue4, lineNo: src[idx].lineNo), idx4)
 	}
 
-	public func decodeCollectionValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNValue>, Int) {
-		var result: Array<CNValue> = []
-
-		/* get "[" */
-		let (haslp, idx0) = hasSymbol(tokens: src, index: idx, symbol: "[")
-		if !haslp {
-			throw CNParseError.ParseError(src[idx], "\"[\" is required")
-		}
-		/* get objects */
-		var idx1    = idx0
-		var is1st1  = true
-		let count   = src.count
-		while idx1 < count {
-			/* check "]" */
-			let (hasrp, _) = hasSymbol(tokens: src, index: idx1, symbol: "]")
-			if hasrp {
-				break
-			}
-			/* get comma */
-			if !is1st1 {
-				let (hascomm, newidx) = hasSymbol(tokens: src, index: idx1, symbol: ",")
-				if !hascomm {
-					let tkstr = src[idx1].toString()
-					throw CNParseError.ParseError(src[idx], "\",\" is required. But is \(tkstr) given.")
-				}
-				idx1 = newidx
-			}
-			/* value */
-			var value: CNValue
-			switch src[idx1].type {
-			case .BoolToken(let v):
-				value = CNValue(booleanValue: v)
-			case .UIntToken(let v):
-				value = CNValue(uIntValue: v)
-			case .IntToken(let v):
-				value = CNValue(intValue: v)
-			case .DoubleToken(let v):
-				value = CNValue(doubleValue: v)
-			case .StringToken(let v):
-				value = CNValue(stringValue: v)
-			case .IdentifierToken(_), .SymbolToken(_), .TextToken(_):
-				let strval = src[idx1].toString()
-				throw CNParseError.ParseError(src[idx],
-				  "The primitive value is required, But \(strval)\" is given")
-			}
-			result.append(value)
-
-			idx1   += 1
-			is1st1  = false
-		}
-
-		/* get "]" */
-		let (hasrp, idx2) = hasSymbol(tokens: src, index: idx1, symbol: "]")
-		if !hasrp {
-			throw CNParseError.ParseError(src[idx], "\"]\" is required")
-		}
-		return (result, idx2)
-	}
-
 	public func decodeClassValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNObjectNotation>, Int) {
 		var result: Array<CNObjectNotation> = []
 		var curidx = idx
@@ -317,15 +254,15 @@ private class CNDecoder
 	}
 
 	public func decodeMethodValue(tokens src: Array<CNToken>, index idx: Int) throws -> (Array<CNPathExpression>, String, Int) {
-		/* get "(" */
+		/* get "[" */
 		var pathexps : Array<CNPathExpression> = []
 		var curidx = idx
-		let (haslp0, idx0) = hasSymbol(tokens: src, index: curidx, symbol: "(")
+		let (haslp0, idx0) = hasSymbol(tokens: src, index: curidx, symbol: "[")
 		if haslp0 {
 			curidx = idx0
 			var is1st  = true
 			while curidx < src.count {
-				let (hasrp2, idx2) = hasSymbol(tokens: src, index: curidx, symbol: ")")
+				let (hasrp2, idx2) = hasSymbol(tokens: src, index: curidx, symbol: "]")
 				if hasrp2 {
 					curidx = idx2
 					break
@@ -338,7 +275,7 @@ private class CNDecoder
 						if hascm {
 							curidx = idx3
 						} else {
-							throw CNParseError.ParseError(src[curidx], "\"{\" is required")
+							throw CNParseError.ParseError(src[curidx], "\",\" is required")
 						}
 					}
 					/* get path expression */

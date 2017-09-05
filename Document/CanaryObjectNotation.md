@@ -27,7 +27,7 @@ pi: 3.14
 pi: Double 3.14
 bounds: Size {width:10.0 height:20.0}
 message: Void %{ echo "hello, world !!" %}
-enable: Bool (self.a, self.b) %{ return self.a && self.b %}
+enable: Bool [self.a, self.b] %{ return self.a && self.b %}
 ````
 
 ### Identifier
@@ -42,9 +42,8 @@ will follow it.
 * `Double`:  Double precision floating point number
 * `String`: String
 
-#### Collection type
-* `Array`:
-* `Set`:
+#### Class type
+Class is set of one or more type data.
 
 ### Value
 #### Primitive Value
@@ -62,15 +61,6 @@ The sequence of 2 or more strings will be concatenated and treated as a single s
 
 ``"a"``, ``"Hello, word"``, `"\\\"\n"`.
 
-#### Collection value
-##### Array, Set value:
-The array and set contains same typed primitive values.
-````
-[1 2 3] // Estimated as an Array
-Array [] // Empty Array
-Set [1 2 3]
-````
-
 #### Class value
 The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.
 ````
@@ -83,7 +73,9 @@ done_button: Button {
 ````
 
 #### Method Value
-At the Amber Programming Language, here are 2 kinds of method.
+At the Amber Programming Language, here are 2 kinds of method:
+* Event method
+* Listener method
 
 ##### Event method
 The event method is called by controller when the user action is detected. For example, when the button is pressed by user, the "pressed" method will be called.
@@ -96,9 +88,9 @@ pressed: Void %{
 The event method does not have return value because there are no object which accepts it.
 
 ##### Listener method
-The listener method will be called when the context of listening parameter (which is described by path expression) is changed.
+The listener method will be called when the context of listening parameter (which is described by one or more path expressions) is changed.
 ````
-enable: Bool (self.count) %{
+enable: Bool [self.count] %{
     /* Listener method */
     if (self.count > 1) {
       return true
@@ -107,7 +99,7 @@ enable: Bool (self.count) %{
     }
 %}
 ````
-The return value is passed into the property of the owner component.
+The return value is passed into the property.
 
 ## Related Links
 * *Canary Command Line Parameter Notation*: The [Canary Command Line Parameter Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryParameter.md) defines notations to present parameters for command line tools. The text format for the parameter notation uses this notation.
