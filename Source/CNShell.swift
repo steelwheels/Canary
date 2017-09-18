@@ -80,6 +80,10 @@ public class CNShell
 		return mProcess.processIdentifier
 	}
 
+	public var pid: Int32 {
+		get { return mProcess.processIdentifier }
+	}
+	
 	public func waitUntilExit()
 	{
 		if mProcess.isRunning {

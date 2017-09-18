@@ -43,7 +43,11 @@ private class CNEncoder
 		switch src.value {
 		case .PrimitiveValue(let v):
 			result = v.description
-		case .MethodValue(_, let exps, let script):
+		case .EventMethodValue(_, let script):
+			result  = "%{\n"
+			result += script + "\n"
+			result += indent2string(indent: idt) + "%}"
+		case .ListenerMethodValue(_, let exps, let script):
 			result = ""
 			if exps.count > 0 {
 				result += "["
@@ -183,7 +187,11 @@ private class CNDecoder
 			case "[":
 				let type = try decodeType(tokens: src, index: idx, typeName: typename)
 				let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
-				objvalue3 = CNObjectNotation.ValueObject.MethodValue(type: type, pathExpressions: exps, script: script)
+				if exps.count > 0 {
+					objvalue3 = CNObjectNotation.ValueObject.ListenerMethodValue(type: type, pathExpressions: exps, script: script)
+				} else {
+					objvalue3 = CNObjectNotation.ValueObject.EventMethodValue(type: type, script: script)
+				}
 				idx3      = newidx
 			default:
 				throw CNParseError.ParseError(src[idx], "Unexpected symbol \"\(sym)\"")
@@ -208,7 +216,11 @@ private class CNDecoder
 		case .TextToken(_):
 			let type = try decodeType(tokens: src, index: idx, typeName: typename)
 			let (exps, script, newidx) = try decodeMethodValue(tokens: src, index: idx2)
-			objvalue3 = CNObjectNotation.ValueObject.MethodValue(type: type, pathExpressions: exps, script: script)
+			if exps.count > 0 {
+				objvalue3 = CNObjectNotation.ValueObject.ListenerMethodValue(type: type, pathExpressions: exps, script: script)
+			} else {
+				objvalue3 = CNObjectNotation.ValueObject.EventMethodValue(type: type, script: script)
+			}
 			idx3      = newidx
 		}
 

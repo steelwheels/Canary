@@ -12,7 +12,8 @@ public class CNObjectNotation
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
 		case ClassValue(name: String, value: Array<CNObjectNotation>)
-		case MethodValue(type: CNValueType, pathExpressions: Array<CNPathExpression>, script: String)
+		case EventMethodValue(type: CNValueType, script: String)
+		case ListenerMethodValue(type: CNValueType, pathExpressions: Array<CNPathExpression>, script: String)
 	}
 
 	private var mIdentifier	: String
@@ -55,9 +56,15 @@ public class CNObjectNotation
 		mLineNo		= line
 	}
 
-	public init(identifier ident: String, type valtype: CNValueType, pathExpressions path: Array<CNPathExpression>, script scr: String, lineNo line: Int){
+	public init(identifier ident: String, type valtype: CNValueType, eventScript scr: String, lineNo line: Int){
 		mIdentifier	= ident
-		mValue		= ValueObject.MethodValue(type: valtype, pathExpressions:  path, script: scr)
+		mValue		= ValueObject.EventMethodValue(type: valtype, script: scr)
+		mLineNo		= line
+	}
+
+	public init(identifier ident: String, type valtype: CNValueType, pathExpressions path: Array<CNPathExpression>, listenerScript scr: String, lineNo line: Int){
+		mIdentifier	= ident
+		mValue		= ValueObject.ListenerMethodValue(type: valtype, pathExpressions: path, script: scr)
 		mLineNo		= line
 	}
 
@@ -79,9 +86,18 @@ public class CNObjectNotation
 		}
 	}
 
-	public var methodValue: (CNValueType, Array<CNPathExpression>, String)? {
+	public var eventMethodValue: (CNValueType, String)? {
 		switch mValue {
-		case .MethodValue(let type, let exps, let scr):
+		case .EventMethodValue(let type, let scr):
+			return (type, scr)
+		default:
+			return nil
+		}
+	}
+
+	public var listnerMethodValue: (CNValueType, Array<CNPathExpression>, String)? {
+		switch mValue {
+		case .ListenerMethodValue(let type, let exps, let scr):
 			return (type, exps, scr)
 		default:
 			return nil
@@ -91,9 +107,10 @@ public class CNObjectNotation
 	public func typeName() -> String {
 		var result: String
 		switch mValue {
-		case .PrimitiveValue(let v):		result = v.type.description
-		case .ClassValue(let name, _):		result = name
-		case .MethodValue(let type, _, _):	result = type.description
+		case .PrimitiveValue(let v):			result = v.type.description
+		case .ClassValue(let name, _):			result = name
+		case .EventMethodValue(let type, _):		result = type.description
+		case .ListenerMethodValue(let type, _, _):	result = type.description
 		}
 		return result
 	}
