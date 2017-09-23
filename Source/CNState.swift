@@ -16,7 +16,7 @@ open class CNState : NSObject
 	public weak var parentState: CNState? = nil
 
 	/** The updated count */
-	private dynamic var mStateId = 0
+	@objc private dynamic var mStateId = 0
 	/** Lock to single access for mStateId */
 	private var mStateIdLock = NSLock()
 	/** The factor update this state */

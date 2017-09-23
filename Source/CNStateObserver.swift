@@ -9,7 +9,7 @@ import Foundation
 
 public class CNStateObserver : NSObject
 {
-	private dynamic var mState : CNState? = nil
+	@objc private dynamic var mState : CNState? = nil
 	private var mCallback : ((_ : CNState) -> Void)? = nil
 	
 	deinit {

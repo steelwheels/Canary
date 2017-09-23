@@ -36,7 +36,7 @@ public extension URL
 
 		var result: URL? = nil
 		switch panel.runModal() {
-		case NSFileHandlingPanelOKButton:
+		case .OK:
 			let urls = panel.urls
 			if urls.count == 1 {
 				let preference = CNBookmarkPreference.sharedPreference
@@ -46,7 +46,7 @@ public extension URL
 			} else {
 				NSLog("Invalid result: \(urls)")
 			}
-		case NSFileHandlingPanelCancelButton:
+		case .cancel:
 			break
 		default:
 			break
@@ -64,8 +64,8 @@ public extension URL
 		if let odir = outdir {
 			panel.directoryURL = odir
 		}
-		panel.begin(completionHandler: { (result: Int) -> Void in
-			if result == NSFileHandlingPanelOKButton {
+		panel.begin(completionHandler: { (result: NSApplication.ModalResponse) -> Void in
+			if result == .OK {
 				if let newurl = panel.url {
 					if callback(newurl) {
 						let preference = CNBookmarkPreference.sharedPreference

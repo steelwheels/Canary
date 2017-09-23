@@ -344,7 +344,7 @@ private class CNTokenizer
 		}
 
 		if !hasprefix {
-			let hexstr = srcstr.substring(with: srcrange)
+			let hexstr = srcstr[srcrange]
 			throw CNParseError.TokenizeError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
 		}
 
@@ -384,7 +384,7 @@ private class CNTokenizer
 			}
 		}
 		if !has1stquot {
-			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr[srcrange]))\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -416,7 +416,7 @@ private class CNTokenizer
 				return (CNToken(type: .StringToken(resstr), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNParseError.TokenizeError(mCurrentLine, "String value is not ended by \" but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.TokenizeError(mCurrentLine, "String value is not ended by \" but \"\(srcstr[srcrange])\" is given")
 	}
 
 	private func getTextTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>)
@@ -433,7 +433,7 @@ private class CNTokenizer
 			}
 		}
 		if !hasheader {
-			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr.substring(with: srcrange))\" is given")
+			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr[srcrange])\" is given")
 		}
 
 		var prevchar	: Character = " "
@@ -468,11 +468,11 @@ private class CNTokenizer
 				/* Delete last "%" */
 				let sidx = resstr.startIndex
 				let eidx = resstr.index(before: resstr.endIndex)
-				let substr = resstr.substring(with: sidx..<eidx)
-				return (CNToken(type: .TextToken(substr), lineNo: mCurrentLine), rangel)
+				let substr = resstr[sidx..<eidx]
+				return (CNToken(type: .TextToken(String(substr)), lineNo: mCurrentLine), rangel)
 			}
 		}
-		throw CNParseError.TokenizeError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr.substring(with: srcrange))\" is given")
+		throw CNParseError.TokenizeError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr[srcrange])\" is given")
 	}
 
 	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,
