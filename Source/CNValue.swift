@@ -18,7 +18,6 @@ public enum CNValueType {
 	case StringType
 	case DateType
 	case ArrayType
-	case SetType
 	case DictionaryType
 
 	public var description: String {
@@ -35,7 +34,6 @@ public enum CNValueType {
 			case .StringType:	result = "String"
 			case .DateType:		result = "Date"
 			case .ArrayType:	result = "Array"
-			case .SetType:		result = "Set"
 			case .DictionaryType:	result = "Dictionary"
 			}
 			return result
@@ -55,7 +53,6 @@ public enum CNValueType {
 		case "String":		result = .StringType
 		case "Date":		result = .DateType
 		case "Array":		result = .ArrayType
-		case "Set":		result = .SetType
 		case "Dictionary":	result = .DictionaryType
 		default:		result = nil
 		}
@@ -73,7 +70,6 @@ private enum CNValueData {
 	case StringValue(value: String)
 	case DateValue(value: Date)
 	case ArrayValue(value: Array<CNValue>)
-	case SetValue(value: Set<CNValue>)
 	case DictionaryValue(value: Dictionary<String, CNValue>)
 
 	public var booleanValue: Bool? {
@@ -157,15 +153,6 @@ private enum CNValueData {
 		}
 	}
 
-	public var setValue: Set<CNValue>? {
-		get {
-			switch self {
-			case .SetValue(let val):	return val
-			default:			return nil
-			}
-		}
-	}
-
 	public var dictionaryValue: Dictionary<String, CNValue>? {
 		get {
 			switch self {
@@ -197,10 +184,8 @@ private enum CNValueData {
 			result = 0x0800_0000 | (val.hashValue & MASK)
 		case .ArrayValue(let val):
 			result = 0x0900_0000 | (Int(val.count) & MASK)
-		case .SetValue(let val):
-			result = 0x0A00_0000 | (Int(val.count) & MASK)
 		case .DictionaryValue(let val):
-			result = 0x0B00_0000 | (Int(val.count) & MASK)
+			result = 0x0A00_0000 | (Int(val.count) & MASK)
 		}
 		return result
 	}
@@ -221,18 +206,6 @@ private enum CNValueData {
 				var str:String = "["
 				var is1st      = true
 				for elm in arr {
-					if !is1st {
-						str = str + ", "
-					} else {
-						is1st = false
-					}
-					str = str + elm.description
-				}
-				result = str + "]"
-			case .SetValue(let set):
-				var str:String = "["
-				var is1st      = true
-				for elm in set {
 					if !is1st {
 						str = str + ", "
 					} else {
@@ -313,11 +286,6 @@ public class CNValue: NSObject, Comparable
 		mData = .ArrayValue(value: val)
 	}
 
-	public init(setValue val: Set<CNValue>){
-		mType = .SetType
-		mData = .SetValue(value: val)
-	}
-
 	public init(dictionaryValue val: Dictionary<String, CNValue>){
 		mType = .DictionaryType
 		mData = .DictionaryValue(value: val)
@@ -332,7 +300,6 @@ public class CNValue: NSObject, Comparable
 	public var stringValue: String?		{ return mData.stringValue }
 	public var dateValue: Date?		{ return mData.dateValue }
 	public var arrayValue: Array<CNValue>?	{ return mData.arrayValue }
-	public var setValue: Set<CNValue>?	{ return mData.setValue }
 	public var dictionaryValue: Dictionary<String, CNValue>?
 						{ return mData.dictionaryValue }
 	public override var description: String {
@@ -433,25 +400,6 @@ public class CNValue: NSObject, Comparable
 			switch type {
 			case .ArrayType:
 				return self
-			case .SetType:
-				var arr: Array<CNValue> = []
-				for elm in setValue! {
-					arr.append(elm)
-				}
-				return CNValue(arrayValue: arr)
-			default:
-				return nil
-			}
-		case .SetType:
-			switch type {
-			case .ArrayType:
-				var set: Set<CNValue> = []
-				for elm in arrayValue! {
-					set.insert(elm)
-				}
-				return CNValue(setValue: set)
-			case .SetType:
-				return self
 			default:
 				return nil
 			}
@@ -504,8 +452,6 @@ public class CNValue: NSObject, Comparable
 				result = compareElement(lhs.dateValue!, rhs.dateValue!)
 			case .ArrayType:
 				result = compareArray(lhs.arrayValue!, rhs.arrayValue!)
-			case .SetType:
-				result = compareSet(lhs.setValue!, rhs.setValue!)
 			case .DictionaryType:
 				result = compareDictionary(lhs.dictionaryValue!, rhs.dictionaryValue!)
 			case .VoidType:

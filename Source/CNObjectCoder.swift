@@ -374,15 +374,6 @@ private class CNDecoder
 			default:
 				break
 			}
-		case "Set":
-			switch src {
-			case .PrimitiveValue(let srcval):
-				if let dstval = srcval.cast(to: .SetType) {
-					result = .PrimitiveValue(value: dstval)
-				}
-			default:
-				break
-			}
 		default:
 			result = src
 		}

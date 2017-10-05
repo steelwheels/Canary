@@ -92,7 +92,9 @@ private func catCommand() -> Bool
 private var readabilityHandler: ((_ handle: FileHandle) -> Void) = {
 	(_ handle: FileHandle) -> Void in
 	if let line = String(data: handle.availableData, encoding: String.Encoding.utf8) {
-		print("output: \"\(line)\"")
+		if line.characters.count > 0 {
+			print("output: \"\(line)\"")
+		}
 	} else {
 		print("Error decoding data: \(handle.availableData)")
 	}

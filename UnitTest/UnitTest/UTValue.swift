@@ -29,9 +29,6 @@ public func UTValueTest() -> Bool
 	let val5: CNValue = CNValue(arrayValue: [val0, val1])
 	print("val5 = \(val5.typeDescription):\(val5.description)")
 
-	let val6: CNValue = CNValue(setValue: [val0, val1, val0])
-	//print("val6 = \(val6.typeDescription):\(val6.description)")
-
 	let val7: CNValue = CNValue(dictionaryValue: ["a":val0, "b":val1])
 	print("val7 = \(val7.typeDescription):\(val7.description)")
 
@@ -50,7 +47,6 @@ public func UTValueTest() -> Bool
 	result = result && compare(title:"c0", expected: true,  val0: val0, val1: val0)
 	result = result && compare(title:"c1", expected: false, val0: val0, val1: val1)
 	result = result && compare(title:"c2", expected: true,  val0: val5, val1: val5)
-	result = result && compare(title:"c3", expected: true,  val0: val6, val1: val6)
 	result = result && compare(title:"c4", expected: true,  val0: val7, val1: val7)
 	result = result && compare(title:"c5", expected: false, val0: val7, val1: val8)
 	result = result && compare(title:"c6", expected: true, val0: val9, val1: val8)
