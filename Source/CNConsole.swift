@@ -9,18 +9,38 @@ import Foundation
 
 open class CNConsole
 {
-	public let accessLock	  : NSLock ;
-	
-	public init(){
-		accessLock	= NSLock()
-	}
-	
 	public func print(string src: String){
 		flush(string: src)
 	}
 
-	/* Do not call this method from the outside */
 	open func flush(string str: String){
-		fatalError("must be overriden")
+		Swift.print(str, terminator: "")
+	}
+}
+
+public class CNFileConsole : CNConsole
+{
+	private var mTextFile	: CNTextFile
+
+	public init(file f: CNTextFile){
+		mTextFile = f
+		super.init()
+	}
+	/* Do not call this method from the outside */
+	public override func flush(string str: String){
+		mTextFile.print(string: str)
+	}
+}
+
+public class CNConnectedConsole: CNConsole
+{
+	private var mOutputPort: CNOutputPort<String>
+
+	public init(outputPort port: CNOutputPort<String>){
+		mOutputPort = port
+	}
+	/* Do not call this method from the outside */
+	public override func flush(string str: String){
+		mOutputPort.output(data: str)
 	}
 }
