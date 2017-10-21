@@ -183,6 +183,7 @@ state = Unknown
 ***** CNAddStringToText *****
 ***** CNAddStringsToText *****
 *** UTConsoleTest
+Good evening !!
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
 [UTMath] OK
