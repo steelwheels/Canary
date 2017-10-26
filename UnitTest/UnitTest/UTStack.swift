@@ -8,45 +8,45 @@
 import Canary
 import Foundation
 
-public func UTStackTest() -> Bool
+public func UTStackTest(console cons: CNConsole) -> Bool
 {
 	let stack = CNStack<Int>()
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
-	Swift.print("* push 1")
+    cons.print(string: "* push 1\n")
 	stack.push(1)
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
-	Swift.print("* push 2")
+    cons.print(string: "* push 2\n")
 	stack.push(2)
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
-	Swift.print("* pop")
+    cons.print(string: "* pop\n")
 	if let p0 = stack.pop() {
-		Swift.print("Poped: \(p0)")
+        cons.print(string: "Poped: \(p0)\n")
 	}
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
-	Swift.print("* pop")
+    cons.print(string: "* pop\n")
 	if let p1 = stack.pop() {
-		Swift.print("Poped: \(p1)")
+        cons.print(string: "Poped: \(p1)\n")
 	}
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
-	Swift.print("* pop")
+    cons.print(string: "* pop\n")
 	if let p2 = stack.pop() {
-		Swift.print("Poped: \(p2)")
+        cons.print(string: "Poped: \(p2)\n")
 	}
-	printStack(stack: stack)
+	printStack(stack: stack, console: cons)
 
 	return true
 }
 
-private func printStack(stack s: CNStack<Int>)
+private func printStack(stack s: CNStack<Int>, console cons: CNConsole)
 {
 	if let v = s.peekTop() {
-		Swift.print("Top: \(v)")
+		cons.print(string: "Top: \(v)\n")
 	} else {
-		Swift.print("Top: None")
+		cons.print(string: "Top: None\n")
 	}
 }

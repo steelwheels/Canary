@@ -8,14 +8,14 @@
 import Foundation
 import Canary
 
-public func UTTristateTest() -> Bool
+public func UTTristateTest(console cons: CNConsole) -> Bool
 {
-	printTristate(state: .Unknown)
+	printTristate(state: .Unknown, console: cons)
 	return true
 }
 
-internal func printTristate(state stat: CNTristate)
+internal func printTristate(state stat: CNTristate, console cons: CNConsole)
 {
-	print("state = \(stat.description)")
+	cons.print(string: "state = \(stat.description)\n")
 }
 

@@ -8,19 +8,19 @@
 import Foundation
 import Canary
 
-public func UTMathTest() -> Bool
+public func UTMathTest(console cons: CNConsole) -> Bool
 {
-	let res0 = clipTest(value: 1.0, max: 3.0, min: 1.0)
+    let res0 = clipTest(value: 1.0, max: 3.0, min: 1.0, console: cons)
 	if res0 {
-		print("[UTMath] OK")
+        cons.print(string: "[UTMath] OK\n")
 		return true
 	} else {
-		print("[UTMath] NG")
+        cons.print(string: "[UTMath] NG\n")
 		return false
 	}
 }
 
-internal func clipTest<T: Comparable>(value v:T, max mx:T, min mn: T) -> Bool
+internal func clipTest<T: Comparable>(value v:T, max mx:T, min mn: T, console cons: CNConsole) -> Bool
 {
 	var expval: T
 	if v > mx {
@@ -39,6 +39,6 @@ internal func clipTest<T: Comparable>(value v:T, max mx:T, min mn: T) -> Bool
 	} else {
 		resstr = "\(realval) != \(expval) -> NG"
 	}
-	print("clip(value:\(v), max:\(mx), min:\(mn)) -> \(resstr)")
+    cons.print(string: "clip(value:\(v), max:\(mx), min:\(mn)) -> \(resstr)\n")
 	return result
 }

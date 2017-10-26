@@ -9,69 +9,64 @@ import Foundation
 
 open class CNConsole
 {
-	open func print(string src: String){
-		Swift.print(src, terminator:"")
+	public init(){
+
+	}
+	
+	open func print(string str: String){
+		Swift.print(str, terminator: "")
+	}
+
+	open func error(string str: String){
+		Swift.print(str, terminator: "")
+	}
+
+	open func scan() -> String? {
+		let input = FileHandle.standardInput
+		return String(data: input.availableData, encoding: .utf8)
 	}
 }
 
 public class CNFileConsole : CNConsole
 {
-	private var mTextFile	: CNTextFile
+	var inputHandle:	FileHandle?	= nil
+	var outputHandle:	FileHandle?	= nil
+	var errorHandle:	FileHandle?	= nil
 
-	public init(file f: CNTextFile){
-		mTextFile = f
+	public init(input ihdl: FileHandle?, output ohdl: FileHandle?, error ehdl: FileHandle?){
+		inputHandle	= ihdl
+		outputHandle	= ohdl
+		errorHandle	= ehdl
 	}
-	
+
+	public override init() {
+		inputHandle	= FileHandle.standardInput
+		outputHandle	= FileHandle.standardOutput
+		errorHandle	= FileHandle.standardError
+	}
+
 	public override func print(string str: String){
-		mTextFile.print(string: str)
-	}
-}
-
-public class CNIndentConsole: CNConsole
-{
-	private var mConsole: 		CNConsole
-	private var mIndentValue:  	Int
-	private var mIndentString:	String
-
-	public init(console cons: CNConsole){
-		mConsole      = cons
-		mIndentValue  = 0
-		mIndentString = ""
-	}
-
-	public override func print(string src: String){
-		mConsole.print(string: mIndentString + src)
-	}
-
-	public func incrementIndent(){
-		mIndentValue  += 1
-		mIndentString =  CNIndentConsole.indentString(indent: mIndentValue)
-	}
-
-	public func decrementIndent(){
-		if mIndentValue > 0 {
-			mIndentValue -= 1
-			mIndentString =  CNIndentConsole.indentString(indent: mIndentValue)
+		if let ohdl = outputHandle, let data = str.data(using: .utf8) {
+			ohdl.write(data)
 		}
 	}
 
-	private class func indentString(indent idt: Int) -> String {
-		var result: String = ""
-		for _ in 0..<idt {
-			result += " "
+	public override func error(string str: String){
+		if let ehdl = errorHandle, let data = str.data(using: .utf8) {
+			ehdl.write(data)
+		} else {
+			print(string: str)
 		}
-		return result
+	}
+
+	public override func scan() -> String? {
+		if let ihdl = inputHandle {
+			return String(data: ihdl.availableData, encoding: .utf8)
+		} else {
+			return nil
+		}
 	}
 }
 
-public class CNConnectedConsole: CNConsole
-{
-	private var mOutputPort: CNOutputPort<String>
 
-	public init(outputPort port: CNOutputPort<String>){
-		mOutputPort = port
-	}
-	public override func print(string str: String){
-		mOutputPort.output(data: str)
-	}
-}
+

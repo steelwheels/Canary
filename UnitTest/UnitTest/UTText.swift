@@ -10,7 +10,7 @@ import Foundation
 
 public func UTText() -> Bool
 {
-	let console = CNFileConsole(file: CNTextFile.stdout)
+	let console = CNConsole()
 
 	let line0 = CNTextLine(string: "")
 	print(console: console, title: "Empty line", text: line0)
@@ -39,6 +39,6 @@ public func UTText() -> Bool
 
 private func print(console cons: CNConsole, title ttl: String, text txt: CNText)
 {
-	Swift.print("***** \(ttl) *****")
+    cons.print(string: "***** \(ttl) *****\n")
 	txt.print(console: cons, indent: 0)
 }

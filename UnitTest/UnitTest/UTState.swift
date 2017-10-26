@@ -14,10 +14,12 @@ internal class UTState : CNState
 		case ValueFactor	= 123
 	}
 
+	private var mConsole: CNConsole
 	private var mValue: Int
 	
-	init(newval: Int){
-		mValue = newval
+	init(newval: Int, console cons: CNConsole){
+		mValue   = newval
+		mConsole = cons
 	}
 
 	public var factor: Factor {
@@ -34,42 +36,42 @@ internal class UTState : CNState
 		}
 		set(newval){
 			mValue = newval
-			print("set new value: \(mValue)")
+			mConsole.print(string: "set new value: \(mValue)\n")
 			updateState(factorValue: Factor.ValueFactor.rawValue)
 		}
 	}
 }
 
-public func UTStateTest() -> Bool
+public func UTStateTest(console cons: CNConsole) -> Bool
 {
-	testNormalState()
-	testCombinedState()
+	testNormalState(console: cons)
+	testCombinedState(console: cons)
 	return true
 }
 
-internal func testNormalState()
+internal func testNormalState(console cons: CNConsole)
 {
-	print("* Start: testNormalState")
-	let s0 = UTState(newval: 0)
+	cons.print(string: "* Start: testNormalState\n")
+    let s0 = UTState(newval: 0, console: cons)
 	let observer0 = CNStateObserver()
 	observer0.state = s0
 	observer0.callback = { (state : CNState) -> Void in
 		if let s = state as? UTState {
-			print("Observed state value = \(s.value), factor = \(s.factor.rawValue)")
+			cons.print(string: "Observed state value = \(s.value), factor = \(s.factor.rawValue)\n")
 		} else {
-			fatalError("Invalid state class")
+			fatalError("Invalid state class\n")
 		}
 	}
 	s0.value = 1
-	print("* Done: testNormalState")
+	cons.print(string: "* Done: testNormalState\n")
 }
 
-internal func testCombinedState()
+internal func testCombinedState(console cons: CNConsole)
 {
-	print("* Start: testCombinedState")
+	cons.print(string: "* Start: testCombinedState\n")
 	
-	let s0 = UTState(newval:  0)
-	let s1 = UTState(newval: 10)
+	let s0 = UTState(newval:  0, console: cons)
+	let s1 = UTState(newval: 10, console: cons)
 	let sc = CNCombinedState()
 	sc.addSourceState(state: s0)
 	sc.addSourceState(state: s1)
@@ -77,22 +79,22 @@ internal func testCombinedState()
 	let observer0 = CNStateObserver()
 	observer0.state = sc
 	observer0.callback = { (state : CNState) -> Void in
-		print("Observe combined values")
+		cons.print(string: "Observe combined values\n")
 		if let comb = state as? CNCombinedState {
 			for child in comb.sourceStates {
 				if let cstate = child as? UTState {
-					print("Observed state value = \(cstate.value)")
+					cons.print(string: "Observed state value = \(cstate.value)\n")
 				} else {
-					fatalError("Invalid state class (1)")
+					fatalError("Invalid state class (1)\n")
 				}
 			}
 		} else {
-			fatalError("Invalid state class (2)")
+			fatalError("Invalid state class (2)\n")
 		}
 	}
 	s0.value = 1
 	s1.value = 11
 	
-	print("* End: testCombinedState")
+	cons.print(string: "* End: testCombinedState\n")
 }
 

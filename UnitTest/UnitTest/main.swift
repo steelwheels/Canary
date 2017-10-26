@@ -8,67 +8,66 @@
 import Foundation
 import Canary
 
-print("Hello, World!")
+let console = CNConsole()
+console.print(string: "Hello, World!\n")
 
-let console = CNFileConsole(file: CNTextFile.stdout)
+console.print(string: "*** UTCharacter\n")
+let result0 = UTCharacter(console: console)
 
-print("*** UTCharacter")
-let result0 = UTCharacter()
+console.print(string: "*** UTListTest\n")
+let result1 = UTListTest(console: console)
 
-print("*** UTListTest")
-let result1 = UTListTest()
+console.print(string: "*** UTGraphTest\n")
+let result2 = UTGraphTest(console: console)
 
-print("*** UTGraphTest")
-let result2 = UTGraphTest()
+console.print(string: "*** UTStackTest\n")
+let result3 = UTStackTest(console: console)
 
-print("*** UTStackTest")
-let result3 = UTStackTest()
+console.print(string: "*** UTNumber\n")
+let result4 = UTNumber(console: console)
 
-print("*** UTNumber")
-let result4 = UTNumber()
-
-print("*** UTValue")
-let result5 = UTValueTest()
+console.print(string: "*** UTValue\n")
+let result5 = UTValueTest(console: console)
 
 console.print(string: "*** UTValueTable\n")
 let result6 = UTValueTableTest(console: console)
 
-print("*** UTURLTest")
-let result7 = UTURLTest()
+console.print(string: "*** UTURLTest\n")
+let result7 = UTURLTest(console: console)
 
-print("*** UTStateTest")
-let result8 = UTStateTest() && UTTristateTest()
+console.print(string: "*** UTStateTest\n")
+let result8 = UTStateTest(console: console) && UTTristateTest(console: console)
 
-print("*** UTText")
+console.print(string: "*** UTText\n")
 let result9 = UTText()
 
-print("*** UTConsoleTest")
+console.print(string: "*** UTConsoleTest\n")
 let result10 = UTConsoleTest()
 
-print("*** UTMath")
-let result11 = UTMathTest()
+console.print(string: "*** UTMath\n")
+let result11 = UTMathTest(console: console)
 
-print("*** UTToken")
-let result12 = UTTokenTest()
+console.print(string: "*** UTToken\n")
+let result12 = UTTokenTest(console: console)
 
-print("*** UTObjectNotation")
-let result13 = UTObjectNotation()
+console.print(string: "*** UTObjectNotation\n")
+let result13 = UTObjectNotation(console: console)
 
-print("*** UTObjectCoder")
-let result14 = UTObjectCoder()
+console.print(string: "*** UTObjectCoder\n")
+let result14 = UTObjectCoder(console: console)
 
-print("*** UTShell")
-let result15 = UTShell()
+console.print(string: "*** UTShell\n")
+let result15 = UTShell(console: console)
 
-print("*** UTCommandLine")
+console.print(string: "*** UTCommandLine\n")
 let result16 = UTCommandLine(console: console)
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
 	     result10 && result11 && result12 && result13 && result14 && result15 && result16
 if result {
-	print("[SUMMARY] PASSED")
+	console.print(string: "[SUMMARY] PASSED\n")
 	exit(0)
 } else {
-	print("[SUMMARY] Faield")
+	console.print(string: "[SUMMARY] Faield\n")
 	exit(1)
 }

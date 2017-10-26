@@ -12,18 +12,18 @@ private var mLsCommandDone	= false
 private var mCatCommandDone	= false
 private var mTraceiver		= false
 
-public func UTShell() -> Bool
+public func UTShell(console cons: CNConsole) -> Bool
 {
-	let result0 = lsCommand()
+    let result0 = lsCommand(console: cons)
 	while !(mLsCommandDone) { }
 
-	let result1 = catCommand()
+    let result1 = catCommand(console: cons)
 	while !(mCatCommandDone) { }
 
 	return result0 && result1
 }
 
-private func lsCommand() -> Bool
+private func lsCommand(console cons: CNConsole) -> Bool
 {
 	let shell = CNShell()
 	shell.arguments = ["/bin/ls"]
@@ -35,19 +35,19 @@ private func lsCommand() -> Bool
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
 		if exitcode != 0 {
-			Swift.print("ls command done: Failed")
+            cons.print(string: "ls command done: Failed\n")
 		}
 		mLsCommandDone = true
 	}
 
 	let pid = shell.execute()
 	if pid <= 0 {
-		Swift.print("ls command start: Failed")
+        cons.print(string: "ls command start: Failed")
 	}
 	return true
 }
 
-private func catCommand() -> Bool
+private func catCommand(console cons: CNConsole) -> Bool
 {
 	let shell = CNShell()
 	shell.arguments = ["/bin/cat"]
@@ -62,14 +62,14 @@ private func catCommand() -> Bool
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
 		if exitcode != 0 {
-			Swift.print("cat command done: Failed")
+            cons.print(string: "cat command done: Failed")
 		}
 		mCatCommandDone = true
 	}
 
 	let pid = shell.execute()
 	if pid <= 0 {
-		Swift.print("cat command start: Failed")
+        cons.print(string: "cat command start: Failed")
 	}
 
 	var wcount = 0
@@ -93,10 +93,10 @@ private var readabilityHandler: ((_ handle: FileHandle) -> Void) = {
 	(_ handle: FileHandle) -> Void in
 	if let line = String(data: handle.availableData, encoding: String.Encoding.utf8) {
 		if line.characters.count > 0 {
-			print("output: \"\(line)\"")
+			Swift.print("output: \"\(line)\"")
 		}
 	} else {
-		print("Error decoding data: \(handle.availableData)")
+		Swift.print("Error decoding data: \(handle.availableData)")
 	}
 }
 

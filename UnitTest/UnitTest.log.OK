@@ -1,100 +1,3 @@
-* Graph1
-  n:n0
-    n:n1
-* Graph2
-  n:n0
-    n:n1
-      n:n2
-* Graph3
-  n:n0
-    n:n1
-  n:n3
-    n:n2
-*** UTValueTable
-idx="v0", value="true" ... OK
-idx="v1", value="c" ... OK
-idx="v2", value="-1234" ... OK
-idx="v3", value="2345" ... OK
-idx="v4", value="12.3" ... OK
-idx="v5", value="-34.5" ... OK
-idx="v6", value=""Hello"" ... OK
-
-ABCD
-  ABCD
-  , EFGH
-  1
-  2
-  3
-  45
-  ABCD
-  Hello
-  World
-  abcd
-  Hello
-  ,World
-!!! Hello, World !!!
-*** test0[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-  [Arguments]
-    hello
-*** test1[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-      option-id: 0, value:false
-  [Arguments]
-    hello
-*** test2[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-      option-id: 1, value:true
-  [Arguments]
-    hello
-*** test3[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-      option-id: 1, value:true
-      option-id: 2, value:1234
-  [Arguments]
-    hello, world
-*** test4[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-      option-id: 2, value:200
-  [Arguments]
-    test.app
-    a
-    b
-*** test5[CommandLine]
-  [OptionTypes]
-      id: 0, name:type0, type:Void
-      id: 1, name:type1, type:Bool
-      id: 2, name:type2, type:Int
-      id: 3, name:type3, type:String
-  [OptionValues]
-      option-id: 3, value:"a/b"
-  [Arguments]
-    test.app
 Hello, World!
 *** UTCharacter
 test: isSpace( ) == true -> OK
@@ -117,6 +20,18 @@ list2 *2 6 [4 6 10 2 0 8 ]
 list3 3 [2 0 4 ]
 list5 11 [10 0 1 11 33 4 5 6 7 8 9 ]
 *** UTGraphTest
+* Graph1
+  n:n0
+    n:n1
+* Graph2
+  n:n0
+    n:n1
+      n:n2
+* Graph3
+  n:n0
+    n:n1
+  n:n3
+    n:n2
 *** UTStackTest
 Top: None
 * push 1
@@ -157,6 +72,14 @@ val9 = Dictionary:[b:255, a:-123]
 val10 = Character:A
 val11 = Character:A
 val1f = Float:-123.0
+*** UTValueTable
+idx="v0", value="true" ... OK
+idx="v1", value="c" ... OK
+idx="v2", value="-1234" ... OK
+idx="v3", value="2345" ... OK
+idx="v4", value="12.3" ... OK
+idx="v5", value="-34.5" ... OK
+idx="v6", value=""Hello"" ... OK
 *** UTURLTest
 srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
 *** UTStateTest
@@ -177,13 +100,28 @@ Observed state value = 11
 state = Unknown
 *** UTText
 ***** Empty line *****
+
 ***** Append "ABCD"to line *****
+ABCD
 ***** Empty section *****
 ***** Add line0 *****
+  ABCD
+  , EFGH
+  1
+  2
+  3
+  45
 ***** CNAddStringToText *****
+  ABCD
+  Hello
+  World
 ***** CNAddStringsToText *****
+  abcd
+  Hello
+  ,World
 *** UTConsoleTest
-Good evening !!
+this is print message
+this is error message
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
 [UTMath] OK
@@ -360,4 +298,66 @@ output: "0 Hello, world !
 9 Hello, world !
 "
 *** UTCommandLine
+*** test0[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+  [Arguments]
+    hello
+*** test1[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 0, value:false
+  [Arguments]
+    hello
+*** test2[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 1, value:true
+  [Arguments]
+    hello
+*** test3[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 1, value:true
+      option-id: 2, value:1234
+  [Arguments]
+    hello, world
+*** test4[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 2, value:200
+  [Arguments]
+    test.app
+    a
+    b
+*** test5[CommandLine]
+  [OptionTypes]
+      id: 0, name:type0, type:Void
+      id: 1, name:type1, type:Bool
+      id: 2, name:type2, type:Int
+      id: 3, name:type3, type:String
+  [OptionValues]
+      option-id: 3, value:"a/b"
+  [Arguments]
+    test.app
 [SUMMARY] PASSED

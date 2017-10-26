@@ -7,31 +7,31 @@
 
 import Canary
 
-public func UTListTest() -> Bool
+public func UTListTest(console cons: CNConsole) -> Bool
 {
 	let list0 = CNList<Int>()
-	printList(title: "initial state", list: list0)
+	printList(title: "initial state", list: list0, console: cons)
 	
 	list0.append(data: 0)
-	printList(title: "list0: add", list: list0)
+	printList(title: "list0: add", list: list0, console: cons)
 	
 	let list1 = CNList(list: list0)
-	printList(title: "list1: init", list: list1)
+	printList(title: "list1: init", list: list1, console: cons)
 	
 	list1.prepend(data: 1)
-	printList(title: "list1: prepend", list: list1)
+	printList(title: "list1: prepend", list: list1, console: cons)
 	
 	list1.add(previousItem: nil, data: 2)
 	list1.add(previousItem: list1.firstItem, data:3)
 	list1.add(previousItem: list1.lastItem, data:4)
 	list1.add(previousItem: list1.firstItem!.next, data:5)
-	printList(title: "list1: add", list: list1)
+	printList(title: "list1: add", list: list1, console: cons)
 	
 	let _ = list0.remove(previousItem: nil)
-	printList(title: "list0 remove", list: list0)
+	printList(title: "list0 remove", list: list0, console: cons)
 	
 	let list2 = list1.map(mapFunc: { data in data * 2 })
-	printList(title: "list2 *2", list: list2)
+	printList(title: "list2 *2", list: list2, console: cons)
 	
 	let list3 = list1.operate(operateFunc: { (data) -> CNListCommand<Int> in
 		/* Skip odd value */
@@ -43,7 +43,7 @@ public func UTListTest() -> Bool
 		}
 		return result
 	})
-	printList(title: "list3", list: list3)
+	printList(title: "list3", list: list3, console: cons)
 	
 	let list4 = CNList<Int>()
 	for i in 0..<10 {
@@ -63,15 +63,15 @@ public func UTListTest() -> Bool
 			return .Copy
 		}
 	})
-	printList(title: "list5", list: list5)
+	printList(title: "list5", list: list5, console: cons)
 	
 	//CNListItemPool<Int>.allocatePool()
 	
 	return true
 }
 
-internal func printList(title tl:String, list ls: CNList<Int>){
-	print("\(tl) \(ls.count) [", terminator: "")
-	ls.forEach({value in print("\(value) ", terminator: "")})
-	print("]")
+internal func printList(title tl:String, list ls: CNList<Int>, console cons: CNConsole){
+	cons.print(string: "\(tl) \(ls.count) [")
+	ls.forEach(forEachFunc: {value in cons.print(string: "\(value) ")})
+	cons.print(string: "]\n")
 }

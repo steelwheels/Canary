@@ -8,31 +8,31 @@
 import Foundation
 import Canary
 
-public func UTNumber() -> Bool
+public func UTNumber(console cons: CNConsole) -> Bool
 {
-	return numberKind()
+	return numberKind(console: cons)
 }
 
-private func numberKind() -> Bool
+private func numberKind(console cons: CNConsole) -> Bool
 {
-	print("*** UTNumber: NSNumberKind")
+	cons.print(string: "*** UTNumber: NSNumberKind\n")
 	
-	let result0  = checkNumberKind(number: NSNumber(value:	true), expectedKind: NSNumberKind.int8Number)
-	let result1  = checkNumberKind(number: NSNumber(value:	Int8(-1)), expectedKind: NSNumberKind.int8Number)
-	let result2  = checkNumberKind(number: NSNumber(value:	UInt8(1)), expectedKind: NSNumberKind.int16Number)
-	let result3  = checkNumberKind(number: NSNumber(value:	Int16(-1)), expectedKind: NSNumberKind.int16Number)
-	let result4  = checkNumberKind(number: NSNumber(value:	UInt16(1)), expectedKind: NSNumberKind.int32Number)
-	let result5  = checkNumberKind(number: NSNumber(value:	Int32(-1)), expectedKind: NSNumberKind.int32Number)
-	let result6  = checkNumberKind(number: NSNumber(value:	UInt32(1)), expectedKind: NSNumberKind.int64Number)
-	let result7  = checkNumberKind(number: NSNumber(value:	Int64(-1)), expectedKind: NSNumberKind.int64Number)
-	let result8  = checkNumberKind(number: NSNumber(value:	UInt64(1)), expectedKind: NSNumberKind.int64Number)
-	let result9  = checkNumberKind(number: NSNumber(value:	Float(1.2)), expectedKind: NSNumberKind.floatNumber)
-	let result10 = checkNumberKind(number: NSNumber(value:	Double(-2.3)), expectedKind: NSNumberKind.doubleNumber)
+	let result0  = checkNumberKind(number: NSNumber(value:	true), expectedKind: NSNumberKind.int8Number, console: cons)
+	let result1  = checkNumberKind(number: NSNumber(value:	Int8(-1)), expectedKind: NSNumberKind.int8Number, console: cons)
+	let result2  = checkNumberKind(number: NSNumber(value:	UInt8(1)), expectedKind: NSNumberKind.int16Number, console: cons)
+	let result3  = checkNumberKind(number: NSNumber(value:	Int16(-1)), expectedKind: NSNumberKind.int16Number, console: cons)
+	let result4  = checkNumberKind(number: NSNumber(value:	UInt16(1)), expectedKind: NSNumberKind.int32Number, console: cons)
+	let result5  = checkNumberKind(number: NSNumber(value:	Int32(-1)), expectedKind: NSNumberKind.int32Number, console: cons)
+	let result6  = checkNumberKind(number: NSNumber(value:	UInt32(1)), expectedKind: NSNumberKind.int64Number, console: cons)
+	let result7  = checkNumberKind(number: NSNumber(value:	Int64(-1)), expectedKind: NSNumberKind.int64Number, console: cons)
+	let result8  = checkNumberKind(number: NSNumber(value:	UInt64(1)), expectedKind: NSNumberKind.int64Number, console: cons)
+	let result9  = checkNumberKind(number: NSNumber(value:	Float(1.2)), expectedKind: NSNumberKind.floatNumber, console: cons)
+	let result10 = checkNumberKind(number: NSNumber(value:	Double(-2.3)), expectedKind: NSNumberKind.doubleNumber, console: cons)
 
 	return result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 && result10
 }
 
-private func checkNumberKind(number num: NSNumber, expectedKind expkind: NSNumberKind) -> Bool
+private func checkNumberKind(number num: NSNumber, expectedKind expkind: NSNumberKind, console cons: CNConsole) -> Bool
 {
 	let realkind = num.kind
 	let realdesc = realkind.description
@@ -48,7 +48,7 @@ private func checkNumberKind(number num: NSNumber, expectedKind expkind: NSNumbe
 		resstr = "!="
 	}
 
-	print("checkNumber: \(num.description) symbol:\(symbol) real:\(realdesc) \(resstr) expected:\(expdesc)")
+	cons.print(string: "checkNumber: \(num.description) symbol:\(symbol) real:\(realdesc) \(resstr) expected:\(expdesc)\n")
 
 	return result
 }

@@ -7,31 +7,29 @@
 
 import Canary
 
-public func UTGraphTest() -> Bool
+public func UTGraphTest(console cons: CNConsole) -> Bool
 {
-	let console = CNFileConsole(file: CNTextFile.stdout)
-
 	let owner = NSNumber(booleanLiteral: true)
 
-	console.print(string: "* Graph1\n")
+	cons.print(string: "* Graph1\n")
 	let graph = CNGraph()
 	let n0 = allocateNode(name: "n0", graph: graph, owner: owner)
 	let n1 = allocateNode(name: "n1", graph: graph, owner: owner)
 	let e0 = allocateEdge(graph: graph)
 	CNGraph.link(from: n0, to: n1, by: e0)
-	dump(console: console, graph: graph)
+	dump(console: cons, graph: graph)
 
-	console.print(string: "* Graph2\n")
+	cons.print(string: "* Graph2\n")
 	let n2 = allocateNode(name: "n2", graph: graph, owner: owner)
 	let e1 = allocateEdge(graph: graph)
 	CNGraph.link(from: n1, to: n2, by: e1)
-	dump(console: console, graph: graph)
+	dump(console: cons, graph: graph)
 
-	console.print(string: "* Graph3\n")
+	cons.print(string: "* Graph3\n")
 	let n3 = allocateNode(name: "n3", graph: graph, owner: owner)
 	let e2 = allocateEdge(graph: graph)
 	CNGraph.link(from: n3, to: n2, by: e2)
-	dump(console: console, graph: graph)
+	dump(console: cons, graph: graph)
 	
 	return true
 }

@@ -43,7 +43,7 @@ private func testCommandLine(strings strs: Array<String>, console cons: CNConsol
 		result = true
 	} else {
 		for error in errors {
-			Swift.print("[Error] \(error)")
+            cons.print(string: "[Error] \(error)")
 		}
 		result = false
 	}

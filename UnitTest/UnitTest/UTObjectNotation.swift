@@ -8,7 +8,7 @@
 import Foundation
 import Canary
 
-public func UTObjectNotation() -> Bool
+public func UTObjectNotation(console cons: CNConsole) -> Bool
 {
 	let pathexp0 = CNPathExpression(pathElements: ["ident0", "ident1"])
 
@@ -19,12 +19,12 @@ public func UTObjectNotation() -> Bool
 	let obj4 = CNObjectNotation(identifier: "obj4", className: "ClassA", properties: [obj2, obj3], lineNo: 1)
 
 	for obj in [obj0, obj1, obj2, obj3, obj4] {
-		encode(object: obj)
+        encode(object: obj, console: cons)
 	}
 	return true
 }
 
-private func encode(object: CNObjectNotation)
+private func encode(object: CNObjectNotation, console cons: CNConsole)
 {
-	print(CNEncodeObjectNotation(notation: object))
+    cons.print(string: CNEncodeObjectNotation(notation: object) + "\n")
 }

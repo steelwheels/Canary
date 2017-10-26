@@ -10,31 +10,16 @@ import Canary
 
 public func UTConsoleTest() -> Bool
 {
-	let result0 = UTFileConsoleTest()
-	let result1 = UTConnectedConsoleTest()
-	return result0 && result1
-}
-
-private func UTFileConsoleTest() -> Bool
-{
-	let console = CNFileConsole(file: CNTextFile.stdout)
-	console.print(string: "!!! Hello, World !!!\n")
+	let console = CNConsole()
+	testConsole(console: console)
 	return true
 }
 
-private func UTConnectedConsoleTest() -> Bool
+private func testConsole(console cons: CNConsole)
 {
-	let connection = CNConnection<String>()
-	let outport    = CNOutputPort<String>()
-	let inport     = CNInputPort<String>()
-	let console    = CNConnectedConsole(outputPort: outport)
-	outport.add(connection: connection)
-	inport.add(connection: connection)
-	inport.add(callback: {
-		(_ data:String) -> Void in
-		Swift.print(data, terminator:"")
-	})
-	console.print(string: "Good evening !!\n")
-	return true
+	cons.print(string: "this is print message\n")
+	cons.error(string: "this is error message\n")
 }
+
+
 
