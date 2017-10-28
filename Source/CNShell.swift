@@ -7,6 +7,8 @@
 
 import Foundation
 
+#if os(OSX)
+
 public class CNShell
 {
 	private var mProcess		: Process
@@ -91,4 +93,6 @@ public class CNShell
 		}
 	}
 }
+
+#endif /* os(OSX) */
 

@@ -1,7 +1,7 @@
 # Canary Object Notation
 
 ## Introduction
-The *Canary Object Notation* defines the text format to describe object.
+The *Canary Object Notation* defines the text format to describe object. It looks like JSON, but this notation contains type information.
 
 ## Copyright
 Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This document distributed under
@@ -12,38 +12,91 @@ Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This do
 
 ## Syntax
 ### Basic rule
+The notation for the object is very simple:
+
 `identifier: type value`
-- `identifier` : Name of the object.
-- `type`: Data type of object. This is optional. When there are no type declaration, the type will be estimated by the value.
-- `values` : Value of the object. There are 3 kind of object:
-  * Primitive value: An immediate value
-  * Collection value: Set, Array
-  * Class value: hierarchical value structure to map with the properties in the class
-  * Method value: The text which contains method of the object. The canary object notation does not define it's context. The method value can have listener-expression when it is required.
+  - `identifier` : Name of the object.
+  - `type`: Class (Data type) of the object.
+  - `values` : Value of the object.
+
+The object is categorized into followings:
+  * *Primitive object*: Object for primitive values such as boolean value, character value, integer value, etc ...
+  * *Class object*: Hierarchical data structure to map values to properties.
+  * *Method object*: The text which contains method of the object. The canary object notation does not define it's context. The method value can have listener-expression when it is required.
 
 #### examples
 ````
-pi: 3.14
 pi: Double 3.14
-bounds: Size {width:10.0 height:20.0}
+bounds: Size {width: Double 10.0 height: Double 20.0}
 message: Void %{ echo "hello, world !!" %}
 enable: Bool [self.a, self.b] %{ return self.a && self.b %}
 ````
 
 ### Identifier
-The identifier is started by alphabet. The alphabet, underscore (' ') and digit (0-9)
-will follow it.
+The identifier is started by alphabet. The alphabet, underscore (' ') and digit (0-9) will follow it.
 
-### Type
-#### Primitive Type
-* `Bool`: Boolean
-* `Int`: 32bit or 64bit signed integer
-* `UInt`: 32bit or 64bit unsigned integer
-* `Double`:  Double precision floating point number
-* `String`: String
+### Object
+#### Primitive Object
+Define the primitive-object and assign initial value.
+Syntax:
+
+````instance-name: primitive-type immediate-value````
+
+<table>
+<tr>
+  <th>Type</th><th>Value</th><th>Description</th>
+</tr>
+<tr>
+  <td>Bool</td><td>true, false</td><td>Boolean value</td>
+</tr>
+<tr>
+  <td>Int</td><td>1,+123,-234, 0xf, ...</td><td>Signed integer value</td>
+</tr>
+<tr>
+  <td>UInt</td><td>1,123,0xe, ...</td><td>Unsigned integer value</td>
+</tr>
+<tr>
+  <td>Double</td><td>1.23, -0.59, ...</td><td>Floating point value</td>
+</tr>
+<tr>
+  <td>String</td><td>"Hello, world", ...</td><td>String value</td>
+</tr>
+</table>
 
 #### Class type
-Class is set of one or more type data.
+Define class-object. Syntax:
+````
+instance-name: class-name {
+   property-object
+   property-object
+   ...
+}
+````
+
+#### Method object
+There are some kinds of method.
+
+##### Normal method
+The *normal method* is called by the other methods with some parameters
+````
+instance-name: ret-type (parameter, parameter, ...) %{
+    /* method body */
+%}
+````
+##### Event method
+The *event method* is used as the callback function without parameters.
+````
+instance-name: ret-type %{
+    /* method body */
+%}
+````
+##### Listener method
+The *listener method* is used as the react function. It is called when the at least one listening parameter's value is updated.
+````
+instance-name: ret-type [listening-param, listening-param, ... ] %{
+    /* method body */
+%}
+````
 
 ### Value
 #### Primitive Value
@@ -61,8 +114,8 @@ The sequence of 2 or more strings will be concatenated and treated as a single s
 
 ``"a"``, ``"Hello, word"``, `"\\\"\n"`.
 
-#### Class value
-The class value has the hierarchical data structure. It is mapped to the built-in or user defined class.
+### Sample code
+#### Built-in class object
 ````
 done_button: Button {
   title: "Press me"
@@ -72,22 +125,7 @@ done_button: Button {
 }
 ````
 
-#### Method Value
-At the Amber Programming Language, here are 2 kinds of method:
-* Event method
-* Listener method
-
-##### Event method
-The event method is called by controller when the user action is detected. For example, when the button is pressed by user, the "pressed" method will be called.
-````
-pressed: Void %{
-    /* Event method */
-%}
-````
-
-The event method does not have return value because there are no object which accepts it.
-
-##### Listener method
+#### Listener method
 The listener method will be called when the context of listening parameter (which is described by one or more path expressions) is changed.
 ````
 enable: Bool [self.count] %{
