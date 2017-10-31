@@ -8,6 +8,48 @@
 import Canary
 import Foundation
 
+public func UTShell(console cons: CNConsole) -> Bool
+{
+	let result0 = lsCommand(console: cons)
+	return result0
+}
+
+private func lsCommand(console cons: CNConsole) -> Bool
+{
+	var result        = true
+	var lsCommandDone = false
+
+	cons.print(string: "lsCommand: setup\n")
+	let shell = CNShell()
+	shell.arguments = ["/bin/ls"]
+	shell.terminationHandler = {
+		(_ exitcode: Int32) -> Void in
+			if exitcode != 0 {
+				cons.print(string: "lsCommand done: Failed\n")
+				result = false
+			} else {
+				cons.print(string: "lsCommand done: Succeed\n")
+			}
+			lsCommandDone = true
+	}
+
+	cons.print(string: "lsCommand: execute\n")
+	let pid = shell.execute(console: cons)
+	if pid <= 0 {
+		cons.print(string: "lsCommand: Failed to execute")
+		result = false
+	}
+
+	cons.print(string: "lsCommand: wait command done\n")
+	while(!lsCommandDone){
+
+	}
+	cons.print(string: "lsCommand: done\n")
+	
+	return result
+}
+
+/*
 private var mLsCommandDone	= false
 private var mCatCommandDone	= false
 private var mTraceiver		= false
@@ -99,5 +141,6 @@ private var readabilityHandler: ((_ handle: FileHandle) -> Void) = {
 		Swift.print("Error decoding data: \(handle.availableData)")
 	}
 }
+*/
 
 

@@ -22,8 +22,7 @@ open class CNConsole
 	}
 
 	open func scan() -> String? {
-		let input = FileHandle.standardInput
-		return String(data: input.availableData, encoding: .utf8)
+		return nil
 	}
 }
 
@@ -68,5 +67,111 @@ public class CNFileConsole : CNConsole
 	}
 }
 
+public class CNIndentedConsole: CNConsole
+{
+	private var mConsole:		CNConsole
+	private var mIndentValue:	Int
+	private var mIndentString:	String
+
+	public init(console cons: CNConsole){
+		mConsole 	= cons
+		mIndentValue	= 0
+		mIndentString	= ""
+	}
+
+	public override func print(string str: String){
+		mConsole.print(string: mIndentString + str)
+	}
+
+	public override func error(string str: String){
+		mConsole.error(string: mIndentString + str)
+	}
+
+	public override func scan() -> String? {
+		return mConsole.scan()
+	}
+
+	public func incrementIndent() {
+		updateIndent(indent: mIndentValue + 1)
+	}
+
+	public func decrementIndent() {
+		if mIndentValue > 0 {
+			updateIndent(indent: mIndentValue - 1)
+		}
+	}
+
+	public func updateIndent(indent idt: Int) {
+		var result = ""
+		for _ in 0..<idt {
+			result = result + "  "
+		}
+		mIndentValue  = idt
+		mIndentString = result
+	}
+}
+
+public class CNPipeConsole: CNConsole
+{
+	public var toConsole: 		CNConsole?
+	public var inputPipe:		Pipe
+	public var errorPipe:		Pipe
+	public var outputPipe:		Pipe
+
+	public override init(){
+		toConsole	= nil
+		inputPipe	= Pipe()
+		errorPipe	= Pipe()
+		outputPipe	= Pipe()
+		super.init()
+		
+		inputPipe.fileHandleForReading.readabilityHandler = {
+			(_ handle: FileHandle) -> Void in
+			if let str = String(data: handle.availableData, encoding: String.Encoding.utf8) {
+				self.print(string: str)
+			} else {
+				Swift.print("Error decoding data: \(handle.availableData)")
+			}
+		}
+		errorPipe.fileHandleForReading.readabilityHandler = {
+			(_ handle: FileHandle) -> Void in
+			if let str = String(data: handle.availableData, encoding: String.Encoding.utf8) {
+				self.error(string: str)
+			} else {
+				Swift.print("Error decoding data: \(handle.availableData)")
+			}
+		}
+		outputPipe.fileHandleForWriting.writeabilityHandler = {
+			(filehandle: FileHandle) -> Void in
+			if let str = self.scan() {
+				if let data = str.data(using: .utf8) {
+					filehandle.write(data)
+				} else {
+					Swift.print("Error encoding data: \(str)")
+				}
+			}
+		}
+	}
+
+	open override func print(string str: String){
+		if let cons = toConsole {
+			cons.print(string: str)
+		}
+	}
+
+	open override func error(string str: String){
+		if let cons = toConsole {
+			cons.error(string: str)
+		}
+	}
+
+	open override func scan() -> String? {
+		if let cons = toConsole {
+			return cons.scan()
+		} else {
+			return nil
+		}
+	}
+}
 
 

@@ -42,7 +42,7 @@ console.print(string: "*** UTText\n")
 let result9 = UTText()
 
 console.print(string: "*** UTConsoleTest\n")
-let result10 = UTConsoleTest()
+let result10 = UTConsoleTest(console: console)
 
 console.print(string: "*** UTMath\n")
 let result11 = UTMathTest(console: console)

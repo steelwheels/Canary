@@ -11,87 +11,50 @@ import Foundation
 
 public class CNShell
 {
-	private var mProcess		: Process
-	private var mTerminationHandler	: ((_ exitcode: Int32) -> Void)?
+	public var arguments		: Array<String>
+	public var terminationHandler	: ((_ exitcode: Int32) -> Void)?
 
 	public init(){
-		mProcess = Process()
-		mProcess.launchPath = "/bin/sh"
+		arguments  	   = []
+		terminationHandler = nil
 	}
 
-	public var arguments: Array<String> {
-		get {
-			if let args = mProcess.arguments {
-				return args
-			} else {
-				return []
+	public func execute(console cons: CNConsole) -> Int32 {
+		let pipecons		= CNPipeConsole()
+		pipecons.toConsole 	= cons
+		
+		let process  		= Process()
+		process.launchPath	= "/bin/sh"
+
+		var args =  ["-c"]
+		args.append(contentsOf: arguments)
+		process.arguments = args
+
+		process.standardInput  = pipecons.outputPipe
+		process.standardOutput = pipecons.inputPipe
+		process.standardError  = pipecons.errorPipe
+
+		if let handler = terminationHandler  {
+			process.terminationHandler = {
+				(process: Process) -> Void in
+				handler(process.terminationStatus)
 			}
+		} else {
+			process.terminationHandler = nil
 		}
-		set(args) {
-			var fullargs = ["-c"]
-			fullargs.append(contentsOf: args)
-			mProcess.arguments = fullargs
-		}
-	}
 
-	public var input: Pipe? {
-		get {
-			if let pipe = mProcess.standardInput as? Pipe {
-				return pipe
-			} else {
-				return nil
-			}
-		}
-		set(pipe){
-			mProcess.standardInput = pipe
-		}
-	}
-
-	public var output: Pipe? {
-		get {
-			if let pipe = mProcess.standardOutput as? Pipe {
-				return pipe
-			} else {
-				return nil
-			}
-		}
-		set(pipe){
-			mProcess.standardOutput = pipe
-		}
-	}
-
-	public var terminationHandler: ((_ exitcode: Int32) -> Void)? {
-		get {
-			return mTerminationHandler
-		}
-		set(handler){
-			mTerminationHandler = handler
-			if let handler = handler {
-				mProcess.terminationHandler = {
-					(process: Process) -> Void in
-					handler(process.terminationStatus)
-				}
-			} else {
-				mProcess.terminationHandler = nil
-			}
-		}
-	}
-
-	public func execute() -> Int32 {
-		mProcess.launch()
-		return mProcess.processIdentifier
-	}
-
-	public var pid: Int32 {
-		get { return mProcess.processIdentifier }
+		process.launch()
+		return process.processIdentifier
 	}
 	
+	#if false
 	public func waitUntilExit()
 	{
 		if mProcess.isRunning {
 			mProcess.waitUntilExit()
 		}
 	}
+	#endif
 }
 
 #endif /* os(OSX) */

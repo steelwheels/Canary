@@ -122,6 +122,9 @@ ABCD
 *** UTConsoleTest
 this is print message
 this is error message
+UTPipeConsole: "hello, world"
+UTPipeConsole: "Error message"
+Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
 [UTMath] OK
@@ -279,24 +282,17 @@ RESULT: main_window: Window {
 }
 [UTObjectCoder] Summary: OK
 *** UTShell
-output: "UTFileManager
+lsCommand: setup
+lsCommand: execute
+lsCommand: wait command done
+UTFileManager
 UTState
 UTURL
 UnitTest
 UnitTest.log.OK
 UnitTestBundle
-"
-output: "0 Hello, world !
-1 Hello, world !
-2 Hello, world !
-3 Hello, world !
-4 Hello, world !
-5 Hello, world !
-6 Hello, world !
-7 Hello, world !
-8 Hello, world !
-9 Hello, world !
-"
+lsCommand done: Succeed
+lsCommand: done
 *** UTCommandLine
 *** test0[CommandLine]
   [OptionTypes]
