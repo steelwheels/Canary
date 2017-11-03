@@ -13,10 +13,12 @@ public class CNShell
 {
 	public var arguments		: Array<String>
 	public var terminationHandler	: ((_ exitcode: Int32) -> Void)?
+	private var mProcess		: Process? = nil
 
 	public init(){
 		arguments  	   = []
 		terminationHandler = nil
+		mProcess	   = nil
 	}
 
 	public func execute(console cons: CNConsole) -> Int32 {
@@ -38,23 +40,27 @@ public class CNShell
 			process.terminationHandler = {
 				(process: Process) -> Void in
 				handler(process.terminationStatus)
+				self.mProcess = nil
 			}
 		} else {
-			process.terminationHandler = nil
+			process.terminationHandler = {
+				(process: Process) -> Void in
+				self.mProcess = nil
+			}
 		}
 
 		process.launch()
 		return process.processIdentifier
 	}
-	
-	#if false
+
 	public func waitUntilExit()
 	{
-		if mProcess.isRunning {
-			mProcess.waitUntilExit()
+		if let process = mProcess {
+			if process.isRunning {
+				process.waitUntilExit()
+			}
 		}
 	}
-	#endif
 }
 
 #endif /* os(OSX) */

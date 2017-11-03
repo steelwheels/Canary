@@ -11,8 +11,7 @@ Copyright (C) 2017 [Steel Wheels Project](http://steelwheels.github.io). This do
 - [Canary Framework](https://github.com/steelwheels/Canary): Source code repository which implements Canary Object Notation
 
 ## Syntax
-### Basic rule
-The notation for the object is very simple:
+The notation defines the object.
 
 `identifier: type value`
   - `identifier` : Name of the object.
@@ -21,22 +20,10 @@ The notation for the object is very simple:
 
 The object is categorized into followings:
   * *Primitive object*: Object for primitive values such as boolean value, character value, integer value, etc ...
-  * *Class object*: Hierarchical data structure to map values to properties.
+  * *Class object*: Hierarchical structure to map object to properties.
   * *Method object*: The text which contains method of the object. The canary object notation does not define it's context. The method value can have listener-expression when it is required.
 
-#### examples
-````
-pi: Double 3.14
-bounds: Size {width: Double 10.0 height: Double 20.0}
-message: Void %{ echo "hello, world !!" %}
-enable: Bool [self.a, self.b] %{ return self.a && self.b %}
-````
-
-### Identifier
-The identifier is started by alphabet. The alphabet, underscore (' ') and digit (0-9) will follow it.
-
-### Object
-#### Primitive Object
+## Primitive Object
 Define the primitive-object and assign initial value.
 Syntax:
 
@@ -63,7 +50,7 @@ Syntax:
 </tr>
 </table>
 
-#### Class type
+### Class object
 Define class-object. Syntax:
 ````
 instance-name: class-name {
@@ -73,24 +60,24 @@ instance-name: class-name {
 }
 ````
 
-#### Method object
+## Method object
 There are some kinds of method.
 
-##### Normal method
+### Normal method
 The *normal method* is called by the other methods with some parameters
 ````
 instance-name: ret-type (parameter, parameter, ...) %{
     /* method body */
 %}
 ````
-##### Event method
+### Event method
 The *event method* is used as the callback function without parameters.
 ````
 instance-name: ret-type %{
     /* method body */
 %}
 ````
-##### Listener method
+### Listener method
 The *listener method* is used as the react function. It is called when the at least one listening parameter's value is updated.
 ````
 instance-name: ret-type [listening-param, listening-param, ... ] %{
@@ -98,24 +85,14 @@ instance-name: ret-type [listening-param, listening-param, ... ] %{
 %}
 ````
 
-### Value
-#### Primitive Value
-##### Boolean value
-`true`, `false`
+## Sample code
+### Primitive object
+The string object whose initial value is "Hello, world !!".
+````
+message: String "Hello, world !!"
+````
 
-##### Signed and unsigned integer value
-`0`, `-1`, `+3`, `0x123`
-
-##### Floating point value
-`0.0`, `-0.123`, `+1.0`
-
-##### String value
-The sequence of 2 or more strings will be concatenated and treated as a single string.
-
-``"a"``, ``"Hello, word"``, `"\\\"\n"`.
-
-### Sample code
-#### Built-in class object
+### Built-in class object
 ````
 done_button: Button {
   title: "Press me"
@@ -125,7 +102,7 @@ done_button: Button {
 }
 ````
 
-#### Listener method
+### Listener method
 The listener method will be called when the context of listening parameter (which is described by one or more path expressions) is changed.
 ````
 enable: Bool [self.count] %{
@@ -138,6 +115,19 @@ enable: Bool [self.count] %{
 %}
 ````
 The return value is passed into the property.
+
+### Object connection
+The input and output of the shell are redirect into the console view.
+````
+window: Window {
+  shell: Shell {
+    connection: Connection -> window.consoleView.console
+  }
+  consoleView: ConsoleView {
+    /* console */
+  }
+}
+````
 
 ## Related Links
 * *Canary Command Line Parameter Notation*: The [Canary Command Line Parameter Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryParameter.md) defines notations to present parameters for command line tools. The text format for the parameter notation uses this notation.
