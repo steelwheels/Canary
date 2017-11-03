@@ -325,8 +325,8 @@ public class CNValue: NSObject, Comparable
 				return self
 			case .StringType:
 				if let str = stringValue {
-					if str.characters.count == 1 {
-						if let c = str.characters.first {
+					if str.count == 1 {
+						if let c = str.first {
 							return CNValue(characterValue: c)
 						}
 					}

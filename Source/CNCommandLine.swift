@@ -134,16 +134,16 @@ public class CNCommandLine
 				return CNValue(booleanValue: false)
 			}
 		case .CharacterType:
-			if arg.characters.count == 1 {
-				let c = arg.characters[arg.startIndex]
+			if arg.count == 1 {
+				let c = arg.first!
 				return CNValue(characterValue: c)
 			}
 		case .IntType:
-			let len = arg.characters.count
+			let len = arg.count
 			if len >= 3 {
-				if arg.characters[arg.startIndex] == "0" {
+				if arg.first == "0" {
 					let nextidx = arg.index(after: arg.startIndex)
-					switch arg.characters[nextidx] {
+					switch arg[nextidx] {
 					case "x", "X":	return decodeOptionIntegerValue(argument: arg, radix: 16)
 					case "o", "O":	return decodeOptionIntegerValue(argument: arg, radix:  8)
 					case "b", "B":  return decodeOptionIntegerValue(argument: arg, radix:  2)
