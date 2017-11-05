@@ -34,7 +34,7 @@ private class UTPipeConsole: CNConsole
 	}
 
 	open override func error(string str: String){
-		mConsole.error(string: "UTPipeConsole: \"\(str)\"\n")
+		mConsole.print(string: "UTPipeConsole: \"\(str)\"\n")
 	}
 
 	var didscanned = false

@@ -47,6 +47,7 @@
 		05CD9B3B1E876174000A60F7 /* CNObjectNotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B391E876174000A60F7 /* CNObjectNotation.swift */; };
 		05CD9B3E1E876187000A60F7 /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B3C1E876187000A60F7 /* CNValue.swift */; };
 		05CD9B411E876192000A60F7 /* CNToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B401E876192000A60F7 /* CNToken.swift */; };
+		05D5E3641FAE058B0035C9CF /* CNArrayStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D5E3631FAE058B0035C9CF /* CNArrayStream.swift */; };
 		05E7AB871D9145D300D29BF3 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E7AB851D9145D300D29BF3 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05EE15C51F11133A0025FF6B /* CNGraphDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE15C41F11133A0025FF6B /* CNGraphDumper.swift */; };
 		05F1EF791FA3827F0017CC7C /* CNShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1EF781FA3827F0017CC7C /* CNShell.swift */; };
@@ -105,6 +106,7 @@
 		05CD9B391E876174000A60F7 /* CNObjectNotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectNotation.swift; sourceTree = "<group>"; };
 		05CD9B3C1E876187000A60F7 /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
 		05CD9B401E876192000A60F7 /* CNToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNToken.swift; sourceTree = "<group>"; };
+		05D5E3631FAE058B0035C9CF /* CNArrayStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNArrayStream.swift; sourceTree = "<group>"; };
 		05E7AB821D9145D300D29BF3 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7AB851D9145D300D29BF3 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		05E7AB861D9145D300D29BF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		05269E071D9146B30075A14C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				05D5E3631FAE058B0035C9CF /* CNArrayStream.swift */,
 				05F1EF7A1FA382AE0017CC7C /* CNStringStream.swift */,
 				05658E2E1F0AA8D9002FF2B7 /* CNStack.swift */,
 				05BD1B411EC35C5300B32E1C /* CNText.swift */,
@@ -430,6 +433,7 @@
 				05EE15C51F11133A0025FF6B /* CNGraphDumper.swift in Sources */,
 				050421571EC68F1000B8CC51 /* CNObject.swift in Sources */,
 				05269DF71D9146920075A14C /* CNFilePath.swift in Sources */,
+				05D5E3641FAE058B0035C9CF /* CNArrayStream.swift in Sources */,
 				05B560C91FAC2CFD009B1224 /* CNConnection.swift in Sources */,
 				05CD9B3A1E876174000A60F7 /* CNObjectCoder.swift in Sources */,
 				05269DF21D9146920075A14C /* CNBookmark.swift in Sources */,
