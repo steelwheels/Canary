@@ -8,6 +8,7 @@
 import Foundation
 
 public enum CNTokenType {
+	case ReservedWordToken(Int)
 	case SymbolToken(Character)
 	case IdentifierToken(String)
 	case BoolToken(Bool)
@@ -20,6 +21,8 @@ public enum CNTokenType {
 	public func description() -> String {
 		let result: String
 		switch self {
+		case .ReservedWordToken(let val):
+			result = "ReservedWord(\(val))"
 		case .SymbolToken(let val):
 			result = "SymbolToken(\(val))"
 		case .IdentifierToken(let val):
@@ -55,6 +58,17 @@ public struct CNToken {
 
 	public var description: String {
 		return mType.description()
+	}
+
+	public func getReservedWord() -> Int? {
+		let result: Int?
+		switch self.type {
+		case .ReservedWordToken(let val):
+			result = val
+		default:
+			result = nil
+		}
+		return result
 	}
 
 	public func getSymbol() -> Character? {
@@ -148,6 +162,8 @@ public struct CNToken {
 	public func toString() -> String {
 		let result: String
 		switch self.type {
+		case .ReservedWordToken(let val):
+			result = "rword(\(val))"
 		case .SymbolToken(let val):
 			result = "\(val)"
 		case .IdentifierToken(let val):
@@ -185,7 +201,8 @@ private class CNTokenizer
 
 	public func tokenize(string srcstr: String) -> (CNParseError, Array<CNToken>) {
 		do {
-			let tokens = try stringToTokens(string: srcstr)
+			let stream = CNStringStream(string: srcstr)
+			let tokens = try stringToTokens(stream: stream)
 			return (.NoError, tokens)
 		} catch let error {
 			if let tkerr = error as? CNParseError {
@@ -196,111 +213,68 @@ private class CNTokenizer
 		}
 	}
 
-	private func stringToTokens(string srcstr: String) throws -> Array<CNToken> {
+	private func stringToTokens(stream srcstream: CNStringStream) throws -> Array<CNToken> {
 		mCurrentLine = 1
-
-		var srcrange = srcstr.startIndex ..< srcstr.endIndex
 		var result : Array<CNToken> = []
-
 		while true {
-			let range0 = skipSpaces(range: srcrange, string: srcstr)
-			if isEndOfString(range: range0) {
+			skipSpaces(stream: srcstream)
+			if srcstream.isEmpty() {
 				break
 			}
-			let (token, range1) = try getTokenFromString(range: range0, string: srcstr)
+			let token = try getTokenFromStream(stream: srcstream)
 			result.append(token)
-			srcrange = range1
 		}
 		return result
 	}
 
-	private func isEndOfString(range src: Range<String.Index>) -> Bool {
-		return !(src.lowerBound < src.upperBound)
-	}
-
-	private func getTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>) {
-		let (c1p, range1) = getChar(range: srcrange, string: srcstr)
-		if let c1 = c1p {
+	private func getTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
+		if let c1 = srcstream.peek(offset: 0) {
 			if c1 == "0" {
-				let (c2p, _) = getChar(range: range1, string: srcstr)
-				if let c2 = c2p {
+				if let c2 = srcstream.peek(offset: 1) {
 					switch c2 {
 					case ".":
-						return try getDigitTokenFromString(range: srcrange, string: srcstr)
+						return try getDigitTokenFromStream(stream: srcstream)
 					case "x", "X":
-						return try getHexTokenFromString(range: srcrange, string: srcstr)
+						return try getHexTokenFromStream(stream: srcstream)
 					default:
-						let token = CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
-						return (token, range1)
+						let _ = srcstream.getc() // drop 1st character
+						return CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
 					}
 				} else {
-					let token = CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
-					return (token, range1)
+					let _ = srcstream.getc() // drop 1st character
+					return CNToken(type: .UIntToken(0), lineNo: mCurrentLine)
 				}
 			} else if c1.isDigit() {
-				return try getDigitTokenFromString(range: srcrange, string: srcstr)
+				return try getDigitTokenFromStream(stream: srcstream)
 			} else if c1.isAlpha() || c1 == "_" {
-				return getIdentifierTokenFromString(range: srcrange, string: srcstr)
+				return try getIdentifierTokenFromStream(stream: srcstream)
 			} else if c1 == "\"" {
-				return try getStringTokenFromString(range: srcrange, string: srcstr)
+				return try getStringTokenFromStream(stream: srcstream)
 			} else if c1 == "%" {
-				let (c2p, _) = getChar(range: range1, string: srcstr)
-				if let c2 = c2p {
+				if let c2 = srcstream.peek(offset: 1) {
 					switch c2 {
 					case "{":
-						return try getTextTokenFromString(range: srcrange, string: srcstr)
+						return try getTextTokenFromStream(stream: srcstream)
 					default:
-						let token = CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
-						return (token, range1)
+						let _ = srcstream.getc() // drop 1st character
+						return CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
 					}
 				} else {
-					let token = CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
-					return (token, range1)
+					let _ = srcstream.getc() // drop 1st character
+					return CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
 				}
 			} else {
-				if c1 == "\n" {
-					mCurrentLine += 1
-				}
-				let token = CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
-				return (token, range1)
+				let _ = srcstream.getc() // drop 1st character
+				return CNToken(type: .SymbolToken(c1), lineNo: mCurrentLine)
 			}
 		} else {
-			fatalError("Can not reach here: srcrange=\(srcrange.lowerBound)...\(srcrange.upperBound)")
+			fatalError("Can not reach here: srcrange=\(srcstream.description)")
 		}
 	}
 
-	private func skipSpaces(range srcrange: Range<String.Index>, string srcstr: String) -> Range<String.Index>
-	{
-		var idx  = srcrange.lowerBound
-		let eidx = srcrange.upperBound
-		while idx < eidx {
-			if srcstr[idx].isSpace() {
-				idx = srcstr.index(after: idx)
-				if idx < eidx {
-					if srcstr[idx] == "\n" { mCurrentLine += 1 }
-				}
-			} else {
-				break
-			}
-		}
-		return (idx..<eidx)
-	}
-
-	private func getChar(range srcrange: Range<String.Index>, string srcstr: String) -> (Character?, Range<String.Index>)
-	{
-		let sidx = srcrange.lowerBound
-		let eidx = srcrange.upperBound
-		if sidx < eidx {
-			let nidx = srcstr.index(after: sidx)
-			return (srcstr[sidx], nidx..<eidx)
-		} else {
-			return (nil, srcrange)
-		}
-	}
-
-	private func getDigitTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>) {
+	private func getDigitTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
 		var hasperiod = false
-		let (resstr, resrange) = getAnyTokenFromString(range: srcrange, string: srcstr, matchingFunc: {
+		let resstr = getAnyStringFromStream(stream: srcstream, matchingFunc: {
 			(_ c: Character) -> Bool in
 			if c.isDigit() {
 				return true
@@ -313,184 +287,134 @@ private class CNTokenizer
 		})
 		if hasperiod {
 			if let value = Double(resstr) {
-				return (CNToken(type:.DoubleToken(value), lineNo: mCurrentLine), resrange)
+				return CNToken(type:.DoubleToken(value), lineNo: mCurrentLine)
 			} else {
 				throw CNParseError.TokenizeError(mCurrentLine, "Double value is expected but \"\(resstr)\" is given")
 			}
 		} else {
-			if let value = UInt(resstr) {
-				return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
+			if let value = UInt(resstr, radix: 10) {
+				return CNToken(type: .UIntToken(value), lineNo: mCurrentLine)
 			} else {
 				throw CNParseError.TokenizeError(mCurrentLine, "Integer value is expected but \"\(resstr)\" is given")
 			}
 		}
 	}
 
-	private func getHexTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>) {
-		/* Check the source string is started by "0x" */
-		var hasprefix		: Bool = false
-		var skippedrange	: Range<String.Index> = srcrange
-		let (c0p, range0) = getChar(range: srcrange, string: srcstr)
-		if let c0 = c0p {
-			if c0 == "0" {
-				let (c1p, range1) = getChar(range: range0, string: srcstr)
-				if let c1 = c1p {
-					if c1 == "x" || c1 == "X" {
-						hasprefix    = true
-						skippedrange = range1
-					}
-				}
-			}
-		}
-
-		if !hasprefix {
-			let hexstr = srcstr[srcrange]
-			throw CNParseError.TokenizeError(mCurrentLine, "Hex integer value must be started by \"0x\" but \"\(hexstr)\" is given")
-		}
-
-		let (resstr, resrange) = getAnyTokenFromString(range: skippedrange, string: srcstr, matchingFunc: {
+	private func getHexTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
+		let _ = srcstream.gets(count: 2) // drop first "0x"
+		let resstr = getAnyStringFromStream(stream: srcstream, matchingFunc: {
 			(_ c: Character) -> Bool in
-			return c.isHex()
+			if c.isHex() {
+				return true
+			} else {
+				return false
+			}
 		})
 		if let value = UInt(resstr, radix: 16) {
-			return (CNToken(type: .UIntToken(value), lineNo: mCurrentLine), resrange)
+			return CNToken(type: .UIntToken(value), lineNo: mCurrentLine)
 		} else {
 			throw CNParseError.TokenizeError(mCurrentLine, "Hex integer value is expected but \"\(resstr)\" is given")
 		}
 	}
 
-	private func getIdentifierTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) -> (CNToken, Range<String.Index>) {
-		let (resstr, resrange) = getAnyTokenFromString(range: srcrange, string: srcstr, matchingFunc: {
+	private func getIdentifierTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
+		let resstr = getAnyStringFromStream(stream: srcstream, matchingFunc: {
 			(_ c: Character) -> Bool in
 			return c.isAlphaOrNum() || c == "_"
 		})
 		let lresstr = resstr.lowercased()
 		if lresstr == "true"{
-			return (CNToken(type: .BoolToken(true), lineNo: mCurrentLine), resrange)
+			return CNToken(type: .BoolToken(true), lineNo: mCurrentLine)
 		} else if lresstr == "false" {
-			return (CNToken(type: .BoolToken(false), lineNo: mCurrentLine), resrange)
+			return CNToken(type: .BoolToken(false), lineNo: mCurrentLine)
 		} else {
-			return (CNToken(type: .IdentifierToken(resstr), lineNo: mCurrentLine), resrange)
+			return CNToken(type: .IdentifierToken(resstr), lineNo: mCurrentLine)
 		}
 	}
 
-	private func getStringTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>) {
-		/* Check the source string is started by "\"" */
-		var has1stquot = false
-		let (c0p, range0) = getChar(range: srcrange, string: srcstr)
-		if let c0 = c0p {
-			if c0 == "\"" {
-				has1stquot = true
-			}
-		}
-		if !has1stquot {
-			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr[srcrange]))\" is given")
-		}
-
-		var prevchar	: Character = " "
-		var prevprevchar: Character = " "
-		let (resstr, resrange) = getAnyTokenFromString(range: range0, string: srcstr, matchingFunc: {
+	private func getStringTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
+		let _ = srcstream.getc() // drop first "
+		var prevprevchar: Character? = nil
+		var prevchar:     Character? = nil
+		var hasquot		     = false
+		let resstr = getAnyStringFromStream(stream: srcstream, matchingFunc: {
 			(_ c: Character) -> Bool in
-			/* count newlines */
-			if c == "\n" {
-				mCurrentLine += 1
+			if c == "\"" {
+				let hasescape = (prevprevchar != "\\" && prevchar == "\\")
+				if !hasescape {
+					hasquot = true
+					return false
+				}
 			}
-			/* keep current previous characters */
-			let pchar    = prevchar
-			let ppchar   = prevprevchar
-			/* keep next previous characters for next call */
 			prevprevchar = prevchar
 			prevchar     = c
-			let isquot: Bool
-			if ppchar == "\\" && pchar == "\\" {
-				isquot = c == "\""
-			} else {
-				isquot = pchar != "\\" && c == "\""
-			}
-			return !isquot
+			return true
 		})
-
-		let (clp, rangel) = getChar(range: resrange, string: srcstr)
-		if let cl = clp {
-			if cl == "\"" {
-				return (CNToken(type: .StringToken(resstr), lineNo: mCurrentLine), rangel)
-			}
+		if hasquot {
+			let _ = srcstream.getc() // drop last "
+			return CNToken(type: .StringToken(resstr), lineNo: mCurrentLine)
+		} else {
+			throw CNParseError.TokenizeError(mCurrentLine, "String value is not ended by \" but \"\(resstr)\" is given")
 		}
-		throw CNParseError.TokenizeError(mCurrentLine, "String value is not ended by \" but \"\(srcstr[srcrange])\" is given")
 	}
 
-	private func getTextTokenFromString(range srcrange: Range<String.Index>, string srcstr: String) throws -> (CNToken, Range<String.Index>)
-	{
-		/* Check the source string is started by "%{" */
-		var hasheader = false
-		var range0: Range<String.Index> = srcrange
-		let (c0p, range0a) = getChar(range: srcrange, string: srcstr)
-		if let c0 = c0p {
-			let (c1p, range0b) = getChar(range: range0a, string: srcstr)
-			if let c1 = c1p {
-				hasheader = (c0 == "%") && (c1 == "{")
-				range0    = range0b
-			}
-		}
-		if !hasheader {
-			throw CNParseError.TokenizeError(mCurrentLine, "String value is expected but \"\(srcstr[srcrange])\" is given")
-		}
-
-		var prevchar	: Character = " "
-		var isinstr	: Bool = false
-		let (resstr, resrange) = getAnyTokenFromString(range: range0, string: srcstr, matchingFunc: {
+	private func getTextTokenFromStream(stream srcstream: CNStringStream) throws -> CNToken {
+		let _ = srcstream.gets(count: 2) // drop first %{
+		var prevchar	: Character? = nil
+		var haspercent	= false
+		let resstr = getAnyStringFromStream(stream: srcstream, matchingFunc: {
 			(_ c: Character) -> Bool in
-
-			var docont = true
-
-			/* count newlines */
-			if c == "\n" {
-				mCurrentLine += 1
-			}
-			if isinstr {
-				if prevchar != "\\" && c == "\"" {
-					isinstr = false
-				}
-			} else {
-				if prevchar == "%" && c == "}" {
-					docont = false
-				} else if prevchar != "\\" && c == "\"" {
-					isinstr = true
-				}
+			if prevchar == "%" && c == "}" {
+				haspercent = true
+				return false
 			}
 			prevchar = c
-			return docont
+			return true
 		})
-
-		let (clp, rangel) = getChar(range: resrange, string: srcstr)
-		if let cl = clp {
-			if cl == "}" {
-				/* Delete last "%" */
-				let sidx = resstr.startIndex
-				let eidx = resstr.index(before: resstr.endIndex)
-				let substr = resstr[sidx..<eidx]
-				return (CNToken(type: .TextToken(String(substr)), lineNo: mCurrentLine), rangel)
-			}
+		if haspercent {
+			/* Delete last "%" */
+			let sidx = resstr.startIndex
+			let eidx = resstr.index(before: resstr.endIndex)
+			let substr = resstr[sidx..<eidx]
+			
+			let _ = srcstream.getc() // drop last %
+			return CNToken(type: .TextToken(String(substr)), lineNo: mCurrentLine)
+		} else {
+			throw CNParseError.TokenizeError(mCurrentLine, "Text value is not ended by %} but \"\(resstr)\" is given")
 		}
-		throw CNParseError.TokenizeError(mCurrentLine, "Text value is not ended by %} but \"\(srcstr[srcrange])\" is given")
 	}
 
-	private func getAnyTokenFromString(range srcrange: Range<String.Index>, string srcstr: String,
-					   matchingFunc matchfunc: (_ c:Character) -> Bool) -> (String, Range<String.Index>)
-	{
+	private func getAnyStringFromStream(stream srcstream: CNStringStream, matchingFunc matchfunc: (_ c:Character) -> Bool) -> String {
 		var result: String = ""
-		var idx  = srcrange.lowerBound
-		let eidx = srcrange.upperBound
-		while idx < eidx {
-			let c = srcstr[idx]
-			if matchfunc(c) {
-				result.append(c)
+		while true {
+			if let c = srcstream.getc() {
+				if matchfunc(c) {
+					result.append(c)
+				} else {
+					let _ = srcstream.ungetc()
+					break
+				}
 			} else {
 				break
 			}
-			idx = srcstr.index(after: idx)
 		}
-		return (result, idx..<eidx)
+		return result
+	}
+
+	private func skipSpaces(stream srcstream: CNStringStream)
+	{
+		while true {
+			if let c = srcstream.getc() {
+				if !c.isSpace() {
+					let _ = srcstream.ungetc()
+					break
+				} else if c == "\n" {
+					mCurrentLine += 1
+				}
+			} else {
+				break
+			}
+		}
 	}
 }
 

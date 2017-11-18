@@ -30,11 +30,11 @@ private class UTPipeConsole: CNConsole
 	}
 
 	open override func print(string str: String){
-		mConsole.print(string: "UTPipeConsole: \"\(str)\"\n")
+		mConsole.print(string: "UTPipeConsole(P): \"\(str)\"\n")
 	}
 
 	open override func error(string str: String){
-		mConsole.print(string: "UTPipeConsole: \"\(str)\"\n")
+		mConsole.print(string: "UTPipeConsole(E): \"\(str)\"\n")
 	}
 
 	var didscanned = false
@@ -44,7 +44,7 @@ private class UTPipeConsole: CNConsole
 			return nil
 		} else {
 			didscanned = true
-			return "UTPipeConsole: Scanned data"
+			return "UTPipeConsole(S): Scanned data"
 		}
 	}
 }
@@ -54,8 +54,10 @@ private func testPipeConsole(console cons: CNConsole) -> Bool
 	var result = true
 
 	let inputdata = String("hello, world").data(using: .utf8)!
+	sleep(1)
 	let errordata = String("Error message").data(using: .utf8)!
-
+	sleep(1)
+	
 	let pipecons = CNPipeConsole()
 	pipecons.toConsole = UTPipeConsole(console: cons)
 	pipecons.inputPipe.fileHandleForWriting.write(inputdata)

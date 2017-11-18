@@ -9,7 +9,12 @@ import Foundation
 
 public class CNConnection
 {
-	public weak var		sender: 	AnyObject? = nil
-	public weak var		receiver: 	AnyObject? = nil
+	public weak var sender: 	AnyObject?
+	public weak var receiver: 	AnyObject?
+
+	public init(){
+		sender   = nil
+		receiver = nil
+	}
 }
 

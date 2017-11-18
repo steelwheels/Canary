@@ -17,6 +17,8 @@ public func UTTokenTest(console cons: CNConsole) -> Bool
 	result = result && testToken(text: "0 0xa 0.123", expectedResult: true, expectedNum: 3, console: cons)
 	result = result && testToken(text: "321", expectedResult: true, expectedNum: 1, console: cons)
 	result = result && testToken(text: "-321", expectedResult: true, expectedNum: 2, console: cons)
+	result = result && testToken(text: "Hello0", expectedResult: true, expectedNum: 1, console: cons)
+	result = result && testToken(text: "Welcome 2", expectedResult: true, expectedNum: 2, console: cons)
 	result = result && testToken(text: "1 Hello0 2", expectedResult: true, expectedNum: 3, console: cons)
 	result = result && testToken(text: "\"a\"", expectedResult: true, expectedNum: 1, console: cons)
 	result = result && testToken(text: "0 \"a\" \"b\" 1", expectedResult: true, expectedNum: 4, console: cons)

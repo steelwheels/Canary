@@ -9,11 +9,28 @@ import Foundation
 
 public class CNObjectNotation
 {
+	public enum ConnectionValueType {
+		case InputConnection
+		case OutputConnection
+
+		public var description: String {
+			get {
+				var result: String
+				switch self {
+				case .InputConnection:  result = "Input"
+				case .OutputConnection:	result = "Output"
+				}
+				return result
+			}
+		}
+	}
+
 	public enum ValueObject {
 		case PrimitiveValue(value: CNValue)
 		case ClassValue(name: String, value: Array<CNObjectNotation>)
 		case EventMethodValue(type: CNValueType, script: String)
 		case ListenerMethodValue(type: CNValueType, pathExpressions: Array<CNPathExpression>, script: String)
+		case ConnectionValue(type: ConnectionValueType, pathExpression: CNPathExpression)
 	}
 
 	private var mIdentifier	: String
@@ -111,6 +128,7 @@ public class CNObjectNotation
 		case .ClassValue(let name, _):			result = name
 		case .EventMethodValue(let type, _):		result = type.description
 		case .ListenerMethodValue(let type, _, _):	result = type.description
+		case .ConnectionValue(let type, _):		result = "Connection(\(type.description)"
 		}
 		return result
 	}

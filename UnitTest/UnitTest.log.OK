@@ -79,6 +79,7 @@ checkNumber: 1 symbol:q real:int64 == expected:int64
 checkNumber: 1.2 symbol:f real:float == expected:float
 checkNumber: -2.3 symbol:d real:double == expected:double
 *** UTValue
+[UTValue] Constructers
 val0 = Bool:true
 val1 = Int:-123
 val2 = UInt:255
@@ -91,6 +92,14 @@ val9 = Dictionary:[b:255, a:-123]
 val10 = Character:A
 val11 = Character:A
 val1f = Float:-123.0
+[UTValue] Converter
+convert from "true" to type Bool -> "true"
+convert from "A" to type Character -> "A"
+convert from "-123" to type Int -> "-123"
+convert from "0xff" to type UInt -> failed
+convert from "-1.23" to type Float -> "-1.23"
+convert from "0.01" to type Double -> "0.01"
+convert from "Hello, world" to type String -> ""Hello, world""
 *** UTValueTable
 idx="v0", value="true" ... OK
 idx="v1", value="c" ... OK
@@ -141,8 +150,8 @@ ABCD
 *** UTConsoleTest
 this is print message
 this is error message
-UTPipeConsole: "hello, world"
-UTPipeConsole: "Error message"
+UTPipeConsole(E): "Error message"
+UTPipeConsole(P): "hello, world"
 Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
@@ -176,6 +185,15 @@ Source: "-321"
 result -> 
   0: SymbolToken(-)
   1: UIntToken(321)
+  => OK
+Source: "Hello0"
+result -> 
+  0: IdentifierToken(Hello0)
+  => OK
+Source: "Welcome 2"
+result -> 
+  0: IdentifierToken(Welcome)
+  1: UIntToken(2)
   => OK
 Source: "1 Hello0 2"
 result -> 
@@ -215,7 +233,7 @@ result ->
   0: StringToken(\\)
   => OK
 Source: ""hello"
-result -> Error: String value is not ended by " but ""hello" is given at line 1
+result -> Error: String value is not ended by " but "hello" is given at line 1
   => OK
 Source: "%{ abc %}"
 result -> 

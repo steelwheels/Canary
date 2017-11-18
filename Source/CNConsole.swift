@@ -12,7 +12,7 @@ open class CNConsole
 	public init(){
 
 	}
-	
+
 	open func print(string str: String){
 		Swift.print(str, terminator: "")
 	}
@@ -176,7 +176,11 @@ public class CNPipeConsole: CNConsole
 
 public class CNSenderConsole: CNConsole
 {
-	private var mConnection	: CNConnection? = nil
+	private var mConnection	: CNConnection?
+
+	public override init(){
+		mConnection = nil
+	}
 
 	public var connection: CNConnection? {
 		get {
@@ -224,11 +228,18 @@ public class CNSenderConsole: CNConsole
 
 public class CNReceiverConsole: CNConsole
 {
-	private var mConnection	: CNConnection? = nil
+	private var mConnection	: CNConnection?
 
-	public var printCallback	: ((_ str: String) -> Void)? = nil
-	public var errorCallback	: ((_ str: String) -> Void)? = nil
-	public var scanCallback		: (() -> String)? = nil
+	public var printCallback	: ((_ str: String) -> Void)?
+	public var errorCallback	: ((_ str: String) -> Void)?
+	public var scanCallback		: (() -> String)?
+
+	public override init(){
+		mConnection	= nil
+		printCallback	= nil
+		errorCallback	= nil
+		scanCallback	= nil
+	}
 
 	public var connection: CNConnection? {
 		get {

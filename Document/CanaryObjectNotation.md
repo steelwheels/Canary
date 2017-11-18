@@ -121,7 +121,7 @@ The input and output of the shell are redirect into the console view.
 ````
 window: Window {
   shell: Shell {
-    connection: Connection -> window.consoleView.console
+    connection: Connection > window.consoleView.console
   }
   consoleView: ConsoleView {
     /* console */

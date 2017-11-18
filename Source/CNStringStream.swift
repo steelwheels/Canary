@@ -69,6 +69,14 @@ public class CNStringStream
 		}
 	}
 
+	public func skip(count cnt: Int){
+		for _ in 0..<cnt {
+			if getc() == nil {
+				break
+			}
+		}
+	}
+
 	public func isEmpty() -> Bool {
 		if mStartIndex < mEndIndex {
 			return false
@@ -97,7 +105,7 @@ public class CNStringStream
 		get {
 			let sidx = mStartIndex.encodedOffset
 			let eidx = mEndIndex.encodedOffset
-			return "\(mString)[\(sidx):\(eidx)]"
+			return "String(\"\(mString)\")[\(sidx):\(eidx)]"
 		}
 	}
 }

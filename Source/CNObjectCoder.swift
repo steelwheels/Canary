@@ -7,6 +7,48 @@
 
 import Foundation
 
+private enum CNReservedWordId:Int {
+	case OutputConnection
+	case InputConnection
+
+	public var description: String {
+		get {
+			var result: String
+			switch self {
+			case .OutputConnection:
+				result = ">>"
+			case .InputConnection:
+				result = "<<"
+			}
+			return result
+		}
+	}
+
+	public static func decode(firstChar fchar: Character, secondChar schar : Character) -> CNReservedWordId? {
+		if fchar == ">" && schar == ">" {
+			return .OutputConnection
+		} else if fchar == "<" && schar == "<" {
+			return .InputConnection
+		} else {
+			return nil
+		}
+	}
+
+	public static func encode(reservedWordId rid: Int) -> String {
+		var result: String
+		if rid == CNReservedWordId.InputConnection.rawValue {
+			let rword = CNReservedWordId.InputConnection
+			result = rword.description
+		} else if rid == CNReservedWordId.OutputConnection.rawValue {
+			let rword = CNReservedWordId.OutputConnection
+			result = rword.description
+		} else {
+			fatalError("Invalid raw value for enum")
+		}
+		return result
+	}
+}
+
 public func CNEncodeObjectNotation(notation src: CNObjectNotation) -> String
 {
 	let encoder = CNEncoder()
@@ -71,6 +113,12 @@ private class CNEncoder
 				result += encode(indent: idt+1, notation: child) + "\n"
 			}
 			result += indent2string(indent: idt) + "}"
+		case .ConnectionValue(let type, let pathexp):
+			switch type {
+			case .InputConnection:  result = "<<"
+			case .OutputConnection: result = ">>"
+			}
+			result += pathexp.description
 		}
 		return result
 	}
@@ -108,15 +156,35 @@ private class CNDecoder
 	}
 
 	private func mergeTokens(tokens src: Array<CNToken>) -> Array<CNToken> {
-		var result: Array<CNToken> = []
+		var result: 	Array<CNToken>	= []
 
 		var idx   = 0
 		let count = src.count
 		while idx < count {
 			switch src[idx].type {
-			case .SymbolToken(_):
+			case .ReservedWordToken(_):
 				result.append(src[idx])
 				idx += 1
+			case .SymbolToken(let c0):
+				var didadded = false
+				let idx1 = idx + 1 ;
+				if idx1 < count {
+					switch src[idx1].type {
+					case .SymbolToken(let c1):
+						if let rid = CNReservedWordId.decode(firstChar: c0, secondChar: c1) {
+							let rtoken = CNToken(type: .ReservedWordToken(rid.rawValue), lineNo: src[idx].lineNo)
+							result.append(rtoken)
+							idx += 2
+							didadded = true
+						}
+					default:
+						break
+					}
+				}
+				if !didadded {
+					result.append(src[idx])
+					idx += 1
+				}
 			case .IdentifierToken(let ident):
 				if ident == "true" {
 					let newtoken = CNToken(type: .BoolToken(true), lineNo: src[idx].lineNo)
@@ -178,6 +246,22 @@ private class CNDecoder
 		var objvalue3	: CNObjectNotation.ValueObject
 		var idx3	: Int
 		switch src[idx2].type {
+		case .ReservedWordToken(let rid):
+			idx3 = idx2 + 1
+			if idx3 < src.count {
+				switch CNReservedWordId(rawValue: rid)! {
+				case .InputConnection:
+					let (pathexp, newidx)  = try getPathExpression(tokens: src, index: idx3)
+					objvalue3 = CNObjectNotation.ValueObject.ConnectionValue(type: .InputConnection, pathExpression: pathexp)
+					idx3 = newidx
+				case .OutputConnection:
+					let (pathexp, newidx)  = try getPathExpression(tokens: src, index: idx3)
+					objvalue3 = CNObjectNotation.ValueObject.ConnectionValue(type: .OutputConnection, pathExpression: pathexp)
+					idx3 = newidx
+				}
+			} else {
+				throw CNParseError.ParseError(src[idx2], "Pass expression is required")
+			}
 		case .SymbolToken(let sym):
 			switch sym {
 			case "{":
@@ -291,17 +375,9 @@ private class CNDecoder
 						}
 					}
 					/* get path expression */
-					let (hasexp, exp, idx4) = try hasPathExpression(tokens: src, index: curidx)
-					if hasexp {
-						if let e = exp {
-							pathexps.append(e)
-							curidx = idx4
-						} else {
-							fatalError("Invalid return value")
-						}
-					} else {
-						throw CNParseError.ParseError(src[curidx], "path expression is required")
-					}
+					let (exp, idx4) = try getPathExpression(tokens: src, index: curidx)
+					pathexps.append(exp)
+					curidx = idx4
 				}
 			}
 		}
@@ -394,7 +470,7 @@ private class CNDecoder
 		return (nil, idx)
 	}
 
-	private func hasPathExpression(tokens src:Array<CNToken>, index idx: Int) throws -> (Bool, CNPathExpression?, Int)
+	private func getPathExpression(tokens src:Array<CNToken>, index idx: Int) throws -> (CNPathExpression, Int)
 	{
 		var elms: Array<String> = []
 		var newidx = idx
@@ -417,10 +493,10 @@ private class CNDecoder
 				elms.append(ident)
 				newidx = idx2
 			} else {
-				throw CNParseError.ParseError(src[newidx], "The ideintifier is required")
+				throw CNParseError.ParseError(src[newidx], "The identifier is required")
 			}
 		}
-		return (true, CNPathExpression(pathElements: elms), newidx)
+		return (CNPathExpression(pathElements: elms), newidx)
 	}
 
 	private func hasSymbol(tokens src:Array<CNToken>, index idx: Int, symbol sym: Character) -> (Bool, Int)

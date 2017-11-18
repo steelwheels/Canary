@@ -20,7 +20,7 @@ public class CNArrayStream<T>
 	}
 
 	public var count: Int {
-		get { return mCount }
+		get { return mCount - mIndex  }
 	}
 
 	public func get() -> T? {

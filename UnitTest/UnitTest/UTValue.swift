@@ -9,6 +9,15 @@ import Canary
 
 public func UTValueTest(console cons: CNConsole) -> Bool
 {
+	cons.print(string: "[UTValue] Constructers\n")
+	let result0 = UTValueConstructorTest(console: cons)
+	cons.print(string: "[UTValue] Converter\n")
+	let result1 = UTValueConverterTest(console: cons)
+	return result0 && result1
+}
+
+private func UTValueConstructorTest(console cons: CNConsole) -> Bool
+{
 	var result = true
 
 	let val0: CNValue = CNValue(booleanValue: true)
@@ -77,3 +86,27 @@ private func compare(title titl:String, expected exp: Bool, val0: CNValue, val1:
 		return false
 	}
 }
+
+private func UTValueConverterTest(console cons: CNConsole) -> Bool
+{
+	convert(targetType: .BooleanType, string: "true")
+	convert(targetType: .CharacterType, string: "A")
+	convert(targetType: .IntType, string: "-123")
+	convert(targetType: .UIntType, string: "0xff")
+	convert(targetType: .FloatType, string: "-1.23")
+	convert(targetType: .DoubleType, string: "0.01")
+	convert(targetType: .StringType, string: "Hello, world")
+	return true
+}
+
+private func convert(targetType type: CNValueType, string str: String)
+{
+	let typestr = type.description
+	if let val = CNStringToValue(targetType: type, string: str) {
+		let desc = val.description
+		console.print(string: "convert from \"\(str)\" to type \(typestr) -> \"\(desc)\"\n")
+	} else {
+		console.print(string: "convert from \"\(str)\" to type \(typestr) -> failed\n")
+	}
+}
+
