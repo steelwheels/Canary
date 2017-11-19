@@ -99,7 +99,7 @@ convert from "-123" to type Int -> "-123"
 convert from "0xff" to type UInt -> failed
 convert from "-1.23" to type Float -> "-1.23"
 convert from "0.01" to type Double -> "0.01"
-convert from "Hello, world" to type String -> ""Hello, world""
+convert from "Hello, world" to type String -> "Hello, world"
 *** UTValueTable
 idx="v0", value="true" ... OK
 idx="v1", value="c" ... OK
@@ -107,7 +107,7 @@ idx="v2", value="-1234" ... OK
 idx="v3", value="2345" ... OK
 idx="v4", value="12.3" ... OK
 idx="v5", value="-34.5" ... OK
-idx="v6", value=""Hello"" ... OK
+idx="v6", value="Hello" ... OK
 *** UTURLTest
 srcurl=/Users/someone/Documents/BattleFieldCode/script/a.js, baseurl=/Users/someone/Documents/BattleFieldCode/team => relurl = ../script/a.js
 *** UTStateTest
@@ -256,12 +256,12 @@ result ->
 *** UTObjectNotation
 obj0: Bool true
 obj1: Double 12.3
-obj2: String "Hello, world"
+obj2: String Hello, world
 obj3: Int [ident0.ident1] %{
 exit(0) ; 
 %}
 obj4: ClassA {
-  obj2: String "Hello, world"
+  obj2: String Hello, world
   obj3: Int [ident0.ident1] %{
 exit(0) ; 
   %}
@@ -286,7 +286,7 @@ RESULT: dict1: D {
 }
 [Input] dict0: C {ident0: String "hello"}
 RESULT: dict0: C {
-  ident0: String "hello"
+  ident0: String hello
 }
 [Input] command: Void %{ exit(0) ; %}
 RESULT: command: Void %{
@@ -390,7 +390,7 @@ lsCommand: done
       id: 2, name:type2, type:Int
       id: 3, name:type3, type:String
   [OptionValues]
-      option-id: 3, value:"a/b"
+      option-id: 3, value:a/b
   [Arguments]
     test.app
 [SUMMARY] PASSED
