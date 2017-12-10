@@ -38,6 +38,7 @@
 		05801FD91F0FE486007DD866 /* CNObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05801FD81F0FE486007DD866 /* CNObjectReference.swift */; };
 		0592CBC51F49551D001E362E /* CNValueUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBC41F49551D001E362E /* CNValueUtil.swift */; };
 		0592CBC91F495539001E362E /* CNCommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592CBC71F495539001E362E /* CNCommandLine.swift */; };
+		059803801FDC2598002EED5A /* CNPropertyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598037F1FDC2598002EED5A /* CNPropertyList.swift */; };
 		05B3AFDB1EDA4E7000716DEC /* CNValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B3AFDA1EDA4E7000716DEC /* CNValueTable.swift */; };
 		05B560C91FAC2CFD009B1224 /* CNConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B560C81FAC2CFD009B1224 /* CNConnection.swift */; };
 		05BAE4DC1EE37A2E0074DF41 /* CNPathExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAE4DB1EE37A2E0074DF41 /* CNPathExpression.swift */; };
@@ -96,6 +97,7 @@
 		05801FD81F0FE486007DD866 /* CNObjectReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectReference.swift; sourceTree = "<group>"; };
 		0592CBC41F49551D001E362E /* CNValueUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueUtil.swift; sourceTree = "<group>"; };
 		0592CBC71F495539001E362E /* CNCommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCommandLine.swift; sourceTree = "<group>"; };
+		0598037F1FDC2598002EED5A /* CNPropertyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPropertyList.swift; sourceTree = "<group>"; };
 		05AE7F4D1D9155FA009E781D /* install_ios.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = install_ios.mk; path = ../Script/install_ios.mk; sourceTree = "<group>"; };
 		05B3AFDA1EDA4E7000716DEC /* CNValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueTable.swift; sourceTree = "<group>"; };
 		05B560C81FAC2CFD009B1224 /* CNConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConnection.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				05E7AB851D9145D300D29BF3 /* Canary.h */,
+				0598037E1FDC2582002EED5A /* Application */,
 				05269DDC1D9146800075A14C /* Object */,
 				0551B9751F264C6D00A0DFA7 /* Thread */,
 				05269E071D9146B30075A14C /* Data */,
@@ -271,6 +274,14 @@
 			);
 			name = Shell;
 			path = ../iOS;
+			sourceTree = "<group>";
+		};
+		0598037E1FDC2582002EED5A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0598037F1FDC2598002EED5A /* CNPropertyList.swift */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 		05CD9B371E87615A000A60F7 /* Value */ = {
@@ -444,6 +455,7 @@
 				0592CBC51F49551D001E362E /* CNValueUtil.swift in Sources */,
 				05269E031D9146920075A14C /* CNState.swift in Sources */,
 				05801FD31F0FDCA9007DD866 /* CNEdge.swift in Sources */,
+				059803801FDC2598002EED5A /* CNPropertyList.swift in Sources */,
 				05658E2F1F0AA8D9002FF2B7 /* CNStack.swift in Sources */,
 				05801FD71F0FDCB7007DD866 /* CNNode.swift in Sources */,
 				05F1EF791FA3827F0017CC7C /* CNShell.swift in Sources */,
