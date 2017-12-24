@@ -77,6 +77,10 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 		}
 	}
 
+	public var isClosed: Bool {
+		get { return fileHandle == nil }
+	}
+
 	public func getChar() -> Character? {
 		return nil
 	}
@@ -85,12 +89,14 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 		return nil
 	}
 
-	public func put(char c: Character){
+	public func put(char c: Character) -> Int {
 		/* Do nothing */
+		return 0
 	}
 
-	public func put(string s: String){
+	public func put(string s: String) -> Int {
 		/* Do nothing */
+		return 0
 	}
 }
 
@@ -153,7 +159,7 @@ private class CNReadFile: CNFile
 
 private class CNWriteFile: CNFile
 {
-	public override func put(char c: Character){
+	public override func put(char c: Character) -> Int {
 		if let handle = fileHandle {
 			let str  = String(c)
 			if let data = str.data(using: .utf8) {
@@ -162,16 +168,19 @@ private class CNWriteFile: CNFile
 				NSLog("Failed to put")
 			}
 		}
+		return 1
 	}
 
-	public override func put(string s: String){
+	public override func put(string s: String) -> Int {
 		if let handle = fileHandle {
 			if let data = s.data(using: .utf8) {
 				handle.write(data)
+				return s.count
 			} else {
 				NSLog("Failed to put")
 			}
 		}
+		return 0
 	}
 }
 

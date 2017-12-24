@@ -16,7 +16,7 @@ public func UTFileTest(console cons: CNConsole) -> Bool
 		return false
 	}
 	if let f = file0 {
-		f.put(string: "Hello, world!\nGood morning\n")
+		let _ = f.put(string: "Hello, world!\nGood morning\n")
 		f.close()
 	} else {
 		console.error(string: "[Error] Internal error 0\n")
@@ -28,7 +28,7 @@ public func UTFileTest(console cons: CNConsole) -> Bool
 		return false
 	}
 	if let f = file1 {
-		f.put(string: "Hello, world!\nGood morning\n")
+		let _ = f.put(string: "Hello, world!\nGood morning\n")
 		var no = 1
 		while let line = f.getLine() {
 			console.print(string: "\(no): \(line)")
