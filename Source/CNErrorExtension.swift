@@ -74,12 +74,7 @@ public extension NSError
 	
 	public func toString() -> String {
 		let dict : Dictionary = userInfo
-		var message : String
-		if let desc = dict[NSLocalizedDescriptionKey] as? String {
-			message = desc
-		} else {
-			message = "Unknown error "
-		}
+		var message = self.localizedDescription
 		let lockey : String = NSError.errorLocationKey()
 		if let location = dict[lockey] as? String {
 			message = message + "in " + location

@@ -13,7 +13,7 @@ test_log	= $(BUILD_DIR)/$(CONFIGURATION)/UnitTest.log
 
 unit_test: dummy
 	test -f $(unit_test)
-	(cd $(test_dir) ; $(unit_test) 2>&1 | grep -v "Which one is undefined" > $(test_log) 2>&1)
+	(cd $(test_dir) ; $(unit_test) 2>&1 > $(test_log))
 	diff $(test_log) $(test_dir)/UnitTest.log.OK
 
 clean:

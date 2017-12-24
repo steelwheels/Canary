@@ -11,12 +11,12 @@ public func UTPropertyListTest(console cons: CNConsole) -> Bool
 {
 	var result: Bool = true	// No error
 
-	var version: String
-	if let v = CNPropertyList.version {
+	let proplist = CNPropertyList(bundleDirectoryName: "UnitTest.bundle")
+	var version: String = "<Unknown>"
+	if let v  = proplist.version {
 		version = v
 	} else {
-		version = "<Unknown>"
-		result  = false
+		result = false
 	}
 	console.print(string: "Version in property list: \(version)\n")
 
