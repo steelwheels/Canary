@@ -18,5 +18,6 @@ This software is produced by [Steel Wheels Project](http://steelwheels.github.io
 This frameworks support Canary Object Notation to serialize swift object. For more details, see [Canary Object Notation](https://github.com/steelwheels/Canary/blob/master/Document/CanaryObjectNotation.md).
 
 ## Links
+* [Web page](http://steelwheels.github.io): Web page of this project
 * [Blog](http://steel-wheels-project.blogspot.jp/): Blog page of this project
 * [Source code repository](https://github.com/steelwheels): Source code repository on GitHub

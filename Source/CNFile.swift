@@ -38,6 +38,23 @@ public func CNOpenFile(filePath path: String, accessType acctyp: CNFileAccessTyp
 	}
 }
 
+public enum CNStandardFileType {
+	case input
+	case output
+	case error
+}
+
+public func CNStandardFile(type t: CNStandardFileType) -> CNFile
+{
+	var file: CNFile
+	switch t {
+	case .input:	file = CNReadFile (fileHandle: FileHandle.standardInput)
+	case .output:	file = CNWriteFile(fileHandle: FileHandle.standardOutput)
+	case .error:	file = CNWriteFile(fileHandle: FileHandle.standardError)
+	}
+	return file
+}
+
 private func pathToURL(filePath path: String) -> URL {
 	let curdir = FileManager.default.currentDirectoryPath
 	let cururl = URL(fileURLWithPath: curdir, isDirectory: true)
