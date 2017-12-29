@@ -28,7 +28,6 @@ public func UTFileTest(console cons: CNConsole) -> Bool
 		return false
 	}
 	if let f = file1 {
-		let _ = f.put(string: "Hello, world!\nGood morning\n")
 		var no = 1
 		while let line = f.getLine() {
 			console.print(string: "\(no): \(line)")

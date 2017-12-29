@@ -143,9 +143,8 @@ private class CNReadFile: CNFile
 					}
 				}
 			}
-		} else {
-			return nil
 		}
+		return nil
 	}
 
 	public override func getLine() -> String? {
@@ -204,39 +203,48 @@ private class CNWriteFile: CNFile
 private class CNLineBuffer
 {
 	public static let 	CHUNK_SIZE = 512
-	private var 		mBuffer: 	String
-	private var		mReadPoint:	String.Index
-	private var		mReadCount:	Int
+	private var 		mBuffer: 	Array<Character>
+	private var		mCurrentIndex:	Int
+	private var		mLastIndex:	Int
 
 	public init(){
-		mBuffer    = ""
-		mReadPoint = mBuffer.startIndex
-		mReadCount = 0
+		mBuffer		= []
+		mCurrentIndex	= 0
+		mLastIndex	= 0
 	}
 
 	public func appendData(data d: Data) {
 		if let str = String(data: d, encoding: .utf8) {
-			mBuffer.append(str)
+			let count = mBuffer.count
+			for c in str {
+				if mLastIndex < count {
+					mBuffer[mLastIndex] = c
+				} else {
+					mBuffer.append(c)
+				}
+				mLastIndex += 1
+			}
+
 		} else {
 			NSLog("Failed to append")
 		}
 	}
 
 	public func getChar() -> Character? {
-		if mReadPoint < mBuffer.endIndex {
-			let c = mBuffer[mReadPoint]
-			if mReadCount > CNLineBuffer.CHUNK_SIZE {
-				mBuffer.removeSubrange(mBuffer.startIndex..<mReadPoint)
-				mReadPoint = mBuffer.startIndex
-				mReadCount = 0
-			} else {
-				mReadPoint = mBuffer.index(after: mReadPoint)
-				mReadCount += 1
+		let result: Character?
+		if mCurrentIndex < mLastIndex {
+			result = mBuffer[mCurrentIndex]
+			mCurrentIndex += 1
+			if mCurrentIndex > 512 {
+				let rmnum = mCurrentIndex
+				mBuffer.removeSubrange(0..<rmnum)
+				mCurrentIndex	-= rmnum
+				mLastIndex	-= rmnum
 			}
-			return c
 		} else {
-			return nil
+			result = nil
 		}
+		return result
 	}
 }
 

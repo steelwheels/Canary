@@ -13,6 +13,12 @@ public class CNArrayStream<T>
 	private var mIndex	: Int
 	private var mCount	: Int
 
+	public init(){
+		mArray		= []
+		mIndex		= 0
+		mCount		= 0
+	}
+
 	public init(source src: Array<T>){
 		mArray		= src
 		mIndex		= 0
@@ -66,6 +72,11 @@ public class CNArrayStream<T>
 
 	public func isEmpty() -> Bool {
 		return (mIndex < mCount)
+	}
+
+	public func append(item newitem: T){
+		mArray.append(newitem)
+		mCount = mArray.count
 	}
 
 	public func trace(trace trc: (_ src: T) -> Bool) -> Array<T> {
