@@ -150,8 +150,8 @@ ABCD
 *** UTConsoleTest
 this is print message
 this is error message
-UTPipeConsole(E): "Error message"
 UTPipeConsole(P): "hello, world"
+UTPipeConsole(E): "Error message"
 Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
@@ -318,17 +318,11 @@ RESULT: main_window: Window {
   %}
 }
 [UTObjectCoder] Summary: OK
+*** UTJSONFile
 *** UTShell
 lsCommand: setup
 lsCommand: execute
 lsCommand: wait command done
-UTFileManager
-UTState
-UTURL
-UnitTest
-UnitTest.log.OK
-UnitTestBundle
-lsCommand done: Succeed
 lsCommand: done
 *** UTCommandLine
 *** test0[CommandLine]
@@ -393,4 +387,9 @@ lsCommand: done
       option-id: 3, value:a/b
   [Arguments]
     test.app
+*** UTPropertyList
+Version in property list: 1.0
+*** UTFile
+1: Hello, world!
+2: Good morning
 [SUMMARY] PASSED

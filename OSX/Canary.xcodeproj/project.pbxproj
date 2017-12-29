@@ -23,6 +23,7 @@
 		05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD41CF8A7300083E05C /* CNListItem.swift */; };
 		05377BD71CF8B5E80083E05C /* CNList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD61CF8B5E80083E05C /* CNList.swift */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
+		0539FF3D1FF68E970063BE88 /* UTJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539FF3C1FF68E970063BE88 /* UTJSONFile.swift */; };
 		053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNFileURL.swift */; };
 		054324001EDA3DE4006BF839 /* CNValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054323FF1EDA3DE4006BF839 /* CNValueTable.swift */; };
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
@@ -79,6 +80,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0539FF431FF696550063BE88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 058980731FEBF121001DA642;
+			remoteInfo = UnitTest;
+		};
 		058980681FEBEEA8001DA642 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 057A42A11C3D6BB7006A48E6 /* Project object */;
@@ -141,6 +149,7 @@
 		05377BD41CF8A7300083E05C /* CNListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItem.swift; sourceTree = "<group>"; };
 		05377BD61CF8B5E80083E05C /* CNList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNList.swift; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
+		0539FF3C1FF68E970063BE88 /* UTJSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTJSONFile.swift; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
 		054323FF1EDA3DE4006BF839 /* CNValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueTable.swift; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
@@ -265,6 +274,14 @@
 			name = State;
 			sourceTree = "<group>";
 		};
+		0539FF3E1FF691090063BE88 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sample;
+			path = ../UnitTest/Sample;
+			sourceTree = "<group>";
+		};
 		057A42A01C3D6BB7006A48E6 = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +289,7 @@
 				057A42AC1C3D6BB7006A48E6 /* Source */,
 				058980631FEBEE9D001DA642 /* UnitTestBundle */,
 				058980751FEBF121001DA642 /* UnitTest */,
+				0539FF3E1FF691090063BE88 /* Sample */,
 				057A42AB1C3D6BB7006A48E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -345,6 +363,7 @@
 				058980801FEBF250001DA642 /* UTNumber.swift */,
 				058980881FEBF251001DA642 /* UTObjectCoder.swift */,
 				0589808C1FEBF251001DA642 /* UTObjectNotation.swift */,
+				0539FF3C1FF68E970063BE88 /* UTJSONFile.swift */,
 				058980871FEBF251001DA642 /* UTPropertyList.swift */,
 				058980851FEBF251001DA642 /* UTShell.swift */,
 				0589808B1FEBF251001DA642 /* UTStack.swift */,
@@ -473,6 +492,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		0539FF3F1FF6964D0063BE88 /* TestExec */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../UnitTest/unit_test.mk";
+			buildConfigurationList = 0539FF401FF6964D0063BE88 /* Build configuration list for PBXLegacyTarget "TestExec" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0539FF441FF696550063BE88 /* PBXTargetDependency */,
+			);
+			name = TestExec;
+			passBuildSettingsInEnvironment = 1;
+			productName = TestExec;
+		};
 		05CC078F1C3D738800EF188D /* Install */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../Script/install_osx.mk";
@@ -556,6 +590,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Steel Wheels Project";
 				TargetAttributes = {
+					0539FF3F1FF6964D0063BE88 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = TR2DNF3P93;
+						ProvisioningStyle = Automatic;
+					};
 					057A42A91C3D6BB7006A48E6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = TR2DNF3P93;
@@ -594,6 +633,7 @@
 				05CC078F1C3D738800EF188D /* Install */,
 				058980611FEBEE9D001DA642 /* UnitTestBundle */,
 				058980731FEBF121001DA642 /* UnitTest */,
+				0539FF3F1FF6964D0063BE88 /* TestExec */,
 			);
 		};
 /* End PBXProject section */
@@ -693,6 +733,7 @@
 				0589809A1FEBF251001DA642 /* UTShell.swift in Sources */,
 				058980931FEBF251001DA642 /* UTMath.swift in Sources */,
 				058980991FEBF251001DA642 /* UTStream.swift in Sources */,
+				0539FF3D1FF68E970063BE88 /* UTJSONFile.swift in Sources */,
 				0589809C1FEBF251001DA642 /* UTPropertyList.swift in Sources */,
 				058980A11FEBF251001DA642 /* UTObjectNotation.swift in Sources */,
 				058980961FEBF251001DA642 /* UTValueTable.swift in Sources */,
@@ -707,6 +748,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0539FF441FF696550063BE88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 058980731FEBF121001DA642 /* UnitTest */;
+			targetProxy = 0539FF431FF696550063BE88 /* PBXContainerItemProxy */;
+		};
 		058980691FEBEEA8001DA642 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05CC078F1C3D738800EF188D /* Install */;
@@ -725,6 +771,45 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0539FF411FF6964D0063BE88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0539FF421FF6964D0063BE88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		057A42B01C3D6BB7006A48E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1019,6 +1104,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0539FF401FF6964D0063BE88 /* Build configuration list for PBXLegacyTarget "TestExec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0539FF411FF6964D0063BE88 /* Debug */,
+				0539FF421FF6964D0063BE88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		057A42A41C3D6BB7006A48E6 /* Build configuration list for PBXProject "Canary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
