@@ -319,6 +319,8 @@ RESULT: main_window: Window {
 }
 [UTObjectCoder] Summary: OK
 *** UTJSONFile
+JSON -> ["item2": abcd, "item1": 123]
+JSON -> ["item2": abcd, "item1": 123]
 *** UTShell
 lsCommand: setup
 lsCommand: execute

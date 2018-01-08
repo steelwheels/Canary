@@ -106,6 +106,10 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 		return nil
 	}
 
+	public func getAll() -> String? {
+		return nil
+	}
+
 	public func put(char c: Character) -> Int {
 		/* Do nothing */
 		return 0
@@ -167,6 +171,15 @@ private class CNReadFile: CNFile
 					return result
 				}
 			}
+		} else {
+			return nil
+		}
+	}
+
+	public override func getAll() -> String? {
+		if let handle = fileHandle {
+			let data = handle.readDataToEndOfFile()
+			return String(data: data, encoding: .utf8)
 		} else {
 			return nil
 		}
