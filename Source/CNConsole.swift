@@ -130,7 +130,7 @@ public class CNPipeConsole: CNConsole
 			if let str = String(data: handle.availableData, encoding: String.Encoding.utf8) {
 				self.print(string: str)
 			} else {
-				Swift.print("Error decoding data: \(handle.availableData)")
+				NSLog("Error decoding data: \(handle.availableData)")
 			}
 		}
 		errorPipe.fileHandleForReading.readabilityHandler = {
@@ -138,7 +138,7 @@ public class CNPipeConsole: CNConsole
 			if let str = String(data: handle.availableData, encoding: String.Encoding.utf8) {
 				self.error(string: str)
 			} else {
-				Swift.print("Error decoding data: \(handle.availableData)")
+				NSLog("Error decoding data: \(handle.availableData)")
 			}
 		}
 		outputPipe.fileHandleForWriting.writeabilityHandler = {
@@ -147,7 +147,7 @@ public class CNPipeConsole: CNConsole
 				if let data = str.data(using: .utf8) {
 					filehandle.write(data)
 				} else {
-					Swift.print("Error encoding data: \(str)")
+					NSLog("Error encoding data: \(str)")
 				}
 			}
 		}

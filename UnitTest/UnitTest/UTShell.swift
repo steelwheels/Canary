@@ -10,41 +10,39 @@ import Foundation
 
 public func UTShell(console cons: CNConsole) -> Bool
 {
-	let result0 = lsCommand(console: cons)
-	return result0
+	let result0 = shellCommand(command: "/bin/echo Hello,World",	console: cons)
+	let result1 = shellCommand(command: "/bin/ls *.plist",	console: cons)
+	return result0 && result1
 }
 
-private func lsCommand(console cons: CNConsole) -> Bool
+private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 {
-	var result        = true
-	var lsCommandDone = false
+	var result	= true
 
-	cons.print(string: "lsCommand: setup\n")
+	cons.print(string: "shell: setup\n")
 	let shell = CNShell()
-	shell.arguments = ["/bin/ls"]
+	shell.command = cmd
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
 			if exitcode != 0 {
-				cons.print(string: "lsCommand done: Failed\n")
+				cons.print(string: "shell[ done -> Failed\n")
 				result = false
 			} else {
-				cons.print(string: "lsCommand done: Succeed\n")
+				cons.print(string: "shell: done -> Succeed\n")
 			}
-			lsCommandDone = true
 	}
 
-	cons.print(string: "lsCommand: execute\n")
+	cons.print(string: "shell: execute\n")
 	let pid = shell.execute(console: cons)
 	if pid <= 0 {
-		cons.print(string: "lsCommand: Failed to execute")
+		cons.print(string: "shell: Failed to execute")
 		result = false
 	}
 
-	cons.print(string: "lsCommand: wait command done\n")
-	while(!lsCommandDone){
-
-	}
-	cons.print(string: "lsCommand: done\n")
+	cons.print(string: "shell: wait command done\n")
+	shell.waitUntilExit()
+	
+	cons.print(string: "shell: finish\n")
 	
 	return result
 }

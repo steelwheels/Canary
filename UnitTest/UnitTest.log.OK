@@ -322,10 +322,18 @@ RESULT: main_window: Window {
 JSON -> ["item2": abcd, "item1": 123]
 JSON -> ["item2": abcd, "item1": 123]
 *** UTShell
-lsCommand: setup
-lsCommand: execute
-lsCommand: wait command done
-lsCommand: done
+shell: setup
+shell: execute
+shell: wait command done
+Hello,World
+shell: done -> Succeed
+shell: finish
+shell: setup
+shell: execute
+shell: wait command done
+Info.plist
+shell: done -> Succeed
+shell: finish
 *** UTCommandLine
 *** test0[CommandLine]
   [OptionTypes]
