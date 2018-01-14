@@ -179,7 +179,7 @@ public class CNCursesConsole: CNConsole
 {
 	public enum ConsoleMode {
 		case Shell
-		case Curses
+		case Screen
 	}
 
 	private var mConsoleMode:	ConsoleMode
@@ -197,7 +197,7 @@ public class CNCursesConsole: CNConsole
 			switch m {
 			case .Shell:
 				mCurses.finalize()
-			case .Curses:
+			case .Screen:
 				mCurses.setup(visiblePrompt: true, bufferMode: true)
 			}
 			mConsoleMode = m
@@ -208,7 +208,7 @@ public class CNCursesConsole: CNConsole
 		switch mConsoleMode {
 		case .Shell:
 			mDefaultConsole.print(string: str)
-		case .Curses:
+		case .Screen:
 			mCurses.put(string: str)
 		}
 	}
@@ -217,7 +217,7 @@ public class CNCursesConsole: CNConsole
 		switch mConsoleMode {
 		case .Shell:
 			mDefaultConsole.error(string: str)
-		case .Curses:
+		case .Screen:
 			mCurses.put(string: str)
 		}
 	}
@@ -227,7 +227,7 @@ public class CNCursesConsole: CNConsole
 		switch mConsoleMode {
 		case .Shell:
 			result = mDefaultConsole.scan()
-		case .Curses:
+		case .Screen:
 			result = nil
 		}
 		return result
