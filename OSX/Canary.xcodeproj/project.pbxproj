@@ -452,9 +452,9 @@
 			isa = PBXGroup;
 			children = (
 				05D553851C49D9890045B472 /* CNConsole.swift */,
+				055FBAC9200A4029002161A7 /* CNCurses.swift */,
 				0522ED3C1FAB708C00D6B24D /* CNConnection.swift */,
 				05D2774520090AEC0008FA6D /* CNReadLine.swift */,
-				055FBAC9200A4029002161A7 /* CNCurses.swift */,
 			);
 			name = Terminal;
 			sourceTree = "<group>";

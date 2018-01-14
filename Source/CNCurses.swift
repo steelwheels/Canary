@@ -22,7 +22,6 @@ public class CNCurses
 	}
 
 	public init() {
-
 	}
 
 	public func setup(visiblePrompt visprom:Bool, bufferMode bufmode: Bool){
@@ -35,7 +34,7 @@ public class CNCurses
 		refresh()
 	}
 
-	deinit {
+	public func finalize(){
 		endwin()
 	}
 
@@ -89,9 +88,8 @@ public class CNCurses
 		move(Int32(yval), Int32(xval))
 	}
 
-	public func get() -> Character {
-		let intval = getch()
-		return Character(UnicodeScalar(UInt8(intval)))
+	public func get() -> Int32 {
+		return getch()
 	}
 
 	public func put(string s: String){

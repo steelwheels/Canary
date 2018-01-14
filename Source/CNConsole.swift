@@ -174,6 +174,67 @@ public class CNPipeConsole: CNConsole
 	}
 }
 
+#if os(OSX)
+public class CNCursesConsole: CNConsole
+{
+	public enum ConsoleMode {
+		case Shell
+		case Curses
+	}
+
+	private var mConsoleMode:	ConsoleMode
+	private var mDefaultConsole:	CNConsole
+	private var mCurses:		CNCurses
+
+	public init(defaultConsole cons: CNConsole){
+		mConsoleMode		= .Shell
+		mDefaultConsole		= cons
+		mCurses			= CNCurses()
+	}
+
+	public func setMode(mode m: ConsoleMode){
+		if mConsoleMode != m {
+			switch m {
+			case .Shell:
+				mCurses.finalize()
+			case .Curses:
+				mCurses.setup(visiblePrompt: true, bufferMode: true)
+			}
+			mConsoleMode = m
+		}
+	}
+
+	open override func print(string str: String){
+		switch mConsoleMode {
+		case .Shell:
+			mDefaultConsole.print(string: str)
+		case .Curses:
+			mCurses.put(string: str)
+		}
+	}
+
+	open override func error(string str: String){
+		switch mConsoleMode {
+		case .Shell:
+			mDefaultConsole.error(string: str)
+		case .Curses:
+			mCurses.put(string: str)
+		}
+	}
+
+	open override func scan() -> String? {
+		let result: String?
+		switch mConsoleMode {
+		case .Shell:
+			result = mDefaultConsole.scan()
+		case .Curses:
+			result = nil
+		}
+		return result
+	}
+}
+#endif // os(OSX)
+
 public class CNSenderConsole: CNConsole
 {
 	private var mConnection	: CNConnection?
