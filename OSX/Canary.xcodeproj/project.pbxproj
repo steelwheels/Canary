@@ -29,6 +29,7 @@
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		054EED311E7FD58A003C1F57 /* CNObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */; };
 		054EED331E7FED27003C1F57 /* CNCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED321E7FED27003C1F57 /* CNCharacter.swift */; };
+		055FBACA200A4029002161A7 /* CNCurses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FBAC9200A4029002161A7 /* CNCurses.swift */; };
 		05658E2D1F0AA8C8002FF2B7 /* CNStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05658E2C1F0AA8C8002FF2B7 /* CNStack.swift */; };
 		057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 057A42AD1C3D6BB7006A48E6 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		057A721A1F0FDBA800F1243E /* CNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A72191F0FDBA800F1243E /* CNNode.swift */; };
@@ -72,6 +73,7 @@
 		05C7AE0B1EA09BC600BEF71D /* CNReservedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */; };
 		05C90E831F4DEDD400C996D9 /* CNStringStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C90E821F4DEDD400C996D9 /* CNStringStream.swift */; };
 		05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */; };
+		05D2774620090AEC0008FA6D /* CNReadLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D2774520090AEC0008FA6D /* CNReadLine.swift */; };
 		05D553861C49D9890045B472 /* CNConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D553851C49D9890045B472 /* CNConsole.swift */; };
 		05EE15BC1F104BF10025FF6B /* CNObjectReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE15BB1F104BF10025FF6B /* CNObjectReference.swift */; };
 		05EE15BE1F104BFB0025FF6B /* CNObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE15BD1F104BFB0025FF6B /* CNObject.swift */; };
@@ -156,6 +158,7 @@
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectCoder.swift; sourceTree = "<group>"; };
 		054EED321E7FED27003C1F57 /* CNCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCharacter.swift; sourceTree = "<group>"; };
+		055FBAC9200A4029002161A7 /* CNCurses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNCurses.swift; sourceTree = "<group>"; };
 		05658E2C1F0AA8C8002FF2B7 /* CNStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStack.swift; sourceTree = "<group>"; };
 		057A42AA1C3D6BB7006A48E6 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		057A42AD1C3D6BB7006A48E6 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNReservedWord.swift; sourceTree = "<group>"; };
 		05C90E821F4DEDD400C996D9 /* CNStringStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStringStream.swift; sourceTree = "<group>"; };
 		05D21FA81C49CAC90078C6DE /* CNJSONFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONFile.swift; sourceTree = "<group>"; };
+		05D2774520090AEC0008FA6D /* CNReadLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNReadLine.swift; sourceTree = "<group>"; };
 		05D553851C49D9890045B472 /* CNConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNConsole.swift; sourceTree = "<group>"; };
 		05EE15BB1F104BF10025FF6B /* CNObjectReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectReference.swift; sourceTree = "<group>"; };
 		05EE15BD1F104BFB0025FF6B /* CNObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObject.swift; sourceTree = "<group>"; };
@@ -449,6 +453,8 @@
 			children = (
 				05D553851C49D9890045B472 /* CNConsole.swift */,
 				0522ED3C1FAB708C00D6B24D /* CNConnection.swift */,
+				05D2774520090AEC0008FA6D /* CNReadLine.swift */,
+				055FBAC9200A4029002161A7 /* CNCurses.swift */,
 			);
 			name = Terminal;
 			sourceTree = "<group>";
@@ -689,10 +695,12 @@
 				05BD1B401EC35C1000B32E1C /* CNText.swift in Sources */,
 				05F1F08A1E67366600792828 /* CNValue.swift in Sources */,
 				05C90E831F4DEDD400C996D9 /* CNStringStream.swift in Sources */,
+				05D2774620090AEC0008FA6D /* CNReadLine.swift in Sources */,
 				05C15D9E1E9FC8C4008093C5 /* CNParser.swift in Sources */,
 				052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */,
 				058290951D040BE600255FC2 /* CNTristate.swift in Sources */,
 				052C98C41F47DAFB00658DF4 /* CNCommandLine.swift in Sources */,
+				055FBACA200A4029002161A7 /* CNCurses.swift in Sources */,
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				05AD3A1A1D67D75700B033EF /* CNNumber.swift in Sources */,
 				0522ED3D1FAB708C00D6B24D /* CNConnection.swift in Sources */,
@@ -944,6 +952,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.Canary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
@@ -975,6 +984,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.Canary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
