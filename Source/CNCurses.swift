@@ -10,23 +10,13 @@ import Darwin.ncurses
 
 public class CNCurses
 {
-	public enum Color: Int {
-		case Black	= 0
-		case Red	= 1
-		case Green	= 2
-		case Yellow	= 3
-		case Blue	= 4
-		case Magenta	= 5
-		case Cian	= 6
-		case White	= 7
-	}
-
 	public init() {
 	}
 
 	public func setup() {
 		initscr()
 		start_color()
+		use_default_colors()
 		self.visiblePrompt = false
 		self.doBuffering   = false
 		self.doEcho        = false
@@ -85,16 +75,61 @@ public class CNCurses
 		}
 	}
 
-	public func setForegroundColor(color col: Color){
-		let colid  = col.rawValue
-		let colstr = "\u{16}[3\(colid)m"
-		put(string: colstr)
+	private var mForegroundColor: CNColor = .White
+	public var foregroundColor: CNColor {
+		get {
+			return mForegroundColor
+		}
+		set(newcol){
+			if mForegroundColor != newcol {
+				setColorPair(foregroundColor: newcol, backgroundColor: mBackgroundColor)
+				mForegroundColor = newcol
+			}
+		}
 	}
 
-	public func setBackgroundColor(color col: Color){
-		let colid  = col.rawValue
-		let colstr = "\u{16}[4\(colid)m"
-		put(string: colstr)
+	private var mBackgroundColor: CNColor = .Black
+	public var backgroundColor: CNColor {
+		get {
+			return mBackgroundColor
+		}
+		set(newcol){
+			if mBackgroundColor != newcol {
+				setColorPair(foregroundColor: mForegroundColor, backgroundColor: newcol)
+				mBackgroundColor = newcol
+			}
+		}
+	}
+
+	public func setColorPair(foregroundColor fcol: CNColor, backgroundColor bcol: CNColor) {
+		let fcol  = fcol.toDarwinColor()
+		let bcol  = bcol.toDarwinColor()
+		if let colid = addColorPair(foregroundColor: fcol, backgroundColor: bcol) {
+			attrset(COLOR_PAIR(colid))
+		} else {
+			NSLog("Color table overflow")
+		}
+	}
+
+	private var mNextColorPair: Int16 = 1
+	public func addColorPair(foregroundColor fcol: Int32, backgroundColor bcol: Int32) -> Int32? {
+		/* Search the existence pairs */
+		for i in 1..<mNextColorPair {
+			var f : Int16 = 0
+			var b : Int16 = 0
+			pair_content(Int16(i), &f, &b)
+			if fcol == f && bcol == b {
+				return Int32(i)
+			}
+		}
+		if mNextColorPair < Darwin.COLORS {
+			let pairid = mNextColorPair
+			init_pair(pairid, Int16(fcol), Int16(bcol))
+			mNextColorPair += 1
+			return Int32(pairid)
+		} else {
+			return nil
+		}
 	}
 
 	public func moveTo(x xval: Int, y yval: Int){

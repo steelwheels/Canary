@@ -185,11 +185,15 @@ public class CNCursesConsole: CNConsole
 	private var mConsoleMode:	ConsoleMode
 	private var mDefaultConsole:	CNConsole
 	private var mCurses:		CNCurses
+	private var mForegroundColor:	CNColor
+	private var mBackgroundColor:	CNColor
 
 	public init(defaultConsole cons: CNConsole){
 		mConsoleMode		= .Shell
 		mDefaultConsole		= cons
 		mCurses			= CNCurses()
+		mForegroundColor	= .White
+		mBackgroundColor	= .Black
 	}
 
 	public func setMode(mode m: ConsoleMode){
@@ -251,6 +255,54 @@ public class CNCursesConsole: CNConsole
 			switch mConsoleMode {
 			case .Screen:	mCurses.doEcho = value
 			case .Shell:	break
+			}
+		}
+	}
+
+	public var foregroundColor: CNColor {
+		get {
+			let result: CNColor
+			switch mConsoleMode {
+			case .Screen:
+				result = mCurses.foregroundColor
+			case .Shell:
+				result = mForegroundColor
+			}
+			return result
+		}
+		set(newcol){
+			switch mConsoleMode {
+			case .Screen:
+				mCurses.foregroundColor = newcol
+			case .Shell:
+				let colid  = newcol.toDarwinColor()
+				let colstr = "\u{1b}[3\(colid)m"
+				print(string: colstr)
+				mForegroundColor = newcol
+			}
+		}
+	}
+
+	public var backgroundColor: CNColor {
+		get {
+			let result: CNColor
+			switch mConsoleMode {
+			case .Screen:
+				result = mCurses.backgroundColor
+			case .Shell:
+				result = mBackgroundColor
+			}
+			return result
+		}
+		set(newcol){
+			switch mConsoleMode {
+			case .Screen:
+				mCurses.backgroundColor = newcol
+			case .Shell:
+				let colid  = newcol.toDarwinColor()
+				let colstr = "\u{1b}[4\(colid)m"
+				print(string: colstr)
+				mBackgroundColor = newcol
 			}
 		}
 	}

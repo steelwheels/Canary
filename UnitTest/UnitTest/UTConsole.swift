@@ -10,9 +10,18 @@ import Canary
 
 public func UTConsoleTest(console cons: CNConsole) -> Bool
 {
+	testColor(console: cons)
 	testConsole(console: cons)
 	let result = testPipeConsole(console: cons)
 	return result
+}
+
+private func testColor(console cons: CNConsole)
+{
+	let redid = CNColor.Red.toDarwinColor()
+	let grnid = CNColor.Green.toDarwinColor()
+	cons.print(string: "CNColor: Red   = \(redid)\n")
+	cons.print(string: "CNColor: Green = \(grnid)\n")
 }
 
 private func testConsole(console cons: CNConsole)

@@ -35,6 +35,7 @@
 		057A721A1F0FDBA800F1243E /* CNNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A72191F0FDBA800F1243E /* CNNode.swift */; };
 		057A721C1F0FDC0600F1243E /* CNGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A721B1F0FDC0600F1243E /* CNGraph.swift */; };
 		057A721E1F0FDC3700F1243E /* CNEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057A721D1F0FDC3700F1243E /* CNEdge.swift */; };
+		057FBF8E200DD6FF002CEF61 /* CNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FBF8D200DD6FF002CEF61 /* CNColor.swift */; };
 		058203F11CF7527C006BCEDF /* CNOrderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058203F01CF7527C006BCEDF /* CNOrderedList.swift */; };
 		058290951D040BE600255FC2 /* CNTristate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058290941D040BE600255FC2 /* CNTristate.swift */; };
 		0589806E1FEBEEF5001DA642 /* Canary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0589806D1FEBEEF5001DA642 /* Canary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -165,6 +166,7 @@
 		057A72191F0FDBA800F1243E /* CNNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNNode.swift; sourceTree = "<group>"; };
 		057A721B1F0FDC0600F1243E /* CNGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNGraph.swift; sourceTree = "<group>"; };
 		057A721D1F0FDC3700F1243E /* CNEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNEdge.swift; sourceTree = "<group>"; };
+		057FBF8D200DD6FF002CEF61 /* CNColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNColor.swift; sourceTree = "<group>"; };
 		058203F01CF7527C006BCEDF /* CNOrderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNOrderedList.swift; sourceTree = "<group>"; };
 		058290941D040BE600255FC2 /* CNTristate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNTristate.swift; sourceTree = "<group>"; };
 		058980621FEBEE9D001DA642 /* UnitTest.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +453,7 @@
 		05D553841C49D96D0045B472 /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				057FBF8D200DD6FF002CEF61 /* CNColor.swift */,
 				05D553851C49D9890045B472 /* CNConsole.swift */,
 				055FBAC9200A4029002161A7 /* CNCurses.swift */,
 				0522ED3C1FAB708C00D6B24D /* CNConnection.swift */,
@@ -691,6 +694,7 @@
 				05EE15BE1F104BFB0025FF6B /* CNObject.swift in Sources */,
 				054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */,
 				05C1B8671F42C6EE0089A554 /* CNShell.swift in Sources */,
+				057FBF8E200DD6FF002CEF61 /* CNColor.swift in Sources */,
 				05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */,
 				05BD1B401EC35C1000B32E1C /* CNText.swift in Sources */,
 				05F1F08A1E67366600792828 /* CNValue.swift in Sources */,
@@ -1062,6 +1066,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1087,6 +1092,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/$(PRODUCT_NAME).bundle/Contents/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "-lncurses";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
