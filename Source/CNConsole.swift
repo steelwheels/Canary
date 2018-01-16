@@ -198,10 +198,72 @@ public class CNCursesConsole: CNConsole
 			case .Shell:
 				mCurses.finalize()
 			case .Screen:
-				mCurses.setup(visiblePrompt: true, bufferMode: true)
+				mCurses.setup()
 			}
 			mConsoleMode = m
 		}
+	}
+
+	public var visiblePrompt: Bool {
+		get {
+			var result: Bool
+			switch mConsoleMode {
+			case .Screen:	result = mCurses.visiblePrompt
+			case .Shell:	result = true
+			}
+			return result
+		}
+		set(value){
+			switch mConsoleMode {
+			case .Screen:	mCurses.visiblePrompt = value
+			case .Shell:	break
+			}
+		}
+	}
+
+	public var doBuffering: Bool {
+		get {
+			var result: Bool
+			switch mConsoleMode {
+			case .Screen:	result = mCurses.doBuffering
+			case .Shell:	result = true
+			}
+			return result
+		}
+		set(value){
+			switch mConsoleMode {
+			case .Screen:	mCurses.doBuffering = value
+			case .Shell:	break
+			}
+		}
+	}
+
+	public var doEcho: Bool {
+		get {
+			var result: Bool
+			switch mConsoleMode {
+			case .Screen:	result = mCurses.doEcho
+			case .Shell:	result = true
+			}
+			return result
+		}
+		set(value){
+			switch mConsoleMode {
+			case .Screen:	mCurses.doEcho = value
+			case .Shell:	break
+			}
+		}
+	}
+
+	open func getKey() -> Int32? {
+		let result: Int32?
+		switch mConsoleMode {
+		case .Shell:
+			result = nil
+		case .Screen:
+			result = mCurses.getKey()
+		}
+		return result
 	}
 
 	open override func print(string str: String){
@@ -228,7 +290,15 @@ public class CNCursesConsole: CNConsole
 		case .Shell:
 			result = mDefaultConsole.scan()
 		case .Screen:
-			result = nil
+			var tmpres: String? = nil
+			if let v = mCurses.getKey() {
+				if 0<=v && v<=0xff {
+					let lv = UInt8(v)
+					let c  = Character(UnicodeScalar(lv))
+					tmpres = "\(c)"
+				}
+			}
+			result = tmpres
 		}
 		return result
 	}

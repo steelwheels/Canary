@@ -24,13 +24,12 @@ public class CNCurses
 	public init() {
 	}
 
-	public func setup(visiblePrompt visprom:Bool, bufferMode bufmode: Bool){
+	public func setup() {
 		initscr()
 		start_color()
-
-		self.visiblePrompt = visprom
-		self.bufferMode    = bufmode
-
+		self.visiblePrompt = false
+		self.doBuffering   = false
+		self.doEcho        = false
 		refresh()
 	}
 
@@ -60,15 +59,29 @@ public class CNCurses
 		}
 	}
 
-	private var mBufferMode: Bool = false
-	public var bufferMode: Bool {
-		get { return mBufferMode }
+	private var mDoBuffering: Bool = false
+	public var doBuffering: Bool {
+		get { return mDoBuffering }
 		set(value) {
 			if value {
 				nocbreak()
 			} else {
 				cbreak()
 			}
+			mDoBuffering = value
+		}
+	}
+
+	private var mDoEcho: Bool = false
+	public var doEcho: Bool {
+		get { return mDoEcho }
+		set(value) {
+			if value {
+				echo()
+			} else {
+				noecho()
+			}
+			mDoEcho = value
 		}
 	}
 
@@ -88,8 +101,15 @@ public class CNCurses
 		move(Int32(yval), Int32(xval))
 	}
 
-	public func get() -> Int32 {
-		return getch()
+	public func getKey() -> Int32? {
+		let result: Int32?
+		let key = getch()
+		if key != Darwin.ERR {
+			result = key
+		} else {
+			result = nil
+		}
+		return result
 	}
 
 	public func put(string s: String){
