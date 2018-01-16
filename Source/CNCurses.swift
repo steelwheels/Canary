@@ -27,12 +27,20 @@ public class CNCurses
 		endwin()
 	}
 
-	public var width: Int {
+	public var screenWidth: Int {
 		get { return Int(getmaxx(stdscr)) }
 	}
 
-	public var height: Int {
+	public var screenHeight: Int {
 		get { return Int(getmaxy(stdscr)) }
+	}
+
+	public var cursorX: Int {
+		get { return Int(getcurx(stdscr)) }
+	}
+
+	public var cursorY: Int {
+		get { return Int(getcury(stdscr)) }
 	}
 
 	public func clear(){

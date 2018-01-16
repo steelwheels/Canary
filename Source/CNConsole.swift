@@ -124,7 +124,7 @@ public class CNPipeConsole: CNConsole
 		errorPipe	= Pipe()
 		outputPipe	= Pipe()
 		super.init()
-		
+
 		inputPipe.fileHandleForReading.readabilityHandler = {
 			(_ handle: FileHandle) -> Void in
 			if let str = String(data: handle.availableData, encoding: String.Encoding.utf8) {
@@ -256,6 +256,50 @@ public class CNCursesConsole: CNConsole
 			case .Screen:	mCurses.doEcho = value
 			case .Shell:	break
 			}
+		}
+	}
+
+	public var screenWidth: Int {
+		get {
+			let result: Int
+			switch mConsoleMode {
+			case .Shell:	result = 0 	// Unknown
+			case .Screen:	result = mCurses.screenWidth
+			}
+			return result
+		}
+	}
+
+	public var screenHeight: Int {
+		get {
+			let result: Int
+			switch mConsoleMode {
+			case .Shell:	result = 0 	// Unknown
+			case .Screen:	result = mCurses.screenHeight
+			}
+			return result
+		}
+	}
+
+	public var cursorX: Int {
+		get {
+			let result: Int
+			switch mConsoleMode {
+			case .Shell:	result = 0 	// Unknown
+			case .Screen:	result = mCurses.cursorX
+			}
+			return result
+		}
+	}
+
+	public var cursorY: Int {
+		get {
+			let result: Int
+			switch mConsoleMode {
+			case .Shell:	result = 0 	// Unknown
+			case .Screen:	result = mCurses.cursorY
+			}
+			return result
 		}
 	}
 
