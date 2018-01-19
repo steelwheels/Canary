@@ -303,6 +303,13 @@ public class CNCursesConsole: CNConsole
 		}
 	}
 
+	public func moveTo(x xval:Int, y yval:Int) {
+		switch mConsoleMode {
+		case .Shell:	break
+		case .Screen:	mCurses.moveTo(x: xval, y: yval)
+		}
+	}
+
 	public var foregroundColor: CNColor {
 		get {
 			let result: CNColor

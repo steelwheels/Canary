@@ -52,7 +52,7 @@ public class CNCurses
 	public var visiblePrompt: Bool {
 		get { return mVisiblePrompt }
 		set(value) {
-			curs_set(value ? 0 : 1)
+			curs_set(value ? 1 : 0)
 			mVisiblePrompt = value ;
 		}
 	}
@@ -141,7 +141,9 @@ public class CNCurses
 	}
 
 	public func moveTo(x xval: Int, y yval: Int){
-		move(Int32(yval), Int32(xval))
+		if xval < screenWidth && yval < screenHeight {
+			move(Int32(yval), Int32(xval))
+		}
 	}
 
 	public func getKey() -> Int32? {

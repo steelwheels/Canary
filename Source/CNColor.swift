@@ -18,6 +18,24 @@ public enum CNColor: Int32 {
 	case Cyan	= 6
 	case White	= 7
 
+	public static let Min: CNColor = CNColor.Black
+	public static let Max: CNColor = CNColor.White
+
+	public func description() -> String {
+		let result: String
+		switch self {
+		case .Black:	result = "Black"
+		case .Red:	result = "Red"
+		case .Green:	result = "Green"
+		case .Yellow:	result = "Yellow"
+		case .Blue:	result = "Blue"
+		case .Magenta:	result = "Magenta"
+		case .Cyan:	result = "Cyan"
+		case .White:	result = "White"
+		}
+		return result
+	}
+
 	public func toDarwinColor() -> Int32 {
 		var result: Int32
 		switch self {
