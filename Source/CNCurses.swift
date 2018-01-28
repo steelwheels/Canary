@@ -83,33 +83,7 @@ public class CNCurses
 		}
 	}
 
-	private var mForegroundColor: CNColor = .White
-	public var foregroundColor: CNColor {
-		get {
-			return mForegroundColor
-		}
-		set(newcol){
-			if mForegroundColor != newcol {
-				setColorPair(foregroundColor: newcol, backgroundColor: mBackgroundColor)
-				mForegroundColor = newcol
-			}
-		}
-	}
-
-	private var mBackgroundColor: CNColor = .Black
-	public var backgroundColor: CNColor {
-		get {
-			return mBackgroundColor
-		}
-		set(newcol){
-			if mBackgroundColor != newcol {
-				setColorPair(foregroundColor: mForegroundColor, backgroundColor: newcol)
-				mBackgroundColor = newcol
-			}
-		}
-	}
-
-	public func setColorPair(foregroundColor fcol: CNColor, backgroundColor bcol: CNColor) {
+	public func setColor(foregroundColor fcol: CNColor, backgroundColor bcol: CNColor) {
 		let fcol  = fcol.toDarwinColor()
 		let bcol  = bcol.toDarwinColor()
 		if let colid = addColorPair(foregroundColor: fcol, backgroundColor: bcol) {
@@ -120,7 +94,7 @@ public class CNCurses
 	}
 
 	private var mNextColorPair: Int16 = 1
-	public func addColorPair(foregroundColor fcol: Int32, backgroundColor bcol: Int32) -> Int32? {
+	private func addColorPair(foregroundColor fcol: Int32, backgroundColor bcol: Int32) -> Int32? {
 		/* Search the existence pairs */
 		for i in 1..<mNextColorPair {
 			var f : Int16 = 0

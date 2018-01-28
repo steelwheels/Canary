@@ -303,61 +303,20 @@ public class CNCursesConsole: CNConsole
 		}
 	}
 
+	public func setColor(foregroundColor fcol: CNColor, backgroundColor bcol: CNColor){
+		switch mConsoleMode {
+		case .Shell:	break
+		case .Screen:	mCurses.setColor(foregroundColor: fcol, backgroundColor: bcol)
+		}
+	}
+
 	public func moveTo(x xval:Int, y yval:Int) {
 		switch mConsoleMode {
 		case .Shell:	break
 		case .Screen:	mCurses.moveTo(x: xval, y: yval)
 		}
 	}
-
-	public var foregroundColor: CNColor {
-		get {
-			let result: CNColor
-			switch mConsoleMode {
-			case .Screen:
-				result = mCurses.foregroundColor
-			case .Shell:
-				result = mForegroundColor
-			}
-			return result
-		}
-		set(newcol){
-			switch mConsoleMode {
-			case .Screen:
-				mCurses.foregroundColor = newcol
-			case .Shell:
-				let colid  = newcol.toDarwinColor()
-				let colstr = "\u{1b}[3\(colid)m"
-				print(string: colstr)
-				mForegroundColor = newcol
-			}
-		}
-	}
-
-	public var backgroundColor: CNColor {
-		get {
-			let result: CNColor
-			switch mConsoleMode {
-			case .Screen:
-				result = mCurses.backgroundColor
-			case .Shell:
-				result = mBackgroundColor
-			}
-			return result
-		}
-		set(newcol){
-			switch mConsoleMode {
-			case .Screen:
-				mCurses.backgroundColor = newcol
-			case .Shell:
-				let colid  = newcol.toDarwinColor()
-				let colstr = "\u{1b}[4\(colid)m"
-				print(string: colstr)
-				mBackgroundColor = newcol
-			}
-		}
-	}
-
+	
 	open func getKey() -> Int32? {
 		let result: Int32?
 		switch mConsoleMode {

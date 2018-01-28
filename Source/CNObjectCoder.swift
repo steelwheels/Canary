@@ -312,7 +312,7 @@ private class CNDecoder
 		var objvalue4	: CNObjectNotation.ValueObject
 		let idx4	: Int = idx3
 		objvalue4 = try cast(source: objvalue3, to: typename, lineNo: src[idx2].lineNo)
-		
+
 		/* allocate object notation */
 		return (CNObjectNotation(identifier: identp!, value: objvalue4, lineNo: src[idx].lineNo), idx4)
 	}

@@ -124,7 +124,7 @@ public extension URL
 		let s0count = s0.count
 		let s1count = s1.count
 		let count   = s0count < s1count ? s0count : s1count
-		
+
 		for i in 0..<count {
 			if s0[i] != s1[i] {
 				return i

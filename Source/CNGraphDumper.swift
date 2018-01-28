@@ -11,7 +11,7 @@ extension CNGraph
 {
 	public func dump() -> CNTextSection {
 		resetVisitedFlag()
-		
+
 		let root = CNTextSection()
 		var docontinue = true
 		while docontinue {
@@ -29,7 +29,7 @@ extension CNGraph
 	private func dumpNode(section sect: CNTextSection, node src: CNNode){
 		let nodetxt = CNTextLine(string: src.description)
 		sect.add(text: nodetxt)
-		
+
 		src.didVisited = true
 		for edge in src.outputEdges {
 			edge.object.didVisited = true

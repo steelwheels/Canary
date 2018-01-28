@@ -376,7 +376,7 @@ private class CNTokenizer
 			let sidx = resstr.startIndex
 			let eidx = resstr.index(before: resstr.endIndex)
 			let substr = resstr[sidx..<eidx]
-			
+
 			let _ = srcstream.getc() // drop last %
 			return CNToken(type: .TextToken(String(substr)), lineNo: mCurrentLine)
 		} else {
