@@ -9,7 +9,7 @@ import Foundation
 
 public class CNJSON
 {
-	public class func merge(destination dst: inout Dictionary<String, AnyObject>, source src: Dictionary<String, AnyObject>){
+	public class func merge(destination dst: inout Dictionary<String, Any>, source src: Dictionary<String, Any>){
 		for srckey in src.keys {
 			if let srcval = src[srckey] {
 				merge(destination: &dst, sourceKey: srckey, sourceValue: srcval)
@@ -19,12 +19,12 @@ public class CNJSON
 		}
 	}
 
-	private class func merge(destination dst: inout Dictionary<String, AnyObject>, sourceKey srckey: String, sourceValue srcval: AnyObject){
+	private class func merge(destination dst: inout Dictionary<String, Any>, sourceKey srckey: String, sourceValue srcval: Any){
 		if let dstval = dst[srckey] {
-			if var dstinfo = dstval as? Dictionary<String, AnyObject>, let srcinfo = srcval as? Dictionary<String, AnyObject> {
+			if var dstinfo = dstval as? Dictionary<String, Any>, let srcinfo = srcval as? Dictionary<String, Any> {
 				/* merge children */
 				merge(destination: &dstinfo, source: srcinfo)
-			} else if var dstarr = dstval as? Array<AnyObject>, let srcarr = srcval as? Array<AnyObject> {
+			} else if var dstarr = dstval as? Array<Any>, let srcarr = srcval as? Array<Any> {
 				/* merge array */
 				dstarr.append(contentsOf: srcarr)
 			} else {

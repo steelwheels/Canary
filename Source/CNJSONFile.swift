@@ -8,14 +8,14 @@
 import Foundation
 
 public class CNJSONFile {
-	public class func readFile(URL url : URL) -> (Dictionary<String, AnyObject>?, NSError?) {
+	public class func readFile(URL url : URL) -> (Dictionary<String, Any>?, NSError?) {
 		do {
-			var result : Dictionary<String, AnyObject>? = nil
+			var result : Dictionary<String, Any>? = nil
 			var error : NSError? = nil
 			let datap : NSData?  = NSData(contentsOf: url)
 			if let data = datap as Data? {
 				let json = try JSONSerialization.jsonObject(with: data, options: [])
-				if let dict = json as? Dictionary<String, AnyObject> {
+				if let dict = json as? Dictionary<String, Any> {
 					result = dict
 				} else {
 					error = NSError.parseError(message: "The data type is NOT dictionary in URL:\(url.absoluteString)")
@@ -31,7 +31,7 @@ public class CNJSONFile {
 		}
 	}
 
-	public class func writeFile(URL url: URL, dictionary src: Dictionary<String, AnyObject>) -> NSError? {
+	public class func writeFile(URL url: URL, dictionary src: Dictionary<String, Any>) -> NSError? {
 		do {
 			let data = try JSONSerialization.data(withJSONObject: src, options: JSONSerialization.WritingOptions.prettyPrinted)
 			try data.write(to: url, options: .atomic)
@@ -44,7 +44,7 @@ public class CNJSONFile {
 		}
 	}
 
-	public class func serialize(dictionary src: Dictionary<String, AnyObject>) -> (String?, NSError?) {
+	public class func serialize(dictionary src: Dictionary<String, Any>) -> (String?, NSError?) {
 		do {
 			let data = try JSONSerialization.data(withJSONObject: src, options: .prettyPrinted)
 			let strp  = String(data: data, encoding: String.Encoding.utf8)
@@ -61,14 +61,14 @@ public class CNJSONFile {
 		}
 	}
 
-	public class func unserialize(string src : String) -> (Dictionary<String, AnyObject>?, NSError?) {
+	public class func unserialize(string src : String) -> (Dictionary<String, Any>?, NSError?) {
 		do {
-			var result : Dictionary<String, AnyObject>? = nil
+			var result : Dictionary<String, Any>? = nil
 			var error : NSError? = nil
 			let datap = src.data(using: String.Encoding.utf8, allowLossyConversion: false)
 			if let data = datap {
 				let json = try JSONSerialization.jsonObject(with: data, options: [])
-				if let dict = json as? Dictionary<String, AnyObject> {
+				if let dict = json as? Dictionary<String, Any> {
 					result = dict
 				} else {
 					error = NSError.parseError(message: "The data type is NOT dictionary in URL:\(src)")
