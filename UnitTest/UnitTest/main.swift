@@ -79,6 +79,10 @@ console.print(string: "*** UTJSONFile\n")
 let result20 = UTJSONFile(console: console)
 if !result20 { console.print(string: "result: Failed\n") }
 
+console.print(string: "*** UTJSONMatcher\n")
+let result21 = UTJSONMatcher(console: console)
+if !result21 { console.print(string: "result: Failed\n") }
+
 console.print(string: "*** UTShell\n")
 let result15 = UTShell(console: console)
 if !result15 { console.print(string: "result: Failed\n") }
@@ -97,7 +101,7 @@ if !result19 { console.print(string: "result: Failed\n") }
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
 	     result10 && result11 && result12 && result13 && result14 && result15 && result16 && result17 && result18 &&
-	     result19 && result20
+	     result19 && result20 && result21
 if result {
 	console.print(string: "[SUMMARY] PASSED\n")
 	exit(0)

@@ -152,8 +152,8 @@ CNColor: Red   = 1
 CNColor: Green = 2
 this is print message
 this is error message
-UTPipeConsole(E): "Error message"
 UTPipeConsole(P): "hello, world"
+UTPipeConsole(E): "Error message"
 Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
@@ -323,6 +323,10 @@ RESULT: main_window: Window {
 *** UTJSONFile
 JSON -> ["item2": abcd, "item1": 123]
 JSON -> ["item2": abcd, "item1": 123]
+*** UTJSONMatcher
+matching: key=name value=Optional("value") => matched
+matching: key=eman value=Optional("value") => Not matched
+matching: key=name value=Optional(123) => matched
 *** UTShell
 shell: setup
 shell: execute
