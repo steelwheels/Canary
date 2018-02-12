@@ -321,8 +321,14 @@ RESULT: main_window: Window {
 }
 [UTObjectCoder] Summary: OK
 *** UTJSONFile
-JSON -> ["item2": abcd, "item1": 123]
-JSON -> ["item2": abcd, "item1": 123]
+JSON -> {
+    item1 = 123;
+    item2 = abcd;
+}
+JSON -> {
+    item1 = 123;
+    item2 = abcd;
+}
 *** UTJSONMatcher
 matching: key=name value=Optional("value") => matched
 matching: key=eman value=Optional("value") => Not matched
