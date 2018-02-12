@@ -7,13 +7,13 @@ Here is the table of the context of the Contact Object.
 
 |Key  |Symbol |Description        |
 |:--- |:---   |:---               |
-|identifier |`CNContactIdentifierKey`    |a |
-|contactType |`CNContactTypeKey` |b |
+|identifier |`CNContactIdentifierKey`    |Unique identifier of the contact object |
+|contactType |`CNContactTypeKey` |"person" or "organization" |
 |namePrefix |`CNContactNamePrefixKey` |Prefix of the name |
 |givenName |`CNContactGivenNameKey` |Given name |
 |middleName |`CNContactMiddleNameKey` |Middle name |
 |familyName |`CNContactFamilyNameKey` |Family name |
-|previousFamilyName |`previousFamilyName`| Previous family name|
+|previousFamilyName |`CNContactPreviousFamilyName`| Previous family name|
 
 
 The symbol is defined in the Swift's framework, not in JavaScript.
