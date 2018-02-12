@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class CNJSON
+public class CNJSONUtil
 {
 	public class func merge(destination dst: inout NSMutableDictionary, source src: NSDictionary){
 		for srckey in src.allKeys {
