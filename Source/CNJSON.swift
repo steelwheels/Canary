@@ -9,19 +9,23 @@ import Foundation
 
 public class CNJSON
 {
-	public class func merge(destination dst: inout Dictionary<String, Any>, source src: Dictionary<String, Any>){
-		for srckey in src.keys {
-			if let srcval = src[srckey] {
-				merge(destination: &dst, sourceKey: srckey, sourceValue: srcval)
+	public class func merge(destination dst: inout NSMutableDictionary, source src: NSDictionary){
+		for srckey in src.allKeys {
+			if let keystr = srckey as? String {
+				if let srcval = src.value(forKey: keystr) {
+					merge(destination: &dst, sourceKey: keystr, sourceValue: srcval)
+				} else {
+					NSLog("Internal error: key \(keystr)")
+				}
 			} else {
 				NSLog("Internal error: key \(srckey)")
 			}
 		}
 	}
 
-	private class func merge(destination dst: inout Dictionary<String, Any>, sourceKey srckey: String, sourceValue srcval: Any){
+	private class func merge(destination dst: inout NSMutableDictionary, sourceKey srckey: String, sourceValue srcval: Any){
 		if let dstval = dst[srckey] {
-			if var dstinfo = dstval as? Dictionary<String, Any>, let srcinfo = srcval as? Dictionary<String, Any> {
+			if var dstinfo = dstval as? NSMutableDictionary, let srcinfo = srcval as? NSDictionary {
 				/* merge children */
 				merge(destination: &dstinfo, source: srcinfo)
 			} else if var dstarr = dstval as? Array<Any>, let srcarr = srcval as? Array<Any> {
