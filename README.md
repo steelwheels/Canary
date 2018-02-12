@@ -13,6 +13,9 @@ This software is produced by [Steel Wheels Project](http://steelwheels.github.io
 * iOS: iOS 10.3 or later
 * xCode: Xcode9 or later
 
+## Documents
+* [Contact Object](https://github.com/steelwheels/Canary/blob/master/Document/contact-object.md): Contact/AddressBook object definition
+
 ## Links
 * [Web page](http://steelwheels.github.io): Web page of this project
 * [Blog](http://steel-wheels-project.blogspot.jp/): Blog page of this project

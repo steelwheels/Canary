@@ -47,11 +47,13 @@ public class CNAddressBook
 			let keys    = [
 				CNContactIdentifierKey		as CNKeyDescriptor,
 				CNContactTypeKey		as CNKeyDescriptor,
-				CNContactBirthdayKey		as CNKeyDescriptor,
 				CNContactNamePrefixKey		as CNKeyDescriptor,
 				CNContactGivenNameKey		as CNKeyDescriptor,
 				CNContactMiddleNameKey		as CNKeyDescriptor,
-				CNContactFamilyNameKey		as CNKeyDescriptor
+				CNContactFamilyNameKey		as CNKeyDescriptor,
+				CNContactPreviousFamilyNameKey	as CNKeyDescriptor,
+				CNContactNameSuffixKey		as CNKeyDescriptor,
+				CNContactBirthdayKey		as CNKeyDescriptor
 			]
 			let request = CNContactFetchRequest(keysToFetch: keys)
 			do {
@@ -74,22 +76,25 @@ public class CNAddressBook
 	private class func contactToDictionary(contact cont: CNContact) -> Dictionary<String, Any> {
 		var result: Dictionary<String, Any> = [:]
 
-		appendDictionary(destination: &result, property: "identifier", 	value: cont.identifier)
+		appendDictionary(destination: &result, property: CNContactIdentifierKey, 	value: cont.identifier)
 
 		let typestr: String
 		switch cont.contactType {
 		case .organization:	typestr = "organization"
 		case .person:		typestr = "person"
 		}
-		appendDictionary(destination: &result, property: "contactType", value: typestr)
+		appendDictionary(destination: &result, property: CNContactTypeKey,		value: typestr)
+
+		appendDictionary(destination: &result, property: CNContactNamePrefixKey,	value:	cont.namePrefix)
+		appendDictionary(destination: &result, property: CNContactGivenNameKey, 	value:	cont.givenName)
+		appendDictionary(destination: &result, property: CNContactMiddleNameKey,	value:	cont.middleName)
+		appendDictionary(destination: &result, property: CNContactFamilyNameKey,	value:	cont.familyName)
+		appendDictionary(destination: &result, property: CNContactPreviousFamilyNameKey, value: cont.previousFamilyName)
+		appendDictionary(destination: &result, property: CNContactNameSuffixKey,	value: cont.nameSuffix)
 
 		if let birthday = cont.birthday {
-			appendDictionary(destination: &result, property: "namePrefix", 	value:	birthday.description)
+			appendDictionary(destination: &result, property: CNContactBirthdayKey, 	value:	birthday.description)
 		}
-		appendDictionary(destination: &result, property: "namePrefix", 	value:	cont.namePrefix)
-		appendDictionary(destination: &result, property: "givenName", 	value:	cont.givenName)
-		appendDictionary(destination: &result, property: "middleName",	value:	cont.middleName)
-		appendDictionary(destination: &result, property: "familyName",	value:	cont.familyName)
 		return result
 	}
 
