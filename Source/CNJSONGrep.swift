@@ -17,7 +17,24 @@ open class CNJSONGrep
 		mValueExpression	= vexp
 	}
 
-	public func execute(array arr: NSArray) -> NSArray? {
+	public func execute(JSONObject obj: CNJSONObject) -> CNJSONObject? {
+		switch obj {
+		case .Array(let srcarr):
+			if let newarr = execute(array: srcarr) {
+				return CNJSONObject(array: newarr)
+			} else {
+				return nil
+			}
+		case .Dictionary(let srcdict):
+			if let newdict = execute(dictionary: srcdict) {
+				return CNJSONObject(dictionary: newdict)
+			} else {
+				return nil
+			}
+		}
+	}
+
+	private func execute(array arr: NSArray) -> NSArray? {
 		let newarray = NSMutableArray(capacity: 8)
 		for elm in arr {
 			if let elmobj = elm as? NSObject {
@@ -35,7 +52,7 @@ open class CNJSONGrep
 		}
 	}
 
-	public func execute(dictionary dict: NSDictionary) -> NSDictionary? {
+	private func execute(dictionary dict: NSDictionary) -> NSDictionary? {
 		let newdict = NSMutableDictionary(capacity: 8)
 		var matched = false
 		for (key, val) in dict {
@@ -58,7 +75,7 @@ open class CNJSONGrep
 		}
 	}
 
-	public func execute(object obj: NSObject) -> NSObject? {
+	private func execute(object obj: NSObject) -> NSObject? {
 		if let arr = obj as? NSArray {
 			return execute(array: arr)
 		} else if let dict = obj as? NSDictionary {
@@ -69,7 +86,7 @@ open class CNJSONGrep
 		}
 	}
 
-	public func execute(key keystr: NSString, value val: NSObject) -> (NSString?, NSObject?) {
+	private func execute(key keystr: NSString, value val: NSObject) -> (NSString?, NSObject?) {
 		if let arrval = val as? NSArray {
 			if let newarr = execute(array: arrval) {
 				return (keystr, newarr)

@@ -19,11 +19,11 @@ private func UTJSONFileFromURL(console cons: CNConsole) -> Bool
 {
 	var result  = false
 	let readurl = URL(fileURLWithPath: "../UnitTest/Sample/sample-0.json")
-	let (info, err) = CNJSONFile.readFile(URL: readurl)
-	if let info = info {
-		cons.print(string: "JSON -> \(info)\n")
+	let (jsobj, err) = CNJSONFile.readFile(URL: readurl)
+	if let jsobj = jsobj {
+		cons.print(string: "JSON -> \(jsobj.description)\n")
 		let writeurl = URL(fileURLWithPath: "./sample-0-mod.json")
-		let _ = CNJSONFile.writeFile(URL: writeurl, dictionary: info)
+		let _ = CNJSONFile.writeFile(URL: writeurl, JSONObject: jsobj)
 		result = true
 	} else {
 		let desc: String
@@ -44,10 +44,10 @@ private func UTJSONFileFromFile(console cons: CNConsole) -> Bool
 	if let file = file {
 		if let data = file.getAll() {
 			let (jdata, err) = CNJSONFile.unserialize(string: data)
-			if let info = jdata {
-				cons.print(string: "JSON -> \(info)\n")
+			if let jdata = jdata {
+				cons.print(string: "JSON -> \(jdata.description)\n")
 				let writeurl = URL(fileURLWithPath: "./sample-0-mod2.json")
-				let _ = CNJSONFile.writeFile(URL: writeurl, dictionary: info)
+				let _ = CNJSONFile.writeFile(URL: writeurl, JSONObject: jdata)
 				result = true
 			} else {
 				let errstr = err!.toString()

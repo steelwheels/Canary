@@ -8,15 +8,17 @@
 import Foundation
 
 public class CNJSONFile {
-	public class func readFile(URL url : URL) -> (NSDictionary?, NSError?) {
+	public class func readFile(URL url : URL) -> (CNJSONObject?, NSError?) {
 		do {
-			var result : NSDictionary? = nil
-			var error  : NSError? = nil
-			let datap  : NSData?  = NSData(contentsOf: url)
+			var result : CNJSONObject?  = nil
+			var error  : NSError?       = nil
+			let datap  : NSData?        = NSData(contentsOf: url)
 			if let data = datap as Data? {
 				let json = try JSONSerialization.jsonObject(with: data, options: [])
 				if let dict = json as? NSDictionary {
-					result = dict
+					result = CNJSONObject(dictionary: dict)
+				} else if let arr = json as? NSArray {
+					result = CNJSONObject(array: arr)
 				} else {
 					error = NSError.parseError(message: "The data type is NOT dictionary in URL:\(url.absoluteString)")
 				}
@@ -31,22 +33,21 @@ public class CNJSONFile {
 		}
 	}
 
-	public class func writeFile(URL url: URL, dictionary src: NSDictionary) -> NSError? {
+	public class func writeFile(URL url: URL, JSONObject srcobj: CNJSONObject) -> NSError? {
 		do {
-			let data = try JSONSerialization.data(withJSONObject: src, options: JSONSerialization.WritingOptions.prettyPrinted)
+			let data = try JSONSerialization.data(withJSONObject: srcobj.toObject(), options: JSONSerialization.WritingOptions.prettyPrinted)
 			try data.write(to: url, options: .atomic)
 			return nil
 		}
-
 		catch {
 			let error = NSError.parseError(message: "Can not write data into \(url.absoluteString)")
 			return error
 		}
 	}
 
-	public class func serialize(dictionary src: NSDictionary) -> (String?, NSError?) {
+	public class func serialize(JSONObject srcobj: CNJSONObject) -> (String?, NSError?) {
 		do {
-			let data = try JSONSerialization.data(withJSONObject: src, options: .prettyPrinted)
+			let data = try JSONSerialization.data(withJSONObject: srcobj.toObject(), options: .prettyPrinted)
 			let strp  = String(data: data, encoding: String.Encoding.utf8)
 			if let str = strp {
 				return (str, nil)
@@ -61,15 +62,17 @@ public class CNJSONFile {
 		}
 	}
 
-	public class func unserialize(string src : String) -> (NSDictionary?, NSError?) {
+	public class func unserialize(string src : String) -> (CNJSONObject?, NSError?) {
 		do {
-			var result : NSDictionary? = nil
-			var error : NSError? = nil
+			var result : CNJSONObject? = nil
+			var error  : NSError?      = nil
 			let datap = src.data(using: String.Encoding.utf8, allowLossyConversion: false)
 			if let data = datap {
 				let json = try JSONSerialization.jsonObject(with: data, options: [])
 				if let dict = json as? NSDictionary {
-					result = dict
+					result = CNJSONObject(dictionary: dict)
+				} else if let arr = json as? NSArray {
+					result = CNJSONObject(array: arr)
 				} else {
 					error = NSError.parseError(message: "The data type is NOT dictionary in URL:\(src)")
 				}
