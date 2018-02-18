@@ -63,8 +63,10 @@ public class CNCurses
 		set(value) {
 			if value {
 				nocbreak()
+				nodelay(stdscr, false)
 			} else {
 				cbreak()
+				nodelay(stdscr, true)
 			}
 			mDoBuffering = value
 		}
