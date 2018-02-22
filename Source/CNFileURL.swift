@@ -5,6 +5,9 @@
  *   Copyright (C) 2016 Steel Wheels Project
  */
 
+#if os(OSX)
+import AppKit
+#endif
 import Foundation
 
 /**

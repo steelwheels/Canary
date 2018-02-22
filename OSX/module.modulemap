@@ -1,0 +1,4 @@
+
+module CNEditLineCore {
+    header "../Source/CNEditLineCore.h"
+}

@@ -16,6 +16,9 @@ This software is produced by [Steel Wheels Project](http://steelwheels.github.io
 ## Documents
 * [Contact Object](https://github.com/steelwheels/Canary/blob/master/Document/contact-object.md): Contact/AddressBook object definition
 
+## Reference
+* [EditLine Library](https://www.freebsd.org/cgi/man.cgi?editline): The CNEditLine class wraps this library.
+
 ## Links
 * [Web page](http://steelwheels.github.io): Web page of this project
 * [Blog](http://steel-wheels-project.blogspot.jp/): Blog page of this project

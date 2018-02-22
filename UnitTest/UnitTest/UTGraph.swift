@@ -6,6 +6,7 @@
 */
 
 import Canary
+import Foundation
 
 public func UTGraphTest(console cons: CNConsole) -> Bool
 {

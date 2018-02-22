@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05067D9C203DD0D20025A616 /* CNEditLineCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C08D7E203B1AD700685938 /* CNEditLineCore.h */; };
 		0509C3A11ED10446009D8A6A /* CNFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509C3A01ED10446009D8A6A /* CNFile.swift */; };
 		050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050EA5481EE35F5600961900 /* CNPathExpression.swift */; };
 		051850751F5BC9BE00906BF4 /* CNAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051850741F5BC9BE00906BF4 /* CNAccess.swift */; };
@@ -21,6 +22,7 @@
 		0530517C202E760E00920DAE /* UTJSONMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0530517B202E760E00920DAE /* UTJSONMatcher.swift */; };
 		05318A6B1C74D25B00BAA730 /* CNState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6A1C74D25B00BAA730 /* CNState.swift */; };
 		05318A6D1C74D2B800BAA730 /* CNCombinedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */; };
+		0537376B203C79D80003CAC3 /* UTEditLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0537376A203C79D80003CAC3 /* UTEditLine.swift */; };
 		05377BD51CF8A7300083E05C /* CNListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD41CF8A7300083E05C /* CNListItem.swift */; };
 		05377BD71CF8B5E80083E05C /* CNList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05377BD61CF8B5E80083E05C /* CNList.swift */; };
 		053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053807B31C441E6B0021BC51 /* CNBookmark.swift */; };
@@ -76,6 +78,8 @@
 		05B7E1311D81B89A005775DD /* CNMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B7E1301D81B89A005775DD /* CNMath.swift */; };
 		05B9E9CD1F26485C0098A060 /* CNThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B9E9CC1F26485C0098A060 /* CNThread.swift */; };
 		05BD1B401EC35C1000B32E1C /* CNText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD1B3F1EC35C1000B32E1C /* CNText.swift */; };
+		05C08D81203B1AD700685938 /* CNEditLineCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C08D7F203B1AD700685938 /* CNEditLineCore.m */; };
+		05C08D83203B1CC300685938 /* CNEditLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C08D82203B1CC300685938 /* CNEditLine.swift */; };
 		05C15D9E1E9FC8C4008093C5 /* CNParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C15D9D1E9FC8C4008093C5 /* CNParser.swift */; };
 		05C1B8671F42C6EE0089A554 /* CNShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C1B8661F42C6EE0089A554 /* CNShell.swift */; };
 		05C7AE0B1EA09BC600BEF71D /* CNReservedWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */; };
@@ -159,6 +163,7 @@
 		0530517B202E760E00920DAE /* UTJSONMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTJSONMatcher.swift; sourceTree = "<group>"; };
 		05318A6A1C74D25B00BAA730 /* CNState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNState.swift; sourceTree = "<group>"; };
 		05318A6C1C74D2B800BAA730 /* CNCombinedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCombinedState.swift; sourceTree = "<group>"; };
+		0537376A203C79D80003CAC3 /* UTEditLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTEditLine.swift; sourceTree = "<group>"; };
 		05377BD41CF8A7300083E05C /* CNListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItem.swift; sourceTree = "<group>"; };
 		05377BD61CF8B5E80083E05C /* CNList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNList.swift; sourceTree = "<group>"; };
 		053807B31C441E6B0021BC51 /* CNBookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNBookmark.swift; sourceTree = "<group>"; };
@@ -218,6 +223,9 @@
 		05B7E1301D81B89A005775DD /* CNMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNMath.swift; sourceTree = "<group>"; };
 		05B9E9CC1F26485C0098A060 /* CNThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNThread.swift; sourceTree = "<group>"; };
 		05BD1B3F1EC35C1000B32E1C /* CNText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNText.swift; sourceTree = "<group>"; };
+		05C08D7E203B1AD700685938 /* CNEditLineCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNEditLineCore.h; sourceTree = "<group>"; };
+		05C08D7F203B1AD700685938 /* CNEditLineCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNEditLineCore.m; sourceTree = "<group>"; };
+		05C08D82203B1CC300685938 /* CNEditLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNEditLine.swift; sourceTree = "<group>"; };
 		05C15D9D1E9FC8C4008093C5 /* CNParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNParser.swift; sourceTree = "<group>"; };
 		05C1B8661F42C6EE0089A554 /* CNShell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNShell.swift; sourceTree = "<group>"; };
 		05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNReservedWord.swift; sourceTree = "<group>"; };
@@ -391,6 +399,7 @@
 				058980821FEBF250001DA642 /* UTConsole.swift */,
 				058980831FEBF250001DA642 /* UTFile.swift */,
 				0589807F1FEBF250001DA642 /* UTFileURL.swift */,
+				0537376A203C79D80003CAC3 /* UTEditLine.swift */,
 				058980861FEBF251001DA642 /* UTGraph.swift */,
 				058980911FEBF251001DA642 /* UTList.swift */,
 				0589807E1FEBF250001DA642 /* UTMath.swift */,
@@ -490,6 +499,9 @@
 				055FBAC9200A4029002161A7 /* CNCurses.swift */,
 				0522ED3C1FAB708C00D6B24D /* CNConnection.swift */,
 				05D2774520090AEC0008FA6D /* CNReadLine.swift */,
+				05C08D82203B1CC300685938 /* CNEditLine.swift */,
+				05C08D7E203B1AD700685938 /* CNEditLineCore.h */,
+				05C08D7F203B1AD700685938 /* CNEditLineCore.m */,
 			);
 			name = Terminal;
 			sourceTree = "<group>";
@@ -529,6 +541,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05067D9C203DD0D20025A616 /* CNEditLineCore.h in Headers */,
 				057A42AE1C3D6BB7006A48E6 /* Canary.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,7 +655,7 @@
 					057A42A91C3D6BB7006A48E6 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = TR2DNF3P93;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 					};
 					058980611FEBEE9D001DA642 = {
 						CreatedOnToolsVersion = 9.2;
@@ -742,11 +755,13 @@
 				05AC2C172028A25E0007063B /* CNAddressBook.swift in Sources */,
 				058290951D040BE600255FC2 /* CNTristate.swift in Sources */,
 				052C98C41F47DAFB00658DF4 /* CNCommandLine.swift in Sources */,
+				05C08D81203B1AD700685938 /* CNEditLineCore.m in Sources */,
 				055FBACA200A4029002161A7 /* CNCurses.swift in Sources */,
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				05AD3A1A1D67D75700B033EF /* CNNumber.swift in Sources */,
 				0522ED3D1FAB708C00D6B24D /* CNConnection.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
+				05C08D83203B1CC300685938 /* CNEditLine.swift in Sources */,
 				0509C3A11ED10446009D8A6A /* CNFile.swift in Sources */,
 				051850751F5BC9BE00906BF4 /* CNAccess.swift in Sources */,
 				050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */,
@@ -787,6 +802,7 @@
 				058980941FEBF251001DA642 /* UTFileURL.swift in Sources */,
 				0589809A1FEBF251001DA642 /* UTShell.swift in Sources */,
 				058980931FEBF251001DA642 /* UTMath.swift in Sources */,
+				0537376B203C79D80003CAC3 /* UTEditLine.swift in Sources */,
 				058980991FEBF251001DA642 /* UTStream.swift in Sources */,
 				0539FF3D1FF68E970063BE88 /* UTJSONFile.swift in Sources */,
 				0589809C1FEBF251001DA642 /* UTPropertyList.swift in Sources */,
@@ -981,7 +997,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -996,10 +1012,18 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "-lncurses";
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = module.modulemap;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lncurses",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.Canary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -1013,7 +1037,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1028,10 +1052,18 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "-lncurses";
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = module.modulemap;
+				OTHER_LDFLAGS = (
+					"-ledit",
+					"-lncurses",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "steel-wheels-project.Canary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
