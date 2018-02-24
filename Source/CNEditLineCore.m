@@ -28,10 +28,14 @@ static char * promptFunc(EditLine * editline)
 	[self finalize] ;
 }
 
-- (void) setup: (nonnull NSString *) name
+- (void) setup: (nonnull NSString *) name  withInput: (nonnull NSFileHandle *) inhdl withOutput: (nonnull NSFileHandle *) outhdl withError: (nonnull NSFileHandle *) errhdl
 {
 	const char * pname = name.UTF8String ;
-	mEditLine = el_init(pname, stdin, stdout, stderr) ;
+	FILE * infp  = fdopen(inhdl.fileDescriptor, "r") ;
+	FILE * outfp = fdopen(outhdl.fileDescriptor, "w") ;
+	FILE * errfp = fdopen(errhdl.fileDescriptor, "w") ;
+
+	mEditLine = el_init(pname, infp, outfp, errfp) ;
 
 	el_set(mEditLine, EL_PROMPT, &promptFunc) ;
 }

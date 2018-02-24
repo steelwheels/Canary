@@ -15,7 +15,7 @@
 - (nonnull instancetype) init ;
 - (void) dealloc ;
 
-- (void) setup: (nonnull NSString *) name  ;
+- (void) setup: (nonnull NSString *) name withInput: (nonnull NSFileHandle *) inhdl withOutput: (nonnull NSFileHandle *) outhdl withError: (nonnull NSFileHandle *) errhdl ;
 - (void) finalize ;
 - (void) reset ;
 

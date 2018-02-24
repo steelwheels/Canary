@@ -16,8 +16,8 @@ public class CNEditLine
 		mEditLineCore = CNEditLineCore()
 	}
 
-	public func setup(programName name: String){
-		mEditLineCore.setup(name)
+	public func setup(programName name: String, console cons: CNFileConsole){
+		mEditLineCore.setup(name, withInput: cons.inputHandle, withOutput: cons.outputHandle, withError: cons.errorHandle)
 	}
 
 	public var doBuffering: Bool {

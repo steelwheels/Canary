@@ -11,7 +11,8 @@ import Foundation
 public func UTEditLine(console cons: CNConsole) -> Bool
 {
 	let editline = CNEditLine()
-	editline.setup(programName: "UnitTest") ;
+	let file     = CNFileConsole()
+	editline.setup(programName: "UnitTest", console: file) ;
 	if let str = editline.gets() {
 		console.print(string: "input: \(str)\n")
 	}

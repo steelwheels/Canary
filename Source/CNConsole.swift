@@ -28,11 +28,11 @@ open class CNConsole
 
 public class CNFileConsole : CNConsole
 {
-	var inputHandle:	FileHandle?	= nil
-	var outputHandle:	FileHandle?	= nil
-	var errorHandle:	FileHandle?	= nil
+	var inputHandle:	FileHandle
+	var outputHandle:	FileHandle
+	var errorHandle:	FileHandle
 
-	public init(input ihdl: FileHandle?, output ohdl: FileHandle?, error ehdl: FileHandle?){
+	public init(input ihdl: FileHandle, output ohdl: FileHandle, error ehdl: FileHandle){
 		inputHandle	= ihdl
 		outputHandle	= ohdl
 		errorHandle	= ehdl
@@ -45,25 +45,21 @@ public class CNFileConsole : CNConsole
 	}
 
 	public override func print(string str: String){
-		if let ohdl = outputHandle, let data = str.data(using: .utf8) {
-			ohdl.write(data)
+		if let data = str.data(using: .utf8) {
+			outputHandle.write(data)
 		}
 	}
 
 	public override func error(string str: String){
-		if let ehdl = errorHandle, let data = str.data(using: .utf8) {
-			ehdl.write(data)
+		if let data = str.data(using: .utf8) {
+			errorHandle.write(data)
 		} else {
 			print(string: str)
 		}
 	}
 
 	public override func scan() -> String? {
-		if let ihdl = inputHandle {
-			return String(data: ihdl.availableData, encoding: .utf8)
-		} else {
-			return nil
-		}
+		return String(data: inputHandle.availableData, encoding: .utf8)
 	}
 }
 
