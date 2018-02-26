@@ -12,7 +12,9 @@ public func UTShell(console cons: CNConsole) -> Bool
 {
 	let result0 = shellCommand(command: "/bin/echo Hello,World",	console: cons)
 	let result1 = shellCommand(command: "/bin/ls *.plist",	console: cons)
-	return result0 && result1
+	let result2 = searchCommand(commandName: "ls", console: cons)
+	let result3 = searchCommand(commandName: "github", console: cons)
+	return result0 && result1 && result2 && result3
 }
 
 private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
@@ -47,98 +49,19 @@ private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 	return result
 }
 
-/*
-private var mLsCommandDone	= false
-private var mCatCommandDone	= false
-private var mTraceiver		= false
-
-public func UTShell(console cons: CNConsole) -> Bool
+private func searchCommand(commandName name: String, console cons: CNConsole) -> Bool
 {
-    let result0 = lsCommand(console: cons)
-	while !(mLsCommandDone) { }
-
-    let result1 = catCommand(console: cons)
-	while !(mCatCommandDone) { }
-
-	return result0 && result1
-}
-
-private func lsCommand(console cons: CNConsole) -> Bool
-{
-	let shell = CNShell()
-	shell.arguments = ["/bin/ls"]
-
-	let outpipe = Pipe()
-	shell.output = outpipe
-	outpipe.fileHandleForReading.readabilityHandler = readabilityHandler
-
-	shell.terminationHandler = {
-		(_ exitcode: Int32) -> Void in
-		if exitcode != 0 {
-            cons.print(string: "ls command done: Failed\n")
-		}
-		mLsCommandDone = true
-	}
-
-	let pid = shell.execute()
-	if pid <= 0 {
-        cons.print(string: "ls command start: Failed")
-	}
-	return true
-}
-
-private func catCommand(console cons: CNConsole) -> Bool
-{
-	let shell = CNShell()
-	shell.arguments = ["/bin/cat"]
-
-	let inpipe = Pipe()
-	shell.input = inpipe
-
-	let outpipe = Pipe()
-	shell.output = outpipe
-	outpipe.fileHandleForReading.readabilityHandler = readabilityHandler
-
-	shell.terminationHandler = {
-		(_ exitcode: Int32) -> Void in
-		if exitcode != 0 {
-            cons.print(string: "cat command done: Failed")
-		}
-		mCatCommandDone = true
-	}
-
-	let pid = shell.execute()
-	if pid <= 0 {
-        cons.print(string: "cat command start: Failed")
-	}
-
-	var wcount = 0
-	inpipe.fileHandleForWriting.writeabilityHandler = {
-		(filehandle: FileHandle) -> Void in
-		if wcount < 10 {
-			let str = "\(wcount) Hello, world !\n"
-			if let data = str.data(using: .utf8) {
-				filehandle.write(data)
-			}
-			wcount += 1
-		} else {
-			filehandle.closeFile()
-		}
-	}
-
-	return true
-}
-
-private var readabilityHandler: ((_ handle: FileHandle) -> Void) = {
-	(_ handle: FileHandle) -> Void in
-	if let line = String(data: handle.availableData, encoding: String.Encoding.utf8) {
-		if line.characters.count > 0 {
-			Swift.print("output: \"\(line)\"")
-		}
+	let result: Bool
+	cons.print(string: "shell: search command \"name\" => ")
+	if let path = CNShell.searchCommand(commandName: name) {
+		cons.print(string: "FOUND: \"\(path)\"\n")
+		result = true
 	} else {
-		Swift.print("Error decoding data: \(handle.availableData)")
+		cons.print(string: "NOT-FOUND\n")
+		result = false
 	}
+	return result
 }
-*/
+
 
 

@@ -346,6 +346,8 @@ shell: wait command done
 Info.plist
 shell: done -> Succeed
 shell: finish
+shell: search command "name" => FOUND: "/bin/ls"
+shell: search command "name" => FOUND: "/usr/local/bin/github"
 *** UTCommandLine
 *** test0[CommandLine]
   [OptionTypes]
@@ -414,4 +416,5 @@ Version in property list: 1.0
 *** UTFile
 1: Hello, world!
 2: Good morning
+*** UTEditLine
 [SUMMARY] PASSED
