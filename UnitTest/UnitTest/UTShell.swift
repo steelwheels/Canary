@@ -23,7 +23,6 @@ private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 
 	cons.print(string: "shell: setup\n")
 	let shell = CNShell()
-	shell.command = cmd
 	shell.terminationHandler = {
 		(_ exitcode: Int32) -> Void in
 			if exitcode != 0 {
@@ -35,7 +34,7 @@ private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 	}
 
 	cons.print(string: "shell: execute\n")
-	let pid = shell.execute(console: cons)
+	let pid = shell.execute(command: cmd, console: cons)
 	if pid <= 0 {
 		cons.print(string: "shell: Failed to execute")
 		result = false

@@ -77,10 +77,12 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 
 @objc public class CNFile: NSObject
 {
-	public var fileHandle:		FileHandle?
+	public var fileHandle:		FileHandle
+	private var mDidClosed:		Bool
 
 	public init(fileHandle handle: FileHandle){
 		fileHandle = handle
+		mDidClosed = false
 	}
 
 	deinit {
@@ -88,14 +90,14 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 	}
 
 	public func close() {
-		if let handle = fileHandle {
-			handle.closeFile()
-			fileHandle = nil
+		if !mDidClosed {
+			fileHandle.closeFile()
+			mDidClosed = true
 		}
 	}
 
-	public var isClosed: Bool {
-		get { return fileHandle == nil }
+	public func isClosed() -> Bool {
+		return mDidClosed
 	}
 
 	public func getChar() -> Character? {
@@ -132,19 +134,16 @@ private class CNReadFile: CNFile
 	}
 
 	public override func getChar() -> Character? {
-		if let handle = fileHandle {
-			while true {
-				if let c = mLineBuffer.getChar() {
-					return c
+		while !isClosed() {
+			if let c = mLineBuffer.getChar() {
+				return c
+			} else {
+				let newdata = fileHandle.readData(ofLength: CNLineBuffer.CHUNK_SIZE)
+				if newdata.count == 0 {
+					/* end of file */
+					close()
 				} else {
-					let newdata = handle.readData(ofLength: CNLineBuffer.CHUNK_SIZE)
-					if newdata.count == 0 {
-						/* end of file */
-						close()
-						return nil
-					} else {
-						mLineBuffer.appendData(data: newdata)
-					}
+					mLineBuffer.appendData(data: newdata)
 				}
 			}
 		}
@@ -152,62 +151,50 @@ private class CNReadFile: CNFile
 	}
 
 	public override func getLine() -> String? {
-		if let _ = fileHandle {
-			var result: String?	= nil
-			while true {
-				if let c = getChar() {
-					var newres: String
-					if let str = result {
-						newres = str
-					} else {
-						newres = ""
-					}
-					newres.append(c)
-					if c == "\n" {
-						return newres
-					}
-					result = newres
+		var result: String?	= nil
+		while true {
+			if let c = getChar() {
+				var newres: String
+				if let str = result {
+					newres = str
 				} else {
-					return result
+					newres = ""
 				}
+				newres.append(c)
+				if c == "\n" {
+					return newres
+				}
+				result = newres
+			} else {
+				return result
 			}
-		} else {
-			return nil
 		}
 	}
 
 	public override func getAll() -> String? {
-		if let handle = fileHandle {
-			let data = handle.readDataToEndOfFile()
-			return String(data: data, encoding: .utf8)
-		} else {
-			return nil
-		}
+		let data = fileHandle.readDataToEndOfFile()
+		return String(data: data, encoding: .utf8)
 	}
 }
 
 private class CNWriteFile: CNFile
 {
 	public override func put(char c: Character) -> Int {
-		if let handle = fileHandle {
-			let str  = String(c)
-			if let data = str.data(using: .utf8) {
-				handle.write(data)
-			} else {
-				NSLog("Failed to put")
-			}
+		let str  = String(c)
+		if let data = str.data(using: .utf8) {
+			fileHandle.write(data)
+		} else {
+			NSLog("Failed to put")
 		}
 		return 1
 	}
 
 	public override func put(string s: String) -> Int {
-		if let handle = fileHandle {
-			if let data = s.data(using: .utf8) {
-				handle.write(data)
-				return s.count
-			} else {
-				NSLog("Failed to put")
-			}
+		if let data = s.data(using: .utf8) {
+			fileHandle.write(data)
+			return s.count
+		} else {
+			NSLog("Failed to put")
 		}
 		return 0
 	}

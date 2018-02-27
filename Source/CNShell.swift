@@ -11,32 +11,27 @@ import Foundation
 
 public class CNShell
 {
-	public var command		: String
 	public var terminationHandler	: ((_ exitcode: Int32) -> Void)?
 	private var mProcess		: Process? = nil
-	private var mPipeConsole	: CNPipeConsole? = nil
 
 	public init(){
-		command  	   = ""
 		terminationHandler = nil
 		mProcess	   = nil
-		mPipeConsole	   = nil
 	}
 
-	public func execute(console cons: CNConsole) -> Int32 {
-		if command.utf8.count == 0 {
+	public func execute(command cmd: String, console cons: CNConsole) -> Int32 {
+		if cmd.utf8.count == 0 {
 			return -1
 		}
 
 		let pipecons		= CNPipeConsole()
 		pipecons.toConsole	= cons
-		mPipeConsole		= pipecons
 
 		let process  		= Process()
 		process.launchPath	= "/bin/sh"
 		mProcess		= process
 
-		process.arguments	= ["-c", command]
+		process.arguments	= ["-c", cmd]
 		process.standardInput	= pipecons.outputPipe
 		process.standardOutput	= pipecons.inputPipe
 		process.standardError	= pipecons.errorPipe
