@@ -1,3 +1,6 @@
+Hello,World
+Info.plist
+/bin/sh: /bin/hoge: No such file or directory
 Hello, World!
 *** UTCharacter
 test: isSpace( ) == true -> OK
@@ -152,8 +155,8 @@ CNColor: Red   = 1
 CNColor: Green = 2
 this is print message
 this is error message
-UTPipeConsole(P): "hello, world"
 UTPipeConsole(E): "Error message"
+UTPipeConsole(P): "hello, world"
 Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
@@ -334,18 +337,21 @@ matching: key=name value=Optional("value") => matched
 matching: key=eman value=Optional("value") => Not matched
 matching: key=name value=Optional(123) => matched
 *** UTShell
-shell: setup
-shell: execute
-shell: wait command done
-Hello,World
-shell: done -> Succeed
-shell: finish
-shell: setup
-shell: execute
-shell: wait command done
-Info.plist
-shell: done -> Succeed
-shell: finish
+/bin/echo Hello,World: setup
+/bin/echo Hello,World: execute
+/bin/echo Hello,World: wait command done
+/bin/echo Hello,World: done -> Succeed
+/bin/echo Hello,World: finish
+/bin/ls *.plist: setup
+/bin/ls *.plist: execute
+/bin/ls *.plist: wait command done
+/bin/ls *.plist: done -> Succeed
+/bin/ls *.plist: finish
+/bin/hoge: setup
+/bin/hoge: execute
+/bin/hoge: wait command done
+/bin/hoge: done -> Failed
+/bin/hoge: finish
 shell: search command "name" => FOUND: "/bin/ls"
 shell: search command "name" => FOUND: "/usr/local/bin/github"
 *** UTCommandLine

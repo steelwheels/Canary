@@ -121,6 +121,15 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 		/* Do nothing */
 		return 0
 	}
+
+	public func getData() -> Data {
+		return Data.init(capacity: 128/8)
+	}
+
+	public func put(data d: Data) -> Int {
+		/* Do nothing */
+		return 0
+	}
 }
 
 private class CNReadFile: CNFile
@@ -175,6 +184,10 @@ private class CNReadFile: CNFile
 		let data = fileHandle.readDataToEndOfFile()
 		return String(data: data, encoding: .utf8)
 	}
+
+	public override func getData() -> Data {
+		return fileHandle.availableData
+	}
 }
 
 private class CNWriteFile: CNFile
@@ -197,6 +210,11 @@ private class CNWriteFile: CNFile
 			NSLog("Failed to put")
 		}
 		return 0
+	}
+
+	public override func put(data d: Data) -> Int {
+		fileHandle.write(d)
+		return d.count
 	}
 }
 

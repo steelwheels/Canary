@@ -10,40 +10,38 @@ import Foundation
 
 public func UTShell(console cons: CNConsole) -> Bool
 {
-	let result0 = shellCommand(command: "/bin/echo Hello,World",	console: cons)
-	let result1 = shellCommand(command: "/bin/ls *.plist",	console: cons)
-	let result2 = searchCommand(commandName: "ls", console: cons)
-	let result3 = searchCommand(commandName: "github", console: cons)
-	return result0 && result1 && result2 && result3
+	let result0 =  shellCommand(command: "/bin/echo Hello,World",	console: cons)
+	let result1 =  shellCommand(command: "/bin/ls *.plist",	console: cons)
+	let result2 = !shellCommand(command: "/bin/hoge",	console: cons) // will fail
+	let result3 =  searchCommand(commandName: "ls", console: cons)
+	let result4 =  searchCommand(commandName: "github", console: cons)
+	return result0 && result1 && result2 && result3 && result4
 }
 
 private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 {
 	var result	= true
 
-	cons.print(string: "shell: setup\n")
-	let shell = CNShell()
-	shell.terminationHandler = {
+	cons.print(string: "\(cmd): setup\n")
+
+	cons.print(string: "\(cmd): execute\n")
+	let stdin  = CNStandardFile(type: .input)
+	let stdout = CNStandardFile(type: .output)
+	//let stderr = CNStandardFile(type: .error)
+	let shell  = CNShell.execute(command: cmd, inputFile: stdin, outputFile: stdout, errorFile: stdout, terminateHandler: {
 		(_ exitcode: Int32) -> Void in
-			if exitcode != 0 {
-				cons.print(string: "shell[ done -> Failed\n")
-				result = false
-			} else {
-				cons.print(string: "shell: done -> Succeed\n")
-			}
-	}
+		if exitcode != 0 {
+			cons.print(string: "\(cmd): done -> Failed\n")
+			result = false
+		} else {
+			cons.print(string: "\(cmd): done -> Succeed\n")
+		}
+	})
 
-	cons.print(string: "shell: execute\n")
-	let pid = shell.execute(command: cmd, console: cons)
-	if pid <= 0 {
-		cons.print(string: "shell: Failed to execute")
-		result = false
-	}
-
-	cons.print(string: "shell: wait command done\n")
+	cons.print(string: "\(cmd): wait command done\n")
 	shell.waitUntilExit()
-	
-	cons.print(string: "shell: finish\n")
+
+	cons.print(string: "\(cmd): finish\n")
 	
 	return result
 }
