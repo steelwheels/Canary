@@ -7,27 +7,46 @@
 
 import Foundation
 
+public protocol CNFile
+{
+	func close() ;
+	func isClosed() -> Bool
+
+	func getData() -> Data
+	func put(data d: Data)
+}
+
+public protocol CNTextFile: CNFile
+{
+	func getChar() -> Character?
+	func getLine() -> String?
+	func getAll() -> String?
+
+	func put(char c: Character)
+	func put(string s: String)
+}
+
 public enum CNFileAccessType {
 	case ReadAccess
 	case WriteAccess
 	case AppendAccess
 }
 
-public func CNOpenFile(filePath path: String, accessType acctyp: CNFileAccessType) -> (CNFile?, NSError?)
+public func CNOpenFile(filePath path: String, accessType acctyp: CNFileAccessType) -> (CNTextFile?, NSError?)
 {
 	do {
-		var file: CNFile
+		var file: CNTextFile
 		switch acctyp {
 		case .ReadAccess:
 			let fileurl = pathToURL(filePath: path)
 			let handle = try FileHandle(forReadingFrom: fileurl)
-			file = CNReadFile(fileHandle: handle)
+			file = CNTextFileObject(fileHandle: handle)
 		case .WriteAccess:
 			let handle = try fileHandleToWrite(filePath: path, withAppend: false)
-			file = CNWriteFile(fileHandle: handle)
+			file = CNTextFileObject(fileHandle: handle)
 		case .AppendAccess:
 			let handle = try fileHandleToWrite(filePath: path, withAppend: true)
-			file = CNWriteFile(fileHandle: handle)
+			file = CNTextFileObject(fileHandle: handle)
 		}
 		return (file, nil)
 	} catch let err as NSError {
@@ -36,23 +55,6 @@ public func CNOpenFile(filePath path: String, accessType acctyp: CNFileAccessTyp
 		let err = NSError.fileError(message: "Failed to open file \"\(path)\"")
 		return (nil, err)
 	}
-}
-
-public enum CNStandardFileType {
-	case input
-	case output
-	case error
-}
-
-public func CNStandardFile(type t: CNStandardFileType) -> CNFile
-{
-	var file: CNFile
-	switch t {
-	case .input:	file = CNReadFile (fileHandle: FileHandle.standardInput)
-	case .output:	file = CNWriteFile(fileHandle: FileHandle.standardOutput)
-	case .error:	file = CNWriteFile(fileHandle: FileHandle.standardError)
-	}
-	return file
 }
 
 private func pathToURL(filePath path: String) -> URL {
@@ -75,14 +77,31 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 	return handle
 }
 
-@objc public class CNFile: NSObject
+public enum CNStandardFileType {
+	case input
+	case output
+	case error
+}
+
+public func CNStandardFile(type t: CNStandardFileType) -> CNTextFile
 {
-	public var fileHandle:		FileHandle
+	var file: CNTextFile
+	switch t {
+	case .input:	file = CNTextFileObject(fileHandle: FileHandle.standardInput)
+	case .output:	file = CNTextFileObject(fileHandle: FileHandle.standardOutput)
+	case .error:	file = CNTextFileObject(fileHandle: FileHandle.standardError)
+	}
+	return file
+}
+
+private class CNDataFileObject: CNFile
+{
+	private var mFileHandle:	FileHandle
 	private var mDidClosed:		Bool
 
 	public init(fileHandle handle: FileHandle){
-		fileHandle = handle
-		mDidClosed = false
+		mFileHandle = handle
+		mDidClosed  = false
 	}
 
 	deinit {
@@ -91,7 +110,7 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 
 	public func close() {
 		if !mDidClosed {
-			fileHandle.closeFile()
+			mFileHandle.closeFile()
 			mDidClosed = true
 		}
 	}
@@ -100,39 +119,24 @@ private func fileHandleToWrite(filePath path: String, withAppend doappend: Bool)
 		return mDidClosed
 	}
 
-	public func getChar() -> Character? {
-		return nil
-	}
-
-	public func getLine() -> String? {
-		return nil
-	}
-
-	public func getAll() -> String? {
-		return nil
-	}
-
-	public func put(char c: Character) -> Int {
-		/* Do nothing */
-		return 0
-	}
-
-	public func put(string s: String) -> Int {
-		/* Do nothing */
-		return 0
-	}
-
 	public func getData() -> Data {
-		return Data.init(capacity: 128/8)
+		return mFileHandle.availableData
 	}
 
-	public func put(data d: Data) -> Int {
-		/* Do nothing */
-		return 0
+	public func getData(ofLength len: Int) -> Data {
+		return mFileHandle.readData(ofLength: len)
+	}
+
+	public func getAllData() -> Data {
+		return mFileHandle.readDataToEndOfFile()
+	}
+
+	public func put(data d: Data) {
+		mFileHandle.write(d)
 	}
 }
 
-private class CNReadFile: CNFile
+private class CNTextFileObject: CNDataFileObject, CNTextFile
 {
 	public static let 		CHUNK_SIZE = 512
 	private var mLineBuffer:	CNLineBuffer
@@ -142,12 +146,12 @@ private class CNReadFile: CNFile
 		super.init(fileHandle: handle)
 	}
 
-	public override func getChar() -> Character? {
+	public func getChar() -> Character? {
 		while !isClosed() {
 			if let c = mLineBuffer.getChar() {
 				return c
 			} else {
-				let newdata = fileHandle.readData(ofLength: CNLineBuffer.CHUNK_SIZE)
+				let newdata = getData(ofLength: CNLineBuffer.CHUNK_SIZE)
 				if newdata.count == 0 {
 					/* end of file */
 					close()
@@ -159,7 +163,7 @@ private class CNReadFile: CNFile
 		return nil
 	}
 
-	public override func getLine() -> String? {
+	public func getLine() -> String? {
 		var result: String?	= nil
 		while true {
 			if let c = getChar() {
@@ -180,41 +184,25 @@ private class CNReadFile: CNFile
 		}
 	}
 
-	public override func getAll() -> String? {
-		let data = fileHandle.readDataToEndOfFile()
-		return String(data: data, encoding: .utf8)
+	public func getAll() -> String? {
+		return String(data: getAllData(), encoding: .utf8)
 	}
 
-	public override func getData() -> Data {
-		return fileHandle.availableData
-	}
-}
-
-private class CNWriteFile: CNFile
-{
-	public override func put(char c: Character) -> Int {
+	public func put(char c: Character) {
 		let str  = String(c)
 		if let data = str.data(using: .utf8) {
-			fileHandle.write(data)
+			put(data: data)
 		} else {
 			NSLog("Failed to put")
 		}
-		return 1
 	}
 
-	public override func put(string s: String) -> Int {
+	public func put(string s: String) {
 		if let data = s.data(using: .utf8) {
-			fileHandle.write(data)
-			return s.count
+			put(data: data)
 		} else {
 			NSLog("Failed to put")
 		}
-		return 0
-	}
-
-	public override func put(data d: Data) -> Int {
-		fileHandle.write(d)
-		return d.count
 	}
 }
 
@@ -265,4 +253,5 @@ private class CNLineBuffer
 		return result
 	}
 }
+
 

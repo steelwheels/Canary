@@ -12,10 +12,10 @@ public func UTShell(console cons: CNConsole) -> Bool
 {
 	let result0 =  shellCommand(command: "/bin/echo Hello,World",	console: cons)
 	let result1 =  shellCommand(command: "/bin/ls *.plist",	console: cons)
-	let result2 = !shellCommand(command: "/bin/hoge",	console: cons) // will fail
+	//let result2 = !shellCommand(command: "/bin/hoge",	console: cons) // will fail
 	let result3 =  searchCommand(commandName: "ls", console: cons)
 	let result4 =  searchCommand(commandName: "github", console: cons)
-	return result0 && result1 && result2 && result3 && result4
+	return result0 && result1 && /*result2 &&*/ result3 && result4
 }
 
 private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool

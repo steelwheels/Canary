@@ -1,5 +1,6 @@
 # File Class
-The *File Class* has hierarchical class structure to support storage and various data types.
+The *File Class* has hierarchical class structure to support
+ storage and various data types.
 
 ## Type definitions
 ### `CNAccessType`: Type of access
