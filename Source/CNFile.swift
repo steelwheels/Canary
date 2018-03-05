@@ -1,8 +1,8 @@
 /*
- * @file	CNTextFile.swift
- * @brief	Extend CNFileURL class
+ * @file	CNFile.swift
+ * @brief	Define CNFile, CNTextFile protocols
  * @par Copyright
- *   Copyright (C) 2017 Steel Wheels Project
+ *   Copyright (C) 2017, 2018 Steel Wheels Project
  */
 
 import Foundation
@@ -57,6 +57,11 @@ public func CNOpenFile(filePath path: String, accessType acctyp: CNFileAccessTyp
 	}
 }
 
+public func CNOpenFile(fileHandle handle: FileHandle) -> CNTextFile
+{
+	return CNTextFileObject(fileHandle: handle)
+}
+
 private func pathToURL(filePath path: String) -> URL {
 	let curdir = FileManager.default.currentDirectoryPath
 	let cururl = URL(fileURLWithPath: curdir, isDirectory: true)
@@ -83,13 +88,28 @@ public enum CNStandardFileType {
 	case error
 }
 
+private class CNStandardFileObject
+{
+	static let shared: CNStandardFileObject = CNStandardFileObject()
+
+	public var input:	CNTextFileObject
+	public var output:	CNTextFileObject
+	public var error:	CNTextFileObject
+
+	private init(){
+		input  = CNTextFileObject(fileHandle: FileHandle.standardInput)
+		output = CNTextFileObject(fileHandle: FileHandle.standardOutput)
+		error  = CNTextFileObject(fileHandle: FileHandle.standardError)
+	}
+}
+
 public func CNStandardFile(type t: CNStandardFileType) -> CNTextFile
 {
 	var file: CNTextFile
 	switch t {
-	case .input:	file = CNTextFileObject(fileHandle: FileHandle.standardInput)
-	case .output:	file = CNTextFileObject(fileHandle: FileHandle.standardOutput)
-	case .error:	file = CNTextFileObject(fileHandle: FileHandle.standardError)
+	case .input:	file = CNStandardFileObject.shared.input
+	case .output:	file = CNStandardFileObject.shared.output
+	case .error:	file = CNStandardFileObject.shared.error
 	}
 	return file
 }
