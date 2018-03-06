@@ -28,7 +28,7 @@ private func shellCommand(command cmd: String, console cons: CNConsole) -> Bool
 	let stdin  = CNStandardFile(type: .input)
 	let stdout = CNStandardFile(type: .output)
 	//let stderr = CNStandardFile(type: .error)
-	let shell  = CNShell.execute(command: cmd, inputFile: stdin, outputFile: stdout, errorFile: stdout, terminateHandler: {
+	let shell  = CNShell.execute(command: cmd, inputFile: .File(stdin), outputFile: .File(stdout), errorFile: .File(stdout), terminateHandler: {
 		(_ exitcode: Int32) -> Void in
 		if exitcode != 0 {
 			cons.print(string: "\(cmd): done -> Failed\n")

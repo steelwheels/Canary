@@ -9,14 +9,19 @@ import Foundation
 
 public protocol CNFile
 {
-	func close() ;
+	func close()
 	func isClosed() -> Bool
 
 	func getData() -> Data
 	func put(data d: Data)
 }
 
-public protocol CNTextFile: CNFile
+public protocol CNDataFile: CNFile
+{	var  fileHandle: FileHandle { get }
+
+}
+
+public protocol CNTextFile: CNDataFile
 {
 	func getChar() -> Character?
 	func getLine() -> String?
@@ -114,7 +119,7 @@ public func CNStandardFile(type t: CNStandardFileType) -> CNTextFile
 	return file
 }
 
-private class CNDataFileObject: CNFile
+private class CNDataFileObject: CNDataFile
 {
 	private var mFileHandle:	FileHandle
 	private var mDidClosed:		Bool
@@ -126,6 +131,10 @@ private class CNDataFileObject: CNFile
 
 	deinit {
 		close()
+	}
+
+	public var fileHandle: FileHandle {
+		get { return mFileHandle }
 	}
 
 	public func close() {

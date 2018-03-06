@@ -11,36 +11,47 @@ import Foundation
 
 public class CNShell
 {
-	public class func execute(command cmd: String, inputFile infile: CNFile, outputFile outfile: CNFile, errorFile errfile: CNFile, terminateHandler termhdl: ((_ exitcode: Int32) -> Void)?) -> Process {
+	public enum Port {
+	case File(CNDataFile)
+	case Pipe(CNPipe)
+	case Standard
+	}
+
+	public class func execute(command cmd: String, inputFile infile: Port, outputFile outfile: Port, errorFile errfile: Port, terminateHandler termhdl: ((_ exitcode: Int32) -> Void)?) -> Process {
 		let process  		= Process()
+
 		process.launchPath	= "/bin/sh"
-
-		let inpipe 		= Pipe()
-		let outpipe		= Pipe()
-		let errpipe		= Pipe()
-
-		inpipe.fileHandleForWriting.writeabilityHandler = {
-			(_ handle: FileHandle) -> Void in
-			let data = infile.getData()
-			handle.write(data)
-		}
-
-		outpipe.fileHandleForReading.readabilityHandler = {
-			(_ handle: FileHandle) -> Void in
-			let data = handle.availableData
-			let _ = outfile.put(data: data)
-		}
-
-		errpipe.fileHandleForReading.readabilityHandler = {
-			(_ handle: FileHandle) -> Void in
-			let data = handle.availableData
-			let _ = errfile.put(data: data)
-		}
-		
 		process.arguments	= ["-c", cmd]
-		process.standardInput	= inpipe
-		process.standardOutput	= outpipe
-		process.standardError	= errpipe
+
+		/* Standard input */
+		switch infile {
+		case .File(let file):
+			process.standardInput = file.fileHandle
+		case .Pipe(let pipe):
+			process.standardInput = pipe.pipe
+		case .Standard:
+			process.standardInput = FileHandle.standardInput
+		}
+
+		/* Standard output */
+		switch outfile {
+		case .File(let file):
+			process.standardOutput = file.fileHandle
+		case .Pipe(let pipe):
+			process.standardOutput = pipe.pipe
+		case .Standard:
+			process.standardOutput = FileHandle.standardOutput
+		}
+
+		/* Standard error */
+		switch errfile {
+		case .File(let file):
+			process.standardError = file.fileHandle
+		case .Pipe(let pipe):
+			process.standardError = pipe.pipe
+		case .Standard:
+			process.standardError = FileHandle.standardError
+		}
 
 		if let handler = termhdl  {
 			process.terminationHandler = {
