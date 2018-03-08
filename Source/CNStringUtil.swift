@@ -19,7 +19,7 @@ public class CNStringUtil
 		while let c = stream.getc() {
 			if c == "\\" {
 				if let n = stream.getc() {
-					if n == "\"" {
+					if n == qchar {
 						curstr.append(n)
 					} else {
 						curstr.append(c)
