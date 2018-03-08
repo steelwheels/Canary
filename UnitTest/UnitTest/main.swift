@@ -15,6 +15,10 @@ console.print(string: "*** UTCharacter\n")
 let result0 = UTCharacter(console: console)
 if !result0 { console.print(string: "result: Failed\n") }
 
+console.print(string: "*** UTString\n")
+let result24 = UTString(console: console)
+if !result24 { console.print(string: "result: Failed\n") }
+
 console.print(string: "*** UTStream\n")
 let result17 = UTStream(console: console)
 if !result17 { console.print(string: "result: Failed\n") }
@@ -109,7 +113,7 @@ if !result22 { console.print(string: "result: Failed\n") }
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
 	     result10 && result11 && result12 && result13 && result14 && result15 && result16 && result17 && result18 &&
-	     result19 && result20 && result21 && result22 && result23
+	     result19 && result20 && result21 && result22 && result23 && result24
 if result {
 	console.print(string: "[SUMMARY] PASSED\n")
 	exit(0)

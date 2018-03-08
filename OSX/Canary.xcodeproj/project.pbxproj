@@ -69,6 +69,8 @@
 		058BA6162003A843006A10C0 /* CNJSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BA6152003A842006A10C0 /* CNJSONUtil.swift */; };
 		059206581D6161BE008CE72E /* CNListItemPoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059206571D6161BE008CE72E /* CNListItemPoll.swift */; };
 		05971ED01FAE056F00F7CF47 /* CNArrayStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05971ECF1FAE056F00F7CF47 /* CNArrayStream.swift */; };
+		05999874205026DD00F5CD2A /* CNStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05999873205026DD00F5CD2A /* CNStringUtil.swift */; };
+		059998772050328E00F5CD2A /* UTString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059998752050328700F5CD2A /* UTString.swift */; };
 		059FAF9D204D990100088A45 /* UTPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059FAF9C204D990100088A45 /* UTPipe.swift */; };
 		05A4583F202DD34500941E72 /* CNJSONVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A4583E202DD34500941E72 /* CNJSONVisitor.swift */; };
 		05A45841202DEED300941E72 /* CNJSONMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A45840202DEED300941E72 /* CNJSONMatcher.swift */; };
@@ -216,6 +218,8 @@
 		058BA6152003A842006A10C0 /* CNJSONUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNJSONUtil.swift; sourceTree = "<group>"; };
 		059206571D6161BE008CE72E /* CNListItemPoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNListItemPoll.swift; sourceTree = "<group>"; };
 		05971ECF1FAE056F00F7CF47 /* CNArrayStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNArrayStream.swift; sourceTree = "<group>"; };
+		05999873205026DD00F5CD2A /* CNStringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNStringUtil.swift; sourceTree = "<group>"; };
+		059998752050328700F5CD2A /* UTString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTString.swift; sourceTree = "<group>"; };
 		059FAF9C204D990100088A45 /* UTPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTPipe.swift; sourceTree = "<group>"; };
 		05A4583E202DD34500941E72 /* CNJSONVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNJSONVisitor.swift; sourceTree = "<group>"; };
 		05A45840202DEED300941E72 /* CNJSONMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNJSONMatcher.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				0589808A1FEBF251001DA642 /* UTCharacter.swift */,
+				059998752050328700F5CD2A /* UTString.swift */,
 				058980891FEBF251001DA642 /* UTCommandLine.swift */,
 				058980821FEBF250001DA642 /* UTConsole.swift */,
 				058980831FEBF250001DA642 /* UTFile.swift */,
@@ -484,6 +489,7 @@
 				0521AF591E82A1F000E25D02 /* CNToken.swift */,
 				05C7AE0A1EA09BC600BEF71D /* CNReservedWord.swift */,
 				050EA5481EE35F5600961900 /* CNPathExpression.swift */,
+				05999873205026DD00F5CD2A /* CNStringUtil.swift */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 				05D553861C49D9890045B472 /* CNConsole.swift in Sources */,
 				05AD3A1A1D67D75700B033EF /* CNNumber.swift in Sources */,
 				0522ED3D1FAB708C00D6B24D /* CNConnection.swift in Sources */,
+				05999874205026DD00F5CD2A /* CNStringUtil.swift in Sources */,
 				053807B41C441E6B0021BC51 /* CNBookmark.swift in Sources */,
 				05C08D83203B1CC300685938 /* CNEditLine.swift in Sources */,
 				0509C3A11ED10446009D8A6A /* CNFile.swift in Sources */,
@@ -805,6 +812,7 @@
 				058980951FEBF251001DA642 /* UTNumber.swift in Sources */,
 				058980921FEBF251001DA642 /* UTToken.swift in Sources */,
 				058980771FEBF121001DA642 /* main.swift in Sources */,
+				059998772050328E00F5CD2A /* UTString.swift in Sources */,
 				058980A01FEBF251001DA642 /* UTStack.swift in Sources */,
 				058980941FEBF251001DA642 /* UTFileURL.swift in Sources */,
 				0589809A1FEBF251001DA642 /* UTShell.swift in Sources */,
