@@ -160,8 +160,8 @@ CNColor: Red   = 1
 CNColor: Green = 2
 this is print message
 this is error message
-UTPipeConsole(P): "hello, world"
 UTPipeConsole(E): "Error message"
+UTPipeConsole(P): "hello, world"
 Read data: UTPipeCons
 *** UTMath
 clip(value:1.0, max:3.0, min:1.0) -> 1.0 -> OK
@@ -422,6 +422,10 @@ Version in property list: 1.0
 *** UTFile
 1: Hello, world!
 2: Good morning
+*** UTFileManager
+path:Info.plist -> type:File
+path:../OSX -> type:Directory
+path:hoge.hoge -> type:Not exist
 *** UTPipe
 outstr = Hello, world !!
 Good morning.

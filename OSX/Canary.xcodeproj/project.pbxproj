@@ -30,6 +30,8 @@
 		0539FF3D1FF68E970063BE88 /* UTJSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0539FF3C1FF68E970063BE88 /* UTJSONFile.swift */; };
 		053AFE821C3EB4DD00F64198 /* CNFileURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053AFE811C3EB4DD00F64198 /* CNFileURL.swift */; };
 		054324001EDA3DE4006BF839 /* CNValueTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054323FF1EDA3DE4006BF839 /* CNValueTable.swift */; };
+		0544A4CE205537BF0018CBBE /* CNFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544A4CD205537BF0018CBBE /* CNFileManager.swift */; };
+		0544A4D220554B720018CBBE /* UTFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544A4D120554B720018CBBE /* UTFileManager.swift */; };
 		054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054BD3A21C4B9BBC009713BB /* CNFilePath.swift */; };
 		054EED311E7FD58A003C1F57 /* CNObjectCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */; };
 		054EED331E7FED27003C1F57 /* CNCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054EED321E7FED27003C1F57 /* CNCharacter.swift */; };
@@ -175,6 +177,8 @@
 		0539FF3C1FF68E970063BE88 /* UTJSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTJSONFile.swift; sourceTree = "<group>"; };
 		053AFE811C3EB4DD00F64198 /* CNFileURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFileURL.swift; sourceTree = "<group>"; };
 		054323FF1EDA3DE4006BF839 /* CNValueTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValueTable.swift; sourceTree = "<group>"; };
+		0544A4CD205537BF0018CBBE /* CNFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNFileManager.swift; sourceTree = "<group>"; };
+		0544A4D120554B720018CBBE /* UTFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFileManager.swift; sourceTree = "<group>"; };
 		054BD3A21C4B9BBC009713BB /* CNFilePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFilePath.swift; sourceTree = "<group>"; };
 		054EED301E7FD58A003C1F57 /* CNObjectCoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObjectCoder.swift; sourceTree = "<group>"; };
 		054EED321E7FED27003C1F57 /* CNCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNCharacter.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 			children = (
 				053AFE811C3EB4DD00F64198 /* CNFileURL.swift */,
 				054BD3A21C4B9BBC009713BB /* CNFilePath.swift */,
+				0544A4CD205537BF0018CBBE /* CNFileManager.swift */,
 				0509C3A01ED10446009D8A6A /* CNFile.swift */,
 				0525C943204C43600058CCBF /* CNPipe.swift */,
 				051850741F5BC9BE00906BF4 /* CNAccess.swift */,
@@ -408,6 +413,7 @@
 				058980891FEBF251001DA642 /* UTCommandLine.swift */,
 				058980821FEBF250001DA642 /* UTConsole.swift */,
 				058980831FEBF250001DA642 /* UTFile.swift */,
+				0544A4D120554B720018CBBE /* UTFileManager.swift */,
 				059FAF9C204D990100088A45 /* UTPipe.swift */,
 				0589807F1FEBF250001DA642 /* UTFileURL.swift */,
 				0537376A203C79D80003CAC3 /* UTEditLine.swift */,
@@ -766,6 +772,7 @@
 				052330F61C7CB00000585F94 /* CNStateObserver.swift in Sources */,
 				05AC2C172028A25E0007063B /* CNAddressBook.swift in Sources */,
 				058290951D040BE600255FC2 /* CNTristate.swift in Sources */,
+				0544A4CE205537BF0018CBBE /* CNFileManager.swift in Sources */,
 				052C98C41F47DAFB00658DF4 /* CNCommandLine.swift in Sources */,
 				05C08D81203B1AD700685938 /* CNEditLineCore.m in Sources */,
 				055FBACA200A4029002161A7 /* CNCurses.swift in Sources */,
@@ -821,6 +828,7 @@
 				058980991FEBF251001DA642 /* UTStream.swift in Sources */,
 				0539FF3D1FF68E970063BE88 /* UTJSONFile.swift in Sources */,
 				059FAF9D204D990100088A45 /* UTPipe.swift in Sources */,
+				0544A4D220554B720018CBBE /* UTFileManager.swift in Sources */,
 				0589809C1FEBF251001DA642 /* UTPropertyList.swift in Sources */,
 				058980A11FEBF251001DA642 /* UTObjectNotation.swift in Sources */,
 				058980961FEBF251001DA642 /* UTValueTable.swift in Sources */,

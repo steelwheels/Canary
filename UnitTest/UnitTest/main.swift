@@ -103,6 +103,10 @@ console.print(string: "*** UTFile\n")
 let result19 = UTFileTest(console: console)
 if !result19 { console.print(string: "result: Failed\n") }
 
+console.print(string: "*** UTFileManager\n")
+let result25 = UTFileManagerTest(console: console)
+if !result25 { console.print(string: "result: Failed\n") }
+
 console.print(string: "*** UTPipe\n")
 let result23 = UTPipeTest(console: console)
 if !result23 { console.print(string: "result: Failed\n") }
@@ -113,7 +117,7 @@ if !result22 { console.print(string: "result: Failed\n") }
 
 let result = result0 && result1 && result2 && result3 && result4 && result5 && result6 && result7 && result8 && result9 &&
 	     result10 && result11 && result12 && result13 && result14 && result15 && result16 && result17 && result18 &&
-	     result19 && result20 && result21 && result22 && result23 && result24
+	     result19 && result20 && result21 && result22 && result23 && result24 && result25
 if result {
 	console.print(string: "[SUMMARY] PASSED\n")
 	exit(0)
