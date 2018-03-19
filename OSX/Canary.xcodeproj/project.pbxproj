@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0503ADAF205D42510017ACEA /* CNTokenStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0503ADAE205D42510017ACEA /* CNTokenStream.swift */; };
 		05067D9C203DD0D20025A616 /* CNEditLineCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C08D7E203B1AD700685938 /* CNEditLineCore.h */; };
 		0509C3A11ED10446009D8A6A /* CNFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0509C3A01ED10446009D8A6A /* CNFile.swift */; };
 		050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050EA5481EE35F5600961900 /* CNPathExpression.swift */; };
@@ -155,6 +156,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0503ADAE205D42510017ACEA /* CNTokenStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNTokenStream.swift; sourceTree = "<group>"; };
 		0509C3A01ED10446009D8A6A /* CNFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFile.swift; sourceTree = "<group>"; };
 		050EA5481EE35F5600961900 /* CNPathExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNPathExpression.swift; sourceTree = "<group>"; };
 		051850741F5BC9BE00906BF4 /* CNAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNAccess.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				05BD1B3F1EC35C1000B32E1C /* CNText.swift */,
 				05C90E821F4DEDD400C996D9 /* CNStringStream.swift */,
 				05971ECF1FAE056F00F7CF47 /* CNArrayStream.swift */,
+				0503ADAE205D42510017ACEA /* CNTokenStream.swift */,
 				05AD3A191D67D75700B033EF /* CNNumber.swift */,
 				05B7E1301D81B89A005775DD /* CNMath.swift */,
 				054EED321E7FED27003C1F57 /* CNCharacter.swift */,
@@ -785,6 +788,7 @@
 				0509C3A11ED10446009D8A6A /* CNFile.swift in Sources */,
 				051850751F5BC9BE00906BF4 /* CNAccess.swift in Sources */,
 				050EA5491EE35F5600961900 /* CNPathExpression.swift in Sources */,
+				0503ADAF205D42510017ACEA /* CNTokenStream.swift in Sources */,
 				05658E2D1F0AA8C8002FF2B7 /* CNStack.swift in Sources */,
 				05A4583F202DD34500941E72 /* CNJSONVisitor.swift in Sources */,
 				05D21FA91C49CAC90078C6DE /* CNJSONFile.swift in Sources */,
@@ -1033,6 +1037,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1046,7 +1051,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -1073,6 +1078,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1086,7 +1092,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

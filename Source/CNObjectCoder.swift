@@ -223,12 +223,12 @@ private class CNDecoder
 		let (identp, idx0) = getIdentifier(tokens: src, index: idx)
 		if identp == nil {
 			let str = src[idx].toString()
-			throw CNParseError.ParseError(src[idx], "Identifier is required but \"\(str)\" is given")
+			throw CNParseError.ParseError(src[idx].lineNo, "Identifier is required but \"\(str)\" is given")
 		}
 		/* Get ":" */
 		let (hascomma, idx1) = hasSymbol(tokens: src, index: idx0, symbol: ":")
 		if !hascomma {
-			throw CNParseError.ParseError(src[idx], "\":\" is required after identifier \(identp!)")
+			throw CNParseError.ParseError(src[idx].lineNo, "\":\" is required after identifier \(identp!)")
 		}
 		/* Get type name */
 		let (typenamep, idx2) = getIdentifier(tokens: src, index: idx1)
@@ -236,10 +236,10 @@ private class CNDecoder
 		if let t = typenamep {
 			typename = t
 		} else {
-			throw CNParseError.ParseError(src[idx], "Type name is expected")
+			throw CNParseError.ParseError(src[idx].lineNo, "Type name is expected")
 		}
 		if !(idx2 < src.count) {
-			throw CNParseError.ParseError(src[idx], "Object value is not declared")
+			throw CNParseError.ParseError(src[idx].lineNo, "Object value is not declared")
 		}
 
 		/* Get value */
@@ -260,7 +260,7 @@ private class CNDecoder
 					idx3 = newidx
 				}
 			} else {
-				throw CNParseError.ParseError(src[idx2], "Pass expression is required")
+				throw CNParseError.ParseError(src[idx2].lineNo, "Pass expression is required")
 			}
 		case .SymbolToken(let sym):
 			switch sym {
@@ -278,10 +278,10 @@ private class CNDecoder
 				}
 				idx3      = newidx
 			default:
-				throw CNParseError.ParseError(src[idx], "Unexpected symbol \"\(sym)\"")
+				throw CNParseError.ParseError(src[idx].lineNo, "Unexpected symbol \"\(sym)\"")
 			}
 		case .IdentifierToken(let ident):
-			throw CNParseError.ParseError(src[idx], "Unexpected identifier \"\(ident)\"")
+			throw CNParseError.ParseError(src[idx].lineNo, "Unexpected identifier \"\(ident)\"")
 		case .BoolToken(let value):
 			objvalue3 = CNObjectNotation.ValueObject.PrimitiveValue(value: CNValue(booleanValue: value))
 			idx3      = idx2 + 1
@@ -324,7 +324,7 @@ private class CNDecoder
 		/* get "{" */
 		let (haslp, idx1) = hasSymbol(tokens: src, index: idx, symbol: "{")
 		if !haslp {
-			throw CNParseError.ParseError(src[idx], "\"{\" is required")
+			throw CNParseError.ParseError(src[idx].lineNo, "\"{\" is required")
 		}
 		curidx = idx1
 
@@ -343,7 +343,7 @@ private class CNDecoder
 		/* get "}" */
 		let (hasrp, idx3) = hasSymbol(tokens: src, index: curidx, symbol: "}")
 		if haslp && !hasrp {
-			throw CNParseError.ParseError(src[idx], "\"}\" is required")
+			throw CNParseError.ParseError(src[idx].lineNo, "\"}\" is required")
 		}
 		curidx = idx3
 		return (result, curidx)
@@ -371,7 +371,7 @@ private class CNDecoder
 						if hascm {
 							curidx = idx3
 						} else {
-							throw CNParseError.ParseError(src[curidx], "\",\" is required")
+							throw CNParseError.ParseError(src[curidx].lineNo, "\",\" is required")
 						}
 					}
 					/* get path expression */
@@ -391,14 +391,14 @@ private class CNDecoder
 				break
 			}
 		}
-		throw CNParseError.ParseError(src[curidx], "script of method is required")
+		throw CNParseError.ParseError(src[curidx].lineNo, "script of method is required")
 	}
 
 	private func decodeType(tokens src: Array<CNToken>, index idx: Int, typeName name: String) throws -> CNValueType {
 		if let type = CNValueType.decode(typeName: name) {
 			return type
 		} else {
-			throw CNParseError.ParseError(src[idx], "Unknown data type: \"\(name)\"")
+			throw CNParseError.ParseError(src[idx].lineNo, "Unknown data type: \"\(name)\"")
 		}
 	}
 
@@ -493,7 +493,7 @@ private class CNDecoder
 				elms.append(ident)
 				newidx = idx2
 			} else {
-				throw CNParseError.ParseError(src[newidx], "The identifier is required")
+				throw CNParseError.ParseError(src[newidx].lineNo, "The identifier is required")
 			}
 		}
 		return (CNPathExpression(pathElements: elms), newidx)

@@ -183,6 +183,31 @@ public struct CNToken {
 		}
 		return result
 	}
+
+	public func toValue() -> CNValue? {
+		var result: CNValue?
+		switch self.type {
+		case .ReservedWordToken(_):
+			result = nil
+		case .SymbolToken(let val):
+			result = CNValue(characterValue: val)
+		case .IdentifierToken(_):
+			result = nil
+		case .BoolToken(let val):
+			result = CNValue(booleanValue: val)
+		case .UIntToken(let val):
+			result = CNValue(uIntValue: val)
+		case .IntToken(let val):
+			result = CNValue(intValue: val)
+		case .DoubleToken(let val):
+			result = CNValue(doubleValue: val)
+		case .StringToken(let val):
+			result = CNValue(stringValue: val)
+		case .TextToken(let val):
+			result = CNValue(stringValue: val)
+		}
+		return result
+	}
 }
 
 public func CNStringToToken(string srcstr: String) -> (CNParseError, Array<CNToken>)
