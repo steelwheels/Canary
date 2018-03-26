@@ -59,6 +59,9 @@
 		05CD9B3E1E876187000A60F7 /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B3C1E876187000A60F7 /* CNValue.swift */; };
 		05CD9B411E876192000A60F7 /* CNToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD9B401E876192000A60F7 /* CNToken.swift */; };
 		05D5E3641FAE058B0035C9CF /* CNArrayStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D5E3631FAE058B0035C9CF /* CNArrayStream.swift */; };
+		05D6FD1D206895B40009B09F /* CNColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6FD1C206895B40009B09F /* CNColor.swift */; };
+		05D6FD1F206895C00009B09F /* CNKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6FD1E206895C00009B09F /* CNKey.swift */; };
+		05D6FD21206895CD0009B09F /* CNStringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6FD20206895CD0009B09F /* CNStringUtil.swift */; };
 		05E7AB871D9145D300D29BF3 /* Canary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E7AB851D9145D300D29BF3 /* Canary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		05EE15C51F11133A0025FF6B /* CNGraphDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE15C41F11133A0025FF6B /* CNGraphDumper.swift */; };
 		05F1EF791FA3827F0017CC7C /* CNShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1EF781FA3827F0017CC7C /* CNShell.swift */; };
@@ -129,6 +132,9 @@
 		05CD9B3C1E876187000A60F7 /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
 		05CD9B401E876192000A60F7 /* CNToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNToken.swift; sourceTree = "<group>"; };
 		05D5E3631FAE058B0035C9CF /* CNArrayStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNArrayStream.swift; sourceTree = "<group>"; };
+		05D6FD1C206895B40009B09F /* CNColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNColor.swift; sourceTree = "<group>"; };
+		05D6FD1E206895C00009B09F /* CNKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNKey.swift; sourceTree = "<group>"; };
+		05D6FD20206895CD0009B09F /* CNStringUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNStringUtil.swift; sourceTree = "<group>"; };
 		05E7AB821D9145D300D29BF3 /* Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7AB851D9145D300D29BF3 /* Canary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canary.h; sourceTree = "<group>"; };
 		05E7AB861D9145D300D29BF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 				0556D2011EB8A93200692D2A /* CNNumber.swift */,
 				05CD9B351E876131000A60F7 /* CNCharacter.swift */,
 				05269DE81D9146920075A14C /* CNMath.swift */,
+				05D6FD20206895CD0009B09F /* CNStringUtil.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -235,6 +242,8 @@
 		05269E0B1D9147320075A14C /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
+				05D6FD1E206895C00009B09F /* CNKey.swift */,
+				05D6FD1C206895B40009B09F /* CNColor.swift */,
 				05B560C81FAC2CFD009B1224 /* CNConnection.swift */,
 				05269DDF1D9146920075A14C /* CNConsole.swift */,
 			);
@@ -480,6 +489,7 @@
 				05269DF61D9146920075A14C /* CNErrorExtension.swift in Sources */,
 				05269E061D9146920075A14C /* CNTristate.swift in Sources */,
 				054453771EA91DE60069867F /* CNReservedWord.swift in Sources */,
+				05D6FD1D206895B40009B09F /* CNColor.swift in Sources */,
 				05269E001D9146920075A14C /* CNOrderedList.swift in Sources */,
 				0521E1ED1FEFA26200B66034 /* CNFile.swift in Sources */,
 				05269DFB1D9146920075A14C /* CNListItem.swift in Sources */,
@@ -497,6 +507,7 @@
 				0556D2021EB8A93200692D2A /* CNNumber.swift in Sources */,
 				0551B9771F264C8200A0DFA7 /* CNThread.swift in Sources */,
 				05BAE4DC1EE37A2E0074DF41 /* CNPathExpression.swift in Sources */,
+				05D6FD1F206895C00009B09F /* CNKey.swift in Sources */,
 				0592CBC51F49551D001E362E /* CNValueUtil.swift in Sources */,
 				05269E031D9146920075A14C /* CNState.swift in Sources */,
 				05801FD31F0FDCA9007DD866 /* CNEdge.swift in Sources */,
@@ -515,6 +526,7 @@
 				05269DF81D9146920075A14C /* CNFileURL.swift in Sources */,
 				051850771F5BCAD600906BF4 /* CNAccess.swift in Sources */,
 				05572ACD2031AFEE0031BF80 /* CNAddressBook.swift in Sources */,
+				05D6FD21206895CD0009B09F /* CNStringUtil.swift in Sources */,
 				05269DF41D9146920075A14C /* CNConsole.swift in Sources */,
 				05269DF91D9146920075A14C /* CNJSONFile.swift in Sources */,
 				05B3AFDB1EDA4E7000716DEC /* CNValueTable.swift in Sources */,

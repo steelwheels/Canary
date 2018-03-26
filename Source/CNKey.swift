@@ -5,6 +5,8 @@
  *   Copyright (C) 2018 Steel Wheels Project
  */
 
+#if os(OSX)
+
 import Foundation
 import Darwin.ncurses
 
@@ -32,4 +34,6 @@ public class CNKey {
 		return result
 	}
 }
+
+#endif // os(OSX)
 

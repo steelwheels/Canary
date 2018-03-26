@@ -6,7 +6,9 @@
  */
 
 import Foundation
-import Darwin.ncurses
+#if os(OSX)
+	import Darwin.ncurses
+#endif // os(OSX)
 
 public enum CNColor: Int32 {
 	case Black	= 0
@@ -36,6 +38,7 @@ public enum CNColor: Int32 {
 		return result
 	}
 
+#if os(OSX)
 	public func toDarwinColor() -> Int32 {
 		var result: Int32
 		switch self {
@@ -50,5 +53,6 @@ public enum CNColor: Int32 {
 		}
 		return result
 	}
+#endif // os(OSX)
 }
 
