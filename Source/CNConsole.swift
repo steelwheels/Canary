@@ -170,7 +170,6 @@ public class CNPipeConsole: CNConsole
 	}
 }
 
-#if os(OSX)
 public class CNCursesConsole: CNConsole
 {
 	public enum ConsoleMode {
@@ -180,26 +179,32 @@ public class CNCursesConsole: CNConsole
 
 	private var mConsoleMode:	ConsoleMode
 	private var mDefaultConsole:	CNConsole
+	#if os(OSX)
 	private var mCurses:		CNCurses
+	#endif
 	private var mForegroundColor:	CNColor
 	private var mBackgroundColor:	CNColor
 
 	public init(defaultConsole cons: CNConsole){
 		mConsoleMode		= .Shell
 		mDefaultConsole		= cons
+		#if os(OSX)
 		mCurses			= CNCurses()
+		#endif
 		mForegroundColor	= .White
 		mBackgroundColor	= .Black
 	}
 
 	public func setMode(mode m: ConsoleMode){
 		if mConsoleMode != m {
+			#if os(OSX)
 			switch m {
 			case .Shell:
 				mCurses.finalize()
 			case .Screen:
 				mCurses.setup()
 			}
+			#endif
 			mConsoleMode = m
 		}
 	}
@@ -208,16 +213,26 @@ public class CNCursesConsole: CNConsole
 		get {
 			var result: Bool
 			switch mConsoleMode {
-			case .Screen:	result = mCurses.visiblePrompt
-			case .Shell:	result = true
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.visiblePrompt
+				#else
+					result = true
+				#endif
+			case .Shell:
+				result = true
 			}
 			return result
 		}
 		set(value){
+			#if os(OSX)
 			switch mConsoleMode {
-			case .Screen:	mCurses.visiblePrompt = value
-			case .Shell:	break
+			case .Screen:
+				mCurses.visiblePrompt = value
+			case .Shell:
+				break
 			}
+			#endif
 		}
 	}
 
@@ -225,16 +240,26 @@ public class CNCursesConsole: CNConsole
 		get {
 			var result: Bool
 			switch mConsoleMode {
-			case .Screen:	result = mCurses.doBuffering
-			case .Shell:	result = true
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.doBuffering
+				#else
+					result = true
+				#endif
+			case .Shell:
+				result = true
 			}
 			return result
 		}
 		set(value){
+			#if os(OSX)
 			switch mConsoleMode {
-			case .Screen:	mCurses.doBuffering = value
-			case .Shell:	break
+			case .Screen:
+				mCurses.doBuffering = value
+			case .Shell:
+				break
 			}
+			#endif
 		}
 	}
 
@@ -242,16 +267,24 @@ public class CNCursesConsole: CNConsole
 		get {
 			var result: Bool
 			switch mConsoleMode {
-			case .Screen:	result = mCurses.doEcho
-			case .Shell:	result = true
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.doEcho
+				#else
+					result = true
+				#endif
+			case .Shell:
+				result = true
 			}
 			return result
 		}
 		set(value){
+			#if os(OSX)
 			switch mConsoleMode {
 			case .Screen:	mCurses.doEcho = value
 			case .Shell:	break
 			}
+			#endif
 		}
 	}
 
@@ -259,8 +292,14 @@ public class CNCursesConsole: CNConsole
 		get {
 			let result: Int
 			switch mConsoleMode {
-			case .Shell:	result = 0 	// Unknown
-			case .Screen:	result = mCurses.screenWidth
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.screenWidth
+				#else
+					result = 0 // Unknown
+				#endif
+			case .Shell:
+				result = 0 // Unknown
 			}
 			return result
 		}
@@ -270,8 +309,14 @@ public class CNCursesConsole: CNConsole
 		get {
 			let result: Int
 			switch mConsoleMode {
-			case .Shell:	result = 0 	// Unknown
-			case .Screen:	result = mCurses.screenHeight
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.screenHeight
+				#else
+					result = 0 // Unknown
+				#endif
+			case .Shell:
+				result = 0 	// Unknown
 			}
 			return result
 		}
@@ -281,8 +326,14 @@ public class CNCursesConsole: CNConsole
 		get {
 			let result: Int
 			switch mConsoleMode {
-			case .Shell:	result = 0 	// Unknown
-			case .Screen:	result = mCurses.cursorX
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.cursorX
+				#else
+					result = 0 // Unknown
+				#endif
+			case .Shell:
+				result = 0 	// Unknown
 			}
 			return result
 		}
@@ -292,25 +343,35 @@ public class CNCursesConsole: CNConsole
 		get {
 			let result: Int
 			switch mConsoleMode {
-			case .Shell:	result = 0 	// Unknown
-			case .Screen:	result = mCurses.cursorY
+			case .Screen:
+				#if os(OSX)
+					result = mCurses.cursorY
+				#else
+					result = 0
+				#endif
+			case .Shell:
+				result = 0 	// Unknown
 			}
 			return result
 		}
 	}
 
 	public func setColor(foregroundColor fcol: CNColor, backgroundColor bcol: CNColor){
+		#if os(OSX)
 		switch mConsoleMode {
-		case .Shell:	break
 		case .Screen:	mCurses.setColor(foregroundColor: fcol, backgroundColor: bcol)
+		case .Shell:	break
 		}
+		#endif
 	}
 
 	public func moveTo(x xval:Int, y yval:Int) {
+		#if os(OSX)
 		switch mConsoleMode {
-		case .Shell:	break
 		case .Screen:	mCurses.moveTo(x: xval, y: yval)
+		case .Shell:	break
 		}
+		#endif
 	}
 	
 	open func getKey() -> Int32? {
@@ -319,7 +380,11 @@ public class CNCursesConsole: CNConsole
 		case .Shell:
 			result = nil
 		case .Screen:
-			result = mCurses.getKey()
+			#if os(OSX)
+				result = mCurses.getKey()
+			#else
+				result = nil
+			#endif
 		}
 		return result
 	}
@@ -329,7 +394,11 @@ public class CNCursesConsole: CNConsole
 		case .Shell:
 			mDefaultConsole.print(string: str)
 		case .Screen:
-			mCurses.put(string: str)
+			#if os(OSX)
+				mCurses.put(string: str)
+			#else
+				mDefaultConsole.print(string: str)
+			#endif
 		}
 	}
 
@@ -338,7 +407,11 @@ public class CNCursesConsole: CNConsole
 		case .Shell:
 			mDefaultConsole.error(string: str)
 		case .Screen:
-			mCurses.put(string: str)
+			#if os(OSX)
+				mCurses.put(string: str)
+			#else
+				mDefaultConsole.error(string: str)
+			#endif
 		}
 	}
 
@@ -348,6 +421,7 @@ public class CNCursesConsole: CNConsole
 		case .Shell:
 			result = mDefaultConsole.scan()
 		case .Screen:
+			#if os(OSX)
 			var tmpres: String? = nil
 			if let v = mCurses.getKey() {
 				if 0<=v && v<=0xff {
@@ -357,11 +431,13 @@ public class CNCursesConsole: CNConsole
 				}
 			}
 			result = tmpres
+			#else
+			result = mDefaultConsole.scan()
+			#endif
 		}
 		return result
 	}
 }
-#endif // os(OSX)
 
 public class CNSenderConsole: CNConsole
 {
