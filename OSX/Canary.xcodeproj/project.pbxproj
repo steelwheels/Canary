@@ -100,6 +100,7 @@
 		05EE15C21F10E36F0025FF6B /* CNGraphDumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE15C11F10E36F0025FF6B /* CNGraphDumper.swift */; };
 		05EF66021C40AB470019B4BB /* CNErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF66011C40AB470019B4BB /* CNErrorExtension.swift */; };
 		05F1F08A1E67366600792828 /* CNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1F0891E67366600792828 /* CNValue.swift */; };
+		05FEDEFB2082FB7F00DAA303 /* CNExitCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEDEFA2082FB7F00DAA303 /* CNExitCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +254,7 @@
 		05EE15C11F10E36F0025FF6B /* CNGraphDumper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNGraphDumper.swift; sourceTree = "<group>"; };
 		05EF66011C40AB470019B4BB /* CNErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNErrorExtension.swift; sourceTree = "<group>"; };
 		05F1F0891E67366600792828 /* CNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNValue.swift; sourceTree = "<group>"; };
+		05FEDEFA2082FB7F00DAA303 /* CNExitCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNExitCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				05EF66011C40AB470019B4BB /* CNErrorExtension.swift */,
+				05FEDEFA2082FB7F00DAA303 /* CNExitCode.swift */,
 			);
 			name = Error;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				05377BD71CF8B5E80083E05C /* CNList.swift in Sources */,
 				05B9E9CD1F26485C0098A060 /* CNThread.swift in Sources */,
 				05AA59E31ED886060028E1D9 /* CNVisitor.swift in Sources */,
+				05FEDEFB2082FB7F00DAA303 /* CNExitCode.swift in Sources */,
 				052C98CA1F483A2B00658DF4 /* CNValueUtil.swift in Sources */,
 				05EE15BE1F104BFB0025FF6B /* CNObject.swift in Sources */,
 				054BD3A31C4B9BBC009713BB /* CNFilePath.swift in Sources */,

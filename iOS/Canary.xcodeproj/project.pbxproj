@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050421571EC68F1000B8CC51 /* CNObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050421561EC68F1000B8CC51 /* CNObject.swift */; };
+		051420FF2082FEAB0084FCD7 /* CNExitCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051420FE2082FEAB0084FCD7 /* CNExitCode.swift */; };
 		051850771F5BCAD600906BF4 /* CNAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051850761F5BCAD600906BF4 /* CNAccess.swift */; };
 		051C4DB71ED89471006A7145 /* CNVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C4DB61ED89471006A7145 /* CNVisitor.swift */; };
 		0521E1ED1FEFA26200B66034 /* CNFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0521E1EC1FEFA26200B66034 /* CNFile.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		050421561EC68F1000B8CC51 /* CNObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNObject.swift; sourceTree = "<group>"; };
+		051420FE2082FEAB0084FCD7 /* CNExitCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNExitCode.swift; sourceTree = "<group>"; };
 		051850761F5BCAD600906BF4 /* CNAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNAccess.swift; sourceTree = "<group>"; };
 		051C4DB61ED89471006A7145 /* CNVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNVisitor.swift; sourceTree = "<group>"; };
 		0521E1EC1FEFA26200B66034 /* CNFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNFile.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		05269E091D9146EF0075A14C /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				051420FE2082FEAB0084FCD7 /* CNExitCode.swift */,
 				05269DE11D9146920075A14C /* CNErrorExtension.swift */,
 			);
 			name = Error;
@@ -485,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05572ACA2031AFD60031BF80 /* CNJSONUtil.swift in Sources */,
+				051420FF2082FEAB0084FCD7 /* CNExitCode.swift in Sources */,
 				05269DFC1D9146920075A14C /* CNListItemPoll.swift in Sources */,
 				0544A4D0205538D90018CBBE /* CNFileManager.swift in Sources */,
 				05572ACF2031AFF60031BF80 /* CNAuthorize.swift in Sources */,
